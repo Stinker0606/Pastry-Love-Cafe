@@ -22,11 +22,14 @@ default is_macoi_awakened = False
 default is_velvette_awakened = False
 default is_cino_awakened = False
 
-# Affection Points der Chars
+# --- Affection Points der Chars ---
 default lavan_points = 0
 default macoi_points = 0
 default velvette_points = 0
 default cino_points = 0
+
+# --- UI-Status-Variablen ---
+# default current_textbox_color = None | AUS, ist damit die box unten sich mit ändert beim hovern
 
 # --- EVENT-FLAGGEN ---
 # (Diese steuern, was im Hub-Menü sichtbar ist)

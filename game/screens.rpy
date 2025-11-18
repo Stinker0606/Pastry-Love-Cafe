@@ -1636,3 +1636,70 @@ style slider_vbox:
 style slider_slider:
     variant "small"
     xsize 900
+
+# # ==================================================================
+# # SCREEN ÜBERSCHREIBUNGEN (Overrides)
+# # ==================================================================
+
+# Eigene Variante des 'choice'-Screen.
+# Wir müssen den Buttons sagen, dass sie beim 'hovern'
+# dynamisch sich ändern, basierend auf dem Charakter-Tag.
+
+screen choice(items):
+    style_prefix "choice"
+
+    # 'vbox' stapelt die Buttons vertikal
+    vbox:
+        
+        # 'for i in items:' geht durch jede einzelne Menü-Option
+        for i in items:
+            
+            # 'i.caption' ist der Text des Buttons (z.B. "{#lavan}Rede mit Lavan")
+            # --- WIR DEFINIEREN UNSERE HINTERGRUNDBILDER ---
+            # '$' ist eine einzelne Python-Zeile
+            
+            # Schritt 1: Definiere die Standard-Bilder (für "Zurück" etc.)
+            # Das 'idle'-Bild (wenn die Maus nicht drüber ist).
+            $ idle_bg = "gui/button/choice_idle_background.png"
+            # Das 'hover'-Bild (wenn die Maus drüber ist).
+            $ hover_bg = "gui/button/choice_hover_background.png" # Dein pinkes Standard-Hover
+            
+            # Schritt 2: Wir prüfen, ob unsere "geheimen Tags" im Text sind.
+            # 'i.caption' ist der volle Text (z.B. "{#lavan}Rede...")
+            if "{#lavan}" in i.caption:
+                # Wenn ja, überschreiben wir die 'hover_bg'-Variable
+                # mit dem Pfad zu unserem NEUEN Bild.
+                $ hover_bg = "gui/button/choice_hover_lavan.png" # (Das braune)
+            
+            elif "{#macoi}" in i.caption:
+                $ hover_bg = "gui/button/choice_hover_macoi.png" # (Das grüne)
+            
+            elif "{#velvette}" in i.caption:
+                $ hover_bg = "gui/button/choice_hover_velvette.png" # (Das pinke)
+            
+            elif "{#cino}" in i.caption:
+                $ hover_bg = "gui/button/choice_hover_cino.png" # (Das gelbe)
+            
+            
+            # 'textbutton' erstellt den klickbaren Button
+            # 'i.caption' ist der Text, der angezeigt wird
+            textbutton i.caption:
+                
+                # 'action' ist, was passiert, wenn man klickt.
+                # 'i.action' ist die Aktion (z.B. 'jump lavan_event_1')
+                action i.action
+                
+                # 'style' ist, wie der Button aussieht.
+                # Wir benutzen den Style, der schon da war ('choice_button')
+                style "choice_button"
+
+                # Wir überschreiben die Style-Eigenschaften.
+                
+                # 'idle_background' ist das Bild, wenn die Maus NICHT drüber ist.
+                # Wir setzen es auf das Standard-grau.
+                idle_background idle_bg
+                
+                # 'hover_background' ist das Bild, wenn die Maus DRÜBER ist.
+                # Wir setzen es auf den Wert unserer 'hover_bg'-Variable,
+                # die wir oben in der 'if'-Abfrage bestimmt haben.
+                hover_background hover_bg
