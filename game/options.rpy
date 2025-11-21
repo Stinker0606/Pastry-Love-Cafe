@@ -1,145 +1,137 @@
-﻿## Diese Datei enthält Optionen, die geändert werden können, um das Spiel
-## anzupassen.
+﻿## This file contains options that can be changed to customize your game.
 ##
-## Zeilen, die mit zwei '#' beginnen, sind Kommentare und sollten nicht
-## auskommentiert werden. Zeilen, die mit einem einzelnen '#' beginnen, sind
-## auskommentierter Code, den Du ggf. auskommentieren kannst.
+## Lines beginning with two '#' marks are comments, and you shouldn't uncomment
+## them. Lines beginning with a single '#' mark are commented-out code, and you
+## may want to uncomment them when appropriate.
 
 
-## Grundlagen ##################################################################
+## Basics ######################################################################
 
-## Ein für Menschen lesbarer Name des Spiels. Dieser wird verwendet, um den
-## Standard-Fenstertitel festzulegen, und wird in der Benutzeroberfläche und in
-## Fehlerberichten angezeigt.
+## A human-readable name of the game. This is used to set the default window
+## title, and shows up in the interface and error reports.
 ##
-## Das _(), das die Zeichenkette umgibt, kennzeichnet sie als übersetzbar.
+## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Pastry Love Cafe")
+define config.name = _("Custom GUI")
 
 
-## Bestimmt, ob der oben angegebene Titel auf dem Hauptmenübildschirm angezeigt
-## wird. Setze dies auf False, um den Titel auszublenden.
+## Determines if the title given above is shown on the main menu screen. Set
+## this to False to hide the title.
 
 define gui.show_name = True
 
 
-## Die Version des Spiels.
+## The version of the game.
 
 define config.version = "1.0"
 
 
-## Text, der auf dem Info-Bildschirm des Spiels erscheint. Setz den Text
-## zwischen dreifache Anführungszeichen und lass eine Leerzeile zwischen den
-## Absätzen.
+## Text that is placed on the game's about screen. Place the text between the
+## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
 """)
 
 
-## Ein kurzer Name für das Spiel, der für ausführbare Dateien und Verzeichnisse
-## in der erstellten Distribution verwendet wird. Er darf nur ASCII sein und
-## keine Leerzeichen, Doppelpunkte oder Semikolons enthalten.
+## A short name for the game used for executables and directories in the built
+## distribution. This must be ASCII-only, and must not contain spaces, colons,
+## or semicolons.
 
-define build.name = "PastryLoveCafe"
+define build.name = "CustomGUI"
 
 
-## Ton und Musik ###############################################################
+## Sounds and music ############################################################
 
-## Diese drei Variablen steuern unter anderem, welche Mixer dem Spieler
-## standardmäßig angezeigt werden. Wird eine dieser Variablen auf False gesetzt,
-## wird der entsprechende Mischer ausgeblendet.
+## These three variables control which mixers are shown to the player by
+## default. Setting one of these to False will hide the appropriate mixer.
 
 define config.has_sound = True
 define config.has_music = True
 define config.has_voice = True
 
 
-## Um dem Benutzer die Möglichkeit zu geben, einen Testton auf dem Ton- oder
-## Sprachkanal abzuspielen, entfernen die Kommentarzeichen in der Zeile unten
-## und verwenden sie, um einen Beispielton abzuspielen.
+## To allow the user to play a test sound on the sound or voice channel,
+## uncomment a line below and use it to set a sample sound to play.
 
 # define config.sample_sound = "sample-sound.ogg"
 # define config.sample_voice = "sample-voice.ogg"
 
 
-## Entferne das Kommentarzeichen in der folgenden Zeile, damit im Hauptmenü
-## eine Audiodatei abgespielt wird. Diese wird im Spiel so lange weiterlaufen,
-## bis sie gestoppt wird oder eine andere Datei abgespielt wird.
+## Uncomment the following line to set an audio file that will be played while
+## the player is at the main menu. This file will continue playing into the
+## game, until it is stopped or another file is played.
 
 # define config.main_menu_music = "main-menu-theme.ogg"
 
 
-## Übergänge ###################################################################
+## Transitions #################################################################
 ##
-## Diese Variablen legen Übergänge fest, die bei bestimmten Ereignissen
-## verwendet werden. Jede Variable sollte auf einen Übergang gesetzt werden,
-## oder auf "None", um anzugeben, dass kein Übergang verwendet werden soll.
+## These variables set transitions that are used when certain events occur.
+## Each variable should be set to a transition, or None to indicate that no
+## transition should be used.
 
-## Aufrufen oder Verlassen des Spielmenüs.
+## Entering or exiting the game menu.
 
 define config.enter_transition = dissolve
 define config.exit_transition = dissolve
 
 
-## Zwischen den Bildschirmen des Spielmenüs.
+## Between screens of the game menu.
 
 define config.intra_transition = dissolve
 
 
-## Ein Übergang, der verwendet wird, nachdem ein Spiel geladen wurde.
+## A transition that is used after a game has been loaded.
 
 define config.after_load_transition = None
 
 
-## Wird verwendet, wenn das Hauptmenü nach Beendigung des Spiels aufgerufen
-## wird.
+## Used when entering the main menu after the game has ended.
 
 define config.end_game_transition = None
 
 
-## Eine Variable zum Festlegen des Übergangs, der beim Start des Spiels
-## verwendet wird, existiert nicht. Verwende stattdessen eine with-Anweisung,
-## nachdem Du die Anfangsszene gezeigt hast.
+## A variable to set the transition used when the game starts does not exist.
+## Instead, use a with statement after showing the initial scene.
 
 
-## Fensterverwaltung ###########################################################
+## Window management ###########################################################
 ##
-## Dies steuert, wann das Dialogfenster angezeigt wird. Wenn "show", wird
-## es immer angezeigt. Wenn "hide", wird es nur angezeigt, wenn ein Dialog
-## vorhanden ist. Bei "auto" wird das Fenster vor Szenenanweisungen ausgeblendet
-## und wieder eingeblendet, sobald der Dialog angezeigt wird.
+## This controls when the dialogue window is displayed. If "show", it is always
+## displayed. If "hide", it is only displayed when dialogue is present. If
+## "auto", the window is hidden before scene statements and shown again once
+## dialogue is displayed.
 ##
-## Nachdem das Spiel gestartet wurde, kann dies mit den Anweisungen "window
-## show", "window hide" und "window auto" geändert werden.
+## After the game has started, this can be changed with the "window show",
+## "window hide", and "window auto" statements.
 
 define config.window = "auto"
 
 
-## Übergänge zum Ein- und Ausblenden des Dialogfensters
+## Transitions used to show and hide the dialogue window
 
 define config.window_show_transition = Dissolve(.2)
 define config.window_hide_transition = Dissolve(.2)
 
 
-## Standardwerte für Einstellungen #############################################
+## Preference defaults #########################################################
 
-## Steuert die Standard-Textgeschwindigkeit. Die Vorgabe 0 ist unendlich,
-## während jede andere Zahl die Anzahl der zu tippenden Zeichen pro Sekunde
-## angibt.
+## Controls the default text speed. The default, 0, is infinite, while any other
+## number is the number of characters per second to type out.
 
 default preferences.text_cps = 0
 
 
-## Die Standardverzögerung für das automatische Blättern. Größere Zahlen führen
-## zu längeren Wartezeiten, wobei 0 bis 30 der gültige Bereich ist.
+## The default auto-forward delay. Larger numbers lead to longer waits, with 0
+## to 30 being the valid range.
 
 default preferences.afm_time = 15
 
 
-## Verzeichnis speichern #######################################################
+## Save directory ##############################################################
 ##
-## Legt den plattformspezifischen Ort fest, an dem Ren'Py die Speicherdateien
-## für dieses Spiel ablegt. Die Speicherdateien werden in platziert:
+## Controls the platform-specific place Ren'Py will place the save files for
+## this game. The save files will be placed in:
 ##
 ## Windows: %APPDATA\RenPy\<config.save_directory>
 ##
@@ -147,45 +139,43 @@ default preferences.afm_time = 15
 ##
 ## Linux: $HOME/.renpy/<config.save_directory>
 ##
-## Dies sollte in der Regel nicht geändert werden, und wenn doch, dann sollte
-## es sich immer um eine Zeichenkette und nicht um einen Ausdruck handeln.
+## This generally should not be changed, and if it is, should always be a
+## literal string, not an expression.
 
-define config.save_directory = "PastryLoveCafe-1761622040"
+define config.save_directory = "CustomGUI-1599440633"
 
 
 ## Icon ########################################################################
 ##
-## Das Symbol, das in der Taskleiste oder im Dock angezeigt wird.
+## The icon displayed on the taskbar or dock.
 
 define config.window_icon = "gui/window_icon.png"
 
 
-## Konfiguration erstellen #####################################################
+## Build configuration #########################################################
 ##
-## Dieser Abschnitt steuert, wie Ren'Py Dein Projekt in Distributionsdateien
-## umwandelt.
+## This section controls how Ren'Py turns your project into distribution files.
 
 init python:
 
-    ## Die folgenden Funktionen nehmen Dateimuster an. Die Dateimuster
-    ## unterscheiden nicht zwischen Groß- und Kleinschreibung und werden mit dem
-    ## Pfad relativ zum Basisverzeichnis abgeglichen, mit oder ohne führendem /.
-    ## Wenn mehrere Muster übereinstimmen, wird das erste verwendet.
+    ## The following functions take file patterns. File patterns are case-
+    ## insensitive, and matched against the path relative to the base directory,
+    ## with and without a leading /. If multiple patterns match, the first is
+    ## used.
     ##
-    ## In einem Muster:
+    ## In a pattern:
     ##
-    ## / ist das Verzeichnis-Trennzeichen.
+    ## / is the directory separator.
     ##
-    ## * trifft auf alle Zeichen zu, außer auf das Verzeichnistrennzeichen.
+    ## * matches all characters, except the directory separator.
     ##
-    ## ** passt auf alle Zeichen, auch auf das Verzeichnis-Trennzeichen.
+    ## ** matches all characters, including the directory separator.
     ##
-    ## For example, "*.txt" matches txt files in the base directory,
-    ## "game/**.ogg" matches ogg files in the game directory or any of its
+    ## For example, "*.txt" matches txt files in the base directory, "game/
+    ## **.ogg" matches ogg files in the game directory or any of its
     ## subdirectories, and "**.psd" matches psd files anywhere in the project.
 
-    ## Klassifiziere Dateien als None, um sie von den erstellten Distributionen
-    ## auszuschließen.
+    ## Classify files as None to exclude them from the built distributions.
 
     build.classify('**~', None)
     build.classify('**.bak', None)
@@ -193,27 +183,26 @@ init python:
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
 
-    ## Um Dateien zu archivieren, klassifiziere sie als "archive".
+    ## To archive files, classify them as 'archive'.
 
     # build.classify('game/**.png', 'archive')
     # build.classify('game/**.jpg', 'archive')
 
-    ## Dateien, die den Dokumentationsmustern entsprechen, werden in einem Mac-
-    ## App-Build dupliziert, sodass sie sowohl in der App als auch in der Zip-
-    ## Datei erscheinen.
+    ## Files matching documentation patterns are duplicated in a mac app build,
+    ## so they appear in both the app and the zip file.
 
     build.documentation('*.html')
     build.documentation('*.txt')
 
 
-## Für In-App-Käufe ist ein Google Play-Lizenzschlüssel erforderlich. Du
-## findest ihn in der Google Play-Entwicklerkonsole unter "Monetize" >
-## "Monetization Setup" > "Licensing".
+## A Google Play license key is required to download expansion files and perform
+## in-app purchases. It can be found on the "Services & APIs" page of the Google
+## Play developer console.
 
 # define build.google_play_key = "..."
 
 
-## Der mit einem itch.io-Projekt verbundene Benutzername und Projektname,
-## getrennt durch einen Schrägstrich.
+## The username and project name associated with an itch.io project, separated
+## by a slash.
 
 # define build.itch_project = "renpytom/test-project"
