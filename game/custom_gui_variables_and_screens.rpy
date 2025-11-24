@@ -175,20 +175,20 @@ screen gallery():
         ### Sample Gallery Code!!
         if persistent.cg_1_unlocked:
             ## Show Transient Menu + Set Variable to tell it which CG to show
-            imagebutton auto "gui/gallery/cg1_preview_%s.png" action [ShowTransient('illustration'), SetVariable("cg", "1")] alt "Illustration One"
+            imagebutton auto "images/gallery/cg1_preview_%s.png" action [ShowTransient('illustration'), SetVariable("cg", "1")] alt "Illustration One"
         else:
-            image "gui/gallery/cg_locked.png"
+            image "images/gallery/cg_locked.png"
 
-        image "gui/gallery/cg_locked.png"
-        image "gui/gallery/cg_locked.png"
+        image "images/gallery/cg_locked.png"
+        image "images/gallery/cg_locked.png"
 
-        image "gui/gallery/cg_locked.png"
-        image "gui/gallery/cg_locked.png"
-        image "gui/gallery/cg_locked.png"
+        image "images/gallery/cg_locked.png"
+        image "images/gallery/cg_locked.png"
+        image "images/gallery/cg_locked.png"
 
-        image "gui/gallery/cg_locked.png"
-        image "gui/gallery/cg_locked.png"
-        image "gui/gallery/cg_locked.png"
+        image "images/gallery/cg_locked.png"
+        image "images/gallery/cg_locked.png"
+        image "images/gallery/cg_locked.png"
 
 style extras_grid is gui_grid
 
@@ -204,10 +204,10 @@ screen illustration():
     ## add numbered CGs below!
     if cg == "1":
         ## This is where the CG goes
-        add "gui/gallery/cg_1.png"
+        add "images/gallery/cg_1.png"
     elif cg == "2":
         ## This is another sample
-        add "gui/gallery/cg_1.png"
+        add "images/gallery/cg_1.png"
     else:
         text "Error: No Illustration Found"
 
