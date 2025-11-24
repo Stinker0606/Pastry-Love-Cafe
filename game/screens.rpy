@@ -233,7 +233,7 @@ style choice_button is default:
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
-    size 45
+    size 30
 
 
 ## Quick Menu screen ###########################################################
