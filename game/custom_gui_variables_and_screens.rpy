@@ -1,22 +1,11 @@
-#
-#
-#
-#
-#
-### ------------------------- ##
-
 ## Custom GUI Variables -- Do Not Change ------------------------- ##
+
 ## GUI Variables ------------------------- ##
 default extra_menu = "none"
 
 ## CG GALLERY CODE ------------------------- ##
 ## this tells the gallery which CG to show
 default cg = "1"
-
-## This tells the screen whether or not the CG was unlocked in the game
-default cg_1_unlocked = False
-default cg_2_unlocked = False
-
 
 ## Extras screens ##################################################################
 ##
@@ -173,9 +162,9 @@ screen gallery():
     grid 3 3:
 
         ### Sample Gallery Code!!
-        if persistent.cg_1_unlocked:
+        if persistent.unlocked_cg_1:
             ## Show Transient Menu + Set Variable to tell it which CG to show
-            imagebutton auto "images/gallery/cg1_preview_%s.png" action [ShowTransient('illustration'), SetVariable("cg", "1")] alt "Illustration One"
+            imagebutton idle "cg 1 thumb" action [ShowTransient('illustration'), SetVariable("cg", "1")] alt "Illustration One"
         else:
             image "images/gallery/cg_locked.png"
 
@@ -204,9 +193,9 @@ screen illustration():
     ## add numbered CGs below!
     if cg == "1":
         ## This is where the CG goes
-        add "images/gallery/cg_1.png"
+        add "cg 1"
     elif cg == "2":
-        ## This is another sample
+        ## This is an sample
         add "images/gallery/cg_1.png"
     else:
         text "Error: No Illustration Found"
@@ -214,7 +203,7 @@ screen illustration():
     ## Return Button
     vbox:
         style_prefix "illustration"
-        textbutton "Return" action Hide('illustration')
+        textbutton "Return" action HideTransient('illustration')
 
 style illustration_button is button
 style illustration_button_text is button_text

@@ -1,5 +1,3 @@
-## 01_definitions.rpy
-
 # -- 1. Charakter-Definitionen --
 define user = Character("[player_name]") 
 define l = Character("Lavan", color="#9a6f34c5") 
@@ -28,6 +26,9 @@ default macoi_points = 0
 default velvette_points = 0
 default cino_points = 0
 
+# Merkt sich, wen der Spieler im Tutorial zuerst gewählt hat.
+default first_li_chosen = None
+
 # --- UI-Status-Variablen ---
 # default current_textbox_color = None | AUS, ist damit die box unten sich mit ändert beim hovern
 
@@ -39,9 +40,12 @@ default event_velvette_1_done = False
 default event_cino_1_done = False
 default event_cafe_minigame_1_done = False
 
+# Flag für das Minigame Tutorial - First Time Backing
+default tutorial_baking_done = False
+
 # -- 3. Permanente Variablen (persistent = überleben "Neues Spiel") --
 # (Für zum Beispiel Galerie)
-default persistent.unlocked_cg_lavan_1 = False
+default persistent.unlocked_cg_1 = False
 
 # -- 4. Bild-Aliase (Shortcuts für Images) --
 # (thumb=Thumbnails, cg=Cutscene-Stuff, bg=Background, lavan=Char-Beispiel)
@@ -65,11 +69,18 @@ image velvette smile = "images/sprites/velvette/smile.png"
 image cino smile = "images/sprites/cino/smile.png"
 
 # Backgrounds
+image bg pink = Solid("#ffb6c1")
 image bg cafe = "images/backgrounds/cafe.jpg"
+image bg kitchen = "images/backgrounds/kitchen.jpg"
 
 # Gallery Stuff
-image cg lavan 1 = "images/gallery/cg_lavan_hug.jpg"
-image cg lavan 1 thumb = "images/gallery/thumb_lavan_hug.jpg" 
+image cg 1 = "images/gallery/cg_lavan_hug.jpg"
+image cg 1 thumb = "images/gallery/thumb_lavan_hug.jpg" 
+
+# Minigame Images
+
+# Other Images
+image team_logo = "gui/team_logo.png"
 
 # -- 5. Transform-Definitionen (Position-Definierung) --
 transform at_left:

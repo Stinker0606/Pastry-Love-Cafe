@@ -1,9 +1,11 @@
 ﻿label splashscreen:
-    scene black
+    scene bg pink
     # (Logo maybe hinzufügen und es definieren in 01_definitions)
-    # show logo at truecenter
+    show team_logo at truecenter
     with dissolve
     pause 2.0
+    scene black with dissolve
+    pause 0.5
     return # WICHTIG: 'return' beendet den Splashscreen
 
 # --- SYSTEM-LABELS ---
