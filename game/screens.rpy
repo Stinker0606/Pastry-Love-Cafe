@@ -281,7 +281,7 @@ style quick_button:
 
 style quick_button_text:
     properties gui.button_text_properties("quick_button")
-    hover_color "#5d8282"
+    hover_color "#f5253c"
     idle_color "#5d8282"
     size 40
 
