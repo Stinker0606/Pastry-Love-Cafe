@@ -5,6 +5,7 @@ define m = Character("Macoi", color="#bef778")
 define v = Character("Velvette", color="#ac1c1c")
 define c = Character("Cino", color="#f1d576") 
 define p = Character("Pierre", color="#9b73f8") 
+define k = Character("STAMMKUNDIN", color="#0f0475") 
 
 ## -- 2. Spiel-Variablen (default = wird bei "Neuem Spiel" zurückgesetzt) --
 default player_gender = None
