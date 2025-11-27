@@ -39,4 +39,4 @@ label start:
     user "Okay, es ist Zeit oder so. IDK"
     
     # Springt zum nächsten Part
-    jump test_hub
+    jump story_intro

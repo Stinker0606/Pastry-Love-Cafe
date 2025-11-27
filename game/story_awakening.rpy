@@ -1,39 +1,29 @@
-label awakening_sequence_start:
-    scene bg kitchen
-    
-    user "Aber ich habe noch Restwärme..."
-    user "Ich backe den Rest schnell hinterher!"
-    
-    # Hier simulieren wir das "automatische Backen" der anderen
+## Spezielles einmaliges Ereignis nach dem ersten mal backen.
+label awakening_shock_scene:
     scene black
-    with fade
-    user "(Backt weiter oder so...)"
+    user "Okay, das erste Rezept ist fertig. Aber ich habe noch Energie..."
+    narrator "Du backst den Rest automatisch..."
+    jump awakening_sequence_start
+
+label awakening_sequence_start:
+    scene bg cafe
     
-    # Wir setzen ALLE auf "erweckt", egal wen man gewählt hat
+    ## Alle sind da
     $ is_lavan_awakened = True
     $ is_macoi_awakened = True
     $ is_velvette_awakened = True
     $ is_cino_awakened = True
     
-    narrator "Einige Zeit später..."
-    
-    scene bg cafe
-    
-    # Hier würden erscheinen alle Sprites danach
-    show lavan smile
-    show macoi smile
-    show velvette smile
-    show cino smile
+    show lavan smile at pos_1
+    show macoi smile at pos_2
+    show velvette smile at pos_3
+    show cino smile at pos_4
 
-    user "Wtf?"
+    user "Was ist hier los!"
     
     if first_li_chosen == "Lavan":
-        l "Thx"
+        l "Danke fürs Backen."
     elif first_li_chosen == "Macoi":
-        m "Danke"
-    elif first_li_chosen == "Velvette":
-        v "dankeee"    
-    elif first_li_chosen == "Cino":
-        c "Uwu idk"
-
+        m "Interessant."
+    
     jump alltag_start

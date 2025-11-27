@@ -1,84 +1,123 @@
+## --- HAUPT-EINGANG ZUM BAKING MINIGAME---
 label baking_minigame_hub:
-    scene bg kitchen
+    scene bg kitchen 
     
     if not tutorial_baking_done:
-        # --- TUTORIAL "FIRST TIME BAKING" MODUS ---
         jump baking_tutorial_selection
     else:
-        # --- NORMALER MODUS ---
         jump baking_recipe_selection
 
-# --- TUTORIAL WAHL ---
+## TUTORIAL MODUS (Einheitlich)
 label baking_tutorial_selection:
-    user "Ich habe das magische Pulver... und genug Zutaten für ein Rezept."
-    user "Wen soll ich zuerst zum Leben erwecken?"
-    
-    menu (show_say=True):
-        "{#lavan}Lavan (Schokoladenkuchen)":
+    user "Was backe ich zuerst?"
+
+    ## SCHRITT 1: Die Entscheidung (Nur für Story & Punkte)
+    menu:
+        "Lava Cake":
             $ first_li_chosen = "Lavan"
-            # Bonus-Punkt!
             call _add_affection(LI_LAVAN, 1)
-            # Starte Minigame mit Tutorial-Rezept (MIT Pulver)
-            call screen baking_minigame_screen("lavan_tutorial")
             
-        "{#macoi}Macoi (Matcha-Muffin)":
+        "Matcha Muffin":
             $ first_li_chosen = "Macoi"
             call _add_affection(LI_MACOI, 1)
-            call screen baking_minigame_screen("macoi_tutorial")
             
-        "{#velvette}Velvette (Red Velvet)":
+        "Red Velvet Cupcake":
             $ first_li_chosen = "Velvette"
             call _add_affection(LI_VELVETTE, 1)
-            call screen baking_minigame_screen("velvette_tutorial")
             
-        "{#cino}Cino (Zitronenrolle)":
+        "Zimtrolle":
             $ first_li_chosen = "Cino"
             call _add_affection(LI_CINO, 1)
-            call screen baking_minigame_screen("cino_tutorial")
 
-    # Wenn das Minigame erfolgreich war ('_return' kommt vom Screen):
-    if _return == "success":
-        $ tutorial_baking_done = True
-        jump awakening_sequence_start
-    else:
-        user "Das hat nicht geklappt. Ich muss es nochmal versuchen."
-        jump baking_tutorial_selection
+    ## Nach der Wahl geht es weiter zum Minigame-Start
+    jump run_tutorial_minigame
 
-# --- NORMALER MODUS (Alltag) ---
-label baking_recipe_selection:
-    user "Was möchte ich heute backen?"
+
+## SCHRITT 2: Der Tutorial-Loop
+label run_tutorial_minigame:
     
-    menu (show_say=True):
-        "Backen":
-            jump baking_recipe_list
-        
-        "Hilfe (Erklärung)":
-        # Zeigt das Overlay direkt an (simuliert)
-            call screen baking_help_overlay_screen()
-            jump baking_minigame_hub
-             
-        "Verlassen":
-            jump alltag_hub
+    $ current_ingredients = [] # Reset des Minigames
 
+    user "Okay, los geht's. Ich muss mich genau an das Rezept halten."
 
-label baking_recipe_list:
-    menu (show_say=True):
-        # Hier sind die NORMALEN Rezepte
-        "{#lavan}Schokokuchen":
-            call screen baking_minigame_screen("lavan_date")
-            jump lavan_event_1
-        
-        "{#macoi}Matcha-Muffin":
-            call screen baking_minigame_screen("macoi_date")
-            jump macoi_event_1
+    ## Wir rufen das Minigame IMMER mit dem Rezept "Tutorial" auf.
+    call screen baking_minigame_screen("Tutorial", helper=None)
 
-        "{#velvette}Red Velvet Cupcake":
-            call screen baking_minigame_screen("velvette_date")
-            jump velvette_event_1
+    if _return == "success":
+        ## Wir springen direkt weiter in der Story.
+        $ tutorial_baking_done = True
+        jump awakening_shock_scene 
+    else:
+        ## Wenn fehlgeschlagen:
+        user "Mist, das war falsch. Ich muss es nochmal versuchen."
+        jump run_tutorial_minigame
 
-        "{#cino}Zimtrolle":
-            call screen baking_minigame_screen("cino_date")
-            jump cino_event_1
+## NORMALER MODUS (Alltag)
+label baking_recipe_selection:
+    
+    scene bg kitchen
+    user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
+    
+    menu:
+        user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
+
+        ## --- REZEPT 1: BUTTERPLÄTZCHEN ---
+        "Butterplätzchen":
+            $ current_recipe_name = "Butterplätzchen"
+            jump run_baking_loop
+
+        ## --- REZEPT 2: ERDBEER CREPE ---
+        "Erdbeer Crepe":
+            $ current_recipe_name = "Erdbeer Crepe"
+            jump run_baking_loop
         
         "Zurück":
-            jump baking_minigame_hub
+            jump kitchen_room_interaction
+
+## --- DER UNIVERSELLE BACK-LOOP ---
+label run_baking_loop:
+
+    $ current_ingredients = [] # Reset des Minigames
+    
+    call screen baking_minigame_screen(current_recipe_name, helper=current_kitchen_helper)
+
+    if _return == "success":
+        ## --- SUCCESS SCREEN ---
+        scene black with dissolve
+        
+        ## Wir definieren das Bild basierend auf dem Rezept
+        if current_recipe_name == "Butterplätzchen":
+            $ result_img = "images/minigame/result_butterplaetzchen.png"
+        elif current_recipe_name == "Erdbeer Crepe":
+            $ result_img = "images/minigame/result_crepe.png"
+        else:
+            ## Wir setzen es auf None, damit nichts angezeigt wird.
+            $ result_img = None 
+
+        ## Wir zeigen das Bild NUR, wenn wir eins definiert haben
+        if result_img:
+            show expression result_img at truecenter
+            with dissolve
+        
+        centered "{size=40}Lecker!{/size}\n[current_recipe_name] ist fertig!"
+        
+        if result_img:
+            hide expression result_img
+        
+        ## Belohnung & Dialog
+        call _add_affection(current_kitchen_helper, 2)
+        
+        ## Kleiner Dialog je nach Helfer
+        if current_recipe_name == "Butterplätzchen" and current_kitchen_helper == "Lavan":
+            l "Mein Favorit."
+        elif current_recipe_name == "Erdbeer Crepe" and current_kitchen_helper == "Cino":
+            c "Juhu!"
+            
+        jump kitchen_room_interaction
+        
+    else:
+        # --- FAIL SCREEN ---
+        scene black with vpunch
+        centered "{size=40}Verbrannt!{/size}\nDas war wohl nichts."
+        # Neustart des GLEICHEN Rezepts
+        jump run_baking_loop
