@@ -4,6 +4,7 @@ define l = Character("Lavan", color="#9a6f34c5")
 define m = Character("Macoi", color="#bef778")
 define v = Character("Velvette", color="#ac1c1c")
 define c = Character("Cino", color="#f1d576") 
+define p = Character("Pierre", color="#9b73f8") 
 
 ## -- 2. Spiel-Variablen (default = wird bei "Neuem Spiel" zurückgesetzt) --
 default player_gender = None

@@ -23,26 +23,26 @@ label _add_affection(li_name, amount=1):
 ## Dieses Label wird von 'game_start' aufgerufen
 label setup_player_character:
 
-    ## Schritt 1: Geschlecht wählen
-    user "Zuerst... wer bin ich?" # (user ist hier noch 'None', also Erzähler)
-    menu:
-        "Ich bin ein Mann.":
-            ## Setzt die globalen Variablen aus 01_definitions
-            $ player_gender = "male"
-            $ mc_pronoun_he_she = "er"
-            $ mc_pronoun_his_her = "sein"
-            $ mc_title = "Bäcker"
-            $ mc_pronoun_article = "der"
+    # ## Schritt 1: Geschlecht wählen
+    # user "Zuerst... wer bin ich?" # (user ist hier noch 'None', also Erzähler)
+    # menu:
+    #     "Ich bin ein Mann.":
+    #         ## Setzt die globalen Variablen aus 01_definitions
+    #         $ player_gender = "male"
+    #         $ mc_pronoun_he_she = "er"
+    #         $ mc_pronoun_his_her = "sein"
+    #         $ mc_title = "Bäcker"
+    #         $ mc_pronoun_article = "der"
 
-        "Ich bin eine Frau.":
-            $ player_gender = "female"
-            $ mc_pronoun_he_she = "sie"
-            $ mc_pronoun_his_her = "ihr"
-            $ mc_title = "Bäckerin"
-            $ mc_pronoun_article = "die"
+    #     "Ich bin eine Frau.":
+    #         $ player_gender = "female"
+    #         $ mc_pronoun_he_she = "sie"
+    #         $ mc_pronoun_his_her = "ihr"
+    #         $ mc_title = "Bäckerin"
+    #         $ mc_pronoun_article = "die"
 
-    ## Schritt 2: Name wählen
-    user "Und mein Name ist..."
+    # ## Schritt 2: Name wählen
+    # user "Und mein Name ist..."
 
     ## Die Namensabfrage
     python:
@@ -66,6 +66,6 @@ label setup_player_character:
     ## JETZT weisen wir dem 'mc'-Charakter-Objekt den Namen zu
     $ user.name = player_name
     
-    user "Okay, ich bin [player_name], [mc_pronoun_article] [mc_title]."
+    user "Okay, ich bin [player_name], die Bäckerin."
     
     return ## Kehrt zu 'game_start' zurück
