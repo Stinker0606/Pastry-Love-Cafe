@@ -2,12 +2,12 @@
 label story_intro:
     ## Wir starten in der Küche oder?
     scene bg kitchen with fade
-
+    
     ## Intro Monolog
     user "Der Ofen funkte wieder, wütend, fast theatralisch. Ich roch etwas Verbranntes in der Luft, gerade als ich mich vorwarf, um den Hauptschalter umzulegen."
-    
+
     user "Ein Hitzeflash, ein leises Plopp und eine kleine Rauchwolke, die in Richtung Decke waberte."
-    
+
     user "Das war schon das zweite Mal diese Woche."
 
     user "Auf der anderen Seite der Küche schlingerte die uralte, mit Klebeband und zu viel Hoffnung zusammengeflickte Küchenmaschine, ruckte, klonkte und schleuderte sich dann mit einer dramatischen Drehung."
@@ -19,8 +19,8 @@ label story_intro:
     user "Ich hatte Mehl in den Wimpern. Mein linker Schuh war auf mysteriöse Weise klebrig."
 
     ## Pierre ist da. Soll Pierre und die Kundin Bilder haben?
-    user "Pierre, der Lieferant, stürmte wie immer mit einem donnernden Auftritt durch die Hintertür." 
-    
+    user "Pierre, der Lieferant, stürmte wie immer mit einem donnernden Auftritt durch die Hintertür."
+
     user "Ich konnte es schon von hier sehen: eine Kiste voller Milchprodukte und Eier in den Händen, aber kein Mehl."
 
     ## Dialog mit Pierre
@@ -55,18 +55,18 @@ label story_intro:
     user "Ich rammte die Kasse mit der Hüfte, und sie sprang mit einem zufriedenstellenden Ding auf."
 
     user "Gleichzeitig zog ich ein Blech Croissants aus dem Gestell. Nur knapp an den herabhängenden Schürzen vorbei, welche inzwischen tief genug hingen, um sich selbst ein Gebäck zu gönnen."
-    
+
     ## Kundin kommt rein
     user "Vorne läutete die Glocke an ihrem wackligen Scharnier, als die Tür aufschwang."
 
     k "\"[player_name], hallo!\""
-    
+
     user "Es erklang die warme, singende Stimme von einer meiner treuesten Stammkundinnen."
 
     user "Sie war eine der wenigen, die mutig genug waren, die Bäckerei {i}Café armour{/i} mitten am Vormittag zu betreten, selbst jetzt, nachdem ich die Bäckerei alleine führte."
 
     user "Sie wusste, dass ich unter der Arbeit versank, und wartete geduldig, bis ich sie bedienen konnte, genau wie früher, als meine Eltern noch hier waren."
-    
+
     user "Ich schoss aus der Küche, vom Kopf bis zu den Schuhen in Mehl gehüllt."
 
     user "Meine Haare waren zu einem schiefen Dutt zusammengestopft, welcher heute bereits zum dritten Mal auseinanderfiel."
@@ -75,7 +75,7 @@ label story_intro:
     user "\"Schön dich zu sehen!\", strahlte ich, trotz des Chaos, welches hinter mir weiter tobte."
 
     user "\"Die Baguettes kommen gerade aus dem Ofen. Willst du die oder heute lieber Brioche? Keine Törtchen, wir haben mindestens eine Stunde lang kein Mehl.\""
-    
+
     user "\"Ich kann dir auch die glutenfreien anbieten, aber ich weiß, für dich ist das fast schon Blasphemie.\""
 
     k "\"Ach Liebes, du kennst mich wirklich gut. Dann heute nur Baguette und Franzbrötchen\", sagte sie mit einem Augenzwinkern und betrachtete den Rauch, der alarmierend aus der Küche kroch."
@@ -118,7 +118,7 @@ label story_intro:
 label alltag_start:
     $ day = 1
     jump alltag_hub
-    
+
 ## --- TEIL 3: ALLTAGS-HUB ---
 label alltag_hub:
     ## --- TAGES-PLANUNG: WER IST WO? ---
@@ -147,7 +147,7 @@ label alltag_hub:
 ## --- KÜCHEN-RAUM ---
 label kitchen_room_interaction:
     scene bg kitchen
-    
+
     ## Zeige den Helfer, der Dienst hat
     if current_kitchen_helper == "Lavan":
         show lavan smile
@@ -166,7 +166,7 @@ label kitchen_room_interaction:
         "Backen (Minigame)":
             ## Wir gehen zum Minigame-Hub.
             jump baking_minigame_hub
-            
+
         "Reden":
             if current_kitchen_helper == "Lavan":
                 jump lavan_event_1
@@ -175,7 +175,7 @@ label kitchen_room_interaction:
             elif current_kitchen_helper == "Velvette":
                 jump velvette_event_1
             elif current_kitchen_helper == "Cino":
-                jump cino_event_1    
-                
+                jump cino_event_1
+
         "Zurück ins Café":
             jump alltag_hub
