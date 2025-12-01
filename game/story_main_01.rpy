@@ -16,26 +16,36 @@ label story_intro:
 
     user "Ich hechtete nach vorne und erwischte sie gerade noch, bevor sie versuchte, den Zuckerbehälter zu ermorden."
 
-    user "Ich hatte Mehl in den Wimpern. Mein linker Schuh war auf mysteriöse Weise klebrig."
+    user "Mein Aussehen war reinster Chaos, ich hatte Mehl in den Wimpern. Mein linker Schuh war auf mysteriöse Weise klebrig."
 
-    ## Pierre ist da. Soll Pierre und die Kundin Bilder haben?
+    ## Pierre ist da. Soll Pierre und die Kundin Bilder haben? Antwort: Pierre und Frau sollen ein Bild als Sillhouette haben (die Npc Sprites)
+    #hier bitte Effekt einfügen
     user "Pierre, der Lieferant, stürmte wie immer mit einem donnernden Auftritt durch die Hintertür."
 
-    user "Ich konnte es schon von hier sehen: eine Kiste voller Milchprodukte und Eier in den Händen, aber kein Mehl."
+    user "Schon von hier konnte ich es sehen: eine Kiste voller Milchprodukte und Eier in den Händen, aber kein Mehl."
 
     ## Dialog mit Pierre
-    user "\"Drittes Mal diesen Monat, Pierre\", sagte ich mit genervter, dennoch ruhiger Stimme, während ich die Rührschüssel auffing, bevor sie auf den Boden knallte."
+    user "\"Drittes Mal diesen Monat, Pierre\""
+
+    user "Meine Stimme hielt ich gezwungen ruhig, obwohl ich ziemlich genervt war, während ich die Rührschüssel auffing, bevor sie auf den Boden knallte."
 
     user "\"Du stellst einen Rekord auf.\""
 
     user "Pierre schaffte es, schuldbewusst auszusehen, wenn auch nicht wirklich überrascht."
 
-    p "\"Es gibt einen Weizenmangel\", murmelte er, als wäre das eine originelle Ausrede. \"Schon wieder.\""
+    p "\"Es gibt einen Weizenmangel\""
 
-    p "\"Nimm es oder lass es\", kommentierte er und wandte sich zum Gehen um."
+    user "Murmelte er, als wäre das eine originelle Ausrede, meinen Blick dabei ausweichend."
+
+    p "\"Schon wieder.\""
+
+    p "\"Nimm es oder lass es\""
+
+    user "Brachte er schließlich hervor und wandte sich zum Gehen um."
 
     ## Innerer Monolog über Eltern - Backstory Timeee ;-;
-    user "In solchen Momenten vermisste ich meine Eltern."
+    #maybe hier ein sound von einem Seufzen einfügen
+    user "In solchen Momenten vermisste ich meine Eltern..."
 
     user "Mein Vater hätte die Meringue geschlagen mit den allerletzten Eiern, die ich für die Hochzeitstorte aufgehoben hatte, während er gleichzeitig die Baguettes rettete, bevor sie überbackten."
 
@@ -48,9 +58,8 @@ label story_intro:
     user "Natürlich nur metaphorisch."
 
     ## Szenenwechsel zum Café-Bereich? Als Idee? Weiss nicht welche Szene wir haben wollen bzw wann welcher Wechsel
+    #Scenenwechsel einwenig später bei Kundin -> "Natürlich nur metaphorisch" schreiben das solche Gedanken sie besser fühlen lassen?
     user "Ich bewegte mich mit dem geübten Rhythmus eines Menschen, dessen Leben ständig ein kleines bisschen brannte."
-
-    scene bg cafe with dissolve
 
     user "Ich rammte die Kasse mit der Hüfte, und sie sprang mit einem zufriedenstellenden Ding auf."
 
@@ -71,35 +80,45 @@ label story_intro:
 
     user "Meine Haare waren zu einem schiefen Dutt zusammengestopft, welcher heute bereits zum dritten Mal auseinanderfiel."
 
-    ## Kundin Dialog
-    user "\"Schön dich zu sehen!\", strahlte ich, trotz des Chaos, welches hinter mir weiter tobte."
+    scene bg cafe with dissolve
 
-    user "\"Die Baguettes kommen gerade aus dem Ofen. Willst du die oder heute lieber Brioche? Keine Törtchen, wir haben mindestens eine Stunde lang kein Mehl.\""
+    ## Kundin Dialog
+    user "\"Schön dich zu sehen!\""
+
+    user "Trotz des Chaos, welches hinter mir weiter tobte, strahlte ich sie an."
+
+    user "\"Die Baguettes kommen gerade aus dem Ofen. Nimmst du wie immer die oder heute lieber Brioche? Heute leider ohne Törtchen, wir haben mindestens eine Stunde lang kein Mehl.\""
 
     user "\"Ich kann dir auch die glutenfreien anbieten, aber ich weiß, für dich ist das fast schon Blasphemie.\""
 
-    k "\"Ach Liebes, du kennst mich wirklich gut. Dann heute nur Baguette und Franzbrötchen\", sagte sie mit einem Augenzwinkern und betrachtete den Rauch, der alarmierend aus der Küche kroch."
+    k "\"Ach Liebes, du kennst mich wirklich gut. Dann heute nur Baguette und Franzbrötchen\""
+
+    user "Sie zwinkerte mir zu mit einem lächeln, bevor sie an mir vorbeischaute zu den Rauch, der alarmierend aus der Küche kroch."
 
     user "Hinter uns piepte der Ofen, als wäre er persönlich beleidigt, ignoriert zu werden."
 
     user "Die Küchenmaschine gab ein mechanisches Sterbegeräusch von sich."
 
-    user "Ich duckte mich unter den Tresen, holte ein warmes Blech hervor, stieß die Kasse noch einmal mit der Hüfte an und griff nach dem Kassenpapier – alles in einer fließenden Bewegung."
+    user "Ich duckte mich unter den Tresen, holte ein warmes Blech hervor, stieß die Kasse noch einmal mit der Hüfte an und griff nach dem Kassenpapier."
+
+    user "Alles in einer fließenden Bewegung."
 
     user "Mit dem Schürzenrand wischte ich mir über die Wange, was das Mehl nur noch schlimmer machte."
 
     ## Kundin bezahlt und geht danach
     user "\"Sieben Euro, bitte.\""
 
-    user "Es folgte der übliche Tanz: Sie versuchte, mir einen Zwanziger zuzustecken und mich danach abzuwimmeln."
+    user "Es folgte der übliche Tanz. Sie versuchte, mir einen Zwanziger zuzustecken und mich danach abzuwimmeln."
 
     user "Ich protestierte, schon halb in der Kasse, um Wechselgeld zu holen. Irgendwo im Hintergrund klopfte Pierre erneut."
 
-    user "Entweder diesmal mit Eiern oder einer neuen Ausrede."
+    user "Entweder diesmal mit Mehl oder einer neuen Ausrede."
 
     user "Als ich mich umdrehte, um den piependen Ofen auszuschalten, schob sie den Zwanziger heimlich auf den Tresen, schnappte sich ihren Korb und segelte in Richtung Tür."
 
-    k "\"Und reparier die Glocke!\", rief sie und duckte sich gerade rechtzeitig, um nicht vom scheppernden Messing getroffen zu werden."
+    k "\"Und reparier die Glocke!\""
+
+    user "Sie duckte sich gerade rechtzeitig, um nicht vom scheppernden Messing getroffen zu werden."
 
     user "Der Rest des Tages verging im gleichen chaotischen Rhythmus: Maschinen, die klangen, als würden sie ihre letzten Worte stammeln, Kunden, die spontan ihre Großfamilie mitbrachten, und ich, die versuchte, alles irgendwie zusammenzuhalten, während mein Dutt zum vierten Mal aufgab."
 
@@ -115,89 +134,154 @@ label story_intro:
 
     user "Ich war gerade dabei, den Boden zu wischen hin und her, wie eine letzte, resignierte Choreografie, als die Türglocke erneut läutete."
 
-    user "„Wir haben geschlossen“"
+    user "\"Wir haben geschlossen\""
 
-    user "murmelte ich automatisch, noch bevor ich aufblickte."
+    user "Ohne aufzublicken, murmelte ich das schon wie auf Autopilot"
 
-    user "Doch als ich mich aufrichtete, war da ein Mann in der Tür."
+    user "Doch als ich mich aufrichtete und zur Tür blickte, stand dort ein Mann."
+
+    #hier Belohnungsbild mit dem Mann zeigen
 
     user "Ein Mann im Anzug. Dunkel, sauber, glatt. Ein kompletter Kontrast zu meinem mehlbedeckten Dasein. Draußen regnete es in Strömen, und durch das Licht hinter mir warf er einen langen, scharfen Schatten auf die Fliesen."
 
-    user "Ich blieb stehen. Wie angewurzelt"
+    user "Ich blieb wie angewurzelt stehen."
 
     user "Nicht aus Angst… eher aus einer Art seltsamer Vorahnung."
 
     user "Er neigte leicht den Kopf"
 
-    fm "„Entschuldigen Sie. Sind Sie die Bäckerin…[player_name]?“"
+    fm "\"Entschuldigen Sie. Sind Sie die Bäckerin…[player_name]?\""
 
-    user "Ja"
+    user "\"Ja\""
 
-    user "Antwortete ich vorsichtig"
+    user "Antwortete ich zwar, doch mein Verhalten zeigte deutlich meinen Skeptizismus und meine Vorsicht. Langsam machte ich mich auf den Weg zur Tür, bereit sie ihm im Notfall direkt vor der Nase zuzuschlagen."
 
-    user "Aber wir sind zu"
+    user "\"Aber wir sind zu.\""
 
-    user "Ich wischte mir unbewusst eine Mehlspur von der Stirn."
+    user "Ich wischte mir unbewusst und nervös eine Mehlspur von der Stirn."
 
-    fm "„Ich bin nicht hier, um etwas zu kaufen.“ Seine Stimme war ruhig, tief. „Bitte… ich…“ Er schluckte, als würde das, was er gleich sagen wollte, schwer im Hals stecken."
+    fm "\"Ich bin nicht hier, um etwas zu kaufen.\""
 
-    fm "„Ich kannte deine Eltern. Ich habe etwas von ihnen.“"
+    user "Seine Stimme war ruhig und tief mit einem Hauch von Mitleid und Trauer."
 
-    user "Ich erstarrte. Ein Stich, direkt unter die Rippen. Der Schmerz war vertraut, aber niemals stumpf."
+    fm "\"Bitte… ich…\""
+
+    user "Er schluckte, als würde das, was er gleich sagen wollte, schwer im Hals stecken."
+
+    fm "\"Ich kannte deine Eltern. Ich habe etwas von ihnen.\""
+
+    user "Für einen Moment erstarrte ich. Ein Stich, direkt unter die Rippen. Der Schmerz war vertraut, aber niemals stumpf."
 
     user "Mit einem leisen Seufzer öffnete ich die Tür ein Stück weiter."
 
     user "Na gut. Kommen Sie rein, Mister…?"
 
-    fm "„(Name)“, sagte er, und ein flüchtiges, fast müdes Lächeln huschte über sein Gesicht."
+    user "Es huschte in flüchtiges, fast müdes Lächeln über sein Gesicht."
 
     user "Bevor er eintrat, blickte er kurz über seine Schulter, als wollte er sicherstellen, dass niemand ihm gefolgt war."
 
+    scene bg cafe with dissolve
+
     user "Wir setzten uns an einen der frisch geputzten Tische. Erst da, im warmen Licht, begann er ein wenig zu entspannen."
 
-    user "„Gut“, begann ich vorsichtig, „Sie sagten, Sie kannten meine Eltern? Brauchen Sie vielleicht einen Tee? Zum Aufwärmen? Sie sind völlig durchnässt, und ohne Regenschirm…“"
+    user "\"Brauchen Sie vielleicht einen Tee? Zum Aufwärmen? Sie sind völlig durchnässt, und ohne Regenschirm…\""
 
-    fm "„Nein. Danke.“ Er hob die Hand, als wolle er gleichzeitig abwinken und Abstand halten."
+    user "Ich schaute ihn unsicher an und versuchte, gastfreundlich zu sein, doch er lehnte ab. Der fremde mann hob die Mann, als wolle er gleichzeitig abwinken und Abstand halten."
 
-    fm "„Ich bin nicht lange hier.“"
+    fm "\"Nein, danke. ich bin nicht lange hier.\""
 
-    fm "Er räusperte sich."
+    user "\"Sie sagten, Sie kannten meine Eltern?\""
 
-    fm "„Ich kannte deine Eltern. Und dich, vor sehr langer Zeit. Du warst damals noch ganz klein.“"
+    user "Für einen Moment schien er sich an etwas zu erinnern, bevor er wieder in die Realität zurückfand und sich räusperte."
+
+    fm "\"Ich kannte deine Eltern. Und dich, vor sehr langer Zeit. Du warst damals noch ganz klein.\""
 
     user "Er sah mich an, als würde er sich vergewissern, dass ich das hören konnte."
 
-    fm "„Ich habe ihnen etwas versprochen. Für den Tag, an dem… ein besonderer Anlass eintritt. Mein Beileid.“"
+    fm "\"Ich habe ihnen etwas versprochen. Für den Tag, an dem… ein besonderer Anlass eintritt. Mein Beileid.\""
 
-    user "Langsam legte er eine kleine, dunkle Tasche auf den Tisch. Sie wirkte unscheinbar und gleichzeitig viel zu schwer für ihre Größe."
+    user "Langsam legte er eine kleines, dunkles Täschchen auf den Tisch. Sie wirkte unscheinbar."
 
-    user "Ich starrte sie an."
+    user "Ich starrte es unverständlich an."
 
-    user "„Was ist das?“"
+    user "\"Was ist das?\""
 
-    fm "„Etwas, das deine Eltern in bestimmte Gebäcke eingebacken haben“, erklärte er."
+    fm "\"Etwas, das deine Eltern in bestimmte Gebäcke eingebacken haben\""
 
-    fm "„Wie gesagt… nur für besondere Anlässe.“"
+    fm "\"Wie gesagt… nur für besondere Anlässe.\""
 
     user "Er stand auf. Einfach so. Als wäre seine Aufgabe nun erfüllt."
 
-    user "„Warten Sie!“ rief ich und stolperte fast über meinen eigenen Eimer. „Moment! Ich habe noch Fragen!“"
+    user "\"Warten Sie!\""
+
+    user "Rief ich und stolperte fast über meinen eigenen Eimer."
+
+    user "\"Moment! Ich habe noch Fragen!\""
 
     user "Doch er war schon fast draußen."
 
-    user "Im Türrahmen blieb er noch einmal stehen, drehte sich langsam um und sagte:"
+    user "Im Türrahmen blieb er noch einmal stehen und drehte sich langsam um"
 
-    fm "„Viel Glück.“"
+    fm "\"Viel Glück.\""
 
     user "Dann verschwand er in der regnerischen Nacht, ohne ein weiteres Wort."
 
     user "Ich blieb allein zurück. Mit der Tasche, der Stille und tausend Fragen."
 
-    user "Aber der Boden war noch nicht sauber, das Leben lief weiter, und morgen…Morgen würde ein langer Tag werden."
+    user "Aber der Boden war noch nicht sauber, das Leben lief weiter, und morgen würde ein langer Tag werden."
 
     scene black with fade
 
     #nächster Tag an dem sie die LI backen wird
+
+    user "Ich stand wie immer früh morgens auf."
+
+    user "Es war schwer. Sehr schwer. Mein Körper fühlte sich an wie ein halbgegorenes Sauerteigbrot, das jemand zu früh aus dem Korb gezogen hatte."
+
+    user "Ich war übermüdet, meine Augen brannten… aber die Liebe zu diesem Ort, zu dieser Küche, zu diesem Leben. Das hielt mich irgendwie am Laufen."
+
+    user "Gähnend tappte ich in die Küche, griff mir eine der Schürzen vom Haken und band sie um. Während ich zur Arbeitsfläche schlurfte, tasteten meine Hände automatisch nach den üblichen Zutaten – Eier, Butter, Zucker…"
+
+    user "Und dann blieb ich stehen."
+
+    user "Fast kein Mehl mehr."
+
+    user "Ich schloss die Augen, atmete tief ein und presste zwischen den Zähnen hervor"
+
+    user "\"Verdammt, Pierre!\""
+
+    user "Ohne Mehl konnte ich heute nicht öffnen. Und es war viel zu früh, um irgendwo welches nachzukaufen. Kein Laden, kein Markt, hatte schon auf."
+
+    user "\"Denk, [player_name], denk.\""
+
+    user "Ich stützte die Hände auf die Arbeitsfläche, während meine Augen verzweifelt nach einer Lösung suchten."
+
+    user "Und dann fiel mein Blick darauf."
+
+    #Hier das erste Finding Minigame
+
+    user "Das ungeöffnete Pulver."
+
+    user "Die kleine Tasche, die der mysteriöse Mann gestern dagelassen hatte."
+
+    user "Ich hob sie hoch. Durch das Glas glitzerte ein lilafarbenes Pulver, das fast zu hübsch war, um echt zu sein. Magisch. Funkelnd. Als wäre Feenstaub unter Laborkonditionen hergestellt worden."
+
+    user "Ich öffnete den Deckel vorsichtig."
+
+    user "Es roch süß. Betörend süß."
+
+    user "Ich tunkte die Fingerspitze hinein und probierte es."
+
+    user "Es schmeckte wie… eine Mischung aus Mehl und Zucker. Nur süßer. Intensiver. Anders."
+
+    user "Und natürlich war es absolut idiotisch, etwas zu benutzen, das ich nicht kannte. Etwas, das mir ein fremder Mann nachts im Regen gegeben hatte. Etwas, das glitzerte."
+
+    user "Aber ich hatte keine andere Wahl."
+
+    user "\"Wenn das kein besonderer Anlass ist… dann weiß ich auch nicht.\""
+
+    user "Also machte ich mich an die Arbeit."
+
 
 
 
