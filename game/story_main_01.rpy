@@ -355,5 +355,40 @@ label kitchen_room_interaction:
             elif current_kitchen_helper == "Cino":
                 jump cino_event_1
 
+
+        ## ========================================================================================================================================================================================
+        # Nach dem Minispiel geht Story weiterer
+        ## ========================================================================================================================================================================================
+
+        user "Nachdem ich die letzte Zutat hineingegeben hatte, schob ich den Teig in den Ofen, stellte den Timer und klopfte mir die Hände ab."
+
+        user "Während das Gebäck backte, machte ich mich daran, das Café für die Öffnung vorzubereiten."
+
+        user "Stühle richtig stellen, Tische abwischen, Kasse einschalten, Schilder aufstellen…"
+
+        user "Ich war gerade dabei, die Servietten zu sortieren, als ich ein Geräusch hörte."
+
+        user "Ein dumpfer Humor."
+
+        user "Ein… Summen?"
+
+        user "Oder ein tiefes Brummen?"
+
+        user "Oder eine Mischung aus Ofenexplosion und schlecht gelaunter Hummel?"
+
+        user "Ich blieb stehen."
+
+        user "\"Zu müde. Ich halluziniere. Definitiv.\""
+
+        user "Doch dann kam das Geräusch wieder. Diesmal lauter"
+
+        user "Ich schluckte, griff mir einen Besen, die einzige „Waffe“, die man einer Bäckerin zutrauen konnte und schlich vorsichtig Richtung Küche."
+
+        user "Und dort blieb ich erneut stehen."
+
+
+
+
+        # zurück ins Hub ende der Story
         "Zurück ins Café":
             jump alltag_hub
