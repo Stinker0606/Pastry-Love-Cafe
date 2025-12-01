@@ -156,8 +156,13 @@ screen baking_minigame_screen(recipe_name, helper=None):
 
     ## INFO TEXT (Nur zum Testen, später löschen)
     vbox:
-        text f"Rezept: {recipe_name}"
-        text f"Soll: {recipes_data[recipe_name]['steps']}" size 15 color "#aaa"
+        # Positionen:
+        xalign 0.5
+        # Text
+        text f"Rezept:":
+            xalign 0.5
+        text f"Soll: {recipes_data[recipe_name]['steps']}" size 15 color "#aaa":
+            xalign 0.5
 
     ## DRAG GROUP
     draggroup:

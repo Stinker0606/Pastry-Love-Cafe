@@ -40,8 +40,12 @@ label run_tutorial_minigame:
 
     user "Okay, los geht's. Ich muss mich genau an das Rezept halten."
 
+    $ quick_menu = False
+
     ## Wir rufen das Minigame IMMER mit dem Rezept "Tutorial" auf.
     call screen baking_minigame_screen("Tutorial", helper=None)
+
+    $ quick_menu = True
 
     if _return == "success":
         ## Wir springen direkt weiter in der Story.
@@ -79,7 +83,11 @@ label run_baking_loop:
 
     $ current_ingredients = [] # Reset des Minigames
     
+    $ quick_menu = False
+
     call screen baking_minigame_screen(current_recipe_name, helper=current_kitchen_helper)
+
+    $ quick_menu = True
 
     if _return == "success":
         ## --- SUCCESS SCREEN ---

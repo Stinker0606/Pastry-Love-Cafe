@@ -26,4 +26,4 @@ label awakening_sequence_start:
     elif first_li_chosen == "Macoi":
         m "Interessant."
     
-    jump alltag_start
+    jump story_intro_02
