@@ -1,11 +1,12 @@
 ## -- 1. Charakter-Definitionen --
-define user = Character("[player_name]") 
-define l = Character("Lavan", color="#9a6f34c5") 
+define user = Character("[player_name]")
+define l = Character("Lavan", color="#9a6f34c5")
 define m = Character("Macoi", color="#bef778")
 define v = Character("Velvette", color="#ac1c1c")
-define c = Character("Cino", color="#f1d576") 
-define p = Character("Pierre", color="#9b73f8") 
-define k = Character("STAMMKUNDIN", color="#0f0475") 
+define c = Character("Cino", color="#f1d576")
+define p = Character("Pierre", color="#9b73f8")
+define k = Character("STAMMKUNDIN", color="#0f0475")
+define fm = Character ("Fremder Mann", color="#0f0475" )
 
 ## -- 2. Spiel-Variablen (default = wird bei "Neuem Spiel" zurückgesetzt) --
 default player_gender = None
@@ -80,7 +81,7 @@ image bg kitchen = "images/backgrounds/kitchen.jpg"
 
 ## Gallery Stuff
 image cg 1 = "images/gallery/cg_lavan_hug.jpg"
-image cg 1 thumb = "images/gallery/thumb_lavan_hug.jpg" 
+image cg 1 thumb = "images/gallery/thumb_lavan_hug.jpg"
 
 ## Minigame Images
 
@@ -108,9 +109,9 @@ transform pos_4:
 
 ## -- 6. MINIGAME Definierungen & Grundlogik --
 init python:
-    
+
     recipes_data = {
-        
+
         # --- TUTORIAL REZEPT ---
         "Tutorial": {
             "steps": ["Mehl", "Ei", "Ei", "Ei", "Mixen", "Milch", "Zucker", "Zucker", "Mixen"],

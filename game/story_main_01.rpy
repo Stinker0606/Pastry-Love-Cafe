@@ -2,7 +2,7 @@
 label story_intro:
     ## Wir starten in der Küche oder?
     scene bg kitchen with fade
-    
+
     ## Intro Monolog
     user "Der Ofen funkte wieder, wütend, fast theatralisch. Ich roch etwas Verbranntes in der Luft, gerade als ich mich vorwarf, um den Hauptschalter umzulegen."
 
@@ -101,9 +101,103 @@ label story_intro:
 
     k "\"Und reparier die Glocke!\", rief sie und duckte sich gerade rechtzeitig, um nicht vom scheppernden Messing getroffen zu werden."
 
+    user "Der Rest des Tages verging im gleichen chaotischen Rhythmus: Maschinen, die klangen, als würden sie ihre letzten Worte stammeln, Kunden, die spontan ihre Großfamilie mitbrachten, und ich, die versuchte, alles irgendwie zusammenzuhalten, während mein Dutt zum vierten Mal aufgab."
 
+    user "Doch irgendwann… ebbte der Lärm ab."
 
+    user "Die Glocke verstummte, der Ofen grollte nur noch wie ein müder Drache, und selbst Pierre schaffte es, die Hintertür diesmal nicht aus den Angeln zu treten."
 
+    scene black with fade
+
+    user "So ging ein weiterer Tag zu Ende, und ich konnte endlich durchatmen"
+
+    scene bg cafe with dissolve
+
+    user "Ich war gerade dabei, den Boden zu wischen hin und her, wie eine letzte, resignierte Choreografie, als die Türglocke erneut läutete."
+
+    user "„Wir haben geschlossen“"
+
+    user "murmelte ich automatisch, noch bevor ich aufblickte."
+
+    user "Doch als ich mich aufrichtete, war da ein Mann in der Tür."
+
+    user "Ein Mann im Anzug. Dunkel, sauber, glatt. Ein kompletter Kontrast zu meinem mehlbedeckten Dasein. Draußen regnete es in Strömen, und durch das Licht hinter mir warf er einen langen, scharfen Schatten auf die Fliesen."
+
+    user "Ich blieb stehen. Wie angewurzelt"
+
+    user "Nicht aus Angst… eher aus einer Art seltsamer Vorahnung."
+
+    user "Er neigte leicht den Kopf"
+
+    fm "„Entschuldigen Sie. Sind Sie die Bäckerin…[player_name]?“"
+
+    user "Ja"
+
+    user "Antwortete ich vorsichtig"
+
+    user "Aber wir sind zu"
+
+    user "Ich wischte mir unbewusst eine Mehlspur von der Stirn."
+
+    fm "„Ich bin nicht hier, um etwas zu kaufen.“ Seine Stimme war ruhig, tief. „Bitte… ich…“ Er schluckte, als würde das, was er gleich sagen wollte, schwer im Hals stecken."
+
+    fm "„Ich kannte deine Eltern. Ich habe etwas von ihnen.“"
+
+    user "Ich erstarrte. Ein Stich, direkt unter die Rippen. Der Schmerz war vertraut, aber niemals stumpf."
+
+    user "Mit einem leisen Seufzer öffnete ich die Tür ein Stück weiter."
+
+    user "Na gut. Kommen Sie rein, Mister…?"
+
+    fm "„(Name)“, sagte er, und ein flüchtiges, fast müdes Lächeln huschte über sein Gesicht."
+
+    user "Bevor er eintrat, blickte er kurz über seine Schulter, als wollte er sicherstellen, dass niemand ihm gefolgt war."
+
+    user "Wir setzten uns an einen der frisch geputzten Tische. Erst da, im warmen Licht, begann er ein wenig zu entspannen."
+
+    user "„Gut“, begann ich vorsichtig, „Sie sagten, Sie kannten meine Eltern? Brauchen Sie vielleicht einen Tee? Zum Aufwärmen? Sie sind völlig durchnässt, und ohne Regenschirm…“"
+
+    fm "„Nein. Danke.“ Er hob die Hand, als wolle er gleichzeitig abwinken und Abstand halten."
+
+    fm "„Ich bin nicht lange hier.“"
+
+    fm "Er räusperte sich."
+
+    fm "„Ich kannte deine Eltern. Und dich, vor sehr langer Zeit. Du warst damals noch ganz klein.“"
+
+    user "Er sah mich an, als würde er sich vergewissern, dass ich das hören konnte."
+
+    fm "„Ich habe ihnen etwas versprochen. Für den Tag, an dem… ein besonderer Anlass eintritt. Mein Beileid.“"
+
+    user "Langsam legte er eine kleine, dunkle Tasche auf den Tisch. Sie wirkte unscheinbar und gleichzeitig viel zu schwer für ihre Größe."
+
+    user "Ich starrte sie an."
+
+    user "„Was ist das?“"
+
+    fm "„Etwas, das deine Eltern in bestimmte Gebäcke eingebacken haben“, erklärte er."
+
+    fm "„Wie gesagt… nur für besondere Anlässe.“"
+
+    user "Er stand auf. Einfach so. Als wäre seine Aufgabe nun erfüllt."
+
+    user "„Warten Sie!“ rief ich und stolperte fast über meinen eigenen Eimer. „Moment! Ich habe noch Fragen!“"
+
+    user "Doch er war schon fast draußen."
+
+    user "Im Türrahmen blieb er noch einmal stehen, drehte sich langsam um und sagte:"
+
+    fm "„Viel Glück.“"
+
+    user "Dann verschwand er in der regnerischen Nacht, ohne ein weiteres Wort."
+
+    user "Ich blieb allein zurück. Mit der Tasche, der Stille und tausend Fragen."
+
+    user "Aber der Boden war noch nicht sauber, das Leben lief weiter, und morgen…Morgen würde ein langer Tag werden."
+
+    scene black with fade
+
+    #nächster Tag an dem sie die LI backen wird
 
 
 
