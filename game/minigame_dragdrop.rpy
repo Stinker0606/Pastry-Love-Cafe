@@ -17,6 +17,9 @@ init python:
 
     ## --- 1. ZUTATEN LOGIK ---
     def ingredient_dragged(drags, drop):
+        ## --- 1. FAIL-SAFE ---
+        ## Wenn der Spieler das Item ins Leere zieht (kein valides Drop-Ziel),
+        ## wird die Aktion abgebrochen und das Item zurückgesetzt.
         if not drop:
             drag_item = drags[0]
             start_pos = ingredient_positions[drag_item.drag_name]
@@ -26,35 +29,51 @@ init python:
         drag_item = drags[0]
         item_name = drag_item.drag_name
         
+        ## --- 2. STATE MANAGEMENT ---
+        ## Zutat wird temporär dem aktuellen Versuch hinzugefügt.
         store.current_ingredients.append(item_name)
+
+        ## Visuelles Feedback: Item schnappt zurück
         start_pos = ingredient_positions[item_name]
         drag_item.snap(start_pos[0], start_pos[1], delay=0.1)
         
-        ## PRÜFEN
+        ## --- 3. DATA-DRIVEN VALIDATION ---
+        ## Laden der Soll-Daten aus der zentralen Definition
         target_name = store.current_recipe_name_global
         target_steps = recipes_data[target_name]["steps"]
+
+        ## Berechnung des aktuellen Fortschritts-Index
         current_step_index = len(store.current_ingredients) - 1
         
+        ## Case A: Overflow-Schutz
+        ## Verhindert Index-Out-Of-Bounds Fehler, wenn Spieler zu schnell klicken
         if len(store.current_ingredients) > len(target_steps):
             renpy.notify("Zu viele Zutaten! Alles von vorne.")
-            store.current_ingredients = [] 
+            store.current_ingredients = [] # Hard Reset des States
             renpy.end_interaction("fail")
             return
 
+        ## Case B: Inhalts-Prüfung (Ist-Wert vs. Soll-Wert)
         expected_ingredient = target_steps[current_step_index]
+
         if item_name != expected_ingredient:
+            ## Fehlerfall: Sofortiges Feedback und Zurücksetzen des Fortschritts
             renpy.notify(f"Falsch! Rezept braucht: {expected_ingredient}")
             store.current_ingredients = [] 
             renpy.end_interaction("fail")
             return
 
+        ## --- 4. SUCCESS CONDITION ---
+        ## Prüfen, ob das Rezept vollständig ist    
         if len(store.current_ingredients) == len(target_steps):
+            ## Weiche für spezielle Minigames (Ist Erweiterbar)
             if recipes_data[target_name]["type"] == "crepe":
-                renpy.end_interaction("crepe_phase_2")
+                renpy.end_interaction("crepe_phase_2") # Phasenwechsel
             else:
-                renpy.end_interaction("success")
+                renpy.end_interaction("success") # Standard Ende
             return
-            
+
+        ## Feedback für korrekten Teilschritt
         renpy.notify(f"Richtig: {item_name}")
         return
 

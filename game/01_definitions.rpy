@@ -112,22 +112,24 @@ init python:
 
     recipes_data = {
 
-        # --- TUTORIAL REZEPT ---
+        ## --- TUTORIAL REZEPT ---
         "Tutorial": {
+            ## Die Liste 'steps' definiert die ZWINGENDE Reihenfolge.
+            ## Nutzung einer Liste (Array) garantiert index-basierten Zugriff.
             "steps": ["Mehl", "Ei", "Ei", "Ei", "Mixen", "Milch", "Zucker", "Zucker", "Mixen"],
+            "type": "bowl" # 'type' steuert, welcher Minigame-Screen geladen wird (Factory Pattern)
+        },
+
+        ## --- ALLTAGS-REZEPT 1: BUTTERPLÄTZCHEN ---
+        "Butterplätzchen": {
+            "steps": ["Mehl", "Ei", "Ei", "Zucker", "Butter", "Streusel", "Mixen"],
             "type": "bowl" # Normales Schüssel-Rezept
         },
 
-        # --- ALLTAGS-REZEPT 1: BUTTERPLÄTZCHEN ---
-        "Butterplätzchen": {
-            "steps": ["Mehl", "Ei", "Ei", "Zucker", "Butter", "Streusel", "Mixen"],
-            "type": "bowl"
-        },
-
-        # --- ALLTAGS-REZEPT 2: ERDBEER CREPE ---
+        ## --- ALLTAGS-REZEPT 2: ERDBEER CREPE --- Komplexes Rezept
         "Erdbeer Crepe": {
-            # Phase 1: Teig mischen
+            ## Hier sieht man die Skalierbarkeit: Neue Zutaten erfordern keinen Code-Change.
             "steps": ["Mehl", "Milch", "Ei", "Ei", "Zucker", "Mixen"],
-            "type": "crepe" # Löst danach das Pfannen-Minigame aus
+            "type": "crepe" # Trigger für Phasen-Wechsel (Teig -> Pfanne)
         }
     }
