@@ -47,13 +47,22 @@ label run_tutorial_minigame:
 
     $ quick_menu = True
 
+    ## 1. ERFOLG
     if _return == "success":
         ## Wir springen direkt weiter in der Story.
         $ tutorial_baking_done = True
         jump awakening_shock_scene 
+    
+    ## 2. ABBRUCH
+    elif _return == "cancel":
+        user "Oder doch eher was anderes."
+        ## Wir springen zurück zur Auswahl
+        jump baking_tutorial_selection 
+
+    ## 3. FEHLER (Alles andere)
     else:
-        ## Wenn fehlgeschlagen:
         user "Mist, das war falsch. Ich muss es nochmal versuchen."
+        ## Wir starten NUR das Minigame neu (gleiches Rezept)
         jump run_tutorial_minigame
 
 ## NORMALER MODUS (Alltag)
@@ -123,6 +132,13 @@ label run_baking_loop:
             
         jump kitchen_room_interaction
         
+    # 2. ABBRUCH
+    elif _return == "cancel":
+        # Einfach zurück zur Küche, ohne Strafe, ohne Fail-Screen
+        scene bg kitchen
+        user "Vielleicht später."
+        jump kitchen_room_interaction
+
     else:
         # --- FAIL SCREEN ---
         scene black with vpunch

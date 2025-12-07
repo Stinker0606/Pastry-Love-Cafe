@@ -1146,7 +1146,10 @@ screen mouse_help():
 
 
 screen gamepad_help():
-
+    vbox:
+        yoffset 50
+        xoffset 25
+        spacing 30
     hbox:
         label _("Right Trigger\nA/Bottom Button")
         text _("Advances dialogue and activates the interface.")
@@ -1336,6 +1339,7 @@ screen notify(message):
     style_prefix "notify"
 
     frame at notify_appear:
+        align (1.0, 0.03) # 1.0 = Rechts, 0.0 = Oben
         text "[message!tq]"
 
     timer 3.25 action Hide('notify')
@@ -1360,7 +1364,7 @@ style notify_frame:
 
 style notify_text:
     properties gui.text_properties("notify")
-    color "#f5253c"
+    color "#000000"
 
 
 ## NVL screen ##################################################################

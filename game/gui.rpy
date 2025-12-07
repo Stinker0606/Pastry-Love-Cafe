@@ -253,7 +253,7 @@ define gui.navigation_xpos = 40
 define gui.skip_ypos = 15
 
 ## The vertical position of the notify screen.
-define gui.notify_ypos = 68
+define gui.notify_ypos = 68 
 
 ## The spacing between menu choices.
 define gui.choice_spacing = 33
