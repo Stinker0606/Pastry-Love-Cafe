@@ -1,5 +1,5 @@
 ## -- TEIL 1: INTRO ---
-label story_intro_02:
+label story_intro_03:
     ## Wir starten in der Küche oder?
     scene bg Flur with fade
 
@@ -94,7 +94,7 @@ label story_intro_02:
 
     v "\"...Teig.\""
 
-    user "Ich blinzelte.
+    user "Ich blinzelte."
 
     user "\"Also… nichts?\""
 
