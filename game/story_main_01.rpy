@@ -317,8 +317,7 @@ label story_intro_02:
 
     user "Und dort blieb ich erneut stehen."
 
-
-
+    jump story_intro_03 # Ab ins Akt 2
 
 
     ## Hier drüber Story einfügen.
