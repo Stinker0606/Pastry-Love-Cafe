@@ -287,7 +287,7 @@ label story_intro_01:
     ## ========================================================================================================================================================================================
     # Nach dem Minispiel geht Story weiterer
     ## ========================================================================================================================================================================================
-    
+
 label story_intro_02:
     scene bg cafe with fade
 
@@ -316,6 +316,56 @@ label story_intro_02:
     user "Ich schluckte, griff mir einen Besen, die einzige „Waffe“, die man einer Bäckerin zutrauen konnte und schlich vorsichtig Richtung Küche."
 
     user "Und dort blieb ich erneut stehen."
+
+    user "Ich blinzelte."
+
+    user "Und dann noch einmal."
+
+    user "\"Ich schlafe nicht..? Halluziniere nicht?\""
+
+    user "\"Dann werde ich verrückt\""
+
+    user "Vor mir standen vier Leute, sichtlich an das Gebäck erinnert das ich vorher gebackt hatte"
+
+    v "\"Wir sind… wirklich keine Gefahr.\""
+
+    user "\"Ihr seid nackt in meiner Küche!\""
+
+    user "exklamierte ich lauter als erwartet"
+
+    v "\"Ähm… können wir vielleicht… Kleidung bekommen?\""
+
+    user "Fragte die rothaarige unschuldig"
+
+    user "Ich rieb mir die Schläfen. Das hier war zu viel. Viel zu viel für meinen mehlarmen Morgen."
+
+    user "Doch dann fiel mein Blick auf das kleine Glas mit dem lila Pulver auf der Arbeitsfläche."
+
+    user "\"Oh-\""
+
+    user "\"Oh!\""
+
+    user "\"Ich habe gebacken mit… äh… etwas, das ich gestern bekommen habe. Und jetzt… seid ihr… da\""
+
+    user "Versuchte ich drauf klarzukommen."
+
+    user "Die anderen waren schon wieder mit was anderem beschäftigt."
+
+    user "Die rothaarige Frau war mittlerweile damit beschäftigt sich in der Reflektion anzuschauen"
+
+    user "Der grünhaarige, wahrscheinlich der Matcha, stand zwar aufrecht doch seine AUgen waren zu. Er schien im Stehen zu schlafen"
+
+    user "Die anderen zwei, der Blonde und der Braunhaarige schienen gerade in ein anderes 'Gespräch' vertieft zu sein."
+
+    user "Oder eher gesagt schien der Braunhaarige sich über den anderen aufregen."
+
+    user "\"Okay. Bevor hier jemand Feuer fängt oder eins veranstaltet.\""
+
+    user "\"Wir holen euch Kleidung, setzen uns irgendwo hin, wo ihr NICHT meine Küche kontaminiert und dann versuchen wir herauszufinden, was zum Henker hier passiert ist.\""
+
+    user "Alle nickten und ich führte sie aus der Küche."
+
+    user "Das wird noch ein langer Tag."
 
     jump story_intro_03 # Ab ins Akt 2
 
@@ -391,4 +441,3 @@ label kitchen_room_interaction:
                 jump velvette_event_1
             elif current_kitchen_helper == "Cino":
                 jump cino_event_1
-
