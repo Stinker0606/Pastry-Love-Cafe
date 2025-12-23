@@ -120,7 +120,9 @@ label story_intro_01:
 
     user "Sie duckte sich gerade rechtzeitig, um nicht vom scheppernden Messing getroffen zu werden."
 
-    user "Der Rest des Tages verging im gleichen chaotischen Rhythmus: Maschinen, die klangen, als würden sie ihre letzten Worte stammeln, Kunden, die spontan ihre Großfamilie mitbrachten, und ich, die versuchte, alles irgendwie zusammenzuhalten, während mein Dutt zum vierten Mal aufgab."
+    user "Der Rest des Tages verging im gleichen chaotischen Rhythmus"
+
+    user "Maschinen, die klangen, als würden sie ihre letzten Worte stammeln, Kunden, die spontan ihre Großfamilie mitbrachten, und ich, die versuchte, alles irgendwie zusammenzuhalten, während mein Dutt zum vierten Mal aufgab."
 
     user "Doch irgendwann… ebbte der Lärm ab."
 
