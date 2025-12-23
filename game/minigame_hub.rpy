@@ -11,6 +11,8 @@ label baking_minigame_hub:
 label baking_tutorial_selection:
     user "Was backe ich zuerst?"
 
+    $ quick_menu = False
+
     ## SCHRITT 1: Die Entscheidung (Nur für Story & Punkte)
     menu:
         "Lava Cake":
@@ -28,6 +30,8 @@ label baking_tutorial_selection:
         "Zimtrolle":
             $ first_li_chosen = "Cino"
             call _add_affection(LI_CINO, 1)
+
+    $ quick_menu = True
 
     ## Nach der Wahl geht es weiter zum Minigame-Start
     jump run_tutorial_minigame
@@ -89,30 +93,47 @@ label baking_recipe_selection:
 
 ## --- DER UNIVERSELLE BACK-LOOP ---
 label run_baking_loop:
-
-    $ current_ingredients = [] # Reset des Minigames
     
+    ## --- 1: AUTOMATISCHER RESET ---
+    ## Damit ist die Schüssel immer leer, wenn man neu startet.
+    $ current_ingredients = [] 
+    
+    ## --- 2: QUICK MENU AUSBLENDEN ---
     $ quick_menu = False
-
+    
+    ## 1. Wir starten das Schüssel-Minigame
     call screen baking_minigame_screen(current_recipe_name, helper=current_kitchen_helper)
-
+    
+    ## --- 2: MENÜ WIEDER ANZEIGEN ---
     $ quick_menu = True
+    
+    ## Wir speichern das Ergebnis zwischen
+    $ minigame_result = _return
+    
+    ## 2. SPEZIALFALL: CREPE PHASE 2 (Mein neuer Code)
+    if minigame_result == "crepe_phase_2":
+        
+        ## Auch hier kurz Menü ausblenden für Immersion (optional)
+        $ quick_menu = False
+        call crepe_pan_minigame
+        $ quick_menu = True
+        
+        ## Das Ergebnis überschreiben wir
+        $ minigame_result = _return
 
-    if _return == "success":
+    ## 3. AUSWERTUNG
+    if minigame_result == "success":
         ## --- SUCCESS SCREEN ---
         scene black with dissolve
         
-        ## Wir definieren das Bild basierend auf dem Rezept
         if current_recipe_name == "Butterplätzchen":
             $ result_img = "images/minigame/result_butterplaetzchen.png"
         elif current_recipe_name == "Erdbeer Crepe":
             $ result_img = "images/minigame/result_crepe.png"
         else:
-            ## Wir setzen es auf None, damit nichts angezeigt wird.
             $ result_img = None 
 
-        ## Wir zeigen das Bild NUR, wenn wir eins definiert haben
-        if result_img:
+        if result_img and renpy.loadable(result_img):
             show expression result_img at truecenter
             with dissolve
         
@@ -121,27 +142,29 @@ label run_baking_loop:
         if result_img:
             hide expression result_img
         
-        ## Belohnung & Dialog
         call _add_affection(current_kitchen_helper, 2)
         
-        ## Kleiner Dialog je nach Helfer
+## FÜR DICH SOFIYA, Char reaktion auf der verschiedenen gerichte. Untendrunter siehtst du ein Beispiel, mach die Kommentierung weg und wo das FETT geschriebene ist ersetzen.
+
         if current_recipe_name == "Butterplätzchen" and current_kitchen_helper == "Lavan":
             l "Mein Favorit."
         elif current_recipe_name == "Erdbeer Crepe" and current_kitchen_helper == "Cino":
             c "Juhu!"
-            
+        #elif current_recipe_name == "NAME DES REZEPTES" and current_kitchen_helper == "CHARAKTER":
+        #    KÜRZEL DES CHARS "REAKTION"    
+
+## BIS HIER FÜR DICH 
+
         jump kitchen_room_interaction
         
-    # 2. ABBRUCH
-    elif _return == "cancel":
-        # Einfach zurück zur Küche, ohne Strafe, ohne Fail-Screen
+    elif minigame_result == "cancel":
+        ## ABBRUCH
         scene bg kitchen
         user "Vielleicht später."
         jump kitchen_room_interaction
-
+        
     else:
-        # --- FAIL SCREEN ---
+        ## FAIL
         scene black with vpunch
         centered "{size=40}Verbrannt!{/size}\nDas war wohl nichts."
-        # Neustart des GLEICHEN Rezepts
         jump run_baking_loop

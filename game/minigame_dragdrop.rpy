@@ -286,7 +286,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
     ## RESET
     textbutton "Reset":
         xalign 0.02 yalign 0.98
-        action [SetScreenVariable("current_ingredients", []), Function(renpy.restart_interaction)]
+        action [SetVariable("current_ingredients", []), Function(renpy.restart_interaction)]
 
     # CHECK BUTTON
     textbutton "Fertig!":
@@ -311,33 +311,55 @@ label crepe_pan_minigame:
 
 screen crepe_pan_screen():
     modal True
-    add "bg kitchen" # Oder Pfannen-Hintergrund
+    add Solid("#222")
+    #add "bg kitchen" # Oder Pfannen-Hintergrund
     
     default pan_state = 0 
     
+    if pan_state == 1 or pan_state == 3: # Ein Timer, der nach 5 Sekunden den Fail auslöst
+        vbox:
+            xalign 0.5 yalign 0.02
+            text "SCHNELL!" color "#f00" size 80 xalign 0.5 at alpha_flash
+            timer 5.0 action Return("fail")
+
+    ## --- 2. DER STATUS-TEXT (Zwischenscreen) ---
     vbox:
-        xalign 0.5 yalign 0.5
+        xalign 0.5 yalign 0.15
         
         if pan_state == 0:
-            ## add "images/minigame/crepe_raw.png"
-            text "Teig brät... (Warte)" size 50
+            text "Teig brät..." size 80 xalign 0.5 
             timer 3.0 action SetScreenVariable("pan_state", 1)
             
-        elif pan_state == 1:
-            ## add "images/minigame/crepe_cooked_1.png"
-            text "JETZT WENDEN!" color "#f00" size 60
-            button:
-                text "KLICK MICH" size 50
-                action SetScreenVariable("pan_state", 2)
-                
+
         elif pan_state == 2:
-            ## add "images/minigame/crepe_raw.png"
-            text "Seite 2 brät..." size 50
+            text "Die andere Seite brät..." size 80 xalign 0.5
             timer 3.0 action SetScreenVariable("pan_state", 3)
-            
+
+    ## --- 3. DER STATUS-TEXT (Während Aktion) ---
+    vbox:
+        xalign 0.5 yalign 0.1
+
+        if pan_state == 1: 
+            text "Es riecht langsam verbrannt..." size 70 xalign 0.5
+                
         elif pan_state == 3:
-            ## add "images/minigame/crepe_cooked_1.png"
-            text "FERTIG! Erdbeeren dazu!" size 50
-            button:
-                text "Erdbeeren drauf" size 50
-                action Return("success")
+            text "Nun Erdbeeren dazu..." size 70 xalign 0.5
+
+    ## --- 4. DIE BUTTONS ---
+    if pan_state == 1:
+        button:
+            xalign 0.5 yalign 0.9 # Ganz unten positioniert
+            background Solid("#800d006c")
+            hover_background Solid("#ff000079")
+            padding (90, 10)
+            text "Wenden!" size 70 color "#fff"
+            action SetScreenVariable("pan_state", 2)
+
+    elif pan_state == 3:
+        button:
+            xalign 0.5 yalign 0.9 # Ganz unten positioniert
+            background Solid("#800d006c")
+            hover_background Solid("#ff000079")
+            padding (90, 10)
+            text "Erdbeeren drauftun!" size 70 color "#fff"
+            action Return("success")        

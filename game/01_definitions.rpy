@@ -76,8 +76,9 @@ image cino smile = "images/sprites/cino/smile.png"
 
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
-image bg cafe = "images/backgrounds/cafe.jpg"
-image bg kitchen = "images/backgrounds/kitchen.jpg"
+## image bg cafe = "images/backgrounds/cafe.jpg"
+## image bg kitchen = "images/backgrounds/kitchen.jpg"
+
 
 ## Gallery Stuff
 image cg 1 = "images/gallery/cg_lavan_hug.jpg"
@@ -89,12 +90,18 @@ image cg 1 thumb = "images/gallery/thumb_lavan_hug.jpg"
 image team_logo = "gui/team_logo.png"
 
 ## -- 5. Transform-Definitionen (Position-Definierung) --
+transform alpha_flash:
+    alpha 1.0
+    linear 0.5 alpha 0.2
+    linear 0.5 alpha 1.0
+    repeat
+
 transform at_left:
     xalign 0.25 yalign 1.0
 transform at_right:
     xalign 0.75 yalign 1.0
 
-# -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
+## -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
 transform pos_1:
     xalign 0.15 yalign 1.0 # Ganz links
 
