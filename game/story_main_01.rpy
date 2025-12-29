@@ -234,7 +234,7 @@ label story_intro_01:
 
     scene black with fade
 
-    #nächster Tag an dem sie die LI backen wird
+    ## nächster Tag an dem sie die LI backen wird
 
     user "Ich stand wie immer früh morgens auf."
 
@@ -260,7 +260,15 @@ label story_intro_01:
 
     user "Und dann fiel mein Blick darauf."
 
-    #Hier das erste Finding Minigame
+    ## Finding Game TEST 1 - HIER RICHTIGES FINDING GAME DANN MACHEN
+    call run_finding_minigame(
+        "bg kitchen", 
+        "images/minigames/finding/testo_idle.png", 
+        "images/minigames/finding/testo_hover.png", 
+        850, 
+        450,
+        0.05
+    )
 
     user "Das ungeöffnete Pulver."
 

@@ -168,3 +168,21 @@ label run_baking_loop:
         scene black with vpunch
         centered "{size=40}Verbrannt!{/size}\nDas war wohl nichts."
         jump run_baking_loop
+
+## --- FINDING MINIGAME HUB ---
+## Wir erwarten hier Argumente für die Bilder und Positionen
+label run_finding_minigame(bg_img, idle_img, hover_img, x_pos, y_pos, scale):
+    
+    ## Menü ausblenden
+    $ quick_menu = False
+
+    ## START DES SPIELS
+    ## Wir rufen den Screen auf und geben die Daten weiter, die wir bekommen haben
+    call screen finding_game_screen(bg_img, idle_img, hover_img, x_pos, y_pos, scale)
+    
+    ## Menü wieder an
+    $ quick_menu = True
+
+    ## AUSWERTUNG
+    if _return == "found":
+        return # Zurück zur Story        
