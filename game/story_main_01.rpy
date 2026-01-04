@@ -24,6 +24,10 @@ label story_intro_01:
 
     user "Schon von hier konnte ich es sehen: eine Kiste voller Milchprodukte und Eier in den Händen, aber kein Mehl."
 
+    user "Bevor ich mich beschweren konnte schiebte er mir das Klembrett hin wo ich mit meinem Namen unterschreiben musste"
+
+    call setup_player_character
+
     ## Dialog mit Pierre
     user "\"Drittes Mal diesen Monat, Pierre\""
 
@@ -262,10 +266,10 @@ label story_intro_01:
 
     ## Finding Game TEST 1 - HIER RICHTIGES FINDING GAME DANN MACHEN
     call run_finding_minigame(
-        "bg kitchen", 
-        "images/minigames/finding/testo_idle.png", 
-        "images/minigames/finding/testo_hover.png", 
-        850, 
+        "bg kitchen",
+        "images/minigames/finding/testo_idle.png",
+        "images/minigames/finding/testo_hover.png",
+        850,
         450,
         0.05
     )

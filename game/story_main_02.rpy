@@ -114,6 +114,12 @@ label story_intro_03:
 
     m "\"Dann will ich kein Frühstück.\""
 
+    user "Unangenehm schaute ich mich im Zimmer um."
+
+    user "\"Also ich hoffe ihr seid heute bereit und motiviert euren ersten Tag nach dem training anzugehen?\""
+
+    user "Jeder von ihnen hatte ein nicht so glückliches Gesichtsausdruck"
+
 
 
 
@@ -192,4 +198,3 @@ label kitchen_room_interaction:
                 jump velvette_event_1
             elif current_kitchen_helper == "Cino":
                 jump cino_event_1
-

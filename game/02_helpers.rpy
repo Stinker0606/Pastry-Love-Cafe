@@ -16,7 +16,7 @@ label _add_affection(li_name, amount=1):
         elif li_name == LI_VELVETTE:
             store.velvette_points += amount
         elif li_name == LI_CINO:
-            store.cino_points += amount    
+            store.cino_points += amount
     return
 
 ## -- Charakter-Erstellung --
@@ -48,11 +48,11 @@ label setup_player_character:
     python:
         while True:
             ## 1. Zeige das Eingabefeld.
-            player_name_input = renpy.input("Wie ist mein Name?", length=20)
-            
+            player_name_input = renpy.input("Unterschrift", length=20)
+
             ## 2. Entferne Leerzeichen
             player_name_input = player_name_input.strip()
-            
+
             ## 3. Prüfe, ob das Ergebnis LEER ist
             if player_name_input == "":
                 ## 4. Wenn ja: Zeige Fehlermeldung, Schleife startet neu
@@ -65,7 +65,9 @@ label setup_player_character:
 
     ## JETZT weisen wir dem 'mc'-Charakter-Objekt den Namen zu
     $ user.name = player_name
-    
-    user "Okay, ich bin [player_name], die Bäckerin."
-    
+
+    user "[player_name]"
+
+    user "Ich schaute kurz meinen Namen noch einmal an, bevor ich ihm das Klembrett wiedergab und böse anschaute"
+
     return ## Kehrt zurück
