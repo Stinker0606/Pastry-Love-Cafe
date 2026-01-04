@@ -1,6 +1,5 @@
 ﻿label splashscreen:
     scene bg pink
-    # (Logo maybe hinzufügen und es definieren in 01_definitions)
     show team_logo at truecenter
     with dissolve
     pause 2.0
@@ -8,18 +7,18 @@
     pause 0.5
     return # WICHTIG: 'return' beendet den Splashscreen
 
-# --- SYSTEM-LABELS ---
+## --- SYSTEM-LABELS ---
 
-# --- DER START DES SPIELS ---
-# (Im Hauptmenü abrufbar per START)
+## --- DER START DES SPIELS ---
+## (Im Hauptmenü abrufbar per START)
 label start:
     # Stoppt die Hauptmenü-Musik falls eine vorhanden ist.
     stop music fadeout 1.0
     scene black
     
-    # --- RESET FÜR NEUES SPIEL ---
-    # (Setzt alles zurück damit es ein NEW GAME ist)
-    # Beispiel:
+    ## --- RESET FÜR NEUES SPIEL ---
+    ## (Setzt alles zurück damit es ein NEW GAME ist)
+    ## Beispiel:
     $ lavan_points = 0
     $ is_lavan_awakened = False
     $ macoi_points = 0
@@ -30,13 +29,9 @@ label start:
     $ is_cino_awakened = False
     
     $ event_lavan_1_done = False # (Beispiel für alle Event-Flaggen)
-    
-    # Ruft das Setup-Label aus 02_helpers.rpy auf
-    call setup_player_character
-    
-    # (sobald es fertig ist passiert hier hin der return)
-    
-    user "Okay, es ist Zeit oder so. IDK"
-    
-    # Springt zum nächsten Part
+
+    ## Ein vorläufiger Namen damit in der Textbox der Charakter Name nicht leer ist.
+    $ player_name = "???"
+
+    ## Springt zum nächsten Part
     jump story_intro_01

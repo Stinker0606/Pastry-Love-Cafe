@@ -68,4 +68,4 @@ label setup_player_character:
     
     user "Okay, ich bin [player_name], die Bäckerin."
     
-    return ## Kehrt zu 'game_start' zurück
+    return ## Kehrt zurück
