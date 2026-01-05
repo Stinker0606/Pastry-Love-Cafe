@@ -129,6 +129,114 @@ label story_intro_03:
     #--------------
     #Hier eine Wahl einfügen wenn man unterstützt (von allen 4), "So alles wird gut mässig"
 
+    #Sprung zum cafe
+
+    # Sprung zum Café / Hintergrundbild Café Interior
+
+    user "Eine halbe Stunde später standen wir im Café."
+
+    user "Das Schild an der Tür war noch auf 'Geschlossen' gedreht, aber die Luft im Raum war bereits zum Schneiden dick."
+
+    # Nach einander Charaktere zeigen und dann sagen was sie machen
+
+    user "Lavan stand hinter der Theke und starrte die große Espressomaschine an, als würde er sie zu einem Duell herausfordern."
+
+    user "Cino sortierte Servietten. Wieder und wieder. Ich glaube, er sortierte sie nach 'Falt-Ästhetik'."
+
+    user "Macoi lehnte an der Kasse. Oder besser gesagt: Er hing darüber wie ein nasses Handtuch."
+
+    user "Und Velvette? Sie stand mitten im Raum, perfekt ausgeleuchtet vom einzigen Sonnenstrahl, der durch das Fenster fiel, und checkte ihre Fingernägel."
+
+    user "\"Alle auf Position?\""
+
+    l "\"Die Maschine zischt komisch. Ich traue ihr nicht.\""
+
+    m "\"Ich höre Farben.\""
+
+    v "\"Mein Platz ist hier vorne. Das Licht ist hier am vorteilhaftesten für den ersten Eindruck der Kunden.\""
+
+    user "\"Das ist der Eingangsbereich, Velvette. Du stehst im Weg.\""
+
+    v "\"Ich *bin* der Weg.\""
+
+    user "Ich ignorierte das und ging zur Tür."
+
+    user "\"Okay. Tief durchatmen. Ich drehe das Schild um.\""
+
+    user "Ich drehte das Schild auf 'Geöffnet' und schloss die Tür auf."
+
+    user "Schon nach einer halben Stunde, war das Cafe voll"
+
+    user "Ich beobachtete die Vier wie sie mit ihren Stationen zurecht kamen und war bereit zu helfen"
+
+    #Velvettes Choice
+
+    user "Ein Mann kam gerade herein in das Cafe leicht unsicher schaute er sich um."
+
+    user "Velvette trat einen Schritt zur Seite, musterte den Mann von oben bis unten und rümpfte leicht die Nase."
+
+    v "\"Der Hut ist... eine mutige Entscheidung für diese Jahreszeit. Tisch vier. Da sehen Sie am wenigsten störend aus.\""
+
+    # CHOICE
+    # Entscheidung die Situation zu retten oder nicht
+
+    # Macois Choice
+
+    user "Ich schaute mich wieder um und erblickte die nächste Situation"
+
+    user "Macoi hatte die Bestellung eingegeben, aber dann schien sein System in den Standby-Modus zu gehen."
+    user "Er starrte auf den Tresen, während der Kunde erwartungsvoll sein Portemonnaie zückte."
+    m "\"......\""
+    user "Stille. Macoi blinzelte nicht einmal. Er war mental ganz weit weg."
+
+    # CHOICE
+    # A: Ihn verbal erinnern ("Macoi, kassieren bitte.")
+    # B: Stummes Signal geben (Leichtes Anstupsen / Blickkontakt)
+
+    # --- Falls A (Falsch / Zu laut) ---
+    user "\"Macoi! Du musst noch abkassieren!\""
+    user "Ich sagte es nicht böse, aber in der Stille wirkte meine Stimme wie ein Donnerschlag."
+    user "Macoi zuckte heftig zusammen, als hätte ich ihn geweckt."
+    m "\"Häh? Was? Ja... natürlich.\""
+    user "Er wirkte kurz desorientiert und genervt von der plötzlichen Störung."
+    m "\"3 Euro... bitte. Nicht so schreien...\""
+
+
+    # --- Falls B (Richtig) ---
+    user "Ich trat leise neben ihn und stieß ihn ganz sanft mit meinem Ellbogen an, ohne ein Wort zu sagen."
+    user "Ich nickte nur ruhig in Richtung des Kunden."
+    user "Macoi verstand das Signal sofort. Kein Lärm, kein Stress. Er atmete erleichtert aus."
+    m "\"Ah. Danke.\""
+    user "Er wandte sich wieder dem Kunden zu, seine Bewegungen waren flüssig und ruhig."
+    m "\"Das macht 3 Euro. Danke für Ihre Geduld.\""
+    user "Er warf mir einen kurzen Seitenblick zu, der 'Gute Arbeit' bedeutete."
+
+    # Lavans Choice
+
+    user "Lavan hämmerte den Siebträger gegen die Maschine. Seine Hände zitterten vor Wut (und Nervosität)."
+
+    l "\"Warum passt das nicht?! Das ist Sabotage!\""
+
+    # CHOICE
+    # A: Ihn sanft beruhigen ("Ganz ruhig, Lavan. Alles ist gut.")
+    # B: Ihn spielerisch herausfordern ("Lässt du dich echt von einer Maschine besiegen?")
+
+    # --- Falls A (Falsch / Zu weich) ---
+    user "Ich legte ihm eine Hand auf die Schulter. \"Hey, ganz ruhig. Atme durch. Du machst dir zu viel Stress.\""
+    user "Lavan riss sich sofort los, sein Gesicht rot vor Scham und Ärger."
+    l "\"Ich bin ruhig! Behandle mich nicht wie ein Kind! Ich brauche kein Mitleid!\""
+    user "Er machte den Kaffee fertig, drehte mir aber beleidigt den Rücken zu."
+
+
+    # --- Falls B (Richtig) ---
+    user "Ich grinste ihn schief an. \"Wow. 1:0 für die Kaffeemaschine? Lässt du dich echt von etwas besiegen, das keinen Stecker hat?\""
+    user "Lavan schnaubte empört, aber das Zittern hörte auf. Der Kampfgeist war geweckt."
+    l "\"Hah?! Niemals! Pass bloß auf!\""
+    user "Mit einem Ruck rastete der Siebträger perfekt ein. Er grinste triumphierend zu mir herüber."
+    l "\"Siehst du? Ich habe gewonnen.\""
+
+    # Cino Choice
+
 
 
 
