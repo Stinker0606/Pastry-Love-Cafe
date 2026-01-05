@@ -155,13 +155,28 @@ label run_baking_loop:
 
 ## BIS HIER FÜR DICH 
 
-        jump kitchen_room_interaction
-        
+        # Fall A: Wir kommen aus der Story-Eröffnung (Der Tag geht weiter)
+        if store.baking_context == "story_opening":
+            # Variable resetten, damit sie später nicht stört
+            $ store.baking_context = None 
+            # Wir springen WEITER in der Story
+            jump story_cafe_after_rush 
+
+        # Fall B: Wir kommen aus dem normalen Alltag (Zurück zur Küche)
+        else:
+            jump kitchen_room_interaction
+            
     elif minigame_result == "cancel":
         ## ABBRUCH
         scene bg kitchen
         user "Vielleicht später."
-        jump kitchen_room_interaction
+        
+        if store.baking_context == "story_opening":
+            $ store.baking_context = None 
+            ## Man interpretiert Abbruch als "Doch nicht backen"
+            jump cafe_opening_decision_hub 
+        else:
+            jump kitchen_room_interaction
         
     else:
         ## FAIL
