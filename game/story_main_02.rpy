@@ -20,6 +20,7 @@ label story_intro_02:
 
     #--------------
     #Hier choice einfach leise dein Ding machen oder ihr ein Kompliment machen
+    menu:
         "Einfach Leise mein Ding machen":
             # Hier passiert nichts Besonderes.
             user "Ich beschloss, ihre Konzentration nicht zu stören und putzte leise meine Zähne."
