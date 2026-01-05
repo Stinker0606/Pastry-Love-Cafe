@@ -18,6 +18,9 @@ label story_intro_03:
 
     user "Ich schnappte mir meine Zahnbürste und manövrierte mich geschickt um sie herum"
 
+    #--------------
+    #Hier choice einfach leise dein Ding machen oder ihr ein Kompliment machen
+
     user "\"Du siehst gut aus.\""
 
     user "Ohne auch nur ihren Blick vom Spiegel zu lösen"
@@ -86,6 +89,9 @@ label story_intro_03:
 
     user "Er stellte ihn etwas zu kräftig auf den Tisch, sodass mein Salzstreuer bedrohlich wackelte."
 
+    #--------------
+    #Hier eine Choice wenn man unterstützt also welche seite
+
     user "Velvet kam die Treppe herunter, stolz wie eine Königin, die gerade frische Luft mit Parfüm verwechselt hatte."
 
     v "\"Mein Frühstück bitte ohne Fett, ohne Zucker und ohne jegliche Form von…\""
@@ -119,6 +125,9 @@ label story_intro_03:
     user "\"Also ich hoffe ihr seid heute bereit und motiviert euren ersten Tag nach dem training anzugehen?\""
 
     user "Jeder von ihnen hatte ein nicht so glückliches Gesichtsausdruck"
+
+    #--------------
+    #Hier eine Wahl einfügen wenn man unterstützt (von allen 4), "So alles wird gut mässig"
 
 
 

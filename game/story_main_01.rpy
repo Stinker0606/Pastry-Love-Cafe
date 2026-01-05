@@ -341,6 +341,9 @@ label story_intro_02:
 
     user "Vor mir standen vier Leute, sichtlich an das Gebäck erinnert das ich vorher gebackt hatte"
 
+    #--------------
+    #kommt drauf an wen man backt die Person würde reden
+
     v "\"Wir sind… wirklich keine Gefahr.\""
 
     user "\"Ihr seid nackt in meiner Küche!\""
