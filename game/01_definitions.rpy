@@ -38,8 +38,19 @@ default macoi_points = 0
 default velvette_points = 0
 default cino_points = 0
 
+## --- TAGES-PERFORMANCE TRACKER ---
+## Status kann sein:
+## "ignored" = Man hat dem Char gar nicht geholfen (Standardwert, gilt als schlecht)
+## "fail"    = Man hat geholfen, aber die falsche Antwort gewählt
+## "success" = Man hat geholfen und die richtige Antwort gewählt
+
+default task_result_lavan = "ignored"
+default task_result_macoi = "ignored"
+default task_result_velvette = "ignored"
+default task_result_cino = "ignored"
+
 ## --- UI-Status-Variablen ---
-## default current_textbox_color = None | AUS, ist damit die box unten sich mit ändert beim hovern
+# default current_textbox_color = None | AUS, ist damit die box unten sich mit ändert beim hovern
 
 ## --- EVENT-FLAGGEN ---
 ## (Diese steuern, was im Hub-Menü sichtbar ist)

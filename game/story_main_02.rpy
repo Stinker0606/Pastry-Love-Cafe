@@ -1,6 +1,6 @@
 ## -- TEIL 1: INTRO ---
 label story_intro_02:
-    ## Wir starten in der Küche oder?
+    ## Wir starten in der Küche oder? - Glaub ja
     scene bg Flur with fade
 
     ## Intro Monolog
@@ -203,10 +203,10 @@ label story_intro_02:
 label cafe_opening_decision_hub:
     
     # Wir berechnen kurz den Status
-    # 1. Hat man mind. EINER Person geholfen? (ODER-Verknüpfung)
+    # 1. Hat man mind. EINER Person geholfen? (eine ODER-Verknüpfung)
     $ any_help_given = helped_velvette or helped_macoi or helped_lavan or helped_cino
     
-    # 2. Hat man ALLEN geholfen? (UND-Verknüpfung)
+    # 2. Hat man ALLEN geholfen? (eine UND-Verknüpfung)
     $ all_help_given = helped_velvette and helped_macoi and helped_lavan and helped_cino
 
     user "Was soll ich tun?"
@@ -303,6 +303,7 @@ label opening_help_velvette:
     menu:
         "Die Situation charmant retten":
             # Richtig
+            $ task_result_velvette = "success"
             user "Ich trat schnell dazwischen und lächelte den Mann an."
             user "\"Was meine Kollegin sagen wollte: Tisch vier ist unser gemütlichster Platz. Genau richtig für so einen stilvollen Hut.\""
             user "Der Mann entspannte sich. \"Oh, danke!\""
@@ -311,6 +312,7 @@ label opening_help_velvette:
 
         "Sie zurechtweisen":
             # Falsch
+            $ task_result_velvette = "fail"
             user "\"Velvette! Sei nett zu dem Kunden!\""
             v "\"Pff. Ich bin ehrlich, nicht nett.\""
 
@@ -331,11 +333,13 @@ label opening_help_macoi:
     menu:
         "Ihn verbal erinnern ('Macoi, kassieren!')":
             # Falsch
+            $ task_result_macoi = "fail"
             user "\"Macoi! Du musst noch abkassieren!\""
             m "\"Häh? Was? Ja... natürlich. 3 Euro... bitte. Nicht so schreien...\""
 
         "Stummes Signal geben (Anstupsen)":
             # Richtig
+            $ task_result_macoi = "success"
             user "Ich trat leise neben ihn und stieß ihn ganz sanft mit meinem Ellbogen an."
             m "\"Ah. Danke.\""
             user "Er atmete erleichtert aus und kassierte ruhig ab."
@@ -356,11 +360,13 @@ label opening_help_lavan:
     menu:
         "Ihn sanft beruhigen ('Ganz ruhig')":
             # Falsch
+            $ task_result_lavan = "fail"
             user "\"Hey, ganz ruhig. Atme durch.\""
             l "\"Ich bin ruhig! Behandle mich nicht wie ein Kind!\""
 
         "Ihn herausfordern ('1:0 für die Maschine?')":
             # Richtig
+            $ task_result_lavan = "success"
             user "\"Wow. 1:0 für die Kaffeemaschine? Lässt du dich echt von etwas besiegen, das keinen Stecker hat?\""
             l "\"Hah?! Niemals! Pass bloß auf!\""
             user "Mit einem Ruck rastete der Siebträger ein. Er grinste triumphierend."
@@ -380,10 +386,14 @@ label opening_help_cino:
     
     menu:
         "Ihm helfen":
+            # Richtig
+            $ task_result_cino = "success"
             call _add_affection(LI_CINO, 1)
             c "Danke!"
         
         "Ihn machen lassen":
+            # Fail
+            $ task_result_cino = "fail"
             user "Er schafft das schon."
 
     jump cafe_opening_decision_hub
@@ -391,96 +401,12 @@ label opening_help_cino:
 label story_cafe_after_rush:
     scene bg cafe with fade
 
-    # HIER RESETTEN WIR DEN STUFF ZUR SICHERHEIT
+    # HIER RESETTEN WIR DEN KRAM FÜRS BACKEN ZUR SICHERHEIT
     $ baking_context = None
 
     user "Puh... Der Tag ist vorbei."    
 
-
-
-## ===========================================================================================================================================================================================
-## ===========================================================================================================================================================================================
-##                                                                  WENN DAS HIER DRUNTER NICHT MEHR BENÖTIGT LÖSCHEN BIS ZUR MARKIERUNG !!! 
-## ===========================================================================================================================================================================================
-## ===========================================================================================================================================================================================
-
-    #Velvettes Choice
-
-    user "Ein Mann kam gerade herein in das Cafe leicht unsicher schaute er sich um."
-
-    user "Velvette trat einen Schritt zur Seite, musterte den Mann von oben bis unten und rümpfte leicht die Nase."
-
-    v "\"Der Hut ist... eine mutige Entscheidung für diese Jahreszeit. Tisch vier. Da sehen Sie am wenigsten störend aus.\""
-
-    # CHOICE
-    # Entscheidung die Situation zu retten oder nicht
-
-    # Macois Choice
-
-    user "Ich schaute mich wieder um und erblickte die nächste Situation"
-
-    user "Macoi hatte die Bestellung eingegeben, aber dann schien sein System in den Standby-Modus zu gehen."
-    user "Er starrte auf den Tresen, während der Kunde erwartungsvoll sein Portemonnaie zückte."
-    m "\"......\""
-    user "Stille. Macoi blinzelte nicht einmal. Er war mental ganz weit weg."
-
-    # CHOICE
-    # A: Ihn verbal erinnern ("Macoi, kassieren bitte.")
-    # B: Stummes Signal geben (Leichtes Anstupsen / Blickkontakt)
-
-    # --- Falls A (Falsch / Zu laut) ---
-    user "\"Macoi! Du musst noch abkassieren!\""
-    user "Ich sagte es nicht böse, aber in der Stille wirkte meine Stimme wie ein Donnerschlag."
-    user "Macoi zuckte heftig zusammen, als hätte ich ihn geweckt."
-    m "\"Häh? Was? Ja... natürlich.\""
-    user "Er wirkte kurz desorientiert und genervt von der plötzlichen Störung."
-    m "\"3 Euro... bitte. Nicht so schreien...\""
-
-
-    # --- Falls B (Richtig) ---
-    user "Ich trat leise neben ihn und stieß ihn ganz sanft mit meinem Ellbogen an, ohne ein Wort zu sagen."
-    user "Ich nickte nur ruhig in Richtung des Kunden."
-    user "Macoi verstand das Signal sofort. Kein Lärm, kein Stress. Er atmete erleichtert aus."
-    m "\"Ah. Danke.\""
-    user "Er wandte sich wieder dem Kunden zu, seine Bewegungen waren flüssig und ruhig."
-    m "\"Das macht 3 Euro. Danke für Ihre Geduld.\""
-    user "Er warf mir einen kurzen Seitenblick zu, der 'Gute Arbeit' bedeutete."
-
-    # Lavans Choice
-
-    user "Lavan hämmerte den Siebträger gegen die Maschine. Seine Hände zitterten vor Wut (und Nervosität)."
-
-    l "\"Warum passt das nicht?! Das ist Sabotage!\""
-
-    # CHOICE
-    # A: Ihn sanft beruhigen ("Ganz ruhig, Lavan. Alles ist gut.")
-    # B: Ihn spielerisch herausfordern ("Lässt du dich echt von einer Maschine besiegen?")
-
-    # --- Falls A (Falsch / Zu weich) ---
-    user "Ich legte ihm eine Hand auf die Schulter. \"Hey, ganz ruhig. Atme durch. Du machst dir zu viel Stress.\""
-    user "Lavan riss sich sofort los, sein Gesicht rot vor Scham und Ärger."
-    l "\"Ich bin ruhig! Behandle mich nicht wie ein Kind! Ich brauche kein Mitleid!\""
-    user "Er machte den Kaffee fertig, drehte mir aber beleidigt den Rücken zu."
-
-
-    # --- Falls B (Richtig) ---
-    user "Ich grinste ihn schief an. \"Wow. 1:0 für die Kaffeemaschine? Lässt du dich echt von etwas besiegen, das keinen Stecker hat?\""
-    user "Lavan schnaubte empört, aber das Zittern hörte auf. Der Kampfgeist war geweckt."
-    l "\"Hah?! Niemals! Pass bloß auf!\""
-    user "Mit einem Ruck rastete der Siebträger perfekt ein. Er grinste triumphierend zu mir herüber."
-    l "\"Siehst du? Ich habe gewonnen.\""
-
-    # Cino Choice
-
-## ===========================================================================================================================================================================================
-## ===========================================================================================================================================================================================
-###                                                                                            MARKIERUNG
-## ===========================================================================================================================================================================================
-## ===========================================================================================================================================================================================
-
-
-
-
+    jump story_intro_03
 
 
 
