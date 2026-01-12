@@ -53,8 +53,10 @@ label story_intro_03:
         user "Es gab Beschwerden über eine 'arrogante Kellnerin'. Ich hätte bei Velvette eingreifen sollen."
 
     # --- CINO CHECK ---
-    if task_result_cino == "ignored":
+    if task_result_cino == "fail":
         user "Und überall lagen zerrissene Servietten herum..."
+    elif task_result_cino == "ignored":
+        user "Idk ey schreib hier was UWU."
 
     ## 4. FAZIT
     if day_score < 2:
