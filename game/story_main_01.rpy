@@ -309,7 +309,6 @@ label story_intro_01:
     # Nach dem Minispiel geht Story weiterer -> story_awakening
     ## ========================================================================================================================================================================================
 
-
 ## TEST GIF LOADER
 
 label test_gif:
@@ -320,16 +319,20 @@ label test_gif:
 
     c "Siehst du? Ich bewege mich!"
 
+    pause
+
     hide cino idle at pos_01
-    
-    pause 
 
     show lavan idle at pos_02
 
     l "Siehst du? Ich bewege mich!"
 
+    pause
+
     hide lavan idle at pos_02
 
-    pause 
+    scene bg cafe_counter
+
+    user "gdfsa"        
 
     return
