@@ -1,7 +1,14 @@
 ## -- TEIL 1: INTRO ---
+## -- TEIL 1: INTRO ---
 label story_intro_01:
     ## Wir starten in der Küche oder?
     scene bg kitchen with fade
+
+## ==================================================
+##                    test_gif
+    jump test_gif
+## ==================================================
+
 
     ## Intro Monolog
     user "Der Ofen funkte wieder, wütend, fast theatralisch. Ich roch etwas Verbranntes in der Luft, gerade als ich mich vorwarf, um den Hauptschalter umzulegen."
@@ -301,3 +308,28 @@ label story_intro_01:
     ## ========================================================================================================================================================================================
     # Nach dem Minispiel geht Story weiterer -> story_awakening
     ## ========================================================================================================================================================================================
+
+
+## TEST GIF LOADER
+
+label test_gif:
+    #scene bg cafe 
+    scene bg white
+
+    show cino idle at pos_01
+
+    c "Siehst du? Ich bewege mich!"
+
+    hide cino idle at pos_01
+    
+    pause 
+
+    show lavan idle at pos_02
+
+    l "Siehst du? Ich bewege mich!"
+
+    hide lavan idle at pos_02
+
+    pause 
+
+    return

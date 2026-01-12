@@ -74,19 +74,26 @@ image mc_neutral = ConditionSwitch(
 )
 
 ## Lavan
-image lavan smile = "images/sprites/lavan/smile.png"
+#image lavan smile = "images/sprites/lavan/smile.png"
+# Placeholder für die Idle
+
+image lavan idle = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_Animation.webm", loop=True), zoom=0.45)
 
 ## Macoi
-image macoi smile = "images/sprites/macoi/smile.png"
+#image macoi smile = "images/sprites/macoi/smile.png"
 
 ## Velvette
-image velvette smile = "images/sprites/velvette/smile.png"
+#image velvette smile = "images/sprites/velvette/smile.png"
 
 ## Cino
-image cino smile = "images/sprites/cino/smile.png"
+#image cino smile = "images/sprites/cino/smile.png"
+# Placeholder für die Idle
+
+image cino idle = Transform(Movie(play="images/sprites/cino/cino_idle_anim.webm", loop=True), zoom=0.75)
 
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
+image bg white = Solid("#ffffff")
 ## image bg cafe = "images/backgrounds/cafe.jpg"
 ## image bg kitchen = "images/backgrounds/kitchen.jpg"
 
@@ -114,16 +121,24 @@ transform at_right:
 
 ## -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
 transform pos_1:
-    xalign 0.15 yalign 1.0 # Ganz links
+    xalign 0.07 yalign 1.0 # Ganz links
 
 transform pos_2:
-    xalign 0.38 yalign 1.0 # Links Mitte
+    xalign 0.36 yalign 1.0 # Links Mitte
 
 transform pos_3:
-    xalign 0.62 yalign 1.0 # Rechts Mitte
+    xalign 0.64 yalign 1.0 # Rechts Mitte
 
 transform pos_4:
-    xalign 0.85 yalign 1.0 # Ganz rechts
+    xalign 0.94 yalign 1.0 # Ganz rechts
+
+## 
+
+transform pos_01:
+    xalign 0.07 yalign 0.3 # Ganz links
+
+transform pos_02:
+    xalign 0.90 yalign 0.15 # Ganz rechts
 
 ## -- 6. MINIGAME Definierungen & Grundlogik --
 init python:
