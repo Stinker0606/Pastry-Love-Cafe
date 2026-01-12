@@ -253,8 +253,10 @@ screen quick_menu():
 
             #xalign 0.5
             #yalign 1.0
-            ypos 725
-            xpos 965
+            ypos 720
+            xpos 1085
+
+            spacing 10  # <--- Schreib diese Zeile dazu! (Zahl anpassen)
 
             #textbutton _("Back") action Rollback()
             textbutton _("History") action ShowMenu('history')
