@@ -335,4 +335,6 @@ label test_gif:
 
     user "gdfsa"        
 
-    return
+    jump baking_minigame_hub
+
+## BIS HIER PRÜFUNGS STUFF    
