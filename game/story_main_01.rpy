@@ -325,15 +325,19 @@ label test_gif:
 
     show lavan idle at pos_02
 
-    l "Siehst du? Ich bewege mich!"
+    l "Ich bewege mich auch!"
 
     pause
 
     hide lavan idle at pos_02
 
-    scene bg cafe_counter
+    scene bg test1
 
-    user "gdfsa"        
+    user "Background von Ilayda"
+
+    scene bg test2
+
+    user "Background von Sofiya"        
 
     jump baking_minigame_hub
 

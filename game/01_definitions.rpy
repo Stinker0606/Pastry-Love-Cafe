@@ -94,7 +94,8 @@ image cino idle = Transform(Movie(play="images/sprites/cino/cino_idle_anim.webm"
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
 image bg white = Solid("#ffffff")
-image bg cafe_counter = "images/backgrounds/Counter_Background.png"
+image bg test1 = "images/backgrounds/Counter_Background.png"
+image bg test2 = "images/backgrounds/test.png"
 ## image bg kitchen = "images/backgrounds/kitchen.jpg"
 
 
