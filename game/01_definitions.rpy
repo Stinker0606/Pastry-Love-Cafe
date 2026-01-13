@@ -95,7 +95,7 @@ image cino idle = Transform(Movie(play="images/sprites/cino/cino_idle_anim.webm"
 image bg pink = Solid("#ffb6c1")
 image bg white = Solid("#ffffff")
 image bg test1 = "images/backgrounds/Counter_Background.png"
-image bg test2 = "images/backgrounds/test.png"
+image bg test2 = "images/backgrounds/Clothing_Store_Background.png"
 ## image bg kitchen = "images/backgrounds/kitchen.jpg"
 
 
@@ -133,7 +133,7 @@ transform pos_3:
 transform pos_4:
     xalign 0.94 yalign 1.0 # Ganz rechts
 
-## 
+##
 
 transform pos_01:
     xalign 0.07 yalign 0.3 # Ganz links
