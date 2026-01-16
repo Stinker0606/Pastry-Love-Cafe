@@ -313,7 +313,7 @@ label story_intro_01:
 
 label test_gif:
     #scene bg cafe 
-    scene bg white
+    scene bg pink
 
     show cino idle at pos_01
 

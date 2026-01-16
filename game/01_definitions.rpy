@@ -77,8 +77,8 @@ image mc_neutral = ConditionSwitch(
 #image lavan smile = "images/sprites/lavan/smile.png"
 # Placeholder für die Idle
 
-image lavan idle = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_Animation.webm", loop=True), zoom=0.45)
-
+image lavan idle = Transform(Movie(play="images/test1_final.webm", loop=True, side_mask=True), zoom=0.45)
+                    
 ## Macoi
 #image macoi smile = "images/sprites/macoi/smile.png"
 
@@ -89,7 +89,7 @@ image lavan idle = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_Anim
 #image cino smile = "images/sprites/cino/smile.png"
 # Placeholder für die Idle
 
-image cino idle = Transform(Movie(play="images/sprites/cino/cino_idle_anim.webm", loop=True), zoom=0.75)
+image cino idle = Transform(Movie(play="images/sprites/cino/test1_final.webm", loop=True, side_mask=True), zoom=0.75)
 
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
