@@ -248,22 +248,47 @@ screen quick_menu():
 
     if quick_menu:
 
-        hbox:
-            style_prefix "quick"
+        default common_y = 720 # Hier stellst du die HÖHE für ALLE auf einmal ein
 
-            #xalign 0.5
-            #yalign 1.0
-            ypos 725
-            xpos 965
+        # 1. HISTORY
+        textbutton _("History"):
+            action ShowMenu('history')
+            style "quick_button"         
+            ypos common_y                
+            xpos 1175                     
+            xanchor 0.5                  
 
-            #textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            #textbutton _("Q.Save") action QuickSave()
-            #textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Options") action ShowMenu('preferences')
+        # 2. SKIP
+        textbutton _("Skip"):
+            action Skip() alternate Skip(fast=True, confirm=True)
+            style "quick_button"
+            ypos common_y
+            xpos 1311                    
+            xanchor 0.5
+
+        # 3. AUTO
+        textbutton _("Auto"):
+            action Preference("auto-forward", "toggle")
+            style "quick_button"
+            ypos common_y
+            xpos 1440                    
+            xanchor 0.5
+
+        # 4. SAVE
+        textbutton _("Save"):
+            action ShowMenu('save')
+            style "quick_button"
+            ypos common_y
+            xpos 1570                    
+            xanchor 0.5
+
+        # 5. OPTIONS
+        textbutton _("Options"):
+            action ShowMenu('preferences')
+            style "quick_button"
+            ypos common_y
+            xpos 1700                    
+            xanchor 0.5
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever

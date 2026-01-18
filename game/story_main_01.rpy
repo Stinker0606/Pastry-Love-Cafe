@@ -1,4 +1,5 @@
 ## -- TEIL 1: INTRO ---
+## -- TEIL 1: INTRO ---
 label story_intro_01:
     ## Wir starten in der Küche oder?
     scene bg kitchen with fade
