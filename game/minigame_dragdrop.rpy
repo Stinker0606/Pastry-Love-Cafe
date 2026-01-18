@@ -1,6 +1,71 @@
 ## LOGIK FÜR DAS BAKING MINIGAME
 init python:
     
+    recipe_visuals = {
+        
+        ## --- 0. Rezepte ---
+        "Tutorial": {
+            "bg_image": "gui/minigames/Recipe_One.png", 
+            ## NEUE STRUKTUR: Eine Liste mit Klammern [ ]
+            ## Format: ("Zutat", ANZAHL_NÖTIG, (X, Y))
+            "strikes": [
+                ("Mehl",   1, (260, 455)),
+                ("Ei",     3, (254, 680)), 
+                ("Mixen",  1, (264, 890)),
+                ("Milch",  1, (270, 1110)),
+                ("Zucker", 2, (309, 1330)), 
+                ("Mixen",  2, (260, 1560))
+            ]
+        },
+
+        ## --- 2. BUTTERPLÄTZCHEN ---
+        "Butterplätzchen": {
+            "bg_image": "gui/minigames/Recipe_Two.png",
+            "strikes": [
+                ("Mehl",     1, (260, 455)),
+                ("Ei",       2, (254, 680)),
+                ("Zucker",   1, (264, 890)),
+                ("Butter",   1, (270, 1110)),
+                ("Streusel", 1, (309, 1330)),
+                ("Mixen",    1, (260, 1560))
+            ]
+        },
+
+        ## --- 3. ERDBEER CREPE ---
+        "Erdbeer Crepe": {
+            "bg_image": "gui/minigames/Recipe_Three_PT1.png",
+            "strikes": [
+                ("Mehl",   1, (260, 455)),
+                ("Milch",  1, (254, 680)),
+                ("Ei",     2, (260, 810)),
+                ("Zucker", 1, (270, 1110)),
+                ("Mixen",  1, (309, 1330))
+            ]
+        }
+    }
+
+    def get_recipe_status(recipe_name, current_ingredients):
+        if recipe_name not in recipes_data:
+            return {}
+            
+        target_steps = recipes_data[recipe_name]["steps"]
+        requirements = {}
+        
+        ## Soll berechnen
+        for item in target_steps:
+            if item not in requirements:
+                requirements[item] = {"target": 0, "current": 0}
+            requirements[item]["target"] += 1
+            
+        ## Ist berechnen
+        for item in current_ingredients:
+            if item in requirements:
+                requirements[item]["current"] += 1
+                
+        return requirements
+
+init python:
+    
     ## Positionen der Zutaten
     ingredient_positions = {
         "Mehl": (50, 150),
@@ -292,6 +357,49 @@ screen baking_minigame_screen(recipe_name, helper=None):
             (0, 0), Solid("#ffff00"),
             (0, 0), Text("Eier Karton", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
         ) xpos 250 ypos 250
+    
+    ## --- VISUELLE REZEPT KARTE ---
+    
+    if recipe_name in recipe_visuals:
+        $ visual_data = recipe_visuals[recipe_name]
+        
+        transform:
+            ## POSITION:
+            ## 0.98 = Rechts am Rand
+            ## 0.20 = Ein Stück weiter unten (vorher war 0.02 ganz oben)
+            align (0.98, 0.7) 
+            
+            ## ZOOM:
+            zoom 0.2 
+            
+            fixed:
+                fit_first True 
+            
+                add visual_data["bg_image"]
+                
+                $ status = get_recipe_status(recipe_name, current_ingredients)
+                
+                for item_name, needed_amount, pos_tuple in visual_data["strikes"]:
+                    
+                    if item_name in status:
+                        $ have_amount = status[item_name]["current"]
+                        
+                        if have_amount >= needed_amount:
+                            
+                            ## DER SCHWARZE STRICH
+                            ## Da wir alles auf 0.2 zoomen, müssen wir die Werte hier
+                            ## VERFÜNFFACHEN, damit sie am Ende normal aussehen.
+                            
+                            add Solid("#000000d0"): # d0 ist etwas dunkler/deckender
+                                pos pos_tuple
+                                
+                                xoffset 0   # Schiebt den Strich nach RECHTS
+                                yoffset 0   # Schiebt den Strich nach UNTEN
+
+                                ## Größe an das riesige Originalbild anpassen:
+                                xsize 600        # Entspricht ca. 120px auf dem Bildschirm (600 * 0.2)
+                                ysize 80         # Entspricht ca. 6px Dicke auf dem Bildschirm (30 * 0.2)
+                                yanchor 0.5
 
     ## --- BUTTONS ---
 
