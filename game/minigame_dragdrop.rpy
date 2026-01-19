@@ -69,7 +69,7 @@ init python:
     ## Positionen der Zutaten
     ingredient_positions = {
         "Mehl": (50, 150),
-        "Ei": (250, 200),
+        "Ei": (260, 200),
         "Zucker": (400, 200),
         "Milch": (500, 150),
         "Butter": (700, 200),
@@ -274,10 +274,10 @@ screen baking_minigame_screen(recipe_name, helper=None):
             #     (0, 0), Solid("#ffff00"),
             #     (0, 0), Text("Ei", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
             # )
-            focus_mask True
+            #focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 250 ypos 200
+            xpos 260 ypos 200
 
         ## ZUCKER
         drag:
@@ -352,11 +352,13 @@ screen baking_minigame_screen(recipe_name, helper=None):
             xpos 1400 ypos 150
 
     ## Eier Karton
-    add Composite(
-            (100, 50),
-            (0, 0), Solid("#ffff00"),
-            (0, 0), Text("Eier Karton", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
-        ) xpos 250 ypos 250
+    add Transform("images/minigames/baking/Egg_Sprite.png", size=(230, 230))xpos 190 ypos 120
+    # Composite(
+    #         (100, 50),
+    #         (0, 0), Solid("#ffff00"),
+    #         (0, 0), Text("Eier Karton", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
+    #     ) 
+    
     
     ## --- VISUELLE REZEPT KARTE ---
     
