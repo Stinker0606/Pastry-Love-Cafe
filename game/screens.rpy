@@ -241,6 +241,15 @@ style choice_button_text is default:
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
 
+transform button_scale:
+    zoom 0.47
+
+transform button_scale1:
+    zoom 0.65
+
+transform button_scale2:
+    zoom 0.7    
+
 screen quick_menu():
 
     ## Ensure this appears on top of other screens.
@@ -248,48 +257,61 @@ screen quick_menu():
 
     if quick_menu:
 
-        default common_y = 720 # Hier stellst du die HÖHE für ALLE auf einmal ein
-
         # 1. HISTORY
-        textbutton _("History"):
+        imagebutton:
+            at button_scale2
+            idle "gui/button/history_idle.png"
+            hover "gui/button/history_hover.png"
             action ShowMenu('history')
-            style "quick_button"         
-            ypos common_y                
-            xpos 1175                     
+            ypos 715                
+            xpos 1179                     
             xanchor 0.5                  
+            #focus_mask True
 
         # 2. SKIP
-        textbutton _("Skip"):
+        imagebutton:
+            at button_scale1        
+            idle "gui/button/skip_idle.png"
+            hover "gui/button/skip_hover.png"
             action Skip() alternate Skip(fast=True, confirm=True)
-            style "quick_button"
-            ypos common_y
-            xpos 1311                    
+            ypos 715
+            xpos 1320                    
             xanchor 0.5
+            #focus_mask True
 
         # 3. AUTO
-        textbutton _("Auto"):
+        imagebutton:
+            at button_scale1
+            idle "gui/button/auto_idle.png"
+            hover "gui/button/auto_hover.png"
+            selected_idle "gui/button/auto_hover.png"
             action Preference("auto-forward", "toggle")
-            style "quick_button"
-            ypos common_y
+            ypos 725
             xpos 1440                    
             xanchor 0.5
+            #focus_mask True
 
         # 4. SAVE
-        textbutton _("Save"):
+        imagebutton:
+            at button_scale 
+            idle "gui/button/save_idle.png"
+            hover "gui/button/save_hover.png"
             action ShowMenu('save')
-            style "quick_button"
-            ypos common_y
-            xpos 1570                    
+            ypos 733
+            xpos 1571                    
             xanchor 0.5
+            #focus_mask True
 
         # 5. OPTIONS
-        textbutton _("Options"):
+        imagebutton:
+            at button_scale2 
+            idle "gui/button/options_bt_idle.png"
+            hover "gui/button/options_bt_hover.png"
             action ShowMenu('preferences')
-            style "quick_button"
-            ypos common_y
-            xpos 1700                    
+            ypos 725
+            xpos 1699                    
             xanchor 0.5
-
+            #focus_mask True
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
