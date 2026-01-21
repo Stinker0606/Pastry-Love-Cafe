@@ -36,10 +36,11 @@ init python:
             "bg_image": "gui/minigames/Recipe_Three_PT1.png",
             "strikes": [
                 ("Mehl",   1, (260, 455)),
-                ("Milch",  1, (254, 680)),
-                ("Ei",     2, (260, 810)),
+                ("Milch",  2, (254, 680)),
+                ("Ei",     2, (264, 890)),
                 ("Zucker", 1, (270, 1110)),
-                ("Mixen",  1, (309, 1330))
+                ("Butter", 1, (309, 1330)),
+                ("Mixen",  1, (260, 1560))
             ]
         }
     }
@@ -68,13 +69,13 @@ init python:
     
     ## Positionen der Zutaten
     ingredient_positions = {
-        "Mehl": (50, 150),
-        "Ei": (260, 200),
-        "Zucker": (400, 200),
-        "Milch": (500, 150),
-        "Butter": (700, 200),
-        "Streusel": (850, 200),
-        "Whisk": (1400, 150) 
+        "Mehl": (1700, 750),
+        "Ei": (1530, 830),
+        "Zucker": (1040, 200),
+        "Milch": (755, 145),
+        "Butter": (500, 560),
+        "Streusel": (340, 630),
+        "Whisk": (955, 350) 
     }
 
     ## Globale Variable, um zu wissen, ob der Besen gehalten wird
@@ -105,7 +106,7 @@ init python:
         store.current_ingredients.append(item_name)
         
         ## Feedback
-        renpy.notify(f"{item_name} hinzugefügt")
+        #renpy.notify(f"{item_name} hinzugefügt")
         
         ## Zutat schnappt zurück
         start_pos = ingredient_positions[item_name]
@@ -126,7 +127,7 @@ init python:
         
         ## Besen zurückschnappen lassen
         whisk = drags[0]
-        whisk.snap(1400, 150, delay=0.1)
+        whisk.snap(955, 350, delay=0.1)
         return
 
     ## --- 3. INTELLIGENTE MIXER LOGIK ---
@@ -148,10 +149,10 @@ init python:
         mx, my = renpy.get_mouse_pos()
         
         ## Zonen definieren
-        zone1 = (750, 350, 1000, 600) # Oben Links
-        zone2 = (1000, 350, 1250, 600) # Oben Rechts
-        zone3 = (1000, 600, 1250, 850) # Unten Rechts
-        zone4 = (750, 600, 1000, 850) # Unten Links 
+        zone1 = (750, 700, 1000, 800) # Oben Links
+        zone2 = (1000, 550, 1250, 800) # Oben Rechts
+        zone3 = (1000, 800, 1250, 1050) # Unten Rechts
+        zone4 = (750, 800, 1000, 1050) # Unten Links 
         
         current_zone = None
         if zone1[0] < mx < zone1[2] and zone1[1] < my < zone1[3]: current_zone = "Zone1"
@@ -209,8 +210,9 @@ init python:
 ## SCREEN
 screen baking_minigame_screen(recipe_name, helper=None):
     modal True
-    add Solid("#333") # Platzhalter Hintergrund
-    ## add "images/backgrounds/kitchen.jpg"
+    #add Solid("#333") # Platzhalter Hintergrund
+    add "images/backgrounds/Baking_Game_Background.png":
+        size (1920, 1080) # Zwingt das Bild auf Full-HD Größe
 
     $ store.current_recipe_name_global = recipe_name
 
@@ -219,18 +221,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
     
     ## --- TIMER FÜR DAS RÜHREN ---
     ## Ruft 20 Mal pro Sekunde die Prüfung auf, wo die Maus ist
-    timer 0.05 repeat True action Function(check_mixing_progress)
-
-    ## INFO TEXT (Nur zum Testen, später löschen)
-    vbox:
-        # Positionen:
-        xalign 0.5
-        # Text
-        text f"Rezept:":
-            xalign 0.5
-        text f"Soll: {recipes_data[recipe_name]['steps']}" size 25 color "#aaa":
-            xalign 0.5
-        text f"Drin: {len(current_ingredients)}" size 25 color "#aaa" xalign 0.5    
+    timer 0.05 repeat True action Function(check_mixing_progress)  
 
     ## DRAG GROUP
     draggroup:
@@ -238,23 +229,23 @@ screen baking_minigame_screen(recipe_name, helper=None):
         ## SCHÜSSEL
         drag:
             drag_name "Bowl"
-            child Transform("images/minigames/baking/Bowl_Sprite.png", size=(400, 400))
+            child Transform("images/minigames/baking/Bowl_Sprite.png", size=(300, 300))
             # child Composite(
             #     (200, 200),  # Platzhalter
             #     (0, 0), Solid("#4444ff"), # Platzhalter
             #     (0, 0), Text("SCHÜSSEL", size=30, color="#fff", xalign=0.5, yalign=0.5, xysize=(200,200)) # Platzhalter
             # )
-            focus_mask True
             draggable False
             droppable True
-            xpos 800 ypos 400
+            focus_mask True
+            xpos 850 ypos 700
 
         ## --- ZUTATEN ---
 
         ## MEHL
         drag:
             drag_name "Mehl"
-            child Transform("images/minigames/baking/Flour_Sprite.png", size=(200, 200))
+            child Transform("images/minigames/baking/Flour_Sprite.png", size=(250, 250))
             # child Composite(
             #     (100, 60), # Platzhalter
             #     (0, 0), Solid("#ffffff"), # Platzhalter
@@ -263,12 +254,12 @@ screen baking_minigame_screen(recipe_name, helper=None):
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 50 ypos 150 
+            xpos 1700 ypos 750 
 
         ## EI
         drag:
             drag_name "Ei"
-            child Transform("images/minigames/baking/Single_Egg_Sprite.png", size=(100, 95))
+            child Transform("images/minigames/baking/Single_Egg_Sprite.png", size=(120, 115))
             # child Composite(
             #     (100, 60),
             #     (0, 0), Solid("#ffff00"),
@@ -277,26 +268,26 @@ screen baking_minigame_screen(recipe_name, helper=None):
             #focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 260 ypos 200
+            xpos 1530 ypos 830
 
         ## ZUCKER
         drag:
             drag_name "Zucker"
-            ## child Transform("images/minigames/baking/item_zucker.png", size=(60, 80))
-            child Composite(
-                (100, 60),
-                (0, 0), Solid("#eeeeee"),
-                (0, 0), Text("Zucker", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
-            )
+            child Transform("images/minigames/baking/Sugar_Sprite.png", size=(200, 200))
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#eeeeee"),
+            #     (0, 0), Text("Zucker", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 400 ypos 200
+            xpos 1040 ypos 200
 
         ## MILCH
         drag:
             drag_name "Milch"
-            child Transform("images/minigames/baking/Milk_Sprite.png", size=(200, 200))
+            child Transform("images/minigames/baking/Milk_Sprite.png", size=(185, 185))
             # child Composite(
             #     (100, 60),
             #     (0, 0), Solid("#0000ff"),
@@ -305,41 +296,41 @@ screen baking_minigame_screen(recipe_name, helper=None):
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 500 ypos 150
+            xpos 755 ypos 145
             
         ## BUTTER
         drag:
             drag_name "Butter"
-            ## child Transform("images/minigames/baking/item_butter.png", size=(60, 80))
-            child Composite(
-                (100, 60),
-                (0, 0), Solid("#ffd700"),
-                (0, 0), Text("Butter", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
-            )
+            child Transform("images/minigames/baking/Butter_Sprite.png", size=(250, 250))
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#ffd700"),
+            #     (0, 0), Text("Butter", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 700 ypos 200
+            xpos 500 ypos 560
             
         ## STREUSEL
         drag:
             drag_name "Streusel"
-            ## child Transform("images/minigames/baking/item_streusel.png", size=(60, 80))
-            child Composite(
-                (100, 60),
-                (0, 0), Solid("#ff00ff"),
-                (0, 0), Text("Streusel", size=20, color="#fff", xalign=0.5, yalign=0.5, xysize=(100,60))
-            )
+            child Transform("images/minigames/baking/Sprinkles_Sprite.png", size=(150, 150))
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#ff00ff"),
+            #     (0, 0), Text("Streusel", size=20, color="#fff", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 850 ypos 200
+            xpos 340 ypos 630
 
         ## SCHNEEBESEN
         drag:
             id "whisk_drag"
             drag_name "Whisk"
-            child Transform("images/minigames/baking/Whisk_Sprite.png", size=(200, 200))
+            child Transform("images/minigames/baking/Whisk_Sprite.png", size=(150, 150), rotate=-45)
             # child Composite(
             #     (80, 50),
             #     (0, 0), Solid("#cccccc"),
@@ -349,10 +340,10 @@ screen baking_minigame_screen(recipe_name, helper=None):
             droppable False
             activated whisk_activate
             dragged whisk_drop_action
-            xpos 1400 ypos 150
+            xpos 955 ypos 350
 
     ## Eier Karton
-    add Transform("images/minigames/baking/Egg_Sprite.png", size=(230, 230))xpos 190 ypos 120
+    add Transform("images/minigames/baking/Egg_Sprite.png", size=(280, 280))xpos 1450 ypos 740
     # Composite(
     #         (100, 50),
     #         (0, 0), Solid("#ffff00"),
@@ -369,7 +360,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
             ## POSITION:
             ## 0.98 = Rechts am Rand
             ## 0.20 = Ein Stück weiter unten (vorher war 0.02 ganz oben)
-            align (0.98, 0.7) 
+            align (0.94, 0.02) 
             
             ## ZOOM:
             zoom 0.2 
@@ -407,20 +398,26 @@ screen baking_minigame_screen(recipe_name, helper=None):
 
     ## RESET
     textbutton "Reset":
-        xalign 0.02 yalign 0.98
+        xalign 0.01 yalign 0.98
+        #background Solid("#0000001a") # Halb-transparenter schwarzer Hintergrund
+        padding (20, 10) # Etwas Platz innen
         action [SetVariable("current_ingredients", []), Function(renpy.restart_interaction)]
 
     # CHECK BUTTON
     textbutton "Fertig!":
-        xalign 0.5 yalign 0.95
+        xalign 0.54 yalign 0.98
         style "choice_button"
+        xsize 600        # Zwingt ihn auf eine feste, kleine Breite
+        text_xalign 0.5  # Zentriert den Text darin
         text_size 40
         # Ruft die Prüf-Funktion auf
         action Function(final_baking_check, recipe_name)
 
     ## CANCEL
     textbutton "Abbrechen":
-        xalign 0.02 yalign 0.90
+        xalign 0.01 yalign 0.90
+        #background Solid("#0000001c") # Halb-transparenter schwarzer Hintergrund
+        padding (20, 10) # Etwas Platz innen
         action Return("cancel")
 
 ## --- CREPE PFANNE SCREEN ---
@@ -433,9 +430,19 @@ label crepe_pan_minigame:
 
 screen crepe_pan_screen():
     modal True
-    add Solid("#222")
-    #add "bg kitchen" # Oder Pfannen-Hintergrund
-    
+
+    ## 1. DER NORMALE HINTERGRUND
+    add "images/backgrounds/Baking_Game_Background.png":
+        size (1920, 1080) # Zwingt das Bild auf Full-HD Größe
+
+    ## 2. DIE ABDUNKELUNG
+    add Solid("#000000ea")
+
+    ## 3. DIE PFANNE
+    add "images/minigames/baking/Pan_Sprite.png":
+        align (0.5, 0.6) # Mitte, etwas tiefer
+        zoom 0.45    
+
     default pan_state = 0 
     
     if pan_state == 1 or pan_state == 3: # Ein Timer, der nach 5 Sekunden den Fail auslöst

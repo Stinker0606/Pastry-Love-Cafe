@@ -162,7 +162,7 @@ init python:
         ## --- ALLTAGS-REZEPT 2: ERDBEER CREPE --- Komplexes Rezept
         "Erdbeer Crepe": {
             ## Hier sieht man die Skalierbarkeit: Neue Zutaten erfordern keinen Code-Change.
-            "steps": ["Mehl", "Milch", "Ei", "Ei", "Zucker", "Mixen"],
+            "steps": ["Mehl", "Milch", "Milch", "Ei", "Ei", "Zucker", "Butter", "Mixen"],
             "type": "crepe" # Trigger für Phasen-Wechsel (Teig -> Pfanne)
         }
     }

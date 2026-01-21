@@ -124,7 +124,7 @@ label run_baking_loop:
     ## 3. AUSWERTUNG
     if minigame_result == "success":
         ## --- SUCCESS SCREEN ---
-        scene black with dissolve
+        # scene black with dissolve
         
         if current_recipe_name == "Butterplätzchen":
             $ result_img = "images/minigame/result_butterplaetzchen.png"
@@ -133,17 +133,13 @@ label run_baking_loop:
         else:
             $ result_img = None 
 
-        if result_img and renpy.loadable(result_img):
-            show expression result_img at truecenter
-            with dissolve
-        
-        centered "{size=40}Lecker!{/size}\n[current_recipe_name] ist fertig!"
-        
-        if result_img:
-            hide expression result_img
-        
+        $ quick_menu = False
+
+        call screen success_screen_anim(result_png=result_img)
+
         call _add_affection(current_kitchen_helper, 2)
-        
+
+        $ quick_menu = True
 ## FÜR DICH SOFIYA, Char reaktion auf der verschiedenen gerichte. Untendrunter siehtst du ein Beispiel, mach die Kommentierung weg und wo das FETT geschriebene ist ersetzen.
 
         if current_recipe_name == "Butterplätzchen" and current_kitchen_helper == "Lavan":
@@ -180,8 +176,9 @@ label run_baking_loop:
         
     else:
         ## FAIL
-        scene black with vpunch
-        centered "{size=40}Verbrannt!{/size}\nDas war wohl nichts."
+        $ quick_menu = False
+        call screen fail_screen_anim()
+        $ quick_menu = False
         jump run_baking_loop
 
 ## --- FINDING MINIGAME HUB ---
@@ -201,3 +198,73 @@ label run_finding_minigame(bg_img, idle_img, hover_img, x_pos, y_pos, scale):
     ## AUSWERTUNG
     if _return == "found":
         return # Zurück zur Story        
+
+## ---------------------------------------------------------------------
+## VIDEO END-SCREENS (SUCCESS & FAIL)
+## ---------------------------------------------------------------------
+
+## 1. SUCCESS SCREEN
+## Zeigt das Video im Hintergrund und das übergebene Bild in der Mitte.
+screen success_screen_anim(result_png=None):
+    modal True
+    
+    ## HINTERGRUND VIDEO (Zwingt es auf Vollbild 1920x1080)
+    add Movie(play="gui/minigames/Good_Job.webm", loop=True):
+        size (1920, 1080)
+    
+    ## DAS GEBACKENE ERGEBNIS
+    if result_png:
+        add result_png:
+            align (0.5, 0.5)
+            zoom 0.6  # Größe anpassen
+            at result_floating_anim # Die kleine Schwebe-Animation 
+
+    ## TEXT / GLÜCKWUNSCH
+    if not result_png:
+        text "Perfekt!" size 100 align (0.5, 0.5) outlines [(3, "#000", 0, 0)]
+
+    ## BUTTON
+    textbutton "Weiter":
+        align (0.5, 0.9)
+        style "choice_button"
+        text_size 40
+        padding (50, 10)
+        action Return() # Schließt den Screen und macht im Hub weiter
+
+## 2. FAIL SCREEN
+## Zeigt das Fail-Video und Text.
+screen fail_screen_anim():
+    modal True
+    
+    ## HINTERGRUND VIDEO
+    add Movie(play="gui/minigames/Try_Again.webm", loop=True):
+        size (1920, 1080)
+    
+    ## TEXT
+    vbox:
+        align (0.5, 0.5)
+        spacing 20
+        
+        text "Verbrannt!" size 120 color "#fff" xalign 0.5:
+            outlines [(5, "#000", 0, 0)] 
+            bold True
+            
+        text "Versuch es nochmal." size 50 color "#ddd" xalign 0.5:
+            outlines [(3, "#000", 0, 0)]
+
+    ## BUTTON
+    textbutton "Nochmal versuchen":
+        align (0.5, 0.85)
+        style "choice_button"
+        text_size 40
+        padding (50, 10)
+        action Return() # Schließt den Screen
+
+
+## 3. ANIMATION
+## Lässt das Ergebnis-Bild leicht auf und ab schweben
+transform result_floating_anim:
+    yoffset 0
+    linear 2.0 yoffset -15 # 2 Sekunden lang 15px hoch
+    linear 2.0 yoffset 0   # 2 Sekunden lang wieder runter
+    repeat
