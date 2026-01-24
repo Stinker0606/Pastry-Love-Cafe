@@ -24,7 +24,7 @@ label story_intro_02:
         "Einfach Leise mein Ding machen":
             # Hier passiert nichts Besonderes.
             user "Ich beschloss, ihre Konzentration nicht zu stören und putzte leise meine Zähne."
-            
+
         "Ihr ein Kompliment geben":
             call _add_affection(LI_VELVETTE, 1)
             user "\"Du siehst gut aus.\""
@@ -33,7 +33,7 @@ label story_intro_02:
             v "\"Ich weiß.\""
 
     user "Ich seufzte leise, beendete mein Tanz und machte mich auf den Weg Richtung Küche, ihr das Badezimmer vollkommen überlassend."
-    
+
     # Geht den Flur weiter entlang
 
     user "Auf dem Weg kam ich an Macois angelehnter Tür vorbei."
@@ -136,19 +136,57 @@ label story_intro_02:
     menu:
         "Velvette aufmuntern":
             call _add_affection(LI_VELVETTE, 1)
-            user "\"BIBABUB\""
-            
+            user "Ich drehte mich zu Velvette, die immer noch kritisch ihren teigfreien Teller anstarrte."
+            user "\"Weißt du, Velvette... eigentlich ist es gut, dass du so wählerisch bist.\""
+
+            v "\"Natürlich ist es das. Aber warum sagst du das?\""
+
+            user "\"Weil unsere Kunden genau diese Art von Standard erwarten. Wenn du am Empfang stehst, wissen sie sofort: Hier gibt es nur das Beste.\""
+            user "Ich lächelte sie an."
+            user "\"Du bist nicht nur Deko, du bist das Aushängeschild. Zeig ihnen, was Klasse bedeutet.\""
+
+            ##Sprite von Velvette happy oder Blushy
+            v "\"Hmpf. Endlich jemand, der meine Vision versteht.\""
+            user "Sie straffte die Schultern und warf ihr Haar zurück."
+            v "\"Gut. Dann werde ich dafür sorgen, dass dieser Laden glänzt. Jemand muss es ja tun.\""
+
         "Cino aufmuntern":
-            call _add_affection(LI_VELVETTE, 1)
-            user "\"LOREM IPSUM\""
+            call _add_affection(LI_CINO, 1)
+            user "\"Cino, schau mich mal kurz an.\""
+            user "Er hielt in seiner nervösen Bewegung inne und sah mich mit großen Augen an."
+            user "\"Du musst nicht perfekt sein. Und du musst keine Angst haben, etwas falsch zu machen.\""
+            user "\"Deine herzliche Art ist genau das, was dieser Laden braucht. Sei einfach du selbst, okay? Das reicht völlig.\""
+
+            c "\"Einfach nur... ich sein?\""
+
+            user "Ein Stein schien ihm vom Herzen zu fallen und er atmete erleichtert aus."
+
+            c "\"Okay. Puh... Danke, [player_name]. Wenn du das sagst, fühle ich mich gleich viel leichter!\""
 
         "Lavan aufmuntern":
-            call _add_affection(LI_VELVETTE, 1)
-            user "\"TRILALO\""
+            call _add_affection(LI_LAVAN, 1)
+            user "Ich wandte mich an Lavan, der immer noch finster auf die Kaffeemaschine in der Ecke schielte."
+            user "\"Lavan, hör auf, die Maschine anzufunkeln. Sie hat schon Angst vor dir.\""
+
+            l "\"Soll sie auch! Sie muss gehorchen!\""
+
+            user "\"Sie wird gehorchen. Weil du der Einzige bist, der gut genug ist, sie zu bändigen.\""
+            user "Ich lehnte mich etwas zu ihm."
+            user "\"Ganz ehrlich? Keiner hier macht Kaffee mit so viel... Leidenschaft wie du. Wenn du diese Energie in die Tasse kriegst, statt in die Luft, wird der Kaffee legendär.\""
+
+            ##Sprite von Lavan Blushy
+            user "Lavan blinzelte überrascht und sah schnell weg, um sein Grinsen und die leichte röte der wangen zu verbergen zu verbergen."
+            l "\"Tsk. Natürlich wird er legendär. Was dachtest du denn?\""
+            l "\"Aber... gut. Ich werde mich zusammenreißen. Für den Kaffee.\""
 
         "Macoi aufmuntern":
-            call _add_affection(LI_VELVETTE, 1)
-            user "\"HELP ME\""
+            call _add_affection(LI_MACOI, 1)
+            user "\"Macoi? Ich weiß, es ist früh. Ich weiß, die Welt ist laut.\""
+            user "\"Aber wir ziehen das jetzt durch. Seite an Seite. Und wenn die Schicht vorbei ist, sorge ich dafür, dass du deine Ruhe bekommst.\""
+
+            m "\"Ruhe... klingt gut.\""
+
+            user "Er blinzelte langsam, nickte mir aber dann fast dankbar zu."
 
     #Sprung zum cafe
 
@@ -201,11 +239,11 @@ label story_intro_02:
 
     ## --- DAS HUB MENÜ --- VIEL PLACEHOLDER TEXT
 label cafe_opening_decision_hub:
-    
+
     # Wir berechnen kurz den Status
     # 1. Hat man mind. EINER Person geholfen? (eine ODER-Verknüpfung)
     $ any_help_given = helped_velvette or helped_macoi or helped_lavan or helped_cino
-    
+
     # 2. Hat man ALLEN geholfen? (eine UND-Verknüpfung)
     $ all_help_given = helped_velvette and helped_macoi and helped_lavan and helped_cino
 
@@ -245,7 +283,7 @@ label opening_helping_selection:
         "Lavan helfen" if not helped_lavan:
             $ helped_lavan = True
             jump opening_help_lavan
-        
+
         "Cino helfen" if not helped_cino:
             $ helped_cino = True
             jump opening_help_cino
@@ -266,7 +304,7 @@ label opening_baking_selection:
         "Lavan fragen":
             $ current_kitchen_helper = "Lavan"
             jump start_opening_baking_process
-            
+
         "Macoi fragen":
             $ current_kitchen_helper = "Macoi"
             jump start_opening_baking_process
@@ -285,8 +323,8 @@ label opening_baking_selection:
 
 label start_opening_baking_process:
     # Kontext setzen für Rückkehr nach Minigame
-    $ baking_context = "story_opening" 
-    
+    $ baking_context = "story_opening"
+
     user "Alles klar, fangen wir an!"
     jump baking_minigame_hub
 
@@ -295,7 +333,7 @@ label start_opening_baking_process:
 ## ----------------------------------------------------------------
 label opening_help_velvette:
     # show velvette neutral at center
-    
+
     user "Ein Mann kam gerade herein in das Cafe. Leicht unsicher schaute er sich um."
     user "Velvette trat einen Schritt zur Seite, musterte den Mann von oben bis unten und rümpfte leicht die Nase."
     v "\"Der Hut ist... eine mutige Entscheidung für diese Jahreszeit. Tisch vier. Da sehen Sie am wenigsten störend aus.\""
@@ -380,17 +418,17 @@ label opening_help_lavan:
 ## ----------------------------------------------------------------
 label opening_help_cino:
     # show cino nervous at center
-    
+
     # Platzhalter Text
     user "Cino kämpfte mit den Servietten."
-    
+
     menu:
         "Ihm helfen":
             # Richtig
             $ task_result_cino = "success"
             call _add_affection(LI_CINO, 1)
             c "Danke!"
-        
+
         "Ihn machen lassen":
             # Fail
             $ task_result_cino = "fail"
@@ -404,7 +442,7 @@ label story_cafe_after_rush:
     # HIER RESETTEN WIR DEN KRAM FÜRS BACKEN ZUR SICHERHEIT
     $ baking_context = None
 
-    user "Puh... Der Tag ist vorbei."    
+    user "Puh... Der Tag ist vorbei."
 
     jump story_intro_03
 
