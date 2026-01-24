@@ -39,6 +39,9 @@ label baking_tutorial_selection:
 
 ## SCHRITT 2: Der Tutorial-Loop
 label run_tutorial_minigame:
+
+    ## --- MUSIK STARTEN ---
+    play music "audio/Baking_Game_Music.mp3" fadein 0.5
     
     $ current_ingredients = [] # Reset des Minigames
 
@@ -60,13 +63,17 @@ label run_tutorial_minigame:
     ## 2. ABBRUCH
     elif _return == "cancel":
         user "Oder doch eher was anderes."
+        stop music fadeout 0.5
         ## Wir springen zurück zur Auswahl
         jump baking_tutorial_selection 
 
-    ## 3. FEHLER (Alles andere)
+    ## 3. FAIL
     else:
-        user "Mist, das war falsch. Ich muss es nochmal versuchen."
-        ## Wir starten NUR das Minigame neu (gleiches Rezept)
+        stop music fadeout 0.5
+        play sound "audio/Lose_Sound.mp3"
+        $ quick_menu = False
+        call screen fail_screen_anim()
+        $ quick_menu = False
         jump run_tutorial_minigame
 
 ## NORMALER MODUS (Alltag)
@@ -93,6 +100,9 @@ label baking_recipe_selection:
 
 ## --- DER UNIVERSELLE BACK-LOOP ---
 label run_baking_loop:
+
+    ## --- MUSIK STARTEN ---
+    play music "audio/Baking_Game_Music.mp3" fadein 1.5
     
     ## --- 1: AUTOMATISCHER RESET ---
     ## Damit ist die Schüssel immer leer, wenn man neu startet.
@@ -124,8 +134,11 @@ label run_baking_loop:
     ## 3. AUSWERTUNG
     if minigame_result == "success":
         ## --- SUCCESS SCREEN ---
-        # scene black with dissolve
-        
+
+        stop music fadeout 0.5
+
+        play sound "audio/Win_Sound.mp3"
+
         if current_recipe_name == "Butterplätzchen":
             $ result_img = "images/minigame/result_butterplaetzchen.png"
         elif current_recipe_name == "Erdbeer Crepe":
@@ -164,6 +177,7 @@ label run_baking_loop:
             
     elif minigame_result == "cancel":
         ## ABBRUCH
+        stop music fadeout 0.5
         scene bg kitchen
         user "Vielleicht später."
         
@@ -176,6 +190,8 @@ label run_baking_loop:
         
     else:
         ## FAIL
+        stop music fadeout 0.5
+        play sound "audio/Lose_Sound.mp3"
         $ quick_menu = False
         call screen fail_screen_anim()
         $ quick_menu = False

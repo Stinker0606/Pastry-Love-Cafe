@@ -106,8 +106,12 @@ init python:
         store.current_ingredients.append(item_name)
         
         ## Feedback
-        #renpy.notify(f"{item_name} hinzugefügt")
-        
+        if item_name in ["Mehl", "Zucker", "Streusel"]:
+            renpy.music.play("audio/Adding_Flour_Sound.mp3", channel="sound")
+
+        if item_name in ["Milch"]:
+            renpy.music.play("audio/Adding_Liquid_Sound.mp3", channel="sound")
+
         ## Zutat schnappt zurück
         start_pos = ingredient_positions[item_name]
         drag_item.snap(start_pos[0], start_pos[1], delay=0.1)
@@ -120,11 +124,18 @@ init python:
         store.is_whisk_held = True
         return
 
+        ## Sound starten
+        renpy.music.play("audio/Whisking_Sound.mp3", channel="sound", loop=True, fadein=0.2)
+        return
+
     ## Wird aufgerufen, wenn man den Besen LOSLÄSST
     def whisk_drop_action(drags, drop):
         ## Status auf False setzen
         store.is_whisk_held = False
-        
+
+        ## Sound stoppen
+        renpy.music.stop(channel="sound", fadeout=0.2)
+
         ## Besen zurückschnappen lassen
         whisk = drags[0]
         whisk.snap(955, 350, delay=0.1)
@@ -430,6 +441,10 @@ label crepe_pan_minigame:
 
 screen crepe_pan_screen():
     modal True
+
+    ## --- SOUNDS ---
+    on "show" action Play("sound", "audio/Frying_Sound.mp3", loop=True)
+    on "hide" action Stop("sound")
 
     ## 1. DER NORMALE HINTERGRUND
     add "images/backgrounds/Baking_Game_Background.png":
