@@ -249,52 +249,67 @@ label cafe_opening_decision_hub:
 
     user "Was soll ich tun?"
 
+    $ quick_menu = False
+
     menu:
         # OPTION 1: Backen (Immer da)
         "Etwas Backen (Beendet diese Szene!)":
+            $ quick_menu = True
             user "Ich muss backen, sonst haben wir gleich nichts mehr zu verkaufen."
             jump opening_baking_selection
 
         # OPTION 2: Helfen (Nur da, wenn noch NICHT allen geholfen wurde)
         "Jemandem unter die Arme greifen" if not all_help_given:
+            $ quick_menu = True
             jump opening_helping_selection
 
         # OPTION 3: Tag beenden (Nur da, wenn mind. EINER Person geholfen wurde)
         "Tag beenden (Genug geholfen)" if any_help_given:
+            $ quick_menu = True
             user "Ich denke, ich habe das Schlimmste verhindert. Der Rest läuft jetzt von alleine."
             jump story_cafe_after_rush
+     
 
 
 ## --- A. HELFEN AUSWAHL ---
 label opening_helping_selection:
     user "Wer braucht am dringendsten Hilfe?"
 
+    $ quick_menu = False
+
     menu:
         # Die Optionen erscheinen nur, wenn man noch NICHT geholfen hat
 
         "Velvette helfen" if not helped_velvette:
             $ helped_velvette = True
+            $ quick_menu = True
             jump opening_help_velvette
 
         "Macoi helfen" if not helped_macoi:
             $ helped_macoi = True
+            $ quick_menu = True
             jump opening_help_macoi
 
         "Lavan helfen" if not helped_lavan:
             $ helped_lavan = True
+            $ quick_menu = True
             jump opening_help_lavan
 
         "Cino helfen" if not helped_cino:
             $ helped_cino = True
+            $ quick_menu = True
             jump opening_help_cino
 
         # DER ZURÜCK BUTTON
         "Ich entscheide mich um (Zurück)":
+            $ quick_menu = True
             jump cafe_opening_decision_hub
 
 ## --- B. BACKEN AUSWAHL ---
 label opening_baking_selection:
     user "Okay, ab in die Küche. Aber wen nehme ich mit?"
+
+    $ quick_menu = False
 
     menu:
         "Alleine backen":
@@ -324,7 +339,7 @@ label opening_baking_selection:
 label start_opening_baking_process:
     # Kontext setzen für Rückkehr nach Minigame
     $ baking_context = "story_opening"
-
+    $ quick_menu = True
     user "Alles klar, fangen wir an!"
     jump baking_minigame_hub
 
@@ -337,6 +352,8 @@ label opening_help_velvette:
     user "Ein Mann kam gerade herein in das Cafe. Leicht unsicher schaute er sich um."
     user "Velvette trat einen Schritt zur Seite, musterte den Mann von oben bis unten und rümpfte leicht die Nase."
     v "\"Der Hut ist... eine mutige Entscheidung für diese Jahreszeit. Tisch vier. Da sehen Sie am wenigsten störend aus.\""
+
+    $ quick_menu = False
 
     menu:
         "Die Situation charmant retten":
@@ -368,16 +385,20 @@ label opening_help_macoi:
     m "\"......\""
     user "Stille. Macoi blinzelte nicht einmal."
 
+    $ quick_menu = False
+
     menu:
         "Ihn verbal erinnern ('Macoi, kassieren!')":
             # Falsch
             $ task_result_macoi = "fail"
+            $ quick_menu = True
             user "\"Macoi! Du musst noch abkassieren!\""
             m "\"Häh? Was? Ja... natürlich. 3 Euro... bitte. Nicht so schreien...\""
 
         "Stummes Signal geben (Anstupsen)":
             # Richtig
             $ task_result_macoi = "success"
+            $ quick_menu = True
             user "Ich trat leise neben ihn und stieß ihn ganz sanft mit meinem Ellbogen an."
             m "\"Ah. Danke.\""
             user "Er atmete erleichtert aus und kassierte ruhig ab."
@@ -395,16 +416,20 @@ label opening_help_lavan:
     user "Lavan hämmerte den Siebträger gegen die Maschine. Seine Hände zitterten vor Wut."
     l "\"Warum passt das nicht?! Das ist Sabotage!\""
 
+    $ quick_menu = False
+
     menu:
         "Ihn sanft beruhigen ('Ganz ruhig')":
             # Falsch
             $ task_result_lavan = "fail"
+            $ quick_menu = True
             user "\"Hey, ganz ruhig. Atme durch.\""
             l "\"Ich bin ruhig! Behandle mich nicht wie ein Kind!\""
 
         "Ihn herausfordern ('1:0 für die Maschine?')":
             # Richtig
             $ task_result_lavan = "success"
+            $ quick_menu = True
             user "\"Wow. 1:0 für die Kaffeemaschine? Lässt du dich echt von etwas besiegen, das keinen Stecker hat?\""
             l "\"Hah?! Niemals! Pass bloß auf!\""
             user "Mit einem Ruck rastete der Siebträger ein. Er grinste triumphierend."
@@ -422,32 +447,33 @@ label opening_help_cino:
     # Platzhalter Text
     user "Cino kämpfte mit den Servietten."
 
+    $ quick_menu = False
+
     menu:
         "Ihm helfen":
             # Richtig
             $ task_result_cino = "success"
+            $ quick_menu = True
             call _add_affection(LI_CINO, 1)
             c "Danke!"
 
         "Ihn machen lassen":
             # Fail
             $ task_result_cino = "fail"
+            $ quick_menu = True
             user "Er schafft das schon."
 
     jump cafe_opening_decision_hub
 
 label story_cafe_after_rush:
     scene bg cafe with fade
-
-    # HIER RESETTEN WIR DEN KRAM FÜRS BACKEN ZUR SICHERHEIT
+ # HIER RESETTEN WIR DEN KRAM FÜRS BACKEN ZUR SICHERHEIT
     $ baking_context = None
+   
 
     user "Puh... Der Tag ist vorbei."
 
     jump story_intro_03
-
-
-
 
 
 ## PLS LASSEN WAS HIER DRUNTER IST!!

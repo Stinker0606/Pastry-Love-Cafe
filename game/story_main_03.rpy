@@ -69,10 +69,36 @@ label story_intro_03:
     elif task_result_cino == "ignored":
         user "Idk ey schreib hier was UWU."
 
+    user "trasalf"
+
+    user "trasalf bin unten"
+
+    v "fick dich"
+
     ## 4. FAZIT
     if day_score < 2:
         user "Ich muss das heute besser machen."
     else:
         user "Hoffentlich läuft es heute genauso gut."
 
-    return # Oder jump next_scene was du machen willst idk halt
+    user "trasalf"
+
+    c "fegsdadsga"
+
+    if task_result_cino == "fail":
+        user "leck meine eier"
+    elif task_result_cino == "ignored":
+        user "deine mutter"
+    elif task_result_cino == "success":
+        user "uwu"
+
+    if day_score < 2:
+        user "Mama"
+
+        c "I know"
+    else:
+        user "puta madre"
+
+        c "oki doki"  
+
+    jump story_intro_04

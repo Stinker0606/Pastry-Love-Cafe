@@ -124,17 +124,13 @@ init python:
         store.is_whisk_held = True
         return
 
-        ## Sound starten
-        renpy.music.play("audio/Whisking_Sound.mp3", channel="sound", loop=True, fadein=0.2)
-        return
-
     ## Wird aufgerufen, wenn man den Besen LOSLÄSST
     def whisk_drop_action(drags, drop):
         ## Status auf False setzen
         store.is_whisk_held = False
 
-        ## Sound stoppen
-        renpy.music.stop(channel="sound", fadeout=0.2)
+        ## Sound stop
+        renpy.music.stop(channel="sound", fadeout=0.1)
 
         ## Besen zurückschnappen lassen
         whisk = drags[0]
@@ -175,7 +171,12 @@ init python:
             screen = renpy.get_screen("baking_minigame_screen")
             if screen:
                 hits = screen.scope["whisk_zones_hit"]
-            
+
+                if current_zone == "Zone2":
+                        renpy.music.play("audio/Whisking_Sound.mp3", channel="sound", loop=True)
+                elif current_zone == "Zone4":
+                        renpy.music.play("audio/Whisking_Sound.mp3", channel="sound", loop=True)        
+
                 if current_zone not in hits:
                     hits.append(current_zone)
                     
