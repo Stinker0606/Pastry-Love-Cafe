@@ -42,6 +42,8 @@ label story_intro_03:
     ## 3. DETAILLIERTE ANALYSE (Wer hat Mist gebaut?)
     ## Hier prüfen wir: War es FAIL (Falsch geholfen) oder IGNORED (Nicht geholfen)?
 
+    user "Während ich mich anzog, gingen mir die Gesichter von gestern durch den Kopf..."
+
     # --- LAVAN CHECK ---
     if task_result_lavan == "fail":
         user "Lavan war den ganzen Tag wütend, weil ich ihn wie ein Kind behandelt habe."
@@ -67,23 +69,88 @@ label story_intro_03:
     if task_result_cino == "fail":
         user "Und überall lagen zerrissene Servietten herum..."
     elif task_result_cino == "ignored":
-        user "Idk ey schreib hier was UWU."
+        user "Er sah so verloren aus, wie ein zurückgelassener Welpe"
 
-    user "trasalf"
 
-    user "trasalf bin unten"
+    # ---------------------------------------------------------
+    # Quasi Reflektion / Fazit
+    # ---------------------------------------------------------
 
-    v "fick dich"
+    if day_score >= 3:
+        # FAZIT: GUT
+        user "Aber egal. Heute ist ein neuer Tag. Hoffentlich läuft es heute genauso gut."
+        user "Ich öffnete die Tür und hüpfte die Treppe fast schon hinunter. Es roch lecker nach Kaffee."
 
-    ## 4. FAZIT
-    if day_score < 2:
-        user "Ich muss das heute besser machen."
+    elif day_score == 2:
+        # FAZIT: OKAY
+        user "Ich seufzte. Ich muss das heute besser machen. Ein bisschen mehr Struktur würde uns gut tun."
+        user "Ich schlurfte die Treppe hinunter. Hoffentlich ist noch Kaffee übrig."
+
     else:
-        user "Hoffentlich läuft es heute genauso gut."
+        # FAZIT: SCHLECHT
+        user "Ich muss das heute retten. Dringend."
+        user "Mit einem flauen Gefühl im Magen ging ich langsam die Treppe hinunter, als würde ich zum Schafott gehen."
 
-    user "trasalf"
+    # ---------------------------------------------------------
+    # IN DER KÜCHE (Interaktion)
+    # ---------------------------------------------------------
 
-    c "fegsdadsga"
+    scene bg_kitchen with dissolve
+    user "Als ich die Küche betrat, saßen alle schon am Tisch."
+
+    # --- GUTER TAG ---
+    if day_score >= 3:
+        user "Die Stimmung war entspannt. Cino summte, Lavan wirkte konzentriert und selbst Velvette nickte mir zu."
+        user "\"Morgen, Team!\""
+        c "\"Guten Morgen, [player_name]! Wir sind bereit für Runde zwei!\""
+        l "\"Pff. Ich bin immer bereit.\""
+
+    # --- OKAY TAG ---
+    elif day_score == 2:
+        user "Es war still. Man hörte nur das Klappern von Löffeln. Die Anspannung von gestern hing noch leicht in der Luft."
+        user "\"Morgen.\""
+        m "\"Mhm...\""
+        v "\"Ich hoffe, du hast heute einen besseren Plan als gestern.\""
+        user "\"Wir kriegen das hin.\""
+
+    # --- SCHLECHTER TAG ---
+    else:
+        user "Die Luft war zum Schneiden dick. Lavan funkelte mich an, Velvette drehte sich weg."
+        user "\"Guten Morgen...\" versuchte ich es vorsichtig."
+
+        v "\"Spar dir das. Mein Kopf tut weh von dem Lärm gestern.\""
+        l "\"Wenn das heute wieder so läuft, explodiert hier nicht nur die Kaffeemaschine.\""
+        user "Okay... das wird hart."
+
+    # ---------------------------------------------------------
+    # DIE ANKÜNDIGUNG (Einkaufszentrum Trip)
+    # ---------------------------------------------------------
+
+    user "Ich räusperte mich, um ihre Aufmerksamkeit zu bekommen."
+    user "\"Hört zu. Morgen ist Wochenende. Das bedeutet, heute machen wir nur eine kurze Schicht bis 14 Uhr.\""
+
+    if day_score >= 3:
+        # BELOHNUNG
+        user "\"Und weil ihr gestern so einen tollen Job gemacht habt, habe ich eine Belohnung geplant.\""
+        user "\"Wir gehen danach alle zusammen ins Einkaufszentrum. Shoppen, Essen, Spaß haben. Auf meine Kosten.\""
+        c "\"Jaaaa! Shoppen!\""
+        v "\"Endlich eine vernünftige Entscheidung. Ich brauche dringend neue Ohrringe.\""
+
+    elif day_score == 2:
+        # ZWISCHENLÖSUNG
+        user "\"Danach gehen wir ins Einkaufszentrum. Wir müssen alle mal rauskommen und den Kopf freikriegen.\""
+        user "\"Ich lade euch auf ein Essen ein. Ein bisschen Entspannung tut uns gut. Und vorallem stärkt es unseren team Geist.\""
+        m "\"Essen klingt gut...\""
+        l "\"Von mir aus. Besser als hier rumzuhocken.\""
+
+    else:
+        # TEAMBUILDING (ZWANG)
+        user "\"Und da gestern... nun ja... optimierungsbedürftig war, ist das heute Pflichtprogramm.\""
+        user "\"Wir gehen ins Einkaufszentrum. Teambuilding. Wir müssen lernen, miteinander klarzukommen, ohne dass der Laden abbrennt.\""
+        l "\"Teambuilding? Dein Ernst?\""
+        user "\"Ja, mein Ernst. Keine Widerrede. Wir müssen ein Team werden.\""
+        user "\"Außerdem müssen wir ein paar Sachen holen UND ihr könnt auch sehen wie andere in eurem Feld sich bei kunden verhalten\""
+        user "\"Nemmt es als eine Art Theorie Übung auf.\""
 
     if task_result_cino == "fail":
         user "leck meine eier"
@@ -99,6 +166,6 @@ label story_intro_03:
     else:
         user "puta madre"
 
-        c "oki doki"  
+        c "oki doki"
 
     jump story_intro_04
