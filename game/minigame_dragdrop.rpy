@@ -75,7 +75,8 @@ init python:
         "Milch": (755, 145),
         "Butter": (500, 560),
         "Streusel": (340, 630),
-        "Whisk": (955, 350) 
+        "Whisk": (955, 350),
+        "Erdbeeren": (1675, 662) 
     }
 
     ## Globale Variable, um zu wissen, ob der Besen gehalten wird
@@ -338,6 +339,20 @@ screen baking_minigame_screen(recipe_name, helper=None):
             dragged ingredient_dragged
             xpos 340 ypos 630
 
+                    ## STREUSEL
+        drag:
+            drag_name "Erdbeeren"
+            child Transform("images/minigames/baking/Cut_Strawberry_Sprite.png", size=(130, 130))
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#ff00ff"),
+            #     (0, 0), Text("Streusel", size=20, color="#fff", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
+            focus_mask True
+            droppable False
+            dragged ingredient_dragged
+            xpos 1675 ypos 662
+
         ## SCHNEEBESEN
         drag:
             id "whisk_drag"
@@ -410,7 +425,8 @@ screen baking_minigame_screen(recipe_name, helper=None):
 
     ## RESET
     textbutton "Reset":
-        xalign 0.01 yalign 0.98
+        xalign -0.01 yalign 0.865
+        text_size 50
         #background Solid("#0000001a") # Halb-transparenter schwarzer Hintergrund
         padding (20, 10) # Etwas Platz innen
         action [SetVariable("current_ingredients", []), Function(renpy.restart_interaction)]
@@ -426,8 +442,9 @@ screen baking_minigame_screen(recipe_name, helper=None):
         action Function(final_baking_check, recipe_name)
 
     ## CANCEL
-    textbutton "Abbrechen":
-        xalign 0.01 yalign 0.90
+    textbutton "Cancel":
+        xalign -0.01 yalign 0.92
+        text_size 50
         #background Solid("#0000001c") # Halb-transparenter schwarzer Hintergrund
         padding (20, 10) # Etwas Platz innen
         action Return("cancel")

@@ -3,9 +3,10 @@ label baking_minigame_hub:
     scene bg kitchen 
     
     if not tutorial_baking_done:
-        jump baking_tutorial_selection
-    else:
         jump baking_recipe_selection
+    else:
+        jump baking_recipe_selection    
+
 
 ## TUTORIAL MODUS (Einheitlich)
 label baking_tutorial_selection:
@@ -79,11 +80,11 @@ label run_tutorial_minigame:
 ## NORMALER MODUS (Alltag)
 label baking_recipe_selection:
     
-    scene bg kitchen
-    user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
+    scene bg kitchen 
+    user "Okay, was backen wir?"
     
     menu:
-        user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
+        user "Okay Was backen wir?"
 
         ## --- REZEPT 1: BUTTERPLÄTZCHEN ---
         "Butterplätzchen":
@@ -95,8 +96,8 @@ label baking_recipe_selection:
             $ current_recipe_name = "Erdbeer Crepe"
             jump run_baking_loop
         
-        "Zurück":
-            jump kitchen_room_interaction
+        # "Zurück":
+        #     jump kitchen_room_interaction
 
 ## --- DER UNIVERSELLE BACK-LOOP ---
 label run_baking_loop:
@@ -165,28 +166,15 @@ label run_baking_loop:
 ## BIS HIER FÜR DICH 
 
         # Fall A: Wir kommen aus der Story-Eröffnung (Der Tag geht weiter)
-        if store.baking_context == "story_opening":
-            # Variable resetten, damit sie später nicht stört
-            $ store.baking_context = None 
-            # Wir springen WEITER in der Story
-            jump story_cafe_after_rush 
-
-        # Fall B: Wir kommen aus dem normalen Alltag (Zurück zur Küche)
-        else:
-            jump kitchen_room_interaction
+        return
             
     elif minigame_result == "cancel":
         ## ABBRUCH
         stop music fadeout 0.5
         scene bg kitchen
-        user "Vielleicht später."
+        user "Eher doch was anderes..."
         
-        if store.baking_context == "story_opening":
-            $ store.baking_context = None 
-            ## Man interpretiert Abbruch als "Doch nicht backen"
-            jump cafe_opening_decision_hub 
-        else:
-            jump kitchen_room_interaction
+        jump baking_minigame_hub
         
     else:
         ## FAIL
@@ -228,15 +216,15 @@ screen success_screen_anim(result_png=None):
     add Movie(play="gui/minigames/Good_Job.webm", loop=True):
         size (1920, 1080)
     
-    ## DAS GEBACKENE ERGEBNIS
-    if result_png:
-        add result_png:
-            align (0.5, 0.5)
-            zoom 0.6  # Größe anpassen
-            at result_floating_anim # Die kleine Schwebe-Animation 
+    # ## DAS GEBACKENE ERGEBNIS
+    # if result_png:
+    #     add result_png:
+    #         align (0.5, 0.5)
+    #         zoom 0.6  # Größe anpassen
+    #         at result_floating_anim # Die kleine Schwebe-Animation 
 
     ## TEXT / GLÜCKWUNSCH
-    if not result_png:
+    if result_png:
         text "Perfekt!" size 100 align (0.5, 0.5) outlines [(3, "#000", 0, 0)]
 
     ## BUTTON
@@ -261,7 +249,7 @@ screen fail_screen_anim():
         align (0.5, 0.5)
         spacing 20
         
-        text "Verbrannt!" size 120 color "#fff" xalign 0.5:
+        text "Schade!" size 120 color "#fff" xalign 0.5:
             outlines [(5, "#000", 0, 0)] 
             bold True
             
