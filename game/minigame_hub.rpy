@@ -19,7 +19,7 @@ label baking_tutorial_selection:
             $ first_li_chosen = "Lavan"
             call _add_affection(LI_LAVAN, 1)
             
-        "Matcha Muffin":
+        "Matcha Cookie":
             $ first_li_chosen = "Macoi"
             call _add_affection(LI_MACOI, 1)
             
