@@ -141,9 +141,9 @@ label run_baking_loop:
         play sound "audio/Win_Sound.mp3"
 
         if current_recipe_name == "Butterplätzchen":
-            $ result_img = "images/minigame/result_butterplaetzchen.png"
+            $ result_img = "images/minigames/baking/Butter_Cookie_Sprite.png" 
         elif current_recipe_name == "Erdbeer Crepe":
-            $ result_img = "images/minigame/result_crepe.png"
+            $ result_img = "images/minigames/baking/Strawberry_Crepe_Sprite.png"
         else:
             $ result_img = None 
 
@@ -216,16 +216,16 @@ screen success_screen_anim(result_png=None):
     add Movie(play="gui/minigames/Good_Job.webm", loop=True):
         size (1920, 1080)
     
-    # ## DAS GEBACKENE ERGEBNIS
-    # if result_png:
-    #     add result_png:
-    #         align (0.5, 0.5)
-    #         zoom 0.6  # Größe anpassen
-    #         at result_floating_anim # Die kleine Schwebe-Animation 
-
-    ## TEXT / GLÜCKWUNSCH
+    ## DAS GEBACKENE ERGEBNIS
     if result_png:
-        text "Perfekt!" size 100 align (0.5, 0.5) outlines [(3, "#000", 0, 0)]
+        add result_png:
+            align (0.5, 0.65)
+            zoom 0.3  # Größe anpassen
+            at result_floating_anim # Die kleine Schwebe-Animation 
+
+    # ## TEXT / GLÜCKWUNSCH
+    # if result_png:
+    #     text "Perfekt!" size 100 align (0.5, 0.5) outlines [(3, "#000", 0, 0)]
 
     ## BUTTON
     textbutton "Weiter":
@@ -243,18 +243,12 @@ screen fail_screen_anim():
     ## HINTERGRUND VIDEO
     add Movie(play="gui/minigames/Try_Again.webm", loop=True):
         size (1920, 1080)
-    
-    ## TEXT
-    vbox:
+
+    ## 2. DAS BILD
+    add "images/minigames/results/fail_result.png": # <--- ÄNDERE DEN NAMEN HIER
         align (0.5, 0.5)
-        spacing 20
-        
-        text "Schade!" size 120 color "#fff" xalign 0.5:
-            outlines [(5, "#000", 0, 0)] 
-            bold True
-            
-        text "Versuch es nochmal." size 50 color "#ddd" xalign 0.5:
-            outlines [(3, "#000", 0, 0)]
+        zoom 0.25 # Größe anpassen
+        at result_floating_anim
 
     ## BUTTON
     textbutton "Nochmal versuchen":
