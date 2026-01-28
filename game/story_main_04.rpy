@@ -198,9 +198,9 @@ label mall_reunite:
     user "Ich hatte meine Deko-Tüten (und vielleicht ein paar Extras) in der Hand."
 
      ## Quasi sowas wenn du mit denen nicht ein Date hattest machen sie mit sich selbst reden
-        user "Lavan und Macoi kamen aus dem Kino. Sie stritten immer noch."
-        l "\"Der Film hatte null emotionale Tiefe!\""
-        m "\"Er hatte Laser-Drachen. Dein Argument ist ungültig.\""
+    user "Lavan und Macoi kamen aus dem Kino. Sie stritten immer noch."
+    l "\"Der Film hatte null emotionale Tiefe!\""
+    m "\"Er hatte Laser-Drachen. Dein Argument ist ungültig.\""
 
     user "\"Alle glücklich? Alle bereit für den Heimweg?\""
 
