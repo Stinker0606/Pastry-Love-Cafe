@@ -257,12 +257,3 @@ screen fail_screen_anim():
         text_size 40
         padding (50, 10)
         action Return() # Schließt den Screen
-
-
-## 3. ANIMATION
-## Lässt das Ergebnis-Bild leicht auf und ab schweben
-transform result_floating_anim:
-    yoffset 0
-    linear 2.0 yoffset -15 # 2 Sekunden lang 15px hoch
-    linear 2.0 yoffset 0   # 2 Sekunden lang wieder runter
-    repeat

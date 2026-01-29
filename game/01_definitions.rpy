@@ -179,3 +179,4 @@ init python:
             "type": "crepe" # Trigger für Phasen-Wechsel (Teig -> Pfanne)
         }
     }
+    
