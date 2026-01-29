@@ -245,10 +245,9 @@ screen fail_screen_anim():
         size (1920, 1080)
 
     ## 2. DAS BILD
-    add "images/minigames/results/fail_result.png": # <--- ÄNDERE DEN NAMEN HIER
+    add "images/minigames/baking/Fail_Sprite.png":
         align (0.5, 0.5)
         zoom 0.25 # Größe anpassen
-        at result_floating_anim
 
     ## BUTTON
     textbutton "Nochmal versuchen":
