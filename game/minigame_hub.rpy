@@ -1,9 +1,10 @@
 ## --- HAUPT-EINGANG ZUM BAKING MINIGAME---
 label baking_minigame_hub:
-    scene bg kitchen 
+    scene bg kitchen:
+        size (1920, 1080)
     
     if not tutorial_baking_done:
-        jump baking_recipe_selection
+        jump baking_tutorial_selection
     else:
         jump baking_recipe_selection    
 
@@ -80,11 +81,11 @@ label run_tutorial_minigame:
 ## NORMALER MODUS (Alltag)
 label baking_recipe_selection:
     
-    scene bg kitchen 
-    user "Okay, was backen wir?"
+    scene bg kitchen
+    user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
     
     menu:
-        user "Okay Was backen wir?"
+        user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
 
         ## --- REZEPT 1: BUTTERPLÄTZCHEN ---
         "Butterplätzchen":
@@ -96,8 +97,9 @@ label baking_recipe_selection:
             $ current_recipe_name = "Erdbeer Crepe"
             jump run_baking_loop
         
-        # "Zurück":
-        #     jump kitchen_room_interaction
+        "Zurück":
+            if baking_context == "story_act_2":
+                jump cafe_opening_decision_hub
 
 ## --- DER UNIVERSELLE BACK-LOOP ---
 label run_baking_loop:
@@ -166,15 +168,28 @@ label run_baking_loop:
 ## BIS HIER FÜR DICH 
 
         # Fall A: Wir kommen aus der Story-Eröffnung (Der Tag geht weiter)
-        return
+        if store.baking_context == "story_opening":
+            # Variable resetten, damit sie später nicht stört
+            $ store.baking_context = None 
+            # Wir springen WEITER in der Story
+            jump story_cafe_after_rush 
+
+        # Fall B: Wir kommen aus dem normalen Alltag (Zurück zur Küche)
+        else:
+            jump kitchen_room_interaction
             
     elif minigame_result == "cancel":
         ## ABBRUCH
         stop music fadeout 0.5
         scene bg kitchen
-        user "Eher doch was anderes..."
+        user "Vielleicht später"
         
-        jump baking_minigame_hub
+        if store.baking_context == "story_opening":
+            $ store.baking_context = None 
+            ## Man interpretiert Abbruch als "Doch nicht backen"
+            jump cafe_opening_decision_hub 
+        else:
+            jump kitchen_room_interaction
         
     else:
         ## FAIL

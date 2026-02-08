@@ -94,15 +94,13 @@ image cino idle = Transform(Movie(play="images/sprites/cino/cino_idle_anim.webm"
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
 image bg white = Solid("#ffffff")
-image bg cafe = "images/backgrounds/Counter_Background.png"
-image bg kitchen = "images/backgrounds/Baking_Game_Background.png"
+image bg cafe = Transform("images/backgrounds/Counter_Background.png", size=(1920, 1080))
+image bg kitchen = Transform("images/backgrounds/Baking_Game_Background.png", size=(1920, 1080))
 
 
 ## Gallery Stuff
-image cg 1 = "images/gallery/cg_lavan_hug.jpg"
-image cg 1 thumb = "images/gallery/thumb_lavan_hug.jpg"
-
-image qr1 = "images/AMI4bd.png"
+image cg 1 = Transform("images/gallery/cg_lavan_hug.jpg", size=(1920, 1080))
+image cg 1 thumb = Transform("images/gallery/thumb_lavan_hug.jpg", size=(1920, 1080))
 
 ## Minigame Images
 

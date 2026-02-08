@@ -72,8 +72,8 @@ init python:
         "Mehl": (1700, 750),
         "Ei": (1530, 830),
         "Zucker": (1040, 200),
-        "Milch": (755, 145),
-        "Butter": (500, 560),
+        "Milch": (755, 145), 
+        "Butter": (660, 520),
         "Streusel": (340, 630),
         "Whisk": (955, 350),
         "Erdbeeren": (1675, 662) 
@@ -112,6 +112,9 @@ init python:
 
         if item_name in ["Milch"]:
             renpy.music.play("audio/Adding_Liquid_Sound.mp3", channel="sound")
+
+        if item_name in ["Ei"]:
+            renpy.music.play("audio/Egg_Crack_Sound.mp3", channel="sound")
 
         ## Zutat schnappt zurück
         start_pos = ingredient_positions[item_name]
@@ -224,8 +227,28 @@ init python:
 screen baking_minigame_screen(recipe_name, helper=None):
     modal True
     #add Solid("#333") # Platzhalter Hintergrund
+
+    ## --- VOLLSTÄNDIGE EINGABE-SPERRE ---
+    key "game_menu" action NullAction()         # Blockt ESC / Rechtsklick
+    key "rollback" action NullAction()          # Blockt Mausrad hoch
+    key "rollforward" action NullAction()       # Blockt Mausrad runter
+    key "hide_windows" action NullAction()      # Blockt die 'h' Taste
+    
+    ## Da 'quick_load' etc. keine Tasten sind, blocken wir die Standard-Tastaturbelegung
+    key "K_F5" action NullAction()              # Standard Quicksave Taste
+    key "K_F6" action NullAction()              # Standard Quickload Taste
+    key "K_s" action NullAction()               # Screenshot Taste
+    
     add "images/backgrounds/Baking_Game_Background.png":
-        size (1920, 1080) # Zwingt das Bild auf Full-HD Größe
+        size (1920, 1080)
+
+    # --- INSTRUKTIONS BUTTON (Oben Links) ---
+    imagebutton:
+        idle Transform("gui/minigames/Instruction_Button_Idle.png", zoom=0.08)
+        hover Transform("gui/minigames/Instruction_Button_pick.png", zoom=0.08)
+        xpos 1250 ypos 50 # Nicht ganz in der Ecke
+        action Show("baking_instructions")
+        focus_mask True
 
     $ store.current_recipe_name_global = recipe_name
 
@@ -323,7 +346,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 500 ypos 560
+            xpos 660 ypos 520
             
         ## STREUSEL
         drag:
@@ -425,8 +448,8 @@ screen baking_minigame_screen(recipe_name, helper=None):
 
     ## RESET
     textbutton "Reset":
-        xalign -0.01 yalign 0.865
-        text_size 50
+        xalign 0.97 yalign 0.99
+        text_size 60
         #background Solid("#0000001a") # Halb-transparenter schwarzer Hintergrund
         padding (20, 10) # Etwas Platz innen
         action [SetVariable("current_ingredients", []), Function(renpy.restart_interaction)]
@@ -443,8 +466,8 @@ screen baking_minigame_screen(recipe_name, helper=None):
 
     ## CANCEL
     textbutton "Cancel":
-        xalign -0.01 yalign 0.92
-        text_size 50
+        xalign -0.005 yalign 0.875
+        text_size 55
         #background Solid("#0000001c") # Halb-transparenter schwarzer Hintergrund
         padding (20, 10) # Etwas Platz innen
         action Return("cancel")
@@ -526,3 +549,59 @@ screen crepe_pan_screen():
             text "Erdbeeren drauftun!" size 70 color "#fff"
             action Return("success")        
 
+screen baking_instructions():
+    modal True
+    tag instructions
+    
+    ## Hintergrund leicht abdunkeln
+    add Solid("#000000ec")
+    
+    ## Variable für die aktuelle Seite (1 bis 3)
+    default instruction_page = 1
+    
+    frame:
+        align (0.5, 0.5)
+        xsize 1100 ysize 850
+        #background Frame("gui/confirm_frame.png", 60, 60)
+        
+        vbox:
+            align (0.5, 0.4)
+            spacing 40
+            
+            ## INHALT JE NACH SEITE
+            if instruction_page == 1:
+                # add "images/tutorial/page1.png" # Hier dein Bild einfügen
+                label "Schritt 1: Zutaten hinzufügen" xalign 0.5
+                text "Ziehe die benötigten Zutaten aus dem Vorrat in die Schüssel.\nAchte auf die richtige Menge im Rezept rechts oben!" xalign 0.5 text_align 0.5
+                
+            elif instruction_page == 2:
+                # add "images/tutorial/page2.png" 
+                label "Schritt 2: Rühren" xalign 0.5
+                text "Nimm den Schneebesen und bewege ihn im Kreis über die Schüssel.\nDu musst den Teig gründlich mixen, bevor du weitermachst." xalign 0.5 text_align 0.5
+                
+            elif instruction_page == 3:
+                # add "images/tutorial/page3.png"
+                label "Schritt 3: Fertigstellen" xalign 0.5
+                text "Sobald alle Schritte erledigt sind, klicke auf 'Fertig!'.\nBei Fehlern kannst du jederzeit 'Zurücksetzen' drücken." xalign 0.5 text_align 0.5
+
+        ## NAVIGATION UNTEN
+        hbox:
+            align (0.5, 0.92)
+            spacing 50
+            
+            if instruction_page > 1:
+                textbutton "Zurück":
+                    xsize 250 
+                    text_size 80
+                    action SetScreenVariable("instruction_page", instruction_page - 1)
+            
+            if instruction_page < 3:
+                textbutton "Weiter":
+                    xsize 250
+                    text_size 80
+                    action SetScreenVariable("instruction_page", instruction_page + 1)
+            else:
+                textbutton "Verstanden":
+                    xsize 250
+                    text_size 80
+                    action Hide("baking_instructions")

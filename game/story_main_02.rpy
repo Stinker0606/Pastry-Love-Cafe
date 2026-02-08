@@ -340,6 +340,7 @@ label start_opening_baking_process:
     # Kontext setzen für Rückkehr nach Minigame
     $ baking_context = "story_opening"
     $ quick_menu = True
+    $ baking_context = "story_act_2"
     user "Alles klar, fangen wir an!"
     jump baking_minigame_hub
 
