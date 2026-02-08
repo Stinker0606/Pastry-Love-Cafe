@@ -2,6 +2,24 @@
 ## -- TEIL 1: INTRO ---
 label story_intro_01:
     ## Wir starten in der Küche oder?
+    scene bg cafe with fade
+
+    user "Danke für die Teilnahme an unseren Test. Dich erwartet gleich ein Baking-Minigame. Gleich darfst du zwischen 2 Rezepten auswählen, du wirst die Möglichkeit haben beide backen zu können."
+
+    call baking_minigame_hub
+
+    call baking_minigame_hub
+
+    scene bg white
+
+    show qr1:
+        align (0.5, 0.15)  # Zentriert das Bild auf dem Bildschirm
+        zoom 0.25          # Skaliert es auf 30% runter (pass die Zahl an, z.B. 0.4 oder 0.2)
+
+    user "Danke fürs Testen! Nun scanne den QR Code um den Fragebogen auszufüllen und uns Feedback zu geben."
+
+    jump story_intro_04
+
     scene bg kitchen with fade
 
     ## Intro Monolog

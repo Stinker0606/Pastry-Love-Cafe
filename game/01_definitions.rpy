@@ -102,17 +102,14 @@ image bg kitchen = "images/backgrounds/Baking_Game_Background.png"
 image cg 1 = "images/gallery/cg_lavan_hug.jpg"
 image cg 1 thumb = "images/gallery/thumb_lavan_hug.jpg"
 
+image qr1 = "images/AMI4bd.png"
+
 ## Minigame Images
 
 ## Other Images
 image team_logo = "gui/team_logo.png"
 
 ## -- 5. Transform-Definitionen (Position-Definierung) --
-transform alpha_flash:
-    alpha 1.0
-    linear 0.5 alpha 0.2
-    linear 0.5 alpha 1.0
-    repeat
 
 transform at_left:
     xalign 0.25 yalign 1.0
@@ -132,13 +129,29 @@ transform pos_3:
 transform pos_4:
     xalign 0.94 yalign 1.0 # Ganz rechts
 
-## 
+## Normale Positionen
 
 transform pos_01:
     xalign 0.07 yalign 0.3 # Ganz links
 
 transform pos_02:
     xalign 0.90 yalign 0.15 # Ganz rechts
+
+## 5.1 -- Animations für Schrift und anderen Stuff --
+
+## Lässt XY leicht auf und ab schweben
+transform result_floating_anim:
+    yoffset 0
+    linear 2.0 yoffset -15 # 2 Sekunden lang 15px hoch
+    linear 2.0 yoffset 0   # 2 Sekunden lang wieder runter
+    repeat
+
+## Lässt XY an und aus blinken
+transform alpha_flash:
+    alpha 1.0
+    linear 0.5 alpha 0.2
+    linear 0.5 alpha 1.0
+    repeat
 
 ## -- 6. MINIGAME Definierungen & Grundlogik --
 init python:
@@ -166,3 +179,4 @@ init python:
             "type": "crepe" # Trigger für Phasen-Wechsel (Teig -> Pfanne)
         }
     }
+    
