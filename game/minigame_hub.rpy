@@ -1,11 +1,13 @@
 ## --- HAUPT-EINGANG ZUM BAKING MINIGAME---
 label baking_minigame_hub:
-    scene bg kitchen 
+    scene bg kitchen:
+        size (1920, 1080)
     
     if not tutorial_baking_done:
         jump baking_tutorial_selection
     else:
-        jump baking_recipe_selection
+        jump baking_recipe_selection    
+
 
 ## TUTORIAL MODUS (Einheitlich)
 label baking_tutorial_selection:
@@ -19,7 +21,7 @@ label baking_tutorial_selection:
             $ first_li_chosen = "Lavan"
             call _add_affection(LI_LAVAN, 1)
             
-        "Matcha Muffin":
+        "Matcha Cookie":
             $ first_li_chosen = "Macoi"
             call _add_affection(LI_MACOI, 1)
             
@@ -96,7 +98,8 @@ label baking_recipe_selection:
             jump run_baking_loop
         
         "Zurück":
-            jump kitchen_room_interaction
+            if baking_context == "story_act_2":
+                jump cafe_opening_decision_hub
 
 ## --- DER UNIVERSELLE BACK-LOOP ---
 label run_baking_loop:
@@ -140,9 +143,9 @@ label run_baking_loop:
         play sound "audio/Win_Sound.mp3"
 
         if current_recipe_name == "Butterplätzchen":
-            $ result_img = "images/minigame/result_butterplaetzchen.png"
+            $ result_img = "images/minigames/baking/Butter_Cookie_Sprite.png" 
         elif current_recipe_name == "Erdbeer Crepe":
-            $ result_img = "images/minigame/result_crepe.png"
+            $ result_img = "images/minigames/baking/Strawberry_Crepe_Sprite.png"
         else:
             $ result_img = None 
 
@@ -179,7 +182,7 @@ label run_baking_loop:
         ## ABBRUCH
         stop music fadeout 0.5
         scene bg kitchen
-        user "Vielleicht später."
+        user "Vielleicht später"
         
         if store.baking_context == "story_opening":
             $ store.baking_context = None 
@@ -231,13 +234,13 @@ screen success_screen_anim(result_png=None):
     ## DAS GEBACKENE ERGEBNIS
     if result_png:
         add result_png:
-            align (0.5, 0.5)
-            zoom 0.6  # Größe anpassen
+            align (0.5, 0.65)
+            zoom 0.3  # Größe anpassen
             at result_floating_anim # Die kleine Schwebe-Animation 
 
-    ## TEXT / GLÜCKWUNSCH
-    if not result_png:
-        text "Perfekt!" size 100 align (0.5, 0.5) outlines [(3, "#000", 0, 0)]
+    # ## TEXT / GLÜCKWUNSCH
+    # if result_png:
+    #     text "Perfekt!" size 100 align (0.5, 0.5) outlines [(3, "#000", 0, 0)]
 
     ## BUTTON
     textbutton "Weiter":
@@ -255,18 +258,11 @@ screen fail_screen_anim():
     ## HINTERGRUND VIDEO
     add Movie(play="gui/minigames/Try_Again.webm", loop=True):
         size (1920, 1080)
-    
-    ## TEXT
-    vbox:
+
+    ## 2. DAS BILD
+    add "images/minigames/baking/Fail_Sprite.png":
         align (0.5, 0.5)
-        spacing 20
-        
-        text "Verbrannt!" size 120 color "#fff" xalign 0.5:
-            outlines [(5, "#000", 0, 0)] 
-            bold True
-            
-        text "Versuch es nochmal." size 50 color "#ddd" xalign 0.5:
-            outlines [(3, "#000", 0, 0)]
+        zoom 0.25 # Größe anpassen
 
     ## BUTTON
     textbutton "Nochmal versuchen":
@@ -275,12 +271,3 @@ screen fail_screen_anim():
         text_size 40
         padding (50, 10)
         action Return() # Schließt den Screen
-
-
-## 3. ANIMATION
-## Lässt das Ergebnis-Bild leicht auf und ab schweben
-transform result_floating_anim:
-    yoffset 0
-    linear 2.0 yoffset -15 # 2 Sekunden lang 15px hoch
-    linear 2.0 yoffset 0   # 2 Sekunden lang wieder runter
-    repeat
