@@ -2,8 +2,8 @@ label story_intro_04:
 
     label shopping_mall_scene:
 
-    scene bg_mall with fade
-    # Sound: Hintergrundgeräusche Mall (Stimmen, Musik)
+    scene bg mall with fade
+    play music "audio/Mall_Ambience.mp3" fadein 1.5
 
     user "Das Einkaufszentrum war voll, laut und bunt. Genau das Gegenteil von unserem stillen Café heute Morgen."
 
@@ -47,18 +47,22 @@ label story_intro_04:
     menu:
         "Mit Velvette in die Boutique gehen":
             call _add_affection(LI_VELVETTE, 1)
+            $ cinema_date = "false"
             jump mall_date_velvette
 
         "Mit Lavan in den Liebesfilm gehen":
             call _add_affection(LI_LAVAN, 1)
+            $ cinema_date = "true"
             jump mall_date_lavan
 
         "Mit Macoi in den Gaming-Film gehen":
             call _add_affection(LI_MACOI, 1)
+            $ cinema_date = "true"
             jump mall_date_macoi
 
         "Mit Cino bummeln gehen":
             call _add_affection(LI_CINO, 1)
+            $ cinema_date = "false"
             jump mall_date_cino
 
 # -------------------------------------------------------------------------
@@ -69,7 +73,7 @@ label mall_date_velvette:
 
     v "\"Eine weise Entscheidung. Komm, Darling. Wir haben Arbeit vor uns.\""
 
-    scene bg_boutique with fade
+    scene bg boutique with fade
 
     user "Eine halbe Stunde später stand ich in einer Umkleidekabine, während Velvette mir Kleidungsstücke hineinreichte."
 
@@ -100,7 +104,7 @@ label mall_date_lavan:
 
     l "\"Gute Wahl. Du wirst sehen, man kann viel lernen. Rein akademisch natürlich.\""
 
-    scene bg_cinema_dark with fade
+    scene bg cinema with fade
 
     user "Wir saßen im dunklen Kinosaal. Der Film war triefend kitschig. Die Heldin rannte im Regen dem Helden hinterher."
 
@@ -132,7 +136,7 @@ label mall_date_macoi:
     m "\"Ja! Endlich jemand mit Kultur.\""
     user "Er packte mich fast schon am Arm und zog mich Richtung Kasse. So schnell hatte ich ihn noch nie gesehen."
 
-    scene bg_cinema_dark with fade
+    scene bg cinema with fade
 
     user "Der Film war laut, bunt und voller Explosionen. Für mich war es reines Chaos."
     user "Aber für Macoi war es eine Offenbarung."
@@ -161,7 +165,7 @@ label mall_date_cino:
 
     c "\"Juhu! Abenteuerzeit!\""
 
-    scene bg_mall with fade
+    scene bg mall with fade
 
     user "Es war weniger ein gezieltes Einkaufen und mehr ein Zick-Zack-Lauf durch alle möglichen Läden."
     user "Wir rochen an Duftkerzen (Cino musste niesen), probierten lustige Sonnenbrillen auf und standen lange vor einem Tierladen."
@@ -191,16 +195,16 @@ label mall_date_cino:
 # -------------------------------------------------------------------------
 label mall_reunite:
 
-    scene bg_mall_entrance with fade
+    scene bg mall with fade
 
     user "Zwei Stunden später trafen wir uns alle wieder am Brunnen."
 
     user "Ich hatte meine Deko-Tüten (und vielleicht ein paar Extras) in der Hand."
 
-     ## Quasi sowas wenn du mit denen nicht ein Date hattest machen sie mit sich selbst reden
-    user "Lavan und Macoi kamen aus dem Kino. Sie stritten immer noch."
-    l "\"Der Film hatte null emotionale Tiefe!\""
-    m "\"Er hatte Laser-Drachen. Dein Argument ist ungültig.\""
+    if cinema_date == "false":
+        user "Lavan und Macoi kamen aus dem Kino. Sie stritten immer noch."
+        l "\"Der Film hatte null emotionale Tiefe!\""
+        m "\"Er hatte Laser-Drachen. Dein Argument ist ungültig.\""
 
     user "\"Alle glücklich? Alle bereit für den Heimweg?\""
 

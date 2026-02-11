@@ -74,29 +74,40 @@ image mc_neutral = ConditionSwitch(
 )
 
 ## Lavan
-#image lavan smile = "images/sprites/lavan/smile.png"
-# Placeholder für die Idle
+image lavan angry = Transform(Movie(play="images/sprites/lavan/Lavan_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan idle = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_Animation.webm", loop=True), zoom=0.45)
+image lavan blush = Transform(Movie(play="images/sprites/lavan/Lavan_Blush_final.webm", loop=True, side_mask=True), zoom=0.45)
+
+image lavan happy = Transform(Movie(play="images/sprites/lavan/Lavan_Happy_final.webm", loop=True, side_mask=True), zoom=0.45)
+
+image lavan neutral = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_final.webm", loop=True, side_mask=True), zoom=0.45)
+
+image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_final.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Macoi
-#image macoi smile = "images/sprites/macoi/smile.png"
 
 ## Velvette
-#image velvette smile = "images/sprites/velvette/smile.png"
+image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_final.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette blush = Transform(Movie(play="images/sprites/velvette/Velvette_Blush_final.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette happy = Transform(Movie(play="images/sprites/velvette/Velvette_Happy_final.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_Neutral_final.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_final.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Cino
-#image cino smile = "images/sprites/cino/smile.png"
-# Placeholder für die Idle
 
-image cino idle = Transform(Movie(play="images/sprites/cino/cino_idle_anim.webm", loop=True), zoom=0.75)
 
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
 image bg white = Solid("#ffffff")
 image bg cafe = Transform("images/backgrounds/Counter_Background.png", size=(1920, 1080))
 image bg kitchen = Transform("images/backgrounds/Baking_Game_Background.png", size=(1920, 1080))
-
+image bg cinema = Transform("images/backgrounds/Cinema_Background.png", size=(1920, 1080))
+image bg boutique = Transform("images/backgrounds/Clothing_Store_Background.png", size=(1920, 1080))
+image bg mall = Transform("images/backgrounds/Mall_Inside_Background.png", size=(1920, 1080))
 
 ## Gallery Stuff
 image cg 1 = Transform("images/gallery/cg_lavan_hug.jpg", size=(1920, 1080))
