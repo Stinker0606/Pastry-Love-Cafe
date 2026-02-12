@@ -92,6 +92,9 @@ label act5_daydreaming_and_decision:
 
     # ---------------------------------------------------------
     # DAS FINALE MENU der Entscheidung -> gibt mehr Affektion wert und dann je nachdem wer am meisten hat dessen Epilog bekommt man
+    # Du bekommst hier eine Entscheidung -> gibt dir Affektion mit deinem lI (mehr als sonst +20 oder so)
+    # Und dann je nachdem mit wem du am meisten hast bekommst du ein Epilog mit deinem LI -> das heißt wie die story_main_05 so auch für jeden ein Epilog
+    # Am besten nennt man sie Epilog_NamevonLI
     # ---------------------------------------------------------
 
     return
