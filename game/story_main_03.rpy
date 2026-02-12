@@ -50,6 +50,8 @@ label story_intro_03:
     elif task_result_lavan == "ignored":
         user "Und die arme Espressomaschine... Lavan hat sie fast verprügelt."
         user "Er war so gestresst, dass der halbe Kaffee daneben ging, aber niemand hatte auch Zeit ihm zu helfen."
+    elif task_result_lavan == "success":
+        user "Nachdem er seine Wut runtergeschluckt hatte, war er wiklich professionel"
 
     # --- MACOI CHECK ---
     if task_result_macoi == "fail":
@@ -58,18 +60,24 @@ label story_intro_03:
     elif task_result_macoi == "ignored":
         user "Bei Macoi hat das System komplett ausgesetzt."
         user "Er hat bestimmt drei Bestellungen falsch aufgenommen, weil er im Halbschlaf war und ich ihn nicht wachgerüttelt habe."
+    elif task_result_macoi == "success":
+        user "Er war überraschend wach und konzentriert. Hat er vielleicht übung in cooking mama?"
 
     # --- VELVETTE CHECK ---
     if task_result_velvette == "fail":
         user "Velvette war zickig zu den Kunden, nachdem ich sie vor allen bloßgestellt habe."
     elif task_result_velvette == "ignored":
         user "Es gab Beschwerden über eine 'arrogante Kellnerin'. Ich hätte bei Velvette eingreifen sollen."
+    elif task_result_Velvette == "success":
+            user "Velvette war der wahnsinn, ich konnte garnicht ahnen das sie so ein naturtalent ist"
 
     # --- CINO CHECK ---
     if task_result_cino == "fail":
         user "Und überall lagen zerrissene Servietten herum..."
     elif task_result_cino == "ignored":
         user "Er sah so verloren aus, wie ein zurückgelassener Welpe"
+    elif task_result_cino == "success":
+            user "Er war wirklich beliebt bei den Kunden, sehr nett, die Leute lieben ihn"
 
 
     # ---------------------------------------------------------
@@ -89,7 +97,7 @@ label story_intro_03:
     else:
         # FAZIT: SCHLECHT
         user "Ich muss das heute retten. Dringend."
-        user "Mit einem flauen Gefühl im Magen ging ich langsam die Treppe hinunter, als würde ich zum Schafott gehen."
+        user "Mit einem flauen Gefühl im Magen ging ich langsam die Treppe hinunter, als würde ich zum Hinrichtung gehen."
 
     # ---------------------------------------------------------
     # IN DER KÜCHE (Interaktion)
@@ -152,20 +160,5 @@ label story_intro_03:
         user "\"Außerdem müssen wir ein paar Sachen holen UND ihr könnt auch sehen wie andere in eurem Feld sich bei kunden verhalten\""
         user "\"Nemmt es als eine Art Theorie Übung auf.\""
 
-    if task_result_cino == "fail":
-        user "leck meine eier"
-    elif task_result_cino == "ignored":
-        user "deine mutter"
-    elif task_result_cino == "success":
-        user "uwu"
-
-    if day_score < 2:
-        user "Mama"
-
-        c "I know"
-    else:
-        user "puta madre"
-
-        c "oki doki"
 
     jump story_intro_04

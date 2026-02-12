@@ -268,7 +268,7 @@ label cafe_opening_decision_hub:
             $ quick_menu = True
             user "Ich denke, ich habe das Schlimmste verhindert. Der Rest läuft jetzt von alleine."
             jump story_cafe_after_rush
-     
+
 
 
 ## --- A. HELFEN AUSWAHL ---
@@ -340,7 +340,7 @@ label start_opening_baking_process:
     # Kontext setzen für Rückkehr nach Minigame
     $ baking_context = "story_opening"
     $ quick_menu = True
-    $ baking_context = "story_act_2"
+    $ baking_con = "story_act_2"
     user "Alles klar, fangen wir an!"
     jump baking_minigame_hub
 
@@ -470,7 +470,7 @@ label story_cafe_after_rush:
     scene bg cafe with fade
  # HIER RESETTEN WIR DEN KRAM FÜRS BACKEN ZUR SICHERHEIT
     $ baking_context = None
-   
+
 
     user "Puh... Der Tag ist vorbei."
 

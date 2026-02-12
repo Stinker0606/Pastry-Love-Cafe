@@ -127,9 +127,9 @@ label mall_date_lavan:
 
     jump mall_reunite
 
-# -------------------------------------------------------------------------
-# Macoi Date
-# -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    # Macoi Date
+    # -------------------------------------------------------------------------
 label mall_date_macoi:
     user "\"Macoi, ich will sehen, wie sehr sie die Lore ruiniert haben. Ich komm mit.\""
 
@@ -157,9 +157,9 @@ label mall_date_macoi:
 
     jump mall_reunite
 
-# -------------------------------------------------------------------------
-# Cino Date
-# -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    # Cino Date
+    # -------------------------------------------------------------------------
 label mall_date_cino:
     user "\"Ich glaube, ich brauche etwas Bewegung. Komm Cino, wir ziehen los.\""
 
@@ -190,9 +190,9 @@ label mall_date_cino:
 
     jump mall_reunite
 
-# -------------------------------------------------------------------------
-# Kommen wieder zusammen
-# -------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    # Kommen wieder zusammen
+    # -------------------------------------------------------------------------
 label mall_reunite:
 
     scene bg mall with fade
@@ -214,5 +214,63 @@ label mall_reunite:
     user "Ich lachte. Es fühlte sich gut an."
     user "Vielleicht wird das mit dem Café doch was. Wir sind ein seltsamer Haufen, aber irgendwie... passt es."
 
+
+    scene bg_bedroom_night with fade
+
+
+    user "Ich ließ mich rücklings auf mein Bett fallen und starrte die Decke an."
+
+    user "Meine Füße pochten ein wenig von der Lauferei, aber es war ein angenehmer Schmerz."
+
+    user "Das Einkaufszentrum... der Lärm, die vielen Menschen, das Chaos mit den Vieren."
+
+    user "Es war anstrengend. Aber es war auch... schön."
+
+    user "Ich drehte mich auf die Seite und zog die Decke bis zum Kinn."
+
+    user "Vor allem dieser eine Moment ging mir nicht mehr aus dem Kopf."
+
+    # ---------------------------------------------------------
+    # REFLEKTION JE NACH DATE-PARTNER
+    # nochmal mal mit Li gezeigt und wie die Person glücklich, blushi ist
+    # ---------------------------------------------------------
+
+
+    # --- REFLEKTION LAVAN ---
+    user "Lavan im Kino..."
+    user "Er hat so getan, als würde er den Film hassen. Als wäre es Folter für ihn."
+    user "Aber ich habe gesehen, wie er sich die Augen gewischt hat."
+    user "Und als sich unsere Hände im Popcorn berührt haben... er hat nicht zurückgezogen."
+    user "Er hat sogar kurz zugedrückt."
+    user "Vielleicht ist er gar nicht so stachelig, wie er immer tut. Vielleicht braucht er nur jemanden, der sich nicht an seinen Dornen stört."
+    user "Ein kleines Lächeln stahl sich auf meine Lippen. Sein Gesicht, als er rot wurde... niedlich."
+
+
+    # --- REFLEKTION VELVETTE ---
+    user "Velvette in der Boutique..."
+    user "Ich musste grinsen. Sie hat mich herumkommandiert wie eine Anziehpuppe."
+    user "Aber da war dieser eine Moment vor dem Spiegel."
+    user "Sie hat mich nicht als Projekt gesehen. Sie hat *mich* angesehen."
+    user "Ihr Kompliment war echt. Hinter all dem Glitzer und der Arroganz steckt jemand, der einfach nur Perfektion sucht – auch in Beziehungen."
+    user "Und dass sie mich 'akzeptabel' fand... aus ihrem Mund ist das wohl die größte Liebeserklärung."
+
+
+    # --- REFLEKTION MACOI ---
+    user "Macoi im Kino..."
+    user "Ich habe ihn noch nie so lebendig gesehen. Seine Augen haben geleuchtet."
+    user "Normalerweise schläft er im Stehen, aber wenn es um Dinge geht, die er liebt, ist er voll da."
+    user "Und er hat seine Nachos mit mir geteilt. Seine heiligen Nachos."
+    user "Es hat sich so... natürlich angefühlt. Als würden wir schon immer nebeneinander sitzen."
+    user "Er braucht keine großen Worte. Seine Nähe reicht völlig aus."
+
+
+    # --- REFLEKTION CINO ---
+    user "Ich blickte auf den Nachttisch. Da stand sie. Die kleine, kitschige Katzenfigur."
+    user "Cino..."
+    user "Er ist pures Chaos, aber er ist auch pure Freude."
+    user "Wie er durch den Laden gehüpft ist, völlig ohne Scham, einfach nur glücklich, mit mir dort zu sein."
+    user "Seine Begeisterung ist ansteckend. Wenn ich bei ihm bin, wird die Welt ein bisschen heller."
+    user "Er hat gesagt, das ist unser Maskottchen. 'Unseres'."
+    user "Der Gedanke ließ mein Herz schneller schlagen."
 
     return

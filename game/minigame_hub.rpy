@@ -2,11 +2,11 @@
 label baking_minigame_hub:
     scene bg kitchen:
         size (1920, 1080)
-    
+
     if not tutorial_baking_done:
         jump baking_tutorial_selection
     else:
-        jump baking_recipe_selection    
+        jump baking_recipe_selection
 
 
 ## TUTORIAL MODUS (Einheitlich)
@@ -20,15 +20,15 @@ label baking_tutorial_selection:
         "Lava Cake":
             $ first_li_chosen = "Lavan"
             call _add_affection(LI_LAVAN, 1)
-            
+
         "Matcha Cookie":
             $ first_li_chosen = "Macoi"
             call _add_affection(LI_MACOI, 1)
-            
+
         "Red Velvet Cupcake":
             $ first_li_chosen = "Velvette"
             call _add_affection(LI_VELVETTE, 1)
-            
+
         "Zimtrolle":
             $ first_li_chosen = "Cino"
             call _add_affection(LI_CINO, 1)
@@ -44,7 +44,7 @@ label run_tutorial_minigame:
 
     ## --- MUSIK STARTEN ---
     play music "audio/Baking_Game_Music.mp3" fadein 0.5
-    
+
     $ current_ingredients = [] # Reset des Minigames
 
     user "Okay, los geht's. Ich muss mich genau an das Rezept halten."
@@ -60,14 +60,14 @@ label run_tutorial_minigame:
     if _return == "success":
         ## Wir springen direkt weiter in der Story.
         $ tutorial_baking_done = True
-        jump awakening_shock_scene 
-    
+        jump awakening_shock_scene
+
     ## 2. ABBRUCH
     elif _return == "cancel":
         user "Oder doch eher was anderes."
         stop music fadeout 0.5
         ## Wir springen zurück zur Auswahl
-        jump baking_tutorial_selection 
+        jump baking_tutorial_selection
 
     ## 3. FAIL
     else:
@@ -80,10 +80,10 @@ label run_tutorial_minigame:
 
 ## NORMALER MODUS (Alltag)
 label baking_recipe_selection:
-    
+
     scene bg kitchen
     user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
-    
+
     menu:
         user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
 
@@ -96,9 +96,9 @@ label baking_recipe_selection:
         "Erdbeer Crepe":
             $ current_recipe_name = "Erdbeer Crepe"
             jump run_baking_loop
-        
+
         "Zurück":
-            if baking_context == "story_act_2":
+            if baking_con == "story_act_2":
                 jump cafe_opening_decision_hub
 
 ## --- DER UNIVERSELLE BACK-LOOP ---
@@ -106,31 +106,31 @@ label run_baking_loop:
 
     ## --- MUSIK STARTEN ---
     play music "audio/Baking_Game_Music.mp3" fadein 1.5
-    
+
     ## --- 1: AUTOMATISCHER RESET ---
     ## Damit ist die Schüssel immer leer, wenn man neu startet.
-    $ current_ingredients = [] 
-    
+    $ current_ingredients = []
+
     ## --- 2: QUICK MENU AUSBLENDEN ---
     $ quick_menu = False
-    
+
     ## 1. Wir starten das Schüssel-Minigame
     call screen baking_minigame_screen(current_recipe_name, helper=current_kitchen_helper)
-    
+
     ## --- 2: MENÜ WIEDER ANZEIGEN ---
     $ quick_menu = True
-    
+
     ## Wir speichern das Ergebnis zwischen
     $ minigame_result = _return
-    
+
     ## 2. SPEZIALFALL: CREPE PHASE 2 (Mein neuer Code)
     if minigame_result == "crepe_phase_2":
-        
+
         ## Auch hier kurz Menü ausblenden für Immersion (optional)
         $ quick_menu = False
         call crepe_pan_minigame
         $ quick_menu = True
-        
+
         ## Das Ergebnis überschreiben wir
         $ minigame_result = _return
 
@@ -143,11 +143,11 @@ label run_baking_loop:
         play sound "audio/Win_Sound.mp3"
 
         if current_recipe_name == "Butterplätzchen":
-            $ result_img = "images/minigames/baking/Butter_Cookie_Sprite.png" 
+            $ result_img = "images/minigames/baking/Butter_Cookie_Sprite.png"
         elif current_recipe_name == "Erdbeer Crepe":
             $ result_img = "images/minigames/baking/Strawberry_Crepe_Sprite.png"
         else:
-            $ result_img = None 
+            $ result_img = None
 
         $ quick_menu = False
 
@@ -163,34 +163,34 @@ label run_baking_loop:
         elif current_recipe_name == "Erdbeer Crepe" and current_kitchen_helper == "Cino":
             c "Juhu!"
         #elif current_recipe_name == "NAME DES REZEPTES" and current_kitchen_helper == "CHARAKTER":
-        #    KÜRZEL DES CHARS "REAKTION"    
+        #    KÜRZEL DES CHARS "REAKTION"
 
-## BIS HIER FÜR DICH 
+## BIS HIER FÜR DICH
 
         # Fall A: Wir kommen aus der Story-Eröffnung (Der Tag geht weiter)
         if store.baking_context == "story_opening":
             # Variable resetten, damit sie später nicht stört
-            $ store.baking_context = None 
+            $ store.baking_context = None
             # Wir springen WEITER in der Story
-            jump story_cafe_after_rush 
+            jump story_cafe_after_rush
 
         # Fall B: Wir kommen aus dem normalen Alltag (Zurück zur Küche)
         else:
             jump kitchen_room_interaction
-            
+
     elif minigame_result == "cancel":
         ## ABBRUCH
         stop music fadeout 0.5
         scene bg kitchen
         user "Vielleicht später"
-        
+
         if store.baking_context == "story_opening":
-            $ store.baking_context = None 
+            $ store.baking_context = None
             ## Man interpretiert Abbruch als "Doch nicht backen"
-            jump cafe_opening_decision_hub 
+            jump cafe_opening_decision_hub
         else:
             jump kitchen_room_interaction
-        
+
     else:
         ## FAIL
         stop music fadeout 0.5
@@ -203,20 +203,20 @@ label run_baking_loop:
 ## --- FINDING MINIGAME HUB ---
 ## Wir erwarten hier Argumente für die Bilder und Positionen
 label run_finding_minigame(bg_img, idle_img, hover_img, x_pos, y_pos, scale):
-    
+
     ## Menü ausblenden
     $ quick_menu = False
 
     ## START DES SPIELS
     ## Wir rufen den Screen auf und geben die Daten weiter, die wir bekommen haben
     call screen finding_game_screen(bg_img, idle_img, hover_img, x_pos, y_pos, scale)
-    
+
     ## Menü wieder an
     $ quick_menu = True
 
     ## AUSWERTUNG
     if _return == "found":
-        return # Zurück zur Story        
+        return # Zurück zur Story
 
 ## ---------------------------------------------------------------------
 ## VIDEO END-SCREENS (SUCCESS & FAIL)
@@ -226,17 +226,17 @@ label run_finding_minigame(bg_img, idle_img, hover_img, x_pos, y_pos, scale):
 ## Zeigt das Video im Hintergrund und das übergebene Bild in der Mitte.
 screen success_screen_anim(result_png=None):
     modal True
-    
+
     ## HINTERGRUND VIDEO (Zwingt es auf Vollbild 1920x1080)
     add Movie(play="gui/minigames/Good_Job.webm", loop=True):
         size (1920, 1080)
-    
+
     ## DAS GEBACKENE ERGEBNIS
     if result_png:
         add result_png:
             align (0.5, 0.65)
             zoom 0.3  # Größe anpassen
-            at result_floating_anim # Die kleine Schwebe-Animation 
+            at result_floating_anim # Die kleine Schwebe-Animation
 
     # ## TEXT / GLÜCKWUNSCH
     # if result_png:
@@ -254,7 +254,7 @@ screen success_screen_anim(result_png=None):
 ## Zeigt das Fail-Video und Text.
 screen fail_screen_anim():
     modal True
-    
+
     ## HINTERGRUND VIDEO
     add Movie(play="gui/minigames/Try_Again.webm", loop=True):
         size (1920, 1080)
