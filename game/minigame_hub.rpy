@@ -82,10 +82,17 @@ label run_tutorial_minigame:
 label baking_recipe_selection:
 
     scene bg kitchen
-    user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
+    
+    python:
+        if current_kitchen_helper:
+            # Fall A: Helfer ist da (Variable ist NICHT leer/None)
+            selection_prompt = "Okay, " + current_kitchen_helper + " hilft mir heute. Was backen wir?"
+        else:
+            # Fall B: Kein Helfer (Variable ist None)
+            selection_prompt = "Okay, ich backe heute alleine. Was backe ich denn?"
 
     menu:
-        user "Okay, [current_kitchen_helper] hilft mir heute. Was backen wir?"
+        user "[selection_prompt]"
 
         ## --- REZEPT 1: BUTTERPLÄTZCHEN ---
         "Butterplätzchen":

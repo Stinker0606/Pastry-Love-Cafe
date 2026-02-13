@@ -76,26 +76,26 @@ image mc_neutral = ConditionSwitch(
 ## Lavan
 image lavan angry = Transform(Movie(play="images/sprites/lavan/Lavan_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan blush = Transform(Movie(play="images/sprites/lavan/Lavan_Blush_final.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan blush = Transform(Movie(play="images/sprites/lavan/Lavan_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan happy = Transform(Movie(play="images/sprites/lavan/Lavan_Happy_final.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan happy = Transform(Movie(play="images/sprites/lavan/Lavan_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan neutral = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_final.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan neutral = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_final.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Macoi
 
 ## Velvette
-image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_final.webm", loop=True, side_mask=True), zoom=0.45)
+image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image velvette blush = Transform(Movie(play="images/sprites/velvette/Velvette_Blush_final.webm", loop=True, side_mask=True), zoom=0.45)
+image velvette blush = Transform(Movie(play="images/sprites/velvette/Velvette_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image velvette happy = Transform(Movie(play="images/sprites/velvette/Velvette_Happy_final.webm", loop=True, side_mask=True), zoom=0.45)
+image velvette happy = Transform(Movie(play="images/sprites/velvette/Velvette_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_Neutral_final.webm", loop=True, side_mask=True), zoom=0.45)
+image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_final.webm", loop=True, side_mask=True), zoom=0.45)
+image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Cino
 
@@ -120,10 +120,12 @@ image team_logo = "gui/team_logo.png"
 
 ## -- 5. Transform-Definitionen (Position-Definierung) --
 
-transform at_left:
+transform left:
     xalign 0.25 yalign 1.0
-transform at_right:
+transform right:
     xalign 0.75 yalign 1.0
+transform middle:
+    xalign 0.50 yalign 1.0    
 
 ## -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
 transform pos_1:
