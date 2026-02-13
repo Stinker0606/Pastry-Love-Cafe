@@ -68,7 +68,7 @@ label story_intro_03:
         user "Velvette war zickig zu den Kunden, nachdem ich sie vor allen bloßgestellt habe."
     elif task_result_velvette == "ignored":
         user "Es gab Beschwerden über eine 'arrogante Kellnerin'. Ich hätte bei Velvette eingreifen sollen."
-    elif task_result_Velvette == "success":
+    elif task_result_velvette == "success":
             user "Velvette war der wahnsinn, ich konnte garnicht ahnen das sie so ein naturtalent ist"
 
     # --- CINO CHECK ---

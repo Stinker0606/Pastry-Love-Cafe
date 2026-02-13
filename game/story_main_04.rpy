@@ -46,21 +46,25 @@ label story_intro_04:
 
     menu:
         "Mit Velvette in die Boutique gehen":
+            $ mall_date_choice = "Velvette"
             call _add_affection(LI_VELVETTE, 1)
             $ cinema_date = "false"
             jump mall_date_velvette
 
         "Mit Lavan in den Liebesfilm gehen":
+            $ mall_date_choice = "Macoi"
             call _add_affection(LI_LAVAN, 1)
             $ cinema_date = "true"
             jump mall_date_lavan
 
         "Mit Macoi in den Gaming-Film gehen":
+            $ mall_date_choice = "Cino"
             call _add_affection(LI_MACOI, 1)
             $ cinema_date = "true"
             jump mall_date_macoi
 
         "Mit Cino bummeln gehen":
+            $ mall_date_choice = "Lavan"
             call _add_affection(LI_CINO, 1)
             $ cinema_date = "false"
             jump mall_date_cino
@@ -232,45 +236,55 @@ label mall_reunite:
 
     # ---------------------------------------------------------
     # REFLEKTION JE NACH DATE-PARTNER
-    # nochmal mal mit Li gezeigt und wie die Person glücklich, blushi ist
     # ---------------------------------------------------------
 
-
     # --- REFLEKTION LAVAN ---
-    user "Lavan im Kino..."
-    user "Er hat so getan, als würde er den Film hassen. Als wäre es Folter für ihn."
-    user "Aber ich habe gesehen, wie er sich die Augen gewischt hat."
-    user "Und als sich unsere Hände im Popcorn berührt haben... er hat nicht zurückgezogen."
-    user "Er hat sogar kurz zugedrückt."
-    user "Vielleicht ist er gar nicht so stachelig, wie er immer tut. Vielleicht braucht er nur jemanden, der sich nicht an seinen Dornen stört."
-    user "Ein kleines Lächeln stahl sich auf meine Lippen. Sein Gesicht, als er rot wurde... niedlich."
+    if mall_date_choice == "Lavan":
+        scene bg mall with fade             # BACKGROUND
+        show lavan blush                    # Char kannst du wählen wann er gezeigt wird und wie. Im 01_definitions stehen die verschiedenen faces.
+        user "Lavan im Kino..."
+        user "Er hat so getan, als würde er den Film hassen. Als wäre es Folter für ihn."
+        user "Aber ich habe gesehen, wie er sich die Augen gewischt hat."
+        user "Und als sich unsere Hände im Popcorn berührt haben... er hat nicht zurückgezogen."
+        user "Er hat sogar kurz zugedrückt."
+        user "Vielleicht ist er gar nicht so stachelig, wie er immer tut. Vielleicht braucht er nur jemanden, der sich nicht an seinen Dornen stört."
+        user "Ein kleines Lächeln stahl sich auf meine Lippen. Sein Gesicht, als er rot wurde... niedlich."
 
 
     # --- REFLEKTION VELVETTE ---
-    user "Velvette in der Boutique..."
-    user "Ich musste grinsen. Sie hat mich herumkommandiert wie eine Anziehpuppe."
-    user "Aber da war dieser eine Moment vor dem Spiegel."
-    user "Sie hat mich nicht als Projekt gesehen. Sie hat *mich* angesehen."
-    user "Ihr Kompliment war echt. Hinter all dem Glitzer und der Arroganz steckt jemand, der einfach nur Perfektion sucht – auch in Beziehungen."
-    user "Und dass sie mich 'akzeptabel' fand... aus ihrem Mund ist das wohl die größte Liebeserklärung."
+    elif mall_date_choice == "Velvette":
+        scene bg mall with fade
+        show velvette blush
+        user "Velvette in der Boutique..."
+        user "Ich musste grinsen. Sie hat mich herumkommandiert wie eine Anziehpuppe."
+        user "Aber da war dieser eine Moment vor dem Spiegel."
+        user "Sie hat mich nicht als Projekt gesehen. Sie hat *mich* angesehen."
+        user "Ihr Kompliment war echt. Hinter all dem Glitzer und der Arroganz steckt jemand, der einfach nur Perfektion sucht – auch in Beziehungen."
+        user "Und dass sie mich 'akzeptabel' fand... aus ihrem Mund ist das wohl die größte Liebeserklärung."
 
 
     # --- REFLEKTION MACOI ---
-    user "Macoi im Kino..."
-    user "Ich habe ihn noch nie so lebendig gesehen. Seine Augen haben geleuchtet."
-    user "Normalerweise schläft er im Stehen, aber wenn es um Dinge geht, die er liebt, ist er voll da."
-    user "Und er hat seine Nachos mit mir geteilt. Seine heiligen Nachos."
-    user "Es hat sich so... natürlich angefühlt. Als würden wir schon immer nebeneinander sitzen."
-    user "Er braucht keine großen Worte. Seine Nähe reicht völlig aus."
+    elif mall_date_choice == "Macoi":
+        scene bg mall with fade
+        show macoi blush
+        user "Macoi im Kino..."
+        user "Ich habe ihn noch nie so lebendig gesehen. Seine Augen haben geleuchtet."
+        user "Normalerweise schläft er im Stehen, aber wenn es um Dinge geht, die er liebt, ist er voll da."
+        user "Und er hat seine Nachos mit mir geteilt. Seine heiligen Nachos."
+        user "Es hat sich so... natürlich angefühlt. Als würden wir schon immer nebeneinander sitzen."
+        user "Er braucht keine großen Worte. Seine Nähe reicht völlig aus."
 
 
     # --- REFLEKTION CINO ---
-    user "Ich blickte auf den Nachttisch. Da stand sie. Die kleine, kitschige Katzenfigur."
-    user "Cino..."
-    user "Er ist pures Chaos, aber er ist auch pure Freude."
-    user "Wie er durch den Laden gehüpft ist, völlig ohne Scham, einfach nur glücklich, mit mir dort zu sein."
-    user "Seine Begeisterung ist ansteckend. Wenn ich bei ihm bin, wird die Welt ein bisschen heller."
-    user "Er hat gesagt, das ist unser Maskottchen. 'Unseres'."
-    user "Der Gedanke ließ mein Herz schneller schlagen."
+    elif mall_date_choice == "Cino":
+        scene bg mall with fade
+        show cino blush
+        user "Ich blickte auf den Nachttisch. Da stand sie. Die kleine, kitschige Katzenfigur."
+        user "Cino..."
+        user "Er ist pures Chaos, aber er ist auch pure Freude."
+        user "Wie er durch den Laden gehüpft ist, völlig ohne Scham, einfach nur glücklich, mit mir dort zu sein."
+        user "Seine Begeisterung ist ansteckend. Wenn ich bei ihm bin, wird die Welt ein bisschen heller."
+        user "Er hat gesagt, das ist unser Maskottchen. 'Unseres'."
+        user "Der Gedanke ließ mein Herz schneller schlagen."
 
-    return
+    jump story_intro_05

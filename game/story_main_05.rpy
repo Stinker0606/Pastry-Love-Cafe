@@ -1,5 +1,20 @@
 label story_intro_05:
 
+# ##################################################################
+    # ##################################################################
+    # --- DEBUG / TEST: PUNKTE CHECK (SPÄTER LÖSCHEN) ---
+    # ##################################################################
+    # Zeigt mir im Spiel kurz an, wie viele Punkte jeder hat.
+    
+    "DEBUG MODE: Aktuelle Punkte-Übersicht:"
+    "Lavan: [lavan_points]"
+    "Macoi: [macoi_points]"
+    "Velvette: [velvette_points]"
+    "Cino: [cino_points]"
+    
+    # ##################################################################
+    # ##################################################################
+
 label act5_daydreaming_and_decision:
 
     # ---------------------------------------------------------
@@ -19,52 +34,65 @@ label act5_daydreaming_and_decision:
     # LOGIK: wer fragt ob alles ok ist (Höchster Affection-Wert)
     # ---------------------------------------------------------
 
-    # Wir ermitteln, wer den höchsten Wert hat.
+    python:
+        # Wir erstellen eine Liste, um zu vergleichen
+        points = {
+            LI_LAVAN: lavan_points,
+            LI_MACOI: macoi_points,
+            LI_VELVETTE: velvette_points,
+            LI_CINO: cino_points
+        }
+        # Der Gewinner ist der mit den meisten Punkten (bei Gleichstand gewinnt der, der zuerst in der Liste steht)
+        highest_affection_li = max(points, key=points.get)
 
     #if Lavan max love
-    l "\"Hey! Hallo?! Erde an [player_name]!\""
-    user "Ich zuckte zusammen. Lavan stand direkt vor mir, die Arme verschränkt, die Stirn in Falten."
-    user "\"Lavan? Was ist los? Brennt was?\""
-    l "\"Nein. Aber du starrst seit fünf Minuten die Kaffeemühle an, als würdest du sie hypnotisieren wollen.\""
-    user "Er sah zur Seite, seine Stimme wurde etwas leiser, fast nuschelnd."
-    l "\"Du... wirkst nicht ganz da. Bist du krank? Oder hast du gestern zu viel Unsinn gegessen?\""
-    user "\"Mir geht's gut, Lavan. Ich habe nur nachgedacht.\""
-    l "\"Tsk. Dann denk gefälligst an die Arbeit. Ich brauche dich hier fit. Verstanden?\""
-    user "Trotz der harschen Worte blieb er noch einen Moment stehen und musterte mich besorgt, bevor er zurück zur Maschine ging."
+    if highest_affection_li == LI_LAVAN:
+        l "\"Hey! Hallo?! Erde an [player_name]!\""
+        user "Ich zuckte zusammen. Lavan stand direkt vor mir, die Arme verschränkt, die Stirn in Falten."
+        user "\"Lavan? Was ist los? Brennt was?\""
+        l "\"Nein. Aber du starrst seit fünf Minuten die Kaffeemühle an, als würdest du sie hypnotisieren wollen.\""
+        user "Er sah zur Seite, seine Stimme wurde etwas leiser, fast nuschelnd."
+        l "\"Du... wirkst nicht ganz da. Bist du krank? Oder hast du gestern zu viel Unsinn gegessen?\""
+        user "\"Mir geht's gut, Lavan. Ich habe nur nachgedacht.\""
+        l "\"Tsk. Dann denk gefälligst an die Arbeit. Ich brauche dich hier fit. Verstanden?\""
+        user "Trotz der harschen Worte blieb er noch einen Moment stehen und musterte mich besorgt, bevor er zurück zur Maschine ging."
 
     #if Velvette max love
-    user "Ein Schnippen vor meinen Augen holte mich zurück in die Realität."
-    v "\"Darling? Bist du eingefroren? Das steht dir nicht.\""
-    user "Velvette lehnte elegant am Tresen und musterte mich mit kritischem, aber aufmerksamem Blick."
-    user "\"Oh. Sorry, Velvette. Ich war in Gedanken.\""
-    v "\"Offensichtlich. Deine Aura ist völlig zerstreut. Es ist der Ausflug gestern, nicht wahr?\""
-    user "Sie lächelte leicht, fast wissend."
-    v "\"Hat dich meine Gesellschaft so sehr beeindruckt, dass du jetzt zu keiner kognitiven Leistung mehr fähig bist?\""
-    user "\"Vielleicht ein bisschen.\""
-    v "\"Verständlich. Ruh dich aus, wenn du musst. Ich kann es nicht gebrauchen, wenn mein Personal Augenringe bekommt.\""
+    elif highest_affection_li == LI_VELVETTE:
+        user "Ein Schnippen vor meinen Augen holte mich zurück in die Realität."
+        v "\"Darling? Bist du eingefroren? Das steht dir nicht.\""
+        user "Velvette lehnte elegant am Tresen und musterte mich mit kritischem, aber aufmerksamem Blick."
+        user "\"Oh. Sorry, Velvette. Ich war in Gedanken.\""
+        v "\"Offensichtlich. Deine Aura ist völlig zerstreut. Es ist der Ausflug gestern, nicht wahr?\""
+        user "Sie lächelte leicht, fast wissend."
+        v "\"Hat dich meine Gesellschaft so sehr beeindruckt, dass du jetzt zu keiner kognitiven Leistung mehr fähig bist?\""
+        user "\"Vielleicht ein bisschen.\""
+        v "\"Verständlich. Ruh dich aus, wenn du musst. Ich kann es nicht gebrauchen, wenn mein Personal Augenringe bekommt.\""
 
     #if Cino max love
-    user "Plötzlich spürte ich eine Hand auf meiner Stirn."
-    c "\"Hmm... kein Fieber. Aber du guckst so glasig!\""
-    user "Cino stand vor mir, die Augen groß vor Sorge. Er hielt einen halb aufgegessenen Keks in der anderen Hand."
-    user "\"Cino? Alles okay?\""
-    c "\"Das frage ich dich! Du hast den Kunden gar nicht gehört! Geht es dir gut? Bist du traurig?\""
-    user "\"Nein, gar nicht. Ich bin nur etwas... verträumt.\""
-    c "\"Oh! Verträumt ist gut! Aber mach mir keine Angst, okay?\""
-    user "Er brach ein Stück von seinem Keks ab und hielt es mir hin."
-    c "\"Hier. Zucker hilft beim Denken!\""
+    elif highest_affection_li == LI_CINO:
+        user "Plötzlich spürte ich eine Hand auf meiner Stirn."
+        c "\"Hmm... kein Fieber. Aber du guckst so glasig!\""
+        user "Cino stand vor mir, die Augen groß vor Sorge. Er hielt einen halb aufgegessenen Keks in der anderen Hand."
+        user "\"Cino? Alles okay?\""
+        c "\"Das frage ich dich! Du hast den Kunden gar nicht gehört! Geht es dir gut? Bist du traurig?\""
+        user "\"Nein, gar nicht. Ich bin nur etwas... verträumt.\""
+        c "\"Oh! Verträumt ist gut! Aber mach mir keine Angst, okay?\""
+        user "Er brach ein Stück von seinem Keks ab und hielt es mir hin."
+        c "\"Hier. Zucker hilft beim Denken!\""
 
     #if Macoi max love
-    user "Jemand tippte mir leicht gegen den Ellbogen."
-    user "Ich drehte mich um. Macoi stand da, leise wie immer."
-    m "\"Lag?\""
-    user "\"Was?\""
-    m "\"Du hast gelaggt. Standbild. Seit zwei Minuten.\""
-    user "Er musterte mich aus seinen halb geschlossenen Augen. Er wirkte nicht genervt, eher... beobachtend."
-    user "\"Ja... sorry. Mein System muss wohl noch laden.\""
-    m "\"Verstehe. Zu viele Hintergrundprozesse vom Wochenende.\""
-    user "Er schob mir stillschweigend einen frischen Kaffee über den Tresen, den er eigentlich für sich gemacht hatte."
-    m "\"Reboot. Wir brauchen dich.\""
+    elif highest_affection_li == LI_MACOI:
+        user "Jemand tippte mir leicht gegen den Ellbogen."
+        user "Ich drehte mich um. Macoi stand da, leise wie immer."
+        m "\"Lag?\""
+        user "\"Was?\""
+        m "\"Du hast gelaggt. Standbild. Seit zwei Minuten.\""
+        user "Er musterte mich aus seinen halb geschlossenen Augen. Er wirkte nicht genervt, eher... beobachtend."
+        user "\"Ja... sorry. Mein System muss wohl noch laden.\""
+        m "\"Verstehe. Zu viele Hintergrundprozesse vom Wochenende.\""
+        user "Er schob mir stillschweigend einen frischen Kaffee über den Tresen, den er eigentlich für sich gemacht hatte."
+        m "\"Reboot. Wir brauchen dich.\""
 
 
     # ---------------------------------------------------------
@@ -72,7 +100,7 @@ label act5_daydreaming_and_decision:
     # ---------------------------------------------------------
 
     scene bg_bedroom_night with fade
-    #brauche am besten Musik hier
+    #brauche am besten Musik hier - Welche?? XD wir haben music. Im /audio ordner.
 
     user "Der Arbeitstag ging vorbei, aber das Gefühl blieb."
 
@@ -97,4 +125,32 @@ label act5_daydreaming_and_decision:
     # Am besten nennt man sie Epilog_NamevonLI
     # ---------------------------------------------------------
 
+    ## PLS DIE TEXTE ÄNDERN, die hat mit Code pilot (die code AI gegeben) XD
+
+    menu:
+        "Es ist Lavan.":
+            $ lavan_points += 20
+            user "Hinter seiner rauen Schale steckt jemand, der sich kümmert. Ich will diejenige sein, die ihn zum Lächeln bringt."
+            jump Epilog_Lavan
+
+        "Es ist Macoi.":
+            $ macoi_points += 20
+            user "Seine Ruhe ist genau das, was ich brauche. Bei ihm fühlt sich die Welt nicht so laut an."
+            jump Epilog_Macoi
+
+        "Es ist Velvette.":
+            $ velvette_points += 20
+            user "Sie fordert mich heraus, aber sie sieht mich auch. Wirklich mich. Ich will an ihrer Seite glänzen."
+            jump Epilog_Velvette
+
+        "Es ist Cino.":
+            $ cino_points += 20
+            user "Er ist mein Sonnenschein. Mit ihm wird jeder Tag zu einem Abenteuer. Ich will dieses Lachen nie verlieren."
+            jump Epilog_Cino
+
     return
+
+# ---------------------------------------------------------
+# DIE EPILOGE SIND IN DEN JEWEILIGEN CHARAKTER DATEIEN
+# ---------------------------------------------------------
+
