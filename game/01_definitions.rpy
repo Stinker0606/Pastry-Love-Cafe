@@ -74,33 +74,44 @@ image mc_neutral = ConditionSwitch(
 )
 
 ## Lavan
-#image lavan smile = "images/sprites/lavan/smile.png"
-# Placeholder für die Idle
+image lavan angry = Transform(Movie(play="images/sprites/lavan/Lavan_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan idle = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_Animation.webm", loop=True), zoom=0.45)
+image lavan blush = Transform(Movie(play="images/sprites/lavan/Lavan_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
+
+image lavan happy = Transform(Movie(play="images/sprites/lavan/Lavan_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
+
+image lavan neutral = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
+
+image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Macoi
-#image macoi smile = "images/sprites/macoi/smile.png"
 
 ## Velvette
-#image velvette smile = "images/sprites/velvette/smile.png"
+image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette blush = Transform(Movie(play="images/sprites/velvette/Velvette_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette happy = Transform(Movie(play="images/sprites/velvette/Velvette_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Cino
-#image cino smile = "images/sprites/cino/smile.png"
-# Placeholder für die Idle
 
-image cino idle = Transform(Movie(play="images/sprites/cino/cino_idle_anim.webm", loop=True), zoom=0.75)
 
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
 image bg white = Solid("#ffffff")
-image bg cafe = "images/backgrounds/Counter_Background.png"
-image bg kitchen = "images/backgrounds/Baking_Game_Background.png"
-
+image bg cafe = Transform("images/backgrounds/Counter_Background.png", size=(1920, 1080))
+image bg kitchen = Transform("images/backgrounds/Baking_Game_Background.png", size=(1920, 1080))
+image bg cinema = Transform("images/backgrounds/Cinema_Background.png", size=(1920, 1080))
+image bg boutique = Transform("images/backgrounds/Clothing_Store_Background.png", size=(1920, 1080))
+image bg mall = Transform("images/backgrounds/Mall_Inside_Background.png", size=(1920, 1080))
 
 ## Gallery Stuff
-image cg 1 = "images/gallery/cg_lavan_hug.jpg"
-image cg 1 thumb = "images/gallery/thumb_lavan_hug.jpg"
+image cg 1 = Transform("images/gallery/cg_lavan_hug.jpg", size=(1920, 1080))
+image cg 1 thumb = Transform("images/gallery/thumb_lavan_hug.jpg", size=(1920, 1080))
 
 ## Minigame Images
 
@@ -108,16 +119,13 @@ image cg 1 thumb = "images/gallery/thumb_lavan_hug.jpg"
 image team_logo = "gui/team_logo.png"
 
 ## -- 5. Transform-Definitionen (Position-Definierung) --
-transform alpha_flash:
-    alpha 1.0
-    linear 0.5 alpha 0.2
-    linear 0.5 alpha 1.0
-    repeat
 
-transform at_left:
+transform left:
     xalign 0.25 yalign 1.0
-transform at_right:
+transform right:
     xalign 0.75 yalign 1.0
+transform middle:
+    xalign 0.50 yalign 1.0    
 
 ## -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
 transform pos_1:
@@ -132,13 +140,29 @@ transform pos_3:
 transform pos_4:
     xalign 0.94 yalign 1.0 # Ganz rechts
 
-## 
+## Normale Positionen
 
 transform pos_01:
     xalign 0.07 yalign 0.3 # Ganz links
 
 transform pos_02:
     xalign 0.90 yalign 0.15 # Ganz rechts
+
+## 5.1 -- Animations für Schrift und anderen Stuff --
+
+## Lässt XY leicht auf und ab schweben
+transform result_floating_anim:
+    yoffset 0
+    linear 2.0 yoffset -15 # 2 Sekunden lang 15px hoch
+    linear 2.0 yoffset 0   # 2 Sekunden lang wieder runter
+    repeat
+
+## Lässt XY an und aus blinken
+transform alpha_flash:
+    alpha 1.0
+    linear 0.5 alpha 0.2
+    linear 0.5 alpha 1.0
+    repeat
 
 ## -- 6. MINIGAME Definierungen & Grundlogik --
 init python:
@@ -162,7 +186,8 @@ init python:
         ## --- ALLTAGS-REZEPT 2: ERDBEER CREPE --- Komplexes Rezept
         "Erdbeer Crepe": {
             ## Hier sieht man die Skalierbarkeit: Neue Zutaten erfordern keinen Code-Change.
-            "steps": ["Mehl", "Milch", "Ei", "Ei", "Zucker", "Mixen"],
+            "steps": ["Mehl", "Milch", "Milch", "Ei", "Ei", "Zucker", "Butter", "Mixen"],
             "type": "crepe" # Trigger für Phasen-Wechsel (Teig -> Pfanne)
         }
     }
+    

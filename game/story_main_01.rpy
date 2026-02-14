@@ -268,11 +268,11 @@ label story_intro_01:
     ## Finding Game TEST 1 - HIER RICHTIGES FINDING GAME DANN MACHEN
     call run_finding_minigame(
         "bg kitchen",
-        "images/minigames/finding/testo_idle.png",
-        "images/minigames/finding/testo_hover.png",
-        850,
-        450,
-        0.05
+        "images/minigames/finding/Pulver_Sprite.png",
+        "images/minigames/finding/Pulver_Sprite_hover.png",
+        1100, # links rechts achse
+        530, # oben unten achse
+        0.1 # Grösse des Objekts
     )
 
     user "Das ungeöffnete Pulver."

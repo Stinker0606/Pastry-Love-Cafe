@@ -2,7 +2,8 @@
 screen finding_game_screen(bg_image, obj_idle, obj_hover, obj_x, obj_y, obj_scale):
     
     # 1. Der Hintergrund (Dynamisch)
-    add bg_image 
+    add bg_image:
+        size (1920, 1080)
 
     # 2. Das gesuchte Objekt
     imagebutton:
