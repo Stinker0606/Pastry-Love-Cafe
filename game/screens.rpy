@@ -273,6 +273,7 @@ screen quick_menu():
             at button_scale1        
             idle "gui/button/skip_idle.png"
             hover "gui/button/skip_hover.png"
+            selected_idle "gui/button/skip_hover.png"
             action Skip() alternate Skip(fast=True, confirm=True)
             ypos 715
             xpos 1320                    

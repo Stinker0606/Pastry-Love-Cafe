@@ -69,14 +69,13 @@ init python:
     
     ## Positionen der Zutaten
     ingredient_positions = {
-        "Mehl": (1700, 750),
-        "Ei": (1530, 830),
-        "Zucker": (1040, 200),
+        "Mehl": (1500, 750),
+        "Ei": (380, 650), #1530, 830
+        "Zucker": (1040, 200), 
         "Milch": (755, 145), 
-        "Butter": (660, 520),
-        "Streusel": (340, 630),
+        "Butter": (1640, 540),
+        "Streusel": (50, 800), #340, 630
         "Whisk": (955, 350),
-        "Erdbeeren": (1675, 662) 
     }
 
     ## Globale Variable, um zu wissen, ob der Besen gehalten wird
@@ -238,15 +237,23 @@ screen baking_minigame_screen(recipe_name, helper=None):
     key "K_F5" action NullAction()              # Standard Quicksave Taste
     key "K_F6" action NullAction()              # Standard Quickload Taste
     key "K_s" action NullAction()               # Screenshot Taste
+
+    default current_helper = helper or store.current_kitchen_helper
     
     add "images/backgrounds/Baking_Game_Background.png":
         size (1920, 1080)
 
-    # --- INSTRUKTIONS BUTTON (Oben Links) ---
+    # --- CHIBI HELFER ANZEIGE ---
+    if current_helper:
+        add "images/minigames/baking/chibi_" + current_helper + ".png":
+            xalign 0.60 yalign 0.81  # Position
+            zoom 0.85                
+
+    # --- INSTRUKTIONS BUTTON (Oben Rechts) ---
     imagebutton:
-        idle Transform("gui/minigames/Instruction_Button_Idle.png", zoom=0.08)
-        hover Transform("gui/minigames/Instruction_Button_pick.png", zoom=0.08)
-        xpos 1250 ypos 50 # Nicht ganz in der Ecke
+        idle Transform("gui/minigames/Instruction_Button_Idle.png", zoom=0.06)
+        hover Transform("gui/minigames/Instruction_Button_pick.png", zoom=0.06)
+        xpos 83 ypos 35
         action Show("baking_instructions")
         focus_mask True
 
@@ -290,7 +297,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 1700 ypos 750 
+            xpos 1500 ypos 750 #xpos 1700 ypos 750
 
         ## EI
         drag:
@@ -304,7 +311,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
             #focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 1530 ypos 830
+            xpos 380 ypos 650 #xpos 1530 ypos 830
 
         ## ZUCKER
         drag:
@@ -346,12 +353,12 @@ screen baking_minigame_screen(recipe_name, helper=None):
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 660 ypos 520
+            xpos 1640 ypos 540
             
         ## STREUSEL
         drag:
             drag_name "Streusel"
-            child Transform("images/minigames/baking/Sprinkles_Sprite.png", size=(150, 150))
+            child Transform("images/minigames/baking/Sprinkles_Sprite.png", size=(190, 190)) #150, 150
             # child Composite(
             #     (100, 60),
             #     (0, 0), Solid("#ff00ff"),
@@ -360,21 +367,16 @@ screen baking_minigame_screen(recipe_name, helper=None):
             focus_mask True
             droppable False
             dragged ingredient_dragged
-            xpos 340 ypos 630
+            xpos 50 ypos 800 #xpos 340 ypos 630
 
-                    ## STREUSEL
-        drag:
-            drag_name "Erdbeeren"
-            child Transform("images/minigames/baking/Cut_Strawberry_Sprite.png", size=(130, 130))
-            # child Composite(
-            #     (100, 60),
-            #     (0, 0), Solid("#ff00ff"),
-            #     (0, 0), Text("Streusel", size=20, color="#fff", xalign=0.5, yalign=0.5, xysize=(100,60))
-            # )
-            focus_mask True
-            droppable False
-            dragged ingredient_dragged
-            xpos 1675 ypos 662
+        ## Erdbeeren
+        # drag:
+        #     drag_name "Erdbeeren"
+        #     child Transform("images/minigames/baking/Cut_Strawberry_Sprite.png", size=(130, 130))
+        #     focus_mask True
+        #     droppable False
+        #     dragged ingredient_dragged
+        #     xpos 1675 ypos 662
 
         ## SCHNEEBESEN
         drag:
@@ -393,7 +395,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
             xpos 955 ypos 350
 
     ## Eier Karton
-    add Transform("images/minigames/baking/Egg_Sprite.png", size=(280, 280))xpos 1450 ypos 740
+    add Transform("images/minigames/baking/Egg_Sprite.png", size=(280, 280))xpos 300 ypos 560 #xpos 1450 ypos 740
     # Composite(
     #         (100, 50),
     #         (0, 0), Solid("#ffff00"),
@@ -418,37 +420,106 @@ screen baking_minigame_screen(recipe_name, helper=None):
             fixed:
                 fit_first True 
             
+                ## 1. Hintergrundbild
                 add visual_data["bg_image"]
                 
-                $ status = get_recipe_status(recipe_name, current_ingredients)
+                ## --- SMARTE ZÄHLUNG (Damit wir Schritte nacheinander abarbeiten) ---
+                $ temp_ing = list(current_ingredients)
                 
                 for item_name, needed_amount, pos_tuple in visual_data["strikes"]:
                     
-                    if item_name in status:
-                        $ have_amount = status[item_name]["current"]
+                    ## Wir berechnen, wie viel für DIESEN Schritt noch fehlt
+                    $ amount_found_for_step = 0
+                    python:
+                        for i in range(needed_amount):
+                            if item_name in temp_ing:
+                                temp_ing.remove(item_name)
+                                amount_found_for_step += 1
+                    
+                    $ amount_left = needed_amount - amount_found_for_step
+                    
+                    
+                    # -----------------------------------------------------
+                    # 1. IST ES FERTIG? (amount_left == 0) -> DURCHSTREICHEN
+                    # -----------------------------------------------------
+                    if amount_left == 0:
                         
-                        if have_amount >= needed_amount:
-                            
-                            ## DER SCHWARZE STRICH
-                            ## Da wir alles auf 0.2 zoomen, müssen wir die Werte hier
-                            ## VERFÜNFFACHEN, damit sie am Ende normal aussehen.
-                            
-                            add Solid("#000000d0"): # d0 ist etwas dunkler/deckender
-                                pos pos_tuple
-                                
-                                xoffset 0   # Schiebt den Strich nach RECHTS
-                                yoffset 0   # Schiebt den Strich nach UNTEN
+                        ## Der dicke schwarze Strich (Dein "alter" Code)
+                        add Solid("#000000d0"): 
+                            pos pos_tuple
+                            xoffset 0
+                            yoffset 0
+                            xsize 600 ysize 80  # Deine alten Maße
+                            yanchor 0.5
 
-                                ## Größe an das riesige Originalbild anpassen:
-                                xsize 600        # Entspricht ca. 120px auf dem Bildschirm (600 * 0.2)
-                                ysize 80         # Entspricht ca. 6px Dicke auf dem Bildschirm (30 * 0.2)
-                                yanchor 0.5
+                    # -----------------------------------------------------
+                    # 2. IST ES NOCH NICHT FERTIG? (Countdown anzeigen)
+                    # -----------------------------------------------------
+                    # Zeige Sticker NUR, wenn:
+                    # a) Es fehlt noch was (> 0)
+                    # b) Es ist schon weniger als am Anfang (< needed)
+                    # c) Es ist NICHT "Mixen" (WICHTIG!)
+                    elif amount_left > 0 and amount_left < needed_amount and item_name != "Mixen":
+                        
+                        ## Positionierung (Offsets)
+                        $ my_x_offset = 10
+                        $ my_y_offset = 0
+
+                        if item_name == "Zucker":
+                            $ my_x_offset = -30 
+                        elif item_name == "Ei":
+                            $ my_x_offset = 20
+
+                        # Das Pflaster (Weißer Hintergrund)
+                        add Solid("#f7f1eb"):
+                            pos pos_tuple
+                            xsize 210 ysize 160 
+                            yanchor 0.6 
+                            xanchor 0.0
+                            xoffset my_x_offset 
+                            yoffset my_y_offset
+
+                        # Das Bild (1x, 2x...)
+                        add "images/minigames/baking/count_" + str(amount_left) + ".png":
+                            pos pos_tuple
+                            yanchor 0.6
+                            xoffset my_x_offset 
+                            yoffset my_y_offset
+
+            # fixed:
+            #     fit_first True 
+            
+            #     add visual_data["bg_image"]
+                
+            #     $ status = get_recipe_status(recipe_name, current_ingredients)
+                
+            #     for item_name, needed_amount, pos_tuple in visual_data["strikes"]:
+                    
+            #         if item_name in status:
+            #             $ have_amount = status[item_name]["current"]
+                        
+            #             if have_amount >= needed_amount:
+                            
+            #                 ## DER SCHWARZE STRICH
+            #                 ## Da wir alles auf 0.2 zoomen, müssen wir die Werte hier
+            #                 ## VERFÜNFFACHEN, damit sie am Ende normal aussehen.
+                            
+            #                 add Solid("#000000d0"): # d0 ist etwas dunkler/deckender
+            #                     pos pos_tuple
+                                
+            #                     xoffset 0   # Schiebt den Strich nach RECHTS
+            #                     yoffset 0   # Schiebt den Strich nach UNTEN
+
+            #                     ## Größe an das riesige Originalbild anpassen:
+            #                     xsize 600        # Entspricht ca. 120px auf dem Bildschirm (600 * 0.2)
+            #                     ysize 80         # Entspricht ca. 6px Dicke auf dem Bildschirm (30 * 0.2)
+            #                     yanchor 0.5
 
     ## --- BUTTONS ---
 
     ## RESET
     textbutton "Reset":
-        xalign 0.97 yalign 0.99
+        xalign 1.0 yalign 0.99
         text_size 60
         #background Solid("#0000001a") # Halb-transparenter schwarzer Hintergrund
         padding (20, 10) # Etwas Platz innen
@@ -466,7 +537,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
 
     ## CANCEL
     textbutton "Cancel":
-        xalign -0.005 yalign 0.875
+        xalign -0.005 yalign 0.99  #0.875
         text_size 55
         #background Solid("#0000001c") # Halb-transparenter schwarzer Hintergrund
         padding (20, 10) # Etwas Platz innen
