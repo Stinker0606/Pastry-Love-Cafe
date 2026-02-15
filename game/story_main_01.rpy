@@ -1,9 +1,6 @@
-## -- TEIL 1: INTRO ---
-## -- TEIL 1: INTRO ---
 label story_intro_01:
     ## Wir starten in der Küche oder?
     scene bg kitchen with fade
-
     ## Intro Monolog
     user "Der Ofen funkte wieder, wütend, fast theatralisch. Ich roch etwas Verbranntes in der Luft, gerade als ich mich vorwarf, um den Hauptschalter umzulegen."
 

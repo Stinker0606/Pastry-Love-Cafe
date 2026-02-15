@@ -98,6 +98,7 @@ image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_
 image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Cino
+image cino neutral = Transform(Movie(play="images/sprites/cino/Cinoidle_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 
 ## Backgrounds
@@ -121,24 +122,31 @@ image team_logo = "gui/team_logo.png"
 ## -- 5. Transform-Definitionen (Position-Definierung) --
 
 transform left:
-    xalign 0.25 yalign 1.0
+    xalign 0.25 yalign 0.3
 transform right:
-    xalign 0.75 yalign 1.0
+    xalign 0.75 yalign 0.3
 transform middle:
-    xalign 0.50 yalign 1.0    
+    xalign 0.50 yalign 0.3
+
+transform left_vel:
+    xalign 0.25 yalign -1.0
+transform right_vel:
+    xalign 0.75 yalign -1.0
+transform middle_vel:
+    xalign 0.50 yalign -1.0           
 
 ## -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
 transform pos_1:
-    xalign 0.07 yalign 1.0 # Ganz links
+    xalign 0.01 yalign 0.3 # Ganz links
 
 transform pos_2:
-    xalign 0.36 yalign 1.0 # Links Mitte
+    xalign 0.32 yalign 0.3 # Links Mitte
 
 transform pos_3:
-    xalign 0.64 yalign 1.0 # Rechts Mitte
+    xalign 0.64 yalign -1.0 # Rechts Mitte
 
 transform pos_4:
-    xalign 0.94 yalign 1.0 # Ganz rechts
+    xalign 0.99 yalign 0.3 # Ganz rechts
 
 ## Normale Positionen
 
@@ -146,7 +154,7 @@ transform pos_01:
     xalign 0.07 yalign 0.3 # Ganz links
 
 transform pos_02:
-    xalign 0.90 yalign 0.15 # Ganz rechts
+    xalign 0.90 yalign 0.3 # Ganz rechts
 
 ## 5.1 -- Animations für Schrift und anderen Stuff --
 
