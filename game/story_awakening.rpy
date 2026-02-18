@@ -51,10 +51,10 @@ label awakening_sequence_start:
     user "Vor mir standen vier Leute, sichtlich an das Gebäck erinnert das ich vorher gebackt hatte"
 
     ## Zeigt die 4 Chars an. Schau wo du das einfügst, die Chars werden dann erst angezeigt wo das kommt.
-    show lavan smile at pos_1
-    show macoi smile at pos_2
-    show velvette smile at pos_3
-    show cino smile at pos_4
+    show lavan neutral at pos_1
+    show cino neutral at pos_2
+    show velvette neutral at pos_3
+    show macoi neutral at pos_4
     
     ## wer was sagt wenn man ihn als erstes gebacken hat: 
 

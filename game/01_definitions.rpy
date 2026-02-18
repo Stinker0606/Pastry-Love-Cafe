@@ -5,7 +5,7 @@ define m = Character("Macoi", color="#bef778")
 define v = Character("Velvette", color="#ac1c1c")
 define c = Character("Cino", color="#f1d576")
 define p = Character("Pierre", color="#9b73f8")
-define k = Character("STAMMKUNDIN", color="#0f0475")
+define k = Character("Stammkundin", color="#0f0475")
 define fm = Character ("Fremder Mann", color="#0f0475" )
 
 ## -- 2. Spiel-Variablen (default = wird bei "Neuem Spiel" zurückgesetzt) --
@@ -73,6 +73,11 @@ image mc_neutral = ConditionSwitch(
     "player_gender == 'female'", "images/sprites/mc/female/neutral.png",
 )
 
+# NPC Bilder
+image male npc = Transform("images/sprites/NPC_Male_Sprite.png", zoom=0.40)
+
+image female npc = Transform("images/sprites/NPC_Female_Sprite.png", zoom=0.40)
+
 ## Lavan
 image lavan angry = Transform(Movie(play="images/sprites/lavan/Lavan_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
@@ -84,7 +89,28 @@ image lavan neutral = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_s
 
 image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
+## FÜR SLOWING DER ANIMATION (Image.txt und txt anschauen!)
+
+# image lavan angry = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Angry/Lavan_Angry_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
+# image lavan blush = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Blush/Lavan_Blush_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
+# image lavan happy = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Happy/Lavan_Happy_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
+# image lavan neutral = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Neutral/Lavan_Idle_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
+# image lavan sad = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Sad/Lavan_Sad_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
 ## Macoi
+# image macoi angry = Transform(Movie(play="images/sprites/macoi/Macoingry_final.webm", loop=True, side_mask=True), zoom=0.8)
+
+# image macoi blush = Transform(Movie(play="images/sprites/macoi/MacoiBlush_final.webm", loop=True, side_mask=True), zoom=0.8)
+
+# image macoi happy = Transform(Movie(play="images/sprites/macoi/Macoihappy_final.webm", loop=True, side_mask=True), zoom=0.8)
+
+# image macoi neutral = Transform(Movie(play="images/sprites/macoi/Macoiidle_final.webm", loop=True, side_mask=True), zoom=0.8)
+
+# image macoi sad = Transform(Movie(play="images/sprites/macoi/Macoisad_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 ## Velvette
 image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
@@ -98,23 +124,35 @@ image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_
 image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Cino
+image cino angry = Transform(Movie(play="images/sprites/cino/Cinoangry_final.webm", loop=True, side_mask=True), zoom=0.8)
+
+image cino blush = Transform(Movie(play="images/sprites/cino/CinoBlush_final.webm", loop=True, side_mask=True), zoom=0.8)
+
+image cino happy = Transform(Movie(play="images/sprites/cino/Cinohappy_final.webm", loop=True, side_mask=True), zoom=0.8)
+
 image cino neutral = Transform(Movie(play="images/sprites/cino/Cinoidle_final.webm", loop=True, side_mask=True), zoom=0.8)
 
+# image cino sad = Transform(Movie(play="images/sprites/cino/Cinosad_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
 image bg white = Solid("#ffffff")
+
 image bg cafe = Transform("images/backgrounds/Counter_Background.png", size=(1920, 1080))
 image bg kitchen = Transform("images/backgrounds/Baking_Game_Background.png", size=(1920, 1080))
+
 image bg cinema = Transform("images/backgrounds/Cinema_Background.png", size=(1920, 1080))
 image bg boutique = Transform("images/backgrounds/Clothing_Store_Background.png", size=(1920, 1080))
 image bg mall = Transform("images/backgrounds/Mall_Inside_Background.png", size=(1920, 1080))
+
+image bg cafe2 = Transform("images/backgrounds/Cafe_Background.png", size=(1920, 1080))             # Anderer Cafe Screen
+image bg kitchen2 = Transform("images/backgrounds/Kitchen_Background.png", size=(1920, 1080))       # Anderer Kitchen Screen - nicht minigame
+
 
 ## Gallery Stuff
 image cg 1 = Transform("images/gallery/cg_lavan_hug.jpg", size=(1920, 1080))
 image cg 1 thumb = Transform("images/gallery/thumb_lavan_hug.jpg", size=(1920, 1080))
 
-## Minigame Images
 
 ## Other Images
 image team_logo = "gui/team_logo.png"
@@ -143,7 +181,7 @@ transform pos_2:
     xalign 0.32 yalign 0.3 # Links Mitte
 
 transform pos_3:
-    xalign 0.64 yalign -1.0 # Rechts Mitte
+    xalign 0.64 yalign -1.0 # Rechts Mitte 
 
 transform pos_4:
     xalign 0.99 yalign 0.3 # Ganz rechts
