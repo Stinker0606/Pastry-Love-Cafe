@@ -79,27 +79,27 @@ image male npc = Transform("images/sprites/NPC_Male_Sprite.png", zoom=0.40)
 image female npc = Transform("images/sprites/NPC_Female_Sprite.png", zoom=0.40)
 
 ## Lavan
-image lavan angry = Transform(Movie(play="images/sprites/lavan/Lavan_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image lavan angry = Transform(Movie(play="images/sprites/lavan/Lavan_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan blush = Transform(Movie(play="images/sprites/lavan/Lavan_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image lavan blush = Transform(Movie(play="images/sprites/lavan/Lavan_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan happy = Transform(Movie(play="images/sprites/lavan/Lavan_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image lavan happy = Transform(Movie(play="images/sprites/lavan/Lavan_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan neutral = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image lavan neutral = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## FÜR SLOWING DER ANIMATION (Image.txt und txt anschauen!)
 
-# image lavan angry = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Angry/Lavan_Angry_Time.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan angry = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Angry/Lavan_Angry_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
-# image lavan blush = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Blush/Lavan_Blush_Time.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan blush = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Blush/Lavan_Blush_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
-# image lavan happy = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Happy/Lavan_Happy_Time.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan happy = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Happy/Lavan_Happy_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
-# image lavan neutral = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Neutral/Lavan_Idle_Time.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan neutral = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Neutral/Lavan_Idle_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
-# image lavan sad = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Sad/Lavan_Sad_Time.webm", loop=True, side_mask=True), zoom=0.45)
+image lavan sad = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Sad/Lavan_Sad_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Macoi
 # image macoi angry = Transform(Movie(play="images/sprites/macoi/Macoingry_final.webm", loop=True, side_mask=True), zoom=0.8)
@@ -113,15 +113,27 @@ image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_slow.webm
 # image macoi sad = Transform(Movie(play="images/sprites/macoi/Macoisad_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 ## Velvette
-image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image velvette blush = Transform(Movie(play="images/sprites/velvette/Velvette_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image velvette blush = Transform(Movie(play="images/sprites/velvette/Velvette_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image velvette happy = Transform(Movie(play="images/sprites/velvette/Velvette_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image velvette happy = Transform(Movie(play="images/sprites/velvette/Velvette_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
-image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
+# image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
+
+## FÜR SLOWING DER ANIMATION (Image.txt und txt anschauen!)
+
+image velvette angry = Transform(Movie(play="images/sprites/ffmpeg/Velvette_Angry/Velvette_Angry_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette blush = Transform(Movie(play="images/sprites/ffmpeg/Velvette_Blush/Velvette_Blush_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette happy = Transform(Movie(play="images/sprites/ffmpeg/Velvette_Happy/Velvette_Happy_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette neutral = Transform(Movie(play="images/sprites/ffmpeg/Velvette_Neutral/Velvette_Neutral_Time.webm", loop=True, side_mask=True), zoom=0.45)
+
+image velvette sad = Transform(Movie(play="images/sprites/ffmpeg/Velvette_Sad/Velvette_Sad_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Cino
 image cino angry = Transform(Movie(play="images/sprites/cino/Cinoangry_final.webm", loop=True, side_mask=True), zoom=0.8)
@@ -189,7 +201,7 @@ transform pos_4:
 ## Normale Positionen
 
 transform pos_01:
-    xalign 0.07 yalign 0.3 # Ganz links
+    xalign 0.15 yalign 0.3 # Ganz links
 
 transform pos_02:
     xalign 0.90 yalign 0.3 # Ganz rechts
