@@ -144,6 +144,13 @@ define gui.dialogue_text_xalign = 0.0
 ## These variables, along with the image files in gui/button, control aspects of
 ## how buttons are displayed.
 
+## Sounds ######################################################################
+##
+## Diese Sounds werden abgespielt, wenn man mit den Buttons interagiert.
+
+define gui.button_hover_sound = None
+define gui.button_activate_sound = "audio/Select_Sound.mp3"
+
 ## The width and height of a button, in pixels. If None, Ren'Py computes a size.
 define gui.button_width = None
 define gui.button_height = None

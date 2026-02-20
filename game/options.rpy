@@ -209,3 +209,16 @@ init python:
 ## by a slash.
 
 # define build.itch_project = "renpytom/test-project"
+
+init python:
+    ## Zwingt den Sound auf das absolute Fundament
+    style.button.activate_sound = "audio/Select_Sound.mp3"
+    
+    ## Zwingt den Sound auf Imagebuttons
+    style.image_button.activate_sound = "audio/Select_Sound.mp3"
+    
+    ## --- Optionale Extras für Menüs ---
+    style.choice_button.activate_sound = "audio/Select_Sound.mp3"
+    style.quick_button.activate_sound = "audio/Select_Sound.mp3"
+    style.slot_button.activate_sound = "audio/Select_Sound.mp3"
+    style.navigation_button.activate_sound = "audio/Select_Sound.mp3"
