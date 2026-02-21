@@ -103,7 +103,7 @@ label story_intro_03:
     # IN DER KÜCHE (Interaktion)
     # ---------------------------------------------------------
 
-    scene bg_kitchen with dissolve
+    scene bg kitchen2 with dissolve
     user "Als ich die Küche betrat, saßen alle schon am Tisch."
 
     # --- GUTER TAG ---

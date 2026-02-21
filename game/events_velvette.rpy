@@ -52,6 +52,9 @@ label Epilog_Velvette:
     v "Ich bin vielleicht keine Kellnerin, aber ich bin dein größter Fan... und deine beste Werbung."
 
     # Hier wird ein Belohnungsbild
+    scene reward velvette with fade
+    $ persistent.ending_velvette_unlocked = True
+    $ persistent.cg_velvette_unlocked = True
 
     "In diesem Moment, zwischen den blühenden Blumen und dem Klappern der Tassen, wirkte sie nicht wie der unnahbare Star, den die Welt sah."
     "Sie war einfach Velvette. Und sie war glücklich."

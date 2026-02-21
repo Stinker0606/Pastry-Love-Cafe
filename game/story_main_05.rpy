@@ -1,20 +1,5 @@
 label story_intro_05:
 
-# ##################################################################
-    # ##################################################################
-    # --- DEBUG / TEST: PUNKTE CHECK (SPÄTER LÖSCHEN) ---
-    # ##################################################################
-    # Zeigt mir im Spiel kurz an, wie viele Punkte jeder hat.
-    
-    "DEBUG MODE: Aktuelle Punkte-Übersicht:"
-    "Lavan: [lavan_points]"
-    "Macoi: [macoi_points]"
-    "Velvette: [velvette_points]"
-    "Cino: [cino_points]"
-    
-    # ##################################################################
-    # ##################################################################
-
 label act5_daydreaming_and_decision:
 
     # ---------------------------------------------------------
@@ -120,33 +105,45 @@ label act5_daydreaming_and_decision:
 
     # ---------------------------------------------------------
     # DAS FINALE MENU der Entscheidung -> gibt mehr Affektion wert und dann je nachdem wer am meisten hat dessen Epilog bekommt man
-    # Du bekommst hier eine Entscheidung -> gibt dir Affektion mit deinem lI (mehr als sonst +20 oder so)
-    # Und dann je nachdem mit wem du am meisten hast bekommst du ein Epilog mit deinem LI -> das heißt wie die story_main_05 so auch für jeden ein Epilog
-    # Am besten nennt man sie Epilog_NamevonLI
+    # Du bekommst hier eine Entscheidung -> gibt dir Affektion mit deinem lI (mehr als +20 oder so)
+    # Und dann je nachdem mit wem du am meisten hast bekommst du ein Epilog mit deinem LI.
     # ---------------------------------------------------------
 
     ## PLS DIE TEXTE ÄNDERN, die hat mit Code pilot (die code AI gegeben) XD
 
+    $ quick_menu = False
+
     menu:
-        "Es ist Lavan.":
-            $ lavan_points += 20
+        "Es ist Lavan." if lavan_points >= 2:
+            $ lavan_points += 10
             user "Hinter seiner rauen Schale steckt jemand, der sich kümmert. Ich will diejenige sein, die ihn zum Lächeln bringt."
+            $ quick_menu = True
             jump Epilog_Lavan
 
-        "Es ist Macoi.":
-            $ macoi_points += 20
+        "Es ist Macoi." if macoi_points >= 2:
+            $ macoi_points += 10
             user "Seine Ruhe ist genau das, was ich brauche. Bei ihm fühlt sich die Welt nicht so laut an."
+            $ quick_menu = True
             jump Epilog_Macoi
 
-        "Es ist Velvette.":
-            $ velvette_points += 20
+        "Es ist Velvette." if velvette_points >= 2:
+            $ velvette_points += 10
             user "Sie fordert mich heraus, aber sie sieht mich auch. Wirklich mich. Ich will an ihrer Seite glänzen."
+            $ quick_menu = True
             jump Epilog_Velvette
 
-        "Es ist Cino.":
-            $ cino_points += 20
+        "Es ist Cino." if cino_points >= 2:
+            $ cino_points += 10
             user "Er ist mein Sonnenschein. Mit ihm wird jeder Tag zu einem Abenteuer. Ich will dieses Lachen nie verlieren."
+            $ quick_menu = True
             jump Epilog_Cino
+
+        ## SICHERHEITS-OPTION (Falls der Spieler bei NIEMANDEM 2 Punkte hat, sonst crasht das Spiel!)
+        "Ich brauche noch Zeit für mich." if lavan_points < 2 and macoi_points < 2 and velvette_points < 2 and cino_points < 2:
+            user "Im Moment möchte ich mich einfach auf das Café konzentrieren..."
+            $ quick_menu = True
+            # jump Epilog_Single (falls wir Single-Ending haben wollen, sonst einfach zurück ins Main Menu)
+            return        
 
     return
 

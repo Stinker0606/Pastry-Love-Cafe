@@ -13,6 +13,9 @@ label Epilog_Cino:
     user "Ich schlang meine Arme um seine Mitte, legte mein Kinn auf seiner Schulter ab und drückte mich eng an seinen warmen Rücken."
 
     #Hier Bild zeigen, also das Belohnungsbild
+    scene reward cino with fade
+    $ persistent.ending_cino_unlocked = True
+    $ persistent.cg_cino_unlocked = True
     
     c "\"Da bist du ja wieder.\""
 

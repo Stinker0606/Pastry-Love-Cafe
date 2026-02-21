@@ -1,6 +1,6 @@
 label story_intro_01:
     ## Wir starten in der Küche oder?
-    scene bg kitchen with fade
+    scene bg kitchen2 with fade
     ## Intro Monolog
     user "Der Ofen funkte wieder, wütend, fast theatralisch. Ich roch etwas Verbranntes in der Luft, gerade als ich mich vorwarf, um den Hauptschalter umzulegen."
 
@@ -134,7 +134,7 @@ label story_intro_01:
 
     user "So ging ein weiterer Tag zu Ende, und ich konnte endlich durchatmen"
 
-    scene bg cafe with dissolve
+    scene bg cafe2 with dissolve
 
     user "Ich war gerade dabei, den Boden zu wischen hin und her, wie eine letzte, resignierte Choreografie, als die Türglocke erneut läutete."
 
@@ -264,12 +264,12 @@ label story_intro_01:
 
     ## Finding Game TEST 1 - HIER RICHTIGES FINDING GAME DANN MACHEN
     call run_finding_minigame(
-        "bg kitchen",
+        "bg kitchen2",
         "images/minigames/finding/Pulver_Sprite.png",
         "images/minigames/finding/Pulver_Sprite_hover.png",
         1100, # links rechts achse
         530, # oben unten achse
-        0.1 # Grösse des Objekts
+        0.05 # Grösse des Objekts
     )
 
     user "Das ungeöffnete Pulver."

@@ -151,7 +151,7 @@ image bg pink = Solid("#ffb6c1")
 image bg white = Solid("#ffffff")
 
 image bg cafe = Transform("images/backgrounds/Counter_Background.png", size=(1920, 1080))
-image bg kitchen = Transform("images/backgrounds/Baking_Game_Background.png", size=(1920, 1080))
+image bg kitchen = Transform("images/backgrounds/Baking_Game_Background.png", size=(1920, 1080)) # minigame screen
 
 image bg cinema = Transform("images/backgrounds/Cinema_Background.png", size=(1920, 1080))
 image bg boutique = Transform("images/backgrounds/Clothing_Store_Background.png", size=(1920, 1080))
@@ -160,11 +160,20 @@ image bg mall = Transform("images/backgrounds/Mall_Inside_Background.png", size=
 image bg cafe2 = Transform("images/backgrounds/Cafe_Background.png", size=(1920, 1080))             # Anderer Cafe Screen
 image bg kitchen2 = Transform("images/backgrounds/Kitchen_Background.png", size=(1920, 1080))       # Anderer Kitchen Screen - nicht minigame
 
-
 ## Gallery Stuff
-image cg 1 = Transform("images/gallery/cg_lavan_hug.jpg", size=(1920, 1080))
-image cg 1 thumb = Transform("images/gallery/thumb_lavan_hug.jpg", size=(1920, 1080))
+image reward lavan = Transform("images/gallery/Lavan_Belohnungsbild_Sprite.png", size=(1920, 1080))
+image reward velvette = Transform("images/gallery/Velvette_Belohnungsbild_Sprite.png", size=(1920, 1080))
+image reward macoi = Transform("images/gallery/Macoi_Belohnungsbild_Sprite.png", size=(1920, 1080))
+image reward cino = Transform("images/gallery/Cino_Belohnungsbild_Sprite.png", size=(1920, 1080))
 
+## --- GALERIE DEFINITIONEN ---
+define cg_file_lavan = "images/gallery/Lavan_Belohnungsbild_Sprite.png"
+define cg_file_macoi = "images/gallery/Macoi_Belohnungsbild_Sprite.png"
+define cg_file_velvette = "images/gallery/Velvette_Belohnungsbild_Sprite.png"
+define cg_file_cino = "images/gallery/Cino_Belohnungsbild_Sprite.png"
+define cg_file_locked = "images/gallery/cg_locked.png"
+define thumb_x = 550 #384
+define thumb_y = 324 #216
 
 ## Other Images
 image team_logo = "gui/team_logo.png"

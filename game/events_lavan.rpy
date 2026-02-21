@@ -22,7 +22,9 @@ label Epilog_Lavan:
     "Als Lavan mich bemerkte, hellte sich sein Gesicht sofort auf. Ein breites, liebevolles Lächeln breitete sich auf seinen Lippen aus und er kam mir mit schnellen Schritten entgegen."
 
     # Hier wird Belohnungsbild eingeblendet!
-
+    scene reward lavan with fade
+    $ persistent.ending_lavan_unlocked = True
+    $ persistent.cg_lavan_unlocked = True
 
     "Bevor ich auch nur ein Wort sagen konnte, schlang er sanft seine Arme um meine Taille und hob mich mit einer spielerischen Leichtigkeit in die Luft."
     "Ein fröhliches Lachen entwich mir, und ich legte meine Arme um seinen Nacken."

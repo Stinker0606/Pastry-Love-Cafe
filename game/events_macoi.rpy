@@ -48,7 +48,9 @@ label Epilog_Macoi:
     m "Etwas Dummes, Lustiges, bei dem man absolut nicht nachdenken muss."
 
     # Hier ein Belohnungsbild einfügen!
-
+    scene reward macoi with fade
+    $ persistent.ending_macoi_unlocked = True
+    $ persistent.cg_macoi_unlocked = True
 
     "Er stellte die Tassen ab, schaltete den Fernseher ein und ließ sich neben mich auf das Sofa fallen."
     "Sofort zog er mich an seine Seite, sodass ich mich an ihn kuscheln und meinen Kopf auf seiner Brust ablegen konnte."

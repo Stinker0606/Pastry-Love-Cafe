@@ -44,29 +44,35 @@ label story_intro_04:
     user "Ich sah in die Runde. Vier erwartungsvolle Gesichter (auch wenn zwei davon so taten, als wäre es ihnen egal)."
     user "Ich kann mich nicht zerteilen. Ich muss mich entscheiden."
 
+    $ quick_menu = False
+
     menu:
         "Mit Velvette in die Boutique gehen":
             $ mall_date_choice = "Velvette"
             call _add_affection(LI_VELVETTE, 1)
             $ cinema_date = "false"
+            $ quick_menu = True
             jump mall_date_velvette
 
         "Mit Lavan in den Liebesfilm gehen":
             $ mall_date_choice = "Lavan"
             call _add_affection(LI_LAVAN, 1)
             $ cinema_date = "true"
+            $ quick_menu = True
             jump mall_date_lavan
 
         "Mit Macoi in den Gaming-Film gehen":
             $ mall_date_choice = "Macoi"            
             call _add_affection(LI_MACOI, 1)
             $ cinema_date = "true"
+            $ quick_menu = True
             jump mall_date_macoi
 
         "Mit Cino bummeln gehen":
             $ mall_date_choice = "Cino"
             call _add_affection(LI_CINO, 1)
             $ cinema_date = "false"
+            $ quick_menu = True
             jump mall_date_cino
 
 # -------------------------------------------------------------------------
@@ -241,7 +247,7 @@ label mall_reunite:
     # --- REFLEKTION LAVAN ---
     if mall_date_choice == "Lavan":
         scene bg mall with fade             # BACKGROUND
-        show lavan blush at center          # Char kannst du wählen wann er gezeigt wird und wie. Im 01_definitions stehen die verschiedenen faces.
+        show lavan blush at middle          # Char kannst du wählen wann er gezeigt wird und wie. Im 01_definitions stehen die verschiedenen faces.
         user "Lavan im Kino..."
         user "Er hat so getan, als würde er den Film hassen. Als wäre es Folter für ihn."
         user "Aber ich habe gesehen, wie er sich die Augen gewischt hat."
@@ -254,7 +260,7 @@ label mall_reunite:
     # --- REFLEKTION VELVETTE ---
     elif mall_date_choice == "Velvette":
         scene bg mall with fade
-        show velvette blush at center
+        show velvette blush at middle_vel
         user "Velvette in der Boutique..."
         user "Ich musste grinsen. Sie hat mich herumkommandiert wie eine Anziehpuppe."
         user "Aber da war dieser eine Moment vor dem Spiegel."
@@ -266,7 +272,7 @@ label mall_reunite:
     # --- REFLEKTION MACOI ---
     elif mall_date_choice == "Macoi":
         scene bg mall with fade
-        show macoi blush at center
+        show macoi blush at middle
         user "Macoi im Kino..."
         user "Ich habe ihn noch nie so lebendig gesehen. Seine Augen haben geleuchtet."
         user "Normalerweise schläft er im Stehen, aber wenn es um Dinge geht, die er liebt, ist er voll da."
@@ -278,7 +284,7 @@ label mall_reunite:
     # --- REFLEKTION CINO ---
     elif mall_date_choice == "Cino":
         scene bg mall with fade
-        show cino blush at center
+        show cino blush at middle
         user "Ich blickte auf den Nachttisch. Da stand sie. Die kleine, kitschige Katzenfigur."
         user "Cino..."
         user "Er ist pures Chaos, aber er ist auch pure Freude."

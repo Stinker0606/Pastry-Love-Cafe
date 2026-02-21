@@ -18,8 +18,9 @@ label story_intro_02:
 
     user "Ich schnappte mir meine Zahnbürste und manövrierte mich geschickt um sie herum"
 
+    $ quick_menu = False
+
     #--------------
-    #Hier choice einfach leise dein Ding machen oder ihr ein Kompliment machen
     menu:
         "Einfach Leise mein Ding machen":
             # Hier passiert nichts Besonderes.
@@ -31,6 +32,8 @@ label story_intro_02:
 
             user "Ohne auch nur ihren Blick vom Spiegel zu lösen, antwortete sie trocken."
             v "\"Ich weiß.\""
+
+    $ quick_menu = True
 
     user "Ich seufzte leise, beendete mein Tanz und machte mich auf den Weg Richtung Küche, ihr das Badezimmer vollkommen überlassend."
 
@@ -97,7 +100,7 @@ label story_intro_02:
     #--------------
     #Hier eine Choice wenn man unterstützt also welche seite
 
-    user "Velvet kam die Treppe herunter, stolz wie eine Königin, die gerade frische Luft mit Parfüm verwechselt hatte."
+    user "Velvette kam die Treppe herunter, stolz wie eine Königin, die gerade frische Luft mit Parfüm verwechselt hatte."
 
     v "\"Mein Frühstück bitte ohne Fett, ohne Zucker und ohne jegliche Form von…\""
 
@@ -131,8 +134,9 @@ label story_intro_02:
 
     user "Jeder von ihnen hatte ein nicht so glückliches Gesichtsausdruck"
 
+    $ quick_menu = False
+
     #--------------
-    #Hier eine Wahl einfügen wenn man unterstützt (von allen 4), "So alles wird gut mässig"
     menu:
         "Velvette aufmuntern":
             call _add_affection(LI_VELVETTE, 1)
@@ -188,9 +192,11 @@ label story_intro_02:
 
             user "Er blinzelte langsam, nickte mir aber dann fast dankbar zu."
 
+    $ quick_menu = True
+
     #Sprung zum cafe
 
-    # Sprung zum Café / Hintergrundbild Café Interior
+    scene bg cafe with fade
 
     user "Eine halbe Stunde später standen wir im Café."
 
@@ -237,7 +243,7 @@ label story_intro_02:
 
     jump cafe_opening_decision_hub
 
-    ## --- DAS HUB MENÜ --- VIEL PLACEHOLDER TEXT
+    ## --- DAS HUB MENÜ ---
 label cafe_opening_decision_hub:
 
     # Wir berechnen kurz den Status
@@ -348,7 +354,7 @@ label start_opening_baking_process:
 ## --- SZENE: VELVETTE HELFEN ---
 ## ----------------------------------------------------------------
 label opening_help_velvette:
-    # show velvette neutral at center
+    show velvette neutral at middle_vel
 
     user "Ein Mann kam gerade herein in das Cafe. Leicht unsicher schaute er sich um."
     user "Velvette trat einen Schritt zur Seite, musterte den Mann von oben bis unten und rümpfte leicht die Nase."
@@ -379,7 +385,7 @@ label opening_help_velvette:
 ## --- SZENE: MACOI HELFEN ---
 ## ----------------------------------------------------------------
 label opening_help_macoi:
-    # show macoi tired at center
+    show macoi tired at middle
 
     user "Macoi hatte die Bestellung eingegeben, aber dann schien sein System in den Standby-Modus zu gehen."
     user "Er starrte auf den Tresen, während der Kunde erwartungsvoll sein Portemonnaie zückte."
@@ -412,7 +418,7 @@ label opening_help_macoi:
 ## --- SZENE: LAVAN HELFEN ---
 ## ----------------------------------------------------------------
 label opening_help_lavan:
-    # show lavan angry at center
+    show lavan angry at middle
 
     user "Lavan hämmerte den Siebträger gegen die Maschine. Seine Hände zitterten vor Wut."
     l "\"Warum passt das nicht?! Das ist Sabotage!\""
@@ -443,7 +449,7 @@ label opening_help_lavan:
 ## --- SZENE: CINO HELFEN ---
 ## ----------------------------------------------------------------
 label opening_help_cino:
-    # show cino nervous at center
+    show cino sad at middle
 
     # Platzhalter Text
     user "Cino kämpfte mit den Servietten."
@@ -475,76 +481,3 @@ label story_cafe_after_rush:
     user "Puh... Der Tag ist vorbei."
 
     jump story_intro_03
-
-
-## PLS LASSEN WAS HIER DRUNTER IST!!
-
-# ## Ab ins Alltag Hub
-#     jump alltag_start
-
-#     ## ========================================================================================================================================================================================
-#     ## -- BAKING HUB TEST --- BITTE DEN CODE HIER DRUNTER LASSEN
-#     ## ========================================================================================================================================================================================
-
-# ## --- TEIL 2: ALLTAG START ---
-# label alltag_start:
-#     $ day = 1
-#     jump alltag_hub
-
-# ## --- TEIL 3: ALLTAGS-HUB ---
-# label alltag_hub:
-#     ## --- TAGES-PLANUNG: WER IST WO? ---
-#     python:
-#         ## Tag 1 = Lavan, Tag 2 = Macoi, Tag 3 = Velvette, Tag 4 = Cino
-#         if (day % 4) == 1:
-#             current_kitchen_helper = "Lavan"
-#         elif (day % 4) == 2:
-#             current_kitchen_helper = "Macoi"
-#         elif (day % 4) == 3:
-#             current_kitchen_helper = "Velvette"
-#         else:
-#             current_kitchen_helper = "Cino"
-
-#     scene bg cafe
-#     user "Ich will was backen"
-
-#     menu:
-#         "In die Küche gehen":
-#             jump kitchen_room_interaction
-
-#         "Tag beenden":
-#             $ day += 1
-#             jump alltag_hub
-
-# ## --- KÜCHEN-RAUM ---
-# label kitchen_room_interaction:
-#     scene bg kitchen
-
-#     ## Zeige den Helfer, der Dienst hat
-#     if current_kitchen_helper == "Lavan":
-#         show lavan smile
-#         l "Auch mal da [player_name]."
-#     elif current_kitchen_helper == "Macoi":
-#         show macoi smile
-#         m "Hey."
-#     elif current_kitchen_helper == "Velvette":
-#         show velvette smile
-#         v "Naa"
-#     elif current_kitchen_helper == "Cino":
-#         show cino smile
-#         c "Hallo."
-
-#     menu:
-#         "Backen (Minigame)":
-#             ## Wir gehen zum Minigame-Hub.
-#             jump baking_minigame_hub
-
-#         "Reden":
-#             if current_kitchen_helper == "Lavan":
-#                 jump lavan_event_1
-#             elif current_kitchen_helper == "Macoi":
-#                 jump macoi_event_1
-#             elif current_kitchen_helper == "Velvette":
-#                 jump velvette_event_1
-#             elif current_kitchen_helper == "Cino":
-#                 jump cino_event_1
