@@ -26,6 +26,12 @@ label Epilog_Lavan:
     $ persistent.ending_lavan_unlocked = True
     $ persistent.cg_lavan_unlocked = True
 
+    window hide
+    $ quick_menu = False
+    pause
+    $ quick_menu = True
+    window show
+
     "Bevor ich auch nur ein Wort sagen konnte, schlang er sanft seine Arme um meine Taille und hob mich mit einer spielerischen Leichtigkeit in die Luft."
     "Ein fröhliches Lachen entwich mir, und ich legte meine Arme um seinen Nacken."
 

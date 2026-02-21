@@ -16,6 +16,12 @@ label Epilog_Cino:
     scene reward cino with fade
     $ persistent.ending_cino_unlocked = True
     $ persistent.cg_cino_unlocked = True
+
+    window hide
+    $ quick_menu = False
+    pause
+    $ quick_menu = True
+    window show
     
     c "\"Da bist du ja wieder.\""
 

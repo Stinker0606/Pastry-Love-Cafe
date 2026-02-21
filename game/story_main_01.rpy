@@ -267,9 +267,9 @@ label story_intro_01:
         "bg kitchen2",
         "images/minigames/finding/Pulver_Sprite.png",
         "images/minigames/finding/Pulver_Sprite_hover.png",
-        1100, # links rechts achse
-        530, # oben unten achse
-        0.05 # Grösse des Objekts
+        810, # links rechts achse
+        540, # oben unten achse
+        0.055 # Grösse des Objekts
     )
 
     user "Das ungeöffnete Pulver."

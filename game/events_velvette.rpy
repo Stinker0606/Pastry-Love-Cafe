@@ -56,6 +56,12 @@ label Epilog_Velvette:
     $ persistent.ending_velvette_unlocked = True
     $ persistent.cg_velvette_unlocked = True
 
+    window hide
+    $ quick_menu = False
+    pause
+    $ quick_menu = True
+    window show
+
     "In diesem Moment, zwischen den blühenden Blumen und dem Klappern der Tassen, wirkte sie nicht wie der unnahbare Star, den die Welt sah."
     "Sie war einfach Velvette. Und sie war glücklich."
 

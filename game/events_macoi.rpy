@@ -52,6 +52,12 @@ label Epilog_Macoi:
     $ persistent.ending_macoi_unlocked = True
     $ persistent.cg_macoi_unlocked = True
 
+    window hide
+    $ quick_menu = False
+    pause
+    $ quick_menu = True
+    window show
+
     "Er stellte die Tassen ab, schaltete den Fernseher ein und ließ sich neben mich auf das Sofa fallen."
     "Sofort zog er mich an seine Seite, sodass ich mich an ihn kuscheln und meinen Kopf auf seiner Brust ablegen konnte."
 
