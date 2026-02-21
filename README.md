@@ -22,10 +22,10 @@ Wenn im Café mal wieder alles schiefgeht, der Ofen Funken sprüht und die Küch
 
 Im *Pastry Love Café* triffst du auf vier ganz besondere Love Interests:
 
-* 🧡 **Lavan:** 
-* 💚 **Macoi:** 
-* ❤️ **Velvette:** 
-* 💛 **Cino:** 
+* 🧡 **Lavan** 
+* 💚 **Macoi** 
+* ❤️ **Velvette** 
+* 💛 **Cino** 
 
 ---
 
