@@ -102,15 +102,15 @@ image lavan neutral = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Neutral/
 image lavan sad = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Sad/Lavan_Sad_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
 ## Macoi
-# image macoi angry = Transform(Movie(play="images/sprites/macoi/Macoingry_final.webm", loop=True, side_mask=True), zoom=0.8)
+image macoi angry = Transform(Movie(play="images/sprites/macoi/Macoiangry_final.webm", loop=True, side_mask=True), zoom=0.8)
 
-# image macoi blush = Transform(Movie(play="images/sprites/macoi/MacoiBlush_final.webm", loop=True, side_mask=True), zoom=0.8)
+image macoi blush = Transform(Movie(play="images/sprites/macoi/MacoiBlush_final.webm", loop=True, side_mask=True), zoom=0.8)
 
-# image macoi happy = Transform(Movie(play="images/sprites/macoi/Macoihappy_final.webm", loop=True, side_mask=True), zoom=0.8)
+image macoi happy = Transform(Movie(play="images/sprites/macoi/Macoihappy_final.webm", loop=True, side_mask=True), zoom=0.8)
 
-# image macoi neutral = Transform(Movie(play="images/sprites/macoi/Macoiidle_final.webm", loop=True, side_mask=True), zoom=0.8)
+image macoi neutral = Transform(Movie(play="images/sprites/macoi/Macoiidle_final.webm", loop=True, side_mask=True), zoom=0.8)
 
-# image macoi sad = Transform(Movie(play="images/sprites/macoi/Macoisad_final.webm", loop=True, side_mask=True), zoom=0.8)
+image macoi sad = Transform(Movie(play="images/sprites/macoi/Macoisad_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 ## Velvette
 # image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
@@ -144,7 +144,7 @@ image cino happy = Transform(Movie(play="images/sprites/cino/Cinohappy_final.web
 
 image cino neutral = Transform(Movie(play="images/sprites/cino/Cinoidle_final.webm", loop=True, side_mask=True), zoom=0.8)
 
-# image cino sad = Transform(Movie(play="images/sprites/cino/Cinosad_final.webm", loop=True, side_mask=True), zoom=0.8)
+image cino sad = Transform(Movie(play="images/sprites/cino/Cinosad_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
