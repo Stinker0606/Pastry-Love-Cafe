@@ -5,7 +5,7 @@ define m = Character("Macoi", color="#bef778")
 define v = Character("Velvette", color="#ac1c1c")
 define c = Character("Cino", color="#f1d576")
 define p = Character("Pierre", color="#9b73f8")
-define k = Character("Stammkundin", color="#0f0475")
+define k = Character("Kundin", color="#753e6e")
 define fm = Character ("Fremder Mann", color="#0f0475" )
 
 ## -- 2. Spiel-Variablen (default = wird bei "Neuem Spiel" zurückgesetzt) --
@@ -192,7 +192,7 @@ transform left_vel:
 transform right_vel:
     xalign 0.75 yalign -1.0
 transform middle_vel:
-    xalign 0.50 yalign -1.0           
+    xalign 0.50 yalign -1.0
 
 ## -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
 transform pos_1:
@@ -202,7 +202,7 @@ transform pos_2:
     xalign 0.32 yalign 0.3 # Links Mitte
 
 transform pos_3:
-    xalign 0.64 yalign -1.0 # Rechts Mitte 
+    xalign 0.64 yalign -1.0 # Rechts Mitte
 
 transform pos_4:
     xalign 0.99 yalign 0.3 # Ganz rechts
@@ -257,4 +257,3 @@ init python:
             "type": "crepe" # Trigger für Phasen-Wechsel (Teig -> Pfanne)
         }
     }
-    

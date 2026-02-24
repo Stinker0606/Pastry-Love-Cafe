@@ -1,5 +1,5 @@
 label story_intro_01:
-    ## Wir starten in der Küche oder?
+
     scene bg kitchen2 with fade
     ## Intro Monolog
     user "Der Ofen funkte wieder, wütend, fast theatralisch. Ich roch etwas Verbranntes in der Luft, gerade als ich mich vorwarf, um den Hauptschalter umzulegen."
@@ -16,9 +16,9 @@ label story_intro_01:
 
     user "Mein Aussehen war reinster Chaos, ich hatte Mehl in den Wimpern. Mein linker Schuh war auf mysteriöse Weise klebrig."
 
-    ## Pierre ist da. Soll Pierre und die Kundin Bilder haben? Antwort: Pierre und Frau sollen ein Bild als Sillhouette haben (die Npc Sprites)
-    #hier bitte Effekt einfügen
     user "Pierre, der Lieferant, stürmte wie immer mit einem donnernden Auftritt durch die Hintertür."
+
+    ## Pierre ist da. Hier das Bild von Pierre einfügen. Ein Effekt das er von der Seite hergeschoben wird in die Mitte
 
     user "Schon von hier konnte ich es sehen: eine Kiste voller Milchprodukte und Eier in den Händen, aber kein Mehl."
 
@@ -46,7 +46,8 @@ label story_intro_01:
     user "Brachte er schließlich hervor und wandte sich zum Gehen um."
 
     ## Innerer Monolog über Eltern - Backstory Timeee ;-;
-    #maybe hier ein sound von einem Seufzen einfügen
+    #traurige Musik? Wir haben keine QwQ
+
     user "In solchen Momenten vermisste ich meine Eltern..."
 
     user "Mein Vater hätte die Meringue geschlagen mit den allerletzten Eiern, die ich für die Hochzeitstorte aufgehoben hatte, während er gleichzeitig die Baguettes rettete, bevor sie überbackten."
@@ -59,15 +60,17 @@ label story_intro_01:
 
     user "Natürlich nur metaphorisch."
 
-    ## Szenenwechsel zum Café-Bereich? Als Idee? Weiss nicht welche Szene wir haben wollen bzw wann welcher Wechsel
-    #Scenenwechsel einwenig später bei Kundin -> "Natürlich nur metaphorisch" schreiben das solche Gedanken sie besser fühlen lassen?
+    ## Szenenwechsel zum Cafe
+    scene bg cafe with dissolve
+
     user "Ich bewegte mich mit dem geübten Rhythmus eines Menschen, dessen Leben ständig ein kleines bisschen brannte."
 
     user "Ich rammte die Kasse mit der Hüfte, und sie sprang mit einem zufriedenstellenden Ding auf."
 
     user "Gleichzeitig zog ich ein Blech Croissants aus dem Gestell. Nur knapp an den herabhängenden Schürzen vorbei, welche inzwischen tief genug hingen, um sich selbst ein Gebäck zu gönnen."
 
-    ## Kundin kommt rein
+    ## Kundin kommt rein -> Hier das Frauen Npc Bild
+
     user "Vorne läutete die Glocke an ihrem wackligen Scharnier, als die Tür aufschwang."
 
     k "\"[player_name], hallo!\""
@@ -81,8 +84,6 @@ label story_intro_01:
     user "Ich schoss aus der Küche, vom Kopf bis zu den Schuhen in Mehl gehüllt."
 
     user "Meine Haare waren zu einem schiefen Dutt zusammengestopft, welcher heute bereits zum dritten Mal auseinanderfiel."
-
-    scene bg cafe with dissolve
 
     ## Kundin Dialog
     user "\"Schön dich zu sehen!\""
@@ -107,7 +108,6 @@ label story_intro_01:
 
     user "Mit dem Schürzenrand wischte ich mir über die Wange, was das Mehl nur noch schlimmer machte."
 
-    ## Kundin bezahlt und geht danach
     user "\"Sieben Euro, bitte.\""
 
     user "Es folgte der übliche Tanz. Sie versuchte, mir einen Zwanziger zuzustecken und mich danach abzuwimmeln."
@@ -144,7 +144,7 @@ label story_intro_01:
 
     user "Doch als ich mich aufrichtete und zur Tür blickte, stand dort ein Mann."
 
-    #hier Belohnungsbild mit dem Mann zeigen
+    #hier den Mann Npc zeigen mit fade in
 
     user "Ein Mann im Anzug. Dunkel, sauber, glatt. Ein kompletter Kontrast zu meinem mehlbedeckten Dasein. Draußen regnete es in Strömen, und durch das Licht hinter mir warf er einen langen, scharfen Schatten auf die Fliesen."
 
@@ -237,6 +237,7 @@ label story_intro_01:
     scene black with fade
 
     ## nächster Tag an dem sie die LI backen wird
+    # Vogelzwitschern Music?
 
     user "Ich stand wie immer früh morgens auf."
 
