@@ -78,6 +78,8 @@ image male npc = Transform("images/sprites/NPC_Male_Sprite.png", zoom=0.40)
 
 image female npc = Transform("images/sprites/NPC_Female_Sprite.png", zoom=0.40)
 
+image pierre npc = Transform("images/sprites/Pierre.png", zoom=0.60)
+
 ## Lavan
 # image lavan angry = Transform(Movie(play="images/sprites/lavan/Lavan_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
 
@@ -104,11 +106,11 @@ image lavan sad = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Sad/Lavan_Sa
 ## Macoi
 image macoi angry = Transform(Movie(play="images/sprites/macoi/Macoiangry_final.webm", loop=True, side_mask=True), zoom=0.8)
 
-image macoi blush = Transform(Movie(play="images/sprites/macoi/MacoiBlush_final.webm", loop=True, side_mask=True), zoom=0.8)
+image macoi blush = Transform(Movie(play="images/sprites/macoi/Macoiblush_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 image macoi happy = Transform(Movie(play="images/sprites/macoi/Macoihappy_final.webm", loop=True, side_mask=True), zoom=0.8)
 
-image macoi neutral = Transform(Movie(play="images/sprites/macoi/Macoiidle_final.webm", loop=True, side_mask=True), zoom=0.8)
+image macoi neutral = Transform(Movie(play="images/sprites/macoi/Macoineutral_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 image macoi sad = Transform(Movie(play="images/sprites/macoi/Macoisad_final.webm", loop=True, side_mask=True), zoom=0.8)
 
@@ -160,6 +162,8 @@ image bg mall = Transform("images/backgrounds/Mall_Inside_Background.png", size=
 image bg cafe2 = Transform("images/backgrounds/Cafe_Background.png", size=(1920, 1080))             # Anderer Cafe Screen
 image bg kitchen2 = Transform("images/backgrounds/Kitchen_Background.png", size=(1920, 1080))       # Anderer Kitchen Screen - nicht minigame
 
+image bg sig = Transform("images/backgrounds/Unterschrift.png", size=(1920, 1080)) # Unterschrift Background
+
 ## Gallery Stuff
 image reward lavan = Transform("images/gallery/Lavan_Belohnungsbild_Sprite.png", size=(1920, 1080))
 image reward velvette = Transform("images/gallery/Velvette_Belohnungsbild_Sprite.png", size=(1920, 1080))
@@ -193,6 +197,20 @@ transform right_vel:
     xalign 0.75 yalign -1.0
 transform middle_vel:
     xalign 0.50 yalign -1.0
+
+transform left_pi:
+    xalign 0.25 yalign -0.1
+transform right_pi:
+    xalign 0.75 yalign -0.1
+transform middle_pi:
+    xalign 0.50 yalign -0.1
+
+transform left_f:
+    xalign 0.25 yalign -0.0
+transform right_f:
+    xalign 0.75 yalign -0.0
+transform middle_f:
+    xalign 0.50 yalign -0.0       
 
 ## -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
 transform pos_1:

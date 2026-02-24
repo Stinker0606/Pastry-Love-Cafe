@@ -23,6 +23,8 @@ label _add_affection(li_name, amount=1):
 ## Dieses Label wird von 'game_start' aufgerufen
 label setup_player_character:
 
+    scene bg sig with fade
+
     # ## Schritt 1: Geschlecht wählen
     # user "Zuerst... wer bin ich?" # (user ist hier noch 'None', also Erzähler)
     # menu:
@@ -68,6 +70,6 @@ label setup_player_character:
 
     user "[player_name]"
 
-    user "Ich schaute kurz meinen Namen noch einmal an, bevor ich ihm das Klembrett wiedergab und böse anschaute"
+    user "Ich schaute kurz meinen Namen noch einmal an, bevor ich ihm das Klembrett wiedergab und Ihn böse anschaute."
 
     return ## Kehrt zurück

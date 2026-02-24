@@ -1,6 +1,8 @@
 label story_intro_01:
 
     scene bg kitchen2 with fade
+    play music "audio/Silly_Music.mp3" fadein 0.5 volume 0.75
+
     ## Intro Monolog
     user "Der Ofen funkte wieder, wütend, fast theatralisch. Ich roch etwas Verbranntes in der Luft, gerade als ich mich vorwarf, um den Hauptschalter umzulegen."
 
@@ -25,9 +27,11 @@ label story_intro_01:
     user "Bevor ich mich beschweren konnte schiebte er mir das Klembrett hin wo ich mit meinem Namen unterschreiben musste"
 
     call setup_player_character
+    scene bg kitchen2 with fade
+    show pierre npc at middle_pi
 
     ## Dialog mit Pierre
-    user "\"Drittes Mal diesen Monat, Pierre\""
+    user "\"Drittes Mal diesen Monat, Pierre.\""
 
     user "Meine Stimme hielt ich gezwungen ruhig, obwohl ich ziemlich genervt war, während ich die Rührschüssel auffing, bevor sie auf den Boden knallte."
 
@@ -35,20 +39,24 @@ label story_intro_01:
 
     user "Pierre schaffte es, schuldbewusst auszusehen, wenn auch nicht wirklich überrascht."
 
-    p "\"Es gibt einen Weizenmangel\""
+    p "\"Es gibt einen Weizenmangel.\""
 
     user "Murmelte er, als wäre das eine originelle Ausrede, meinen Blick dabei ausweichend."
 
     p "\"Schon wieder.\""
 
-    p "\"Nimm es oder lass es\""
+    p "\"Nimm es oder lass es.\""
 
     user "Brachte er schließlich hervor und wandte sich zum Gehen um."
 
+    hide pierre npc
+    stop music fadeout 2.5
+    
+
     ## Innerer Monolog über Eltern - Backstory Timeee ;-;
     #traurige Musik? Wir haben keine QwQ
-
     user "In solchen Momenten vermisste ich meine Eltern..."
+    play music "audio/Sad_Background_Music.mp3" fadein 0.5 volume 0.75
 
     user "Mein Vater hätte die Meringue geschlagen mit den allerletzten Eiern, die ich für die Hochzeitstorte aufgehoben hatte, während er gleichzeitig die Baguettes rettete, bevor sie überbackten."
 
@@ -57,21 +65,27 @@ label story_intro_01:
     user "Meine Mutter würde in der Zeit die Hälfte meines Rezeptbuchs umschreiben, um die fehlenden Zutaten auszugleichen, und sich um den vorderen Tresen kümmern."
 
     user "Sie liebte es, mit Menschen zu reden. Damit hätte ich noch genug Zeit, Pierre eine Kopfnuss zu verpassen."
+    stop music fadeout 3.5
 
     user "Natürlich nur metaphorisch."
 
     ## Szenenwechsel zum Cafe
     scene bg cafe with dissolve
+    play music "audio/Silly_Music.mp3" fadein 2.5 volume 0.75
 
     user "Ich bewegte mich mit dem geübten Rhythmus eines Menschen, dessen Leben ständig ein kleines bisschen brannte."
 
     user "Ich rammte die Kasse mit der Hüfte, und sie sprang mit einem zufriedenstellenden Ding auf."
 
     user "Gleichzeitig zog ich ein Blech Croissants aus dem Gestell. Nur knapp an den herabhängenden Schürzen vorbei, welche inzwischen tief genug hingen, um sich selbst ein Gebäck zu gönnen."
+    
 
     ## Kundin kommt rein -> Hier das Frauen Npc Bild
-
+    play sound "audio/Door_Bell_Sound.mp3"
+    
     user "Vorne läutete die Glocke an ihrem wackligen Scharnier, als die Tür aufschwang."
+
+    show female npc at middle_f
 
     k "\"[player_name], hallo!\""
 
@@ -94,9 +108,11 @@ label story_intro_01:
 
     user "\"Ich kann dir auch die glutenfreien anbieten, aber ich weiß, für dich ist das fast schon Blasphemie.\""
 
-    k "\"Ach Liebes, du kennst mich wirklich gut. Dann heute nur Baguette und Franzbrötchen\""
+    k "\"Ach Liebes, du kennst mich wirklich gut. Dann heute nur Baguette und Franzbrötchen.\""
 
     user "Sie zwinkerte mir zu mit einem lächeln, bevor sie an mir vorbeischaute zu den Rauch, der alarmierend aus der Küche kroch."
+
+    play sound "audio/Oven_Piep_Soundeffect.mp3"
 
     user "Hinter uns piepte der Ofen, als wäre er persönlich beleidigt, ignoriert zu werden."
 
@@ -120,9 +136,13 @@ label story_intro_01:
 
     k "\"Und reparier die Glocke!\""
 
+    play sound "audio/Door_Bell_Sound.mp3"
+
+    hide female npc
+
     user "Sie duckte sich gerade rechtzeitig, um nicht vom scheppernden Messing getroffen zu werden."
 
-    user "Der Rest des Tages verging im gleichen chaotischen Rhythmus"
+    user "Der Rest des Tages verging im gleichen chaotischen Rhythmus."
 
     user "Maschinen, die klangen, als würden sie ihre letzten Worte stammeln, Kunden, die spontan ihre Großfamilie mitbrachten, und ich, die versuchte, alles irgendwie zusammenzuhalten, während mein Dutt zum vierten Mal aufgab."
 
@@ -131,20 +151,26 @@ label story_intro_01:
     user "Die Glocke verstummte, der Ofen grollte nur noch wie ein müder Drache, und selbst Pierre schaffte es, die Hintertür diesmal nicht aus den Angeln zu treten."
 
     scene black with fade
+    stop music fadeout 2.5
 
-    user "So ging ein weiterer Tag zu Ende, und ich konnte endlich durchatmen"
+    user "So ging ein weiterer Tag zu Ende, und ich konnte endlich durchatmen."
 
     scene bg cafe2 with dissolve
+    play music "audio/Night_Cafe_Music.mp3" fadein 0.5 volume 0.75
 
     user "Ich war gerade dabei, den Boden zu wischen hin und her, wie eine letzte, resignierte Choreografie, als die Türglocke erneut läutete."
 
-    user "\"Wir haben geschlossen\""
+    play sound "audio/Door_Bell_Sound.mp3"
 
-    user "Ohne aufzublicken, murmelte ich das schon wie auf Autopilot"
+    user "\"Wir haben geschlossen.\""
+
+    user "Ohne aufzublicken, murmelte ich das schon wie auf Autopilot."
 
     user "Doch als ich mich aufrichtete und zur Tür blickte, stand dort ein Mann."
 
     #hier den Mann Npc zeigen mit fade in
+
+    show male npc at middle
 
     user "Ein Mann im Anzug. Dunkel, sauber, glatt. Ein kompletter Kontrast zu meinem mehlbedeckten Dasein. Draußen regnete es in Strömen, und durch das Licht hinter mir warf er einen langen, scharfen Schatten auf die Fliesen."
 
@@ -152,11 +178,11 @@ label story_intro_01:
 
     user "Nicht aus Angst… eher aus einer Art seltsamer Vorahnung."
 
-    user "Er neigte leicht den Kopf"
+    user "Er neigte leicht den Kopf."
 
     fm "\"Entschuldigen Sie. Sind Sie die Bäckerin…[player_name]?\""
 
-    user "\"Ja\""
+    user "\"Ja.\""
 
     user "Antwortete ich zwar, doch mein Verhalten zeigte deutlich meinen Skeptizismus und meine Vorsicht. Langsam machte ich mich auf den Weg zur Tür, bereit sie ihm im Notfall direkt vor der Nase zuzuschlagen."
 
@@ -183,8 +209,6 @@ label story_intro_01:
     user "Es huschte in flüchtiges, fast müdes Lächeln über sein Gesicht."
 
     user "Bevor er eintrat, blickte er kurz über seine Schulter, als wollte er sicherstellen, dass niemand ihm gefolgt war."
-
-    scene bg cafe with dissolve
 
     user "Wir setzten uns an einen der frisch geputzten Tische. Erst da, im warmen Licht, begann er ein wenig zu entspannen."
 

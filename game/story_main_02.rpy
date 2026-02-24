@@ -511,7 +511,7 @@ label opening_help_cino:
 
 label story_cafe_after_rush:
     scene bg cafe with fade
- # HIER RESETTEN WIR DEN KRAM FÜRS BACKEN ZUR SICHERHEIT
+    # HIER RESETTEN WIR DEN KRAM FÜRS BACKEN ZUR SICHERHEIT
     $ baking_context = None
 
 
