@@ -98,7 +98,44 @@ label story_intro_02:
     user "Er stellte ihn etwas zu kräftig auf den Tisch, sodass mein Salzstreuer bedrohlich wackelte."
 
     #--------------
-    #Hier eine Choice wenn man unterstützt also welche seite
+    #Hier eine Choice wenn man unterstützt also welche seite - Cino oder Lavan
+    #Lavan
+    user "\"Ganz ehrlich Cino... vor dem ersten Kaffee bin ich auch nicht aufnahmefähig für dein Geyappe.\""
+
+    user "Ich verstehe seinen Schmerz. Eine kaputte Kaffeemaschine ist ein nationaler Notstand."
+
+    show lavan happy
+
+    "Lavan ließ die Schultern etwas sinken und sah mich mit einem Blick an, der fast dankbar wirkte."
+
+    l "\"Endlich jemand mit Verstand hier drin.\""
+
+    l "\"Dieser Apparat ist reine Sabotage. Ich brauche Koffein, kein Gebäck-Gequassel.\""
+
+    show cino sad
+
+    c "\"Oh! Ähm... tut mir leid! Hier, einfach essen!\""
+
+    "Cino schob uns schnell die Teller hin, sichtlich bemüht, nicht noch weiter Lavans Koffein-Entzug zu provozieren."
+
+    #Cino
+    user "\"Hey, Lavan, fahr mal einen Gang runter. Cino hat sich echt Mühe gegeben.\""
+
+    user "\"Und außerdem: Es gibt keine 'zu fluffigen' Pfannkuchen. Das sieht köstlich aus, Cino.\""
+
+    show cino happy
+
+    "Cinos Augen leuchteten auf, als hätte ich ihm gerade den Nobelpreis verliehen."
+
+    c "\"Siehst du? [player_name] verstehts!\""
+
+    show lavan angry
+
+    "Lavan schnaubte nur."
+
+    l "\"Hmpf.\""
+
+    #--------------
 
     user "Velvette kam die Treppe herunter, stolz wie eine Königin, die gerade frische Luft mit Parfüm verwechselt hatte."
 
@@ -395,14 +432,14 @@ label opening_help_macoi:
     $ quick_menu = False
 
     menu:
-        "Ihn verbal erinnern ('Macoi, kassieren!')":
+        "Ihn verbal erinnern":
             # Falsch
             $ task_result_macoi = "fail"
             $ quick_menu = True
             user "\"Macoi! Du musst noch abkassieren!\""
             m "\"Häh? Was? Ja... natürlich. 3 Euro... bitte. Nicht so schreien...\""
 
-        "Stummes Signal geben (Anstupsen)":
+        "Stummes Signal geben":
             # Richtig
             $ task_result_macoi = "success"
             $ quick_menu = True
@@ -426,14 +463,14 @@ label opening_help_lavan:
     $ quick_menu = False
 
     menu:
-        "Ihn sanft beruhigen ('Ganz ruhig')":
+        "Ihn sanft beruhigen":
             # Falsch
             $ task_result_lavan = "fail"
             $ quick_menu = True
             user "\"Hey, ganz ruhig. Atme durch.\""
             l "\"Ich bin ruhig! Behandle mich nicht wie ein Kind!\""
 
-        "Ihn herausfordern ('1:0 für die Maschine?')":
+        "Ihn herausfordern":
             # Richtig
             $ task_result_lavan = "success"
             $ quick_menu = True
