@@ -79,4 +79,4 @@ label Epilog_Cino:
 
     user "Gemeinsam standen wir in unserer kleinen Küche, während das Abendessen leise vor sich hin köchelte. Und ich wusste: Die chaotischen Anfangstage lagen weit hinter uns, aber das schönste Kapitel hatte gerade erst begonnen."
 
-return
+jump credits

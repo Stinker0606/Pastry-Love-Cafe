@@ -156,6 +156,7 @@ image cino sad = Transform(Movie(play="images/sprites/cino/Cinosad_final.webm", 
 ## Backgrounds
 image bg pink = Solid("#ffb6c1")
 image bg white = Solid("#ffffff")
+image dark_overlay = Solid("#000000b0")
 
 image bg cafe = Transform("images/backgrounds/Counter_Background.png", size=(1920, 1080))
 image bg kitchen = Transform("images/backgrounds/Baking_Game_Background.png", size=(1920, 1080)) # minigame screen

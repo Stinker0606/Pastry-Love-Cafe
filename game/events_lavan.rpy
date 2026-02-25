@@ -68,4 +68,4 @@ label Epilog_Lavan:
     "Wir saßen einfach glücklich zusammen im warmen Licht der Sonne und genossen unser Date – ein perfektes Happy End, das sich in Wirklichkeit wie ein wunderschöner neuer Anfang anfühlte."
 
 
-return
+jump credits

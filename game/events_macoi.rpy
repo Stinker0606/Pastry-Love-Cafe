@@ -74,4 +74,4 @@ label Epilog_Macoi:
     "Endlich war ich zur Ruhe gekommen. Hier, in seinen Armen, fühlte sich alles einfach genau richtig an."
 
 
-return
+jump credits
