@@ -1,6 +1,6 @@
 label Epilog_Cino:
 
-    scene bg_home_kitchen_night with fade
+    scene bg home_kitchen with fade
 
     user "Der lange Arbeitstag im Café steckte mir noch in den Knochen, aber als ich aus dem Bad kam und in meinen gemütlichen, pinken Hoodie schlüpfte, fiel die Anspannung des Tages sofort von mir ab."
 

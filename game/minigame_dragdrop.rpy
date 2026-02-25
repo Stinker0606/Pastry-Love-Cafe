@@ -222,6 +222,8 @@ init python:
             renpy.end_interaction("success")
         return
 
+default has_seen_baking_instructions = False
+
 ## SCREEN
 screen baking_minigame_screen(recipe_name, helper=None):
     modal True
@@ -236,6 +238,9 @@ screen baking_minigame_screen(recipe_name, helper=None):
     key "K_F5" action NullAction()              # Standard Quicksave Taste
     key "K_F6" action NullAction()              # Standard Quickload Taste
 
+    if not has_seen_baking_instructions:
+        # Öffnet nach 0.1 Sekunden automatisch die Anleitung und merkt sich, dass sie gesehen wurde!
+        timer 0.1 action [SetVariable("has_seen_baking_instructions", True), Show("baking_instructions")]
 
     default current_helper = helper or store.current_kitchen_helper
     

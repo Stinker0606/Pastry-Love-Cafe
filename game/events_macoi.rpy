@@ -1,6 +1,6 @@
 label Epilog_Macoi:
 
-    # Szene beginnt abends in der Wohnung/im Zimmer
+    scene bg sofa with fade
 
     "Mein Nacken war steif und meine Augen brannten, als ich immer noch auf den Bildschirm starrte."
     "Es war ein unfassbar langer und anstrengender Tag gewesen, aber mein Kopf ratterte immer noch auf Hochtouren."

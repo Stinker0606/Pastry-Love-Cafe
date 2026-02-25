@@ -1,7 +1,7 @@
 label Epilog_Velvette:
 
 
-    scene bg gartencafe_fruehling with fade
+    scene bg gartencafe with fade
 
     "Die Frühlingssonne fiel warm durch das Blätterdach des Gartencafés und ließ die unzähligen Blumen um uns herum in den buntesten Farben leuchten."
     "Es duftete nach Jasmin, frischem Gebäck und dem teuren Parfüm, das Velvette heute trug."

@@ -168,6 +168,11 @@ image bg mall = Transform("images/backgrounds/Mall_Inside_Background.png", size=
 image bg cafe2 = Transform("images/backgrounds/Cafe_Background.png", size=(1920, 1080))             # Anderer Cafe Screen
 image bg kitchen2 = Transform("images/backgrounds/Kitchen_Background.png", size=(1920, 1080))       # Anderer Kitchen Screen - nicht minigame
 
+image bg gartencafe = Transform("images/backgrounds/Velvette_Background.png", size=(1920, 1080))
+image bg sofa = Transform("images/backgrounds/Sofa.png", size=(1920, 1080))
+image bg home_kitchen = Transform("images/backgrounds/Cino_Background.png", size=(1920, 1080))
+image bg fruehlingspark = Transform("images/backgrounds/Lavan_Background.png", size=(1920, 1080))
+
 image bg sig = Transform("images/backgrounds/Unterschrift.png", size=(1920, 1080)) # Unterschrift Background
 
 ## Gallery Stuff

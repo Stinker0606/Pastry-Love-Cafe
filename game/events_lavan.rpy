@@ -1,7 +1,7 @@
 label Epilog_Lavan:
 
 
-    scene bg mc_zimmer with fade
+    scene bg Flur with fade
 
     "Lavan hatte mir heute Morgen eine Nachricht geschrieben, dass er eine Überraschung für mich geplant hatte und wir uns im Park treffen sollten."
     "Mein Herz klopfte vor freudiger Aufregung, als ich mich fertig machte."
