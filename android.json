@@ -1,0 +1,24 @@
+{
+    "expansion": false,
+    "google_play_key": null,
+    "google_play_salt": null,
+    "heap_size": "3",
+    "icon_name": "PastryLoveCafe",
+    "include_pil": false,
+    "include_sqlite": false,
+    "layout": null,
+    "name": "Pastry Love Caf\u00e9",
+    "numeric_version": 1,
+    "orientation": "sensorLandscape",
+    "package": "com.stinker0606.pastrylovecafe",
+    "permissions": [
+        "VIBRATE",
+        "INTERNET"
+    ],
+    "source": false,
+    "store": "none",
+    "update_always": false,
+    "update_icons": true,
+    "update_keystores": true,
+    "version": "1.0"
+}
