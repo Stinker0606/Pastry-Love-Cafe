@@ -10,7 +10,7 @@
     "name": "Pastry Love Caf\u00e9",
     "numeric_version": 1,
     "orientation": "sensorLandscape",
-    "package": "com.stinker0606.pastrylovecafe",
+    "package": "com.softecho.pastrylovecafe",
     "permissions": [
         "VIBRATE",
         "INTERNET"
