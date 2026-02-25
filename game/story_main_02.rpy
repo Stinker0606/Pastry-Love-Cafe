@@ -1,9 +1,8 @@
-## -- TEIL 1: INTRO ---
 label story_intro_02:
-    ## Wir starten in der Küche oder? - Glaub ja
     scene bg Flur with fade
 
-    ## Intro Monolog
+    play music "audio/Daily_Music.mp3" fadein 0.5 volume 0.75
+
     user "Seitdem sind einige Tage vergangen."
 
     user "Und jeder einzelne davon war laut."
@@ -14,26 +13,30 @@ label story_intro_02:
 
     user "Ich schleppte mich ins Badezimmer. Dort stand Velvette, vollkommen in ihrem Element."
 
+    show velvette happy at middle_vel
+
     user "Sie schminkte sich, als würde sie sich gerade auf eine Laufstegshow vorbereiten, und ignorierte meine Existenz erfolgreich wie eine echte Diva."
 
-    user "Ich schnappte mir meine Zahnbürste und manövrierte mich geschickt um sie herum"
+    user "Ich schnappte mir meine Zahnbürste und manövrierte mich geschickt um sie herum."
 
     $ quick_menu = False
 
     #--------------
     menu:
         "Einfach Leise mein Ding machen":
+            $ quick_menu = True
             # Hier passiert nichts Besonderes.
             user "Ich beschloss, ihre Konzentration nicht zu stören und putzte leise meine Zähne."
 
         "Ihr ein Kompliment geben":
+            $ quick_menu = True
             call _add_affection(LI_VELVETTE, 1)
             user "\"Du siehst gut aus.\""
 
             user "Ohne auch nur ihren Blick vom Spiegel zu lösen, antwortete sie trocken."
             v "\"Ich weiß.\""
 
-    $ quick_menu = True
+    hide velvette with dissolve
 
     user "Ich seufzte leise, beendete mein Tanz und machte mich auf den Weg Richtung Küche, ihr das Badezimmer vollkommen überlassend."
 
@@ -43,31 +46,43 @@ label story_intro_02:
 
     user "Drinnen war es dunkel, nur ein bläuliches Schimmern kroch in den Flur. Ich drückte die Tür ein Stück weiter auf."
 
+    show macoi neutral at middle_m
+
     user "Der grünhaarige Mann saß zusammengekrümmt wie eine halbe Garnele vor seinem Monitor."
 
     user "Das einzige Licht im Raum war vom Bildschirm, der ein Videospiel zeigte."
 
     user "\"Du bist schon wach?\""
 
-    user "Er drehte sich langsam zu mir, und ich sah die deutlichsten Augenringe meines Lebens"
+    user "Er drehte sich langsam zu mir, und ich sah die deutlichsten Augenringe meines Lebens."
 
-    m "\"Noch wach\""
+    m "\"Noch wach...\""
 
-    user "murmelte er tonlos und wandte sich wieder dem Bildschirm zu."
+    user "Murmelte er tonlos und wandte sich wieder dem Bildschirm zu."
 
     user "\"Wir machen in zwei Stunden auf.\""
 
     user "Er gab keine Antwort."
+    
+    hide macoi with dissolve
 
     user "Wenn er mich überhaupt gehört hatte, dann hatte er beschlossen, es zu ignorieren. Ich schüttelte nur den Kopf und ging weiter."
+
+    scene bg kitchen2 with fade
 
     # Geht in die Küche und trifft die restlichen 2 LI
 
     user "Unten in der Küche waren die letzten beiden schon aktiv."
 
+    show cino happy at left
+
     user "Cino bereitete strahlend das Frühstück zu, summend wie ein sonniger Morgenmensch."
 
-    user "Daneben stand Lavan"
+    show lavan angry at right
+
+    user "Daneben stand Lavan."
+
+    play sound "audio/Coffee_Machine_Sound.mp3" fadein 0.5
 
     user "Er ärgerte sich über die Kaffeemaschine, als sei sie persönlich für all sein Leid verantwortlich."
 
@@ -79,9 +94,9 @@ label story_intro_02:
 
     user "Sein Haar puffte leicht vor Hitze auf, wie bei einem wütenden Wasserkocher."
 
-    user "Cino drehte sich mit einem Lächeln zu mir um"
+    user "Cino drehte sich mit einem Lächeln zu mir um."
 
-    c "\"[player_name], Er hat nur versucht, den Kaffee stärker zu machen! Und dann ist sie explodiert! Nur ein bisschen.\""
+    c "\"[player_name], er hat nur versucht, den Kaffee stärker zu machen! Und dann ist sie explodiert! Nur ein bisschen.\""
 
     l "\"SIE IST NICHT EXPLODIERT!\""
 
@@ -99,51 +114,65 @@ label story_intro_02:
 
     #--------------
     #Hier eine Choice wenn man unterstützt also welche seite - Cino oder Lavan
-    #Lavan
-    user "\"Ganz ehrlich Cino... vor dem ersten Kaffee bin ich auch nicht aufnahmefähig für dein Geyappe.\""
+    $ quick_menu = False
 
-    user "Ich verstehe seinen Schmerz. Eine kaputte Kaffeemaschine ist ein nationaler Notstand."
+    menu:
+        "Lavan Recht geben":
+            $ quick_menu = True
+            call _add_affection(LI_LAVAN, 1)
+            user "\"Ganz ehrlich Cino... vor dem ersten Kaffee bin ich auch nicht aufnahmefähig für dein Geschwafel.\""
 
-    show lavan happy
+            user "Ich verstehe seinen Schmerz. Eine kaputte Kaffeemaschine ist ein nationaler Notstand."
 
-    "Lavan ließ die Schultern etwas sinken und sah mich mit einem Blick an, der fast dankbar wirkte."
+            show lavan happy with dissolve
 
-    l "\"Endlich jemand mit Verstand hier drin.\""
+            user "Lavan ließ die Schultern etwas sinken und sah mich mit einem Blick an, der fast dankbar wirkte."
 
-    l "\"Dieser Apparat ist reine Sabotage. Ich brauche Koffein, kein Gebäck-Gequassel.\""
+            l "\"Endlich jemand mit Verstand hier drin.\""
 
-    show cino sad
+            l "\"Dieser Apparat ist reine Sabotage. Ich brauche Koffein, kein Gebäck-Gequassel.\""
 
-    c "\"Oh! Ähm... tut mir leid! Hier, einfach essen!\""
+            show cino sad with dissolve
 
-    "Cino schob uns schnell die Teller hin, sichtlich bemüht, nicht noch weiter Lavans Koffein-Entzug zu provozieren."
+            c "\"Oh! Ähm... tut mir leid! Hier, einfach essen!\""
 
-    #Cino
-    user "\"Hey, Lavan, fahr mal einen Gang runter. Cino hat sich echt Mühe gegeben.\""
+            user "Cino schob uns schnell die Teller hin, sichtlich bemüht, nicht noch weiter Lavans Koffein-Entzug zu provozieren."
 
-    user "\"Und außerdem: Es gibt keine 'zu fluffigen' Pfannkuchen. Das sieht köstlich aus, Cino.\""
+        "Cino Recht geben":
+            $ quick_menu = True
+            call _add_affection(LI_CINO, 1)
+            user "\"Hey, Lavan, fahr mal einen Gang runter. Cino hat sich echt Mühe gegeben.\""
 
-    show cino happy
+            show lavan neutral with dissolve
 
-    "Cinos Augen leuchteten auf, als hätte ich ihm gerade den Nobelpreis verliehen."
+            user "\"Und außerdem: Es gibt keine 'zu fluffigen' Pfannkuchen. Das sieht köstlich aus, Cino.\""
 
-    c "\"Siehst du? [player_name] verstehts!\""
+            show cino happy with dissolve
 
-    show lavan angry
+            user "Cinos Augen leuchteten auf, als hätte ich ihm gerade den Nobelpreis verliehen."
 
-    "Lavan schnaubte nur."
+            c "\"Siehst du? [player_name] versteht es!\""
 
-    l "\"Hmpf.\""
+            show lavan angry with dissolve
 
-    #--------------
+            user "Lavan schnaubte nur."
+
+            l "\"Hmpf.\""
+
+    show lavan neutral at right2 with move
+    show cino neutral at middle with move
 
     user "Velvette kam die Treppe herunter, stolz wie eine Königin, die gerade frische Luft mit Parfüm verwechselt hatte."
 
+    show velvette neutral at left2
+
     v "\"Mein Frühstück bitte ohne Fett, ohne Zucker und ohne jegliche Form von…\""
 
-    user "Sie sah auf den Pfannkuchen"
+    user "Sie sah auf den Pfannkuchen."
 
     v "\"...Teig.\""
+
+    show bg kitchen2 with fade
 
     user "Ich blinzelte."
 
@@ -151,9 +180,18 @@ label story_intro_02:
 
     v "\"Perfekt.\""
 
+    show velvette happy with dissolve
+
     user "Sie setzte sich hin und sah aus, als würde sie jetzt eine imaginäre Menükarte bewerten."
 
+    show lavan angry at posi_4 with move
+    show cino happy at posi_3 with move
+    show velvette happy at posi_2 with move
+    show macoi neutral at posi_1 with dissolve 
+
     user "Macoi schlurfte als Letzter in die Küche, zwar in der Uniform jeddoch schief und zerknittert und er murrte etwas, das sich wie ein „Morgen“ anhörte, oder ein Schmerzenslaut."
+
+    show macoi angry with dissolve
 
     user "Er setzte sich hin, legte den Kopf auf den Tisch und starrte die Pfannkuchen an, als würden sie ihn persönlich beleidigen."
 
@@ -167,15 +205,24 @@ label story_intro_02:
 
     user "Unangenehm schaute ich mich im Zimmer um."
 
-    user "\"Also ich hoffe ihr seid heute bereit und motiviert euren ersten Tag nach dem training anzugehen?\""
+    user "\"Also, ich hoffe ihr seid heute bereit und motiviert euren ersten Tag nach dem training anzugehen?\""
 
-    user "Jeder von ihnen hatte ein nicht so glückliches Gesichtsausdruck"
+    show cino sad with dissolve
+    show lavan sad with dissolve
+    show velvette sad with dissolve
+
+    user "Jeder von ihnen hatte einen nicht so glücklichen Gesichtsausdruck."
 
     $ quick_menu = False
 
     #--------------
     menu:
         "Velvette aufmuntern":
+            $ quick_menu = True
+            hide lavan
+            hide cino
+            hide macoi
+            show velvette at middle_vel with move
             call _add_affection(LI_VELVETTE, 1)
             user "Ich drehte mich zu Velvette, die immer noch kritisch ihren teigfreien Teller anstarrte."
             user "\"Weißt du, Velvette... eigentlich ist es gut, dass du so wählerisch bist.\""
@@ -186,17 +233,24 @@ label story_intro_02:
             user "Ich lächelte sie an."
             user "\"Du bist nicht nur Deko, du bist das Aushängeschild. Zeig ihnen, was Klasse bedeutet.\""
 
-            ##Sprite von Velvette happy oder Blushy
+            show velvette blush with dissolve
             v "\"Hmpf. Endlich jemand, der meine Vision versteht.\""
             user "Sie straffte die Schultern und warf ihr Haar zurück."
             v "\"Gut. Dann werde ich dafür sorgen, dass dieser Laden glänzt. Jemand muss es ja tun.\""
 
         "Cino aufmuntern":
+            $ quick_menu = True
+            hide lavan
+            hide velvette
+            hide macoi
+            show cino at middle with move
             call _add_affection(LI_CINO, 1)
             user "\"Cino, schau mich mal kurz an.\""
             user "Er hielt in seiner nervösen Bewegung inne und sah mich mit großen Augen an."
             user "\"Du musst nicht perfekt sein. Und du musst keine Angst haben, etwas falsch zu machen.\""
             user "\"Deine herzliche Art ist genau das, was dieser Laden braucht. Sei einfach du selbst, okay? Das reicht völlig.\""
+
+            show cino blush with dissolve
 
             c "\"Einfach nur... ich sein?\""
 
@@ -205,7 +259,12 @@ label story_intro_02:
             c "\"Okay. Puh... Danke, [player_name]. Wenn du das sagst, fühle ich mich gleich viel leichter!\""
 
         "Lavan aufmuntern":
+            $ quick_menu = True
+            hide macoi
+            hide cino
+            hide velvette
             call _add_affection(LI_LAVAN, 1)
+            show lavan angry at middle with move
             user "Ich wandte mich an Lavan, der immer noch finster auf die Kaffeemaschine in der Ecke schielte."
             user "\"Lavan, hör auf, die Maschine anzufunkeln. Sie hat schon Angst vor dir.\""
 
@@ -215,21 +274,25 @@ label story_intro_02:
             user "Ich lehnte mich etwas zu ihm."
             user "\"Ganz ehrlich? Keiner hier macht Kaffee mit so viel... Leidenschaft wie du. Wenn du diese Energie in die Tasse kriegst, statt in die Luft, wird der Kaffee legendär.\""
 
-            ##Sprite von Lavan Blushy
+            show lavan blush with dissolve
             user "Lavan blinzelte überrascht und sah schnell weg, um sein Grinsen und die leichte röte der wangen zu verbergen zu verbergen."
             l "\"Tsk. Natürlich wird er legendär. Was dachtest du denn?\""
             l "\"Aber... gut. Ich werde mich zusammenreißen. Für den Kaffee.\""
 
         "Macoi aufmuntern":
+            $ quick_menu = True
+            hide lavan
+            hide velvette
+            hide cino
+            show macoi at middle_m with move
             call _add_affection(LI_MACOI, 1)
             user "\"Macoi? Ich weiß, es ist früh. Ich weiß, die Welt ist laut.\""
             user "\"Aber wir ziehen das jetzt durch. Seite an Seite. Und wenn die Schicht vorbei ist, sorge ich dafür, dass du deine Ruhe bekommst.\""
 
             m "\"Ruhe... klingt gut.\""
+            show macoi happy with dissolve
 
             user "Er blinzelte langsam, nickte mir aber dann fast dankbar zu."
-
-    $ quick_menu = True
 
     #Sprung zum cafe
 
@@ -259,17 +322,21 @@ label story_intro_02:
 
     user "\"Das ist der Eingangsbereich, Velvette. Du stehst im Weg.\""
 
-    v "\"Ich *bin* der Weg.\""
+    v "\"Ich BIN der Weg.\""
 
     user "Ich ignorierte das und ging zur Tür."
 
     user "\"Okay. Tief durchatmen. Ich drehe das Schild um.\""
+    
+    stop music fadeout 3.5
 
     user "Ich drehte das Schild auf 'Geöffnet' und schloss die Tür auf."
 
-    user "Schon nach einer halben Stunde, war das Cafe voll"
+    play music "audio/Morning_Cafe_Music.mp3" fadein 0.5 volume 0.75
 
-    user "Ich beobachtete die Vier wie sie mit ihren Stationen zurecht kamen und war bereit zu helfen"
+    user "Schon nach einer halben Stunde, war das Café voll."
+
+    user "Ich beobachtete die Vier wie sie mit ihren Stationen zurecht kamen und war bereit zu helfen."
 
     ## --- Merken, wer schon Hilfe bekommen hat ---
     ## Alles auf False setzen beim Start des Hubs
@@ -282,6 +349,7 @@ label story_intro_02:
 
     ## --- DAS HUB MENÜ ---
 label cafe_opening_decision_hub:
+    scene bg cafe
 
     # Wir berechnen kurz den Status
     # 1. Hat man mind. EINER Person geholfen? (eine ODER-Verknüpfung)
@@ -393,7 +461,7 @@ label start_opening_baking_process:
 label opening_help_velvette:
     show velvette neutral at middle_vel
 
-    user "Ein Mann kam gerade herein in das Cafe. Leicht unsicher schaute er sich um."
+    user "Ein Mann kam gerade herein in das Café. Leicht unsicher schaute er sich um."
     user "Velvette trat einen Schritt zur Seite, musterte den Mann von oben bis unten und rümpfte leicht die Nase."
     v "\"Der Hut ist... eine mutige Entscheidung für diese Jahreszeit. Tisch vier. Da sehen Sie am wenigsten störend aus.\""
 
@@ -406,6 +474,7 @@ label opening_help_velvette:
             user "Ich trat schnell dazwischen und lächelte den Mann an."
             user "\"Was meine Kollegin sagen wollte: Tisch vier ist unser gemütlichster Platz. Genau richtig für so einen stilvollen Hut.\""
             user "Der Mann entspannte sich. \"Oh, danke!\""
+            show velvette blush with dissolve
             call _add_affection(LI_VELVETTE, 1)
             v "Sie warf mir einen Blick zu. \"Glück gehabt. Er hat es gekauft.\""
 
@@ -413,6 +482,7 @@ label opening_help_velvette:
             # Falsch
             $ task_result_velvette = "fail"
             user "\"Velvette! Sei nett zu dem Kunden!\""
+            show velvette angry with dissolve
             v "\"Pff. Ich bin ehrlich, nicht nett.\""
 
     jump cafe_opening_decision_hub
@@ -422,7 +492,7 @@ label opening_help_velvette:
 ## --- SZENE: MACOI HELFEN ---
 ## ----------------------------------------------------------------
 label opening_help_macoi:
-    show macoi tired at middle
+    show macoi neutral at middle_m
 
     user "Macoi hatte die Bestellung eingegeben, aber dann schien sein System in den Standby-Modus zu gehen."
     user "Er starrte auf den Tresen, während der Kunde erwartungsvoll sein Portemonnaie zückte."
@@ -437,6 +507,7 @@ label opening_help_macoi:
             $ task_result_macoi = "fail"
             $ quick_menu = True
             user "\"Macoi! Du musst noch abkassieren!\""
+            show macoi sad with dissolve
             m "\"Häh? Was? Ja... natürlich. 3 Euro... bitte. Nicht so schreien...\""
 
         "Stummes Signal geben":
@@ -444,6 +515,7 @@ label opening_help_macoi:
             $ task_result_macoi = "success"
             $ quick_menu = True
             user "Ich trat leise neben ihn und stieß ihn ganz sanft mit meinem Ellbogen an."
+            show macoi happy with dissolve
             m "\"Ah. Danke.\""
             user "Er atmete erleichtert aus und kassierte ruhig ab."
             call _add_affection(LI_MACOI, 1)
@@ -475,6 +547,7 @@ label opening_help_lavan:
             $ task_result_lavan = "success"
             $ quick_menu = True
             user "\"Wow. 1:0 für die Kaffeemaschine? Lässt du dich echt von etwas besiegen, das keinen Stecker hat?\""
+            show lavan happy with dissolve
             l "\"Hah?! Niemals! Pass bloß auf!\""
             user "Mit einem Ruck rastete der Siebträger ein. Er grinste triumphierend."
             call _add_affection(LI_LAVAN, 1)
@@ -488,7 +561,6 @@ label opening_help_lavan:
 label opening_help_cino:
     show cino sad at middle
 
-    # Platzhalter Text
     user "Cino kämpfte mit den Servietten."
 
     $ quick_menu = False
@@ -499,6 +571,7 @@ label opening_help_cino:
             $ task_result_cino = "success"
             $ quick_menu = True
             call _add_affection(LI_CINO, 1)
+            show cino happy with dissolve
             c "Danke!"
 
         "Ihn machen lassen":
@@ -514,7 +587,9 @@ label story_cafe_after_rush:
     # HIER RESETTEN WIR DEN KRAM FÜRS BACKEN ZUR SICHERHEIT
     $ baking_context = None
 
-
     user "Puh... Der Tag ist vorbei."
+
+    scene black with fade
+    stop music fadeout 3.0
 
     jump story_intro_03

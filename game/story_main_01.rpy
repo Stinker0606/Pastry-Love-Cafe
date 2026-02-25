@@ -49,7 +49,7 @@ label story_intro_01:
 
     user "Brachte er schließlich hervor und wandte sich zum Gehen um."
 
-    hide pierre npc
+    hide pierre npc with dissolve
     stop music fadeout 2.5
     
 
@@ -138,7 +138,7 @@ label story_intro_01:
 
     play sound "audio/Door_Bell_Sound.mp3"
 
-    hide female npc
+    hide female npc with dissolve
 
     user "Sie duckte sich gerade rechtzeitig, um nicht vom scheppernden Messing getroffen zu werden."
 
@@ -214,7 +214,7 @@ label story_intro_01:
 
     user "\"Brauchen Sie vielleicht einen Tee? Zum Aufwärmen? Sie sind völlig durchnässt, und ohne Regenschirm…\""
 
-    user "Ich schaute ihn unsicher an und versuchte, gastfreundlich zu sein, doch er lehnte ab. Der fremde mann hob die Mann, als wolle er gleichzeitig abwinken und Abstand halten."
+    user "Ich schaute ihn unsicher an und versuchte, gastfreundlich zu sein, doch er lehnte ab. Der fremde mann hob die Hand, als wolle er gleichzeitig abwinken und Abstand halten."
 
     fm "\"Nein, danke. ich bin nicht lange hier.\""
 
@@ -234,7 +234,7 @@ label story_intro_01:
 
     user "\"Was ist das?\""
 
-    fm "\"Etwas, das deine Eltern in bestimmte Gebäcke eingebacken haben\""
+    fm "\"Etwas, dass deine Eltern in bestimmte Gebäcke eingebacken haben.\""
 
     fm "\"Wie gesagt… nur für besondere Anlässe.\""
 
@@ -248,15 +248,21 @@ label story_intro_01:
 
     user "Doch er war schon fast draußen."
 
-    user "Im Türrahmen blieb er noch einmal stehen und drehte sich langsam um"
+    user "Im Türrahmen blieb er noch einmal stehen und drehte sich langsam um."
 
     fm "\"Viel Glück.\""
+
+    hide male npc with dissolve
 
     user "Dann verschwand er in der regnerischen Nacht, ohne ein weiteres Wort."
 
     user "Ich blieb allein zurück. Mit der Tasche, der Stille und tausend Fragen."
 
     user "Aber der Boden war noch nicht sauber, das Leben lief weiter, und morgen würde ein langer Tag werden."
+
+    stop music fadeout 2.5
+
+    play sound "audio/Bird_Chirping_Ambience.mp3" fadein 2.0
 
     scene black with fade
 
@@ -265,9 +271,15 @@ label story_intro_01:
 
     user "Ich stand wie immer früh morgens auf."
 
-    user "Es war schwer. Sehr schwer. Mein Körper fühlte sich an wie ein halbgegorenes Sauerteigbrot, das jemand zu früh aus dem Korb gezogen hatte."
+    user "Es war schwer. Sehr schwer. Mein Körper fühlte sich an wie ein halbgefrorenes Sauerteigbrot, das jemand zu früh aus dem Korb gezogen hatte."
 
     user "Ich war übermüdet, meine Augen brannten… aber die Liebe zu diesem Ort, zu dieser Küche, zu diesem Leben. Das hielt mich irgendwie am Laufen."
+
+    stop sound fadeout 2.0
+
+    scene bg kitchen2 with fade
+
+    play music "audio/Silly_Music.mp3" fadein 2.0 volume 0.75
 
     user "Gähnend tappte ich in die Küche, griff mir eine der Schürzen vom Haken und band sie um. Während ich zur Arbeitsfläche schlurfte, tasteten meine Hände automatisch nach den üblichen Zutaten – Eier, Butter, Zucker…"
 
@@ -275,7 +287,7 @@ label story_intro_01:
 
     user "Fast kein Mehl mehr."
 
-    user "Ich schloss die Augen, atmete tief ein und presste zwischen den Zähnen hervor"
+    user "Ich schloss die Augen, atmete tief ein und presste zwischen den Zähnen hervor."
 
     user "\"Verdammt, Pierre!\""
 

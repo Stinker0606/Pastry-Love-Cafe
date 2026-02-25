@@ -210,6 +210,8 @@ init python:
 
 # define build.itch_project = "renpytom/test-project"
 
+#define config.rollback_enabled = False # AN MACHENDE OPTION, NICHT VERGESSEN WIEDER AUSZUKOMMENTIEREN!
+
 init python:
     ## Zwingt den Sound auf das absolute Fundament
     style.button.activate_sound = "audio/Select_Sound.mp3"

@@ -23,31 +23,12 @@ label _add_affection(li_name, amount=1):
 ## Dieses Label wird von 'game_start' aufgerufen
 label setup_player_character:
 
-    scene bg sig with fade
-
-    # ## Schritt 1: Geschlecht wählen
-    # user "Zuerst... wer bin ich?" # (user ist hier noch 'None', also Erzähler)
-    # menu:
-    #     "Ich bin ein Mann.":
-    #         ## Setzt die globalen Variablen aus 01_definitions
-    #         $ player_gender = "male"
-    #         $ mc_pronoun_he_she = "er"
-    #         $ mc_pronoun_his_her = "sein"
-    #         $ mc_title = "Bäcker"
-    #         $ mc_pronoun_article = "der"
-
-    #     "Ich bin eine Frau.":
-    #         $ player_gender = "female"
-    #         $ mc_pronoun_he_she = "sie"
-    #         $ mc_pronoun_his_her = "ihr"
-    #         $ mc_title = "Bäckerin"
-    #         $ mc_pronoun_article = "die"
-
-    # ## Schritt 2: Name wählen
-    # user "Und mein Name ist..."
+    scene bg sig with dissolve
 
     ## Die Namensabfrage
     python:
+        renpy.choice_for_skipping() # Verhindert, dass Spieler den Namenseingabe-Screen überspringen können, wenn sie einmal da sind.
+
         while True:
             ## 1. Zeige das Eingabefeld.
             player_name_input = renpy.input("Unterschrift", length=20)

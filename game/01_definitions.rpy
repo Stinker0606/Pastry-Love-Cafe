@@ -1,12 +1,17 @@
 ## -- 1. Charakter-Definitionen --
 define user = Character("[player_name]")
 define l = Character("Lavan", color="#9a6f34c5")
-define m = Character("Macoi", color="#bef778")
+define m = Character("Macoi", color="#74A12E")
 define v = Character("Velvette", color="#ac1c1c")
 define c = Character("Cino", color="#f1d576")
 define p = Character("Pierre", color="#9b73f8")
 define k = Character("Kundin", color="#753e6e")
 define fm = Character ("Fremder Mann", color="#0f0475" )
+
+define l1 = Character("???", color="#9a6f34c5")
+define m1 = Character("???", color="#74A12E")
+define v1 = Character("???", color="#ac1c1c")
+define c1 = Character("???", color="#f1d576")
 
 ## -- 2. Spiel-Variablen (default = wird bei "Neuem Spiel" zurückgesetzt) --
 default player_gender = None
@@ -154,6 +159,7 @@ image bg white = Solid("#ffffff")
 
 image bg cafe = Transform("images/backgrounds/Counter_Background.png", size=(1920, 1080))
 image bg kitchen = Transform("images/backgrounds/Baking_Game_Background.png", size=(1920, 1080)) # minigame screen
+image bg Flur = Transform("images/backgrounds/Hallway_Background.png", size=(1920, 1080))
 
 image bg cinema = Transform("images/backgrounds/Cinema_Background.png", size=(1920, 1080))
 image bg boutique = Transform("images/backgrounds/Clothing_Store_Background.png", size=(1920, 1080))
@@ -182,6 +188,10 @@ define thumb_y = 324 #216
 ## Other Images
 image team_logo = "gui/team_logo.png"
 
+image vignette = Transform("images/Vignette.png", size=(1920, 1080))
+image vignette2 = Transform("images/Vignette2.png", size=(1920, 1080))
+image vignette3 = Transform("images/Vignette3.png", size=(1920, 1080))
+
 ## -- 5. Transform-Definitionen (Position-Definierung) --
 
 transform left:
@@ -190,6 +200,23 @@ transform right:
     xalign 0.75 yalign 0.3
 transform middle:
     xalign 0.50 yalign 0.3
+
+transform right2:
+    xalign 0.88 yalign 0.3
+transform left2:
+    xalign 0.06 yalign -1.0
+
+transform posi_1:
+    xalign -0.1 yalign 0.2 # Ganz links
+
+transform posi_2:
+    xalign 0.28 yalign -1.0 # Links Mitte
+
+transform posi_3:
+    xalign 0.66 yalign 0.3 # Rechts Mitte
+
+transform posi_4:
+    xalign 0.95 yalign 0.3 # Ganz rechts
 
 transform left_vel:
     xalign 0.25 yalign -1.0
@@ -210,7 +237,14 @@ transform left_f:
 transform right_f:
     xalign 0.75 yalign -0.0
 transform middle_f:
-    xalign 0.50 yalign -0.0       
+    xalign 0.50 yalign -0.0
+
+transform left_m:
+    xalign 0.25 yalign 0.2
+transform right_m:
+    xalign 0.82 yalign 0.2
+transform middle_m:
+    xalign 0.50 yalign 0.2  
 
 ## -- Spezielle Positionen für 4 Personen - AWAKENING SCENE
 transform pos_1:
@@ -223,7 +257,7 @@ transform pos_3:
     xalign 0.64 yalign -1.0 # Rechts Mitte
 
 transform pos_4:
-    xalign 0.99 yalign 0.3 # Ganz rechts
+    xalign 1.15 yalign 0.17 # Ganz rechts
 
 ## Normale Positionen
 
@@ -248,6 +282,17 @@ transform alpha_flash:
     linear 0.5 alpha 0.2
     linear 0.5 alpha 1.0
     repeat
+
+## --- EIGENE ÜBERGÄNGE ---
+
+# Ein weiches Überblenden direkt ins nächste Bild (ohne Schwarzbild dazwischen)
+define slow_dissolve = Dissolve(2.0)
+
+# Ein sehr sanftes Fade-to-Black (1.5 Sekunden ins Schwarze, kurz warten, 1.5 Sekunden ins neue Bild)
+define slow_fade = Fade(1.5, 0.5, 1.5)
+
+# Ein schnelles, aber weiches Überblenden (perfekt für normale Szenenwechsel)
+define smooth = Dissolve(1.0)
 
 ## -- 6. MINIGAME Definierungen & Grundlogik --
 init python:

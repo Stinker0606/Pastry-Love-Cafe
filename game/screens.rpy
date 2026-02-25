@@ -255,7 +255,15 @@ screen quick_menu():
     ## Ensure this appears on top of other screens.
     zorder 100
 
-    if quick_menu:
+    if quick_menu and (renpy.get_screen("say") or renpy.get_screen("input")):
+
+        fixed:
+            at transform:
+                on show:
+                    alpha 0.0
+                    linear 0.2 alpha 1.0
+                on hide:
+                    linear 0.2 alpha 0.0
 
         # 1. HISTORY
         imagebutton:
@@ -1146,13 +1154,13 @@ screen keyboard_help():
             label _("Tab")
             text _("Toggles dialogue skipping.")
 
-        hbox:
-            label _("Page Up")
-            text _("Rolls back to earlier dialogue.")
+        # hbox:
+        #     label _("Page Up")
+        #     text _("Rolls back to earlier dialogue.")
 
-        hbox:
-            label _("Page Down")
-            text _("Rolls forward to later dialogue.")
+        # hbox:
+        #     label _("Page Down")
+        #     text _("Rolls forward to later dialogue.")
 
         hbox:
             label "H"
@@ -1184,13 +1192,13 @@ screen mouse_help():
             label _("Right Click")
             text _("Accesses the game menu.")
 
-        hbox:
-            label _("Mouse Wheel Up\nClick Rollback Side")
-            text _("Rolls back to earlier dialogue.")
+        # hbox:
+        #     label _("Mouse Wheel Up\nClick Rollback Side")
+        #     text _("Rolls back to earlier dialogue.")
 
-        hbox:
-            label _("Mouse Wheel Down")
-            text _("Rolls forward to later dialogue.")
+        # hbox:
+        #     label _("Mouse Wheel Down")
+        #     text _("Rolls forward to later dialogue.")
 
 
 # screen gamepad_help():

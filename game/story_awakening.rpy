@@ -1,12 +1,15 @@
 ## Spezielles einmaliges Ereignis nach dem ersten mal backen.
 label awakening_shock_scene:
+    stop music fadeout 2.0
+
     scene black
     user "Okay, das erste Rezept ist fertig. Aber ich habe noch Energie..."
-    narrator "Du backst den Rest automatisch..."
     jump awakening_sequence_start
 
 label awakening_sequence_start:
     scene bg cafe with fade
+
+    play music "audio/Silly_Music.mp3" fadein 0.5 volume 0.75
 
     ## Alle sind da
     $ is_lavan_awakened = True
@@ -22,7 +25,10 @@ label awakening_sequence_start:
 
     #Effekt von Screenshake?
 
-    user "Ich war gerade dabei, die Servietten zu sortieren, als ich ein Geräusch hörte."
+    play sound "audio/Loud_Soundeffect.mp3" volume 0.2
+    show bg cafe with hpunch
+
+    user "Ich war gerade dabei, die Servietten zu sortieren, als ich ein Geräusch hörte." 
 
     user "Etwas dumpfes."
 
@@ -36,9 +42,14 @@ label awakening_sequence_start:
 
     user "\"Zu müde. Ich halluziniere. Definitiv.\""
 
-    user "Doch dann kam das Geräusch wieder. Diesmal lauter"
+    play sound "audio/Loud_Soundeffect.mp3" volume 0.8
+    show bg cafe with hpunch
+
+    user "Doch dann kam das Geräusch wieder. Diesmal lauter."
 
     user "Ich schluckte, griff mir einen Besen, die einzige „Waffe“, die man einer Bäckerin zutrauen konnte und schlich vorsichtig Richtung Küche."
+
+    scene bg kitchen2
 
     user "Und dort blieb ich erneut stehen."
 
@@ -48,15 +59,15 @@ label awakening_sequence_start:
 
     user "\"Ich schlafe nicht..? Halluziniere nicht?\""
 
-    user "\"Dann werde ich verrückt\""
+    user "\"Dann werde ich verrückt.\""
 
-    user "Vor mir standen vier Leute, sichtlich an das Gebäck erinnert das ich vorher gebackt hatte"
+    user "Vor mir standen vier Leute, sichtlich an das Gebäck erinnert das ich vorher gebackt hatte."
 
     ## Zeigt die 4 Chars an. Schau wo du das einfügst, die Chars werden dann erst angezeigt wo das kommt.
     show lavan neutral at pos_1
     show cino neutral at pos_2
-    show velvette neutral at pos_3
     show macoi neutral at pos_4
+    show velvette neutral at pos_3
 
     ## wer was sagt wenn man ihn als erstes gebacken hat:
 
@@ -67,7 +78,7 @@ label awakening_sequence_start:
 
         user "Er wirkte weniger schockiert als vielmehr maßlos unzufrieden mit der Gesamtsituation."
 
-        l "„Und wo zur Hölle bin ich hier eigentlich?!“"
+        l1 "„Und wo zur Hölle bin ich hier eigentlich?!“"
 
         user "Seine raue Stimme donnerte durch den Raum und ließ mich unwillkürlich zusammenzucken."
 
@@ -78,7 +89,7 @@ label awakening_sequence_start:
 
         user "Er wirkte weder wütend noch ängstlich, sondern eher so, als wäre seine größte Sorge gerade, wo er das nächste Kissen herbekommt."
 
-        m "..."
+        m1 "..."
 
         user "Total desinteressiert."
 
@@ -89,11 +100,11 @@ label awakening_sequence_start:
 
         user "Sie wirkte wie ein Model oder eine Puppe, mit porzellan Haut, das sich versehentlich ans falsche Set verirrt hatte und nun den Manager sprechen wollte."
 
-        v "Ernsthaft? Das alles hier ist..."
+        v1 "Ernsthaft? Das alles hier ist..."
 
-        user "Sie suchte ein Wort für ihr Kommentar"
+        user "Sie suchte ein Wort für ihr Kommentar."
 
-        v "Geschmaklos"
+        v1 "Geschmacklos."
 
         user "Sie schnippte ein imaginäres Staubkorn von ihrer Schulter und rümpfte pikiert die Nase."
 
@@ -104,21 +115,21 @@ label awakening_sequence_start:
 
         user "Er schien der Einzige zu sein, der weniger verärgert als vielmehr ehrlich besorgt war."
 
-        c "Ähm... Entschuldigung? Hallo? Weiß vielleicht jemand, wie wir hierher gekommen sind?"
+        c1 "Ähm... Entschuldigung? Hallo? Weiß vielleicht jemand, wie wir hierher gekommen sind?"
 
         user "Seine Stimme zitterte leicht, aber er versuchte tapfer, ein höfliches, wenn auch gequältes Lächeln aufzusetzen."
 
-        user "Als er mich starren sah, zuckte er zusammen. Ich sah wie er luft holte und sein Mut zusammen nahm."
+        user "Als er mich starren sah, zuckte er zusammen. Ich sah wie er Luft holte und sein Mut zusammen nahm."
 
-    c "\"Wir sind… wirklich keine Gefahr.\""
+    c1 "\"Wir sind… wirklich keine Gefahr.\""
 
     user "\"Ihr seid nackt in meiner Küche!\""
 
-    user "exklamierte ich lauter als erwartet"
+    user "exklamierte ich lauter als erwartet."
 
-    v "\"Ähm… können wir vielleicht… Kleidung bekommen?\""
+    v1 "\"Ähm… können wir vielleicht… Kleidung bekommen?\""
 
-    user "Fragte die rothaarige unschuldig"
+    user "Fragte die rothaarige unschuldig."
 
     user "Ich rieb mir die Schläfen. Das hier war zu viel. Viel zu viel für meinen mehlarmen Morgen."
 
@@ -128,17 +139,21 @@ label awakening_sequence_start:
 
     user "\"Oh!\""
 
-    user "\"Ich habe gebacken mit… äh… etwas, das ich gestern bekommen habe. Und jetzt… seid ihr… da\""
+    user "\"Ich habe gebacken mit… äh… etwas, das ich gestern bekommen habe. Und jetzt… seid ihr… da.\""
 
     user "Versuchte ich drauf klarzukommen."
 
     user "Die anderen waren schon wieder mit was anderem beschäftigt."
 
-    user "Die rothaarige Frau war mittlerweile damit beschäftigt sich in der Reflektion anzuschauen"
+    show velvette happy at pos_3 with dissolve
 
-    user "Der grünhaarige, wahrscheinlich der Matcha, stand zwar aufrecht doch seine Augen waren zu. Er schien im Stehen zu schlafen"
+    user "Die rothaarige Frau war mittlerweile damit beschäftigt sich in der Reflektion anzuschauen."
+
+    user "Der grünhaarige, wahrscheinlich der Matcha, stand zwar aufrecht doch seine Augen waren zu. Er schien im Stehen zu schlafen."
 
     user "Die anderen zwei, der Blonde und der Braunhaarige schienen gerade in ein anderes 'Gespräch' vertieft zu sein."
+
+    show lavan angry at pos_1 with dissolve
 
     user "Oder eher gesagt schien der Braunhaarige sich über den anderen aufregen."
 
@@ -150,6 +165,7 @@ label awakening_sequence_start:
 
     user "Das wird noch ein langer Tag."
 
-    scene black
+    scene black with fade
+    stop music fadeout 3.0
 
     jump story_intro_02 # Ab ins Akt 2

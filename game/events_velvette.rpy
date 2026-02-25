@@ -24,7 +24,7 @@ label Epilog_Velvette:
 
     user "Oh ja. Du hast das Leben wie einen Laufsteg behandelt, auf dem man nicht stolpern darf."
 
-    show velvette
+    show velvette 
 
     v "Ja. Aber ich habe gelernt... das Leben ist eben keine Modenschau. Manchmal regnet es, manchmal stolpert man."
     v "Wichtig ist nur, wie man danach wieder aufsteht und weitermacht. Und dass man jemanden hat, der einem die Hand reicht."

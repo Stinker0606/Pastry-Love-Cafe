@@ -228,7 +228,6 @@ screen baking_minigame_screen(recipe_name, helper=None):
     #add Solid("#333") # Platzhalter Hintergrund
 
     ## --- VOLLSTÄNDIGE EINGABE-SPERRE ---
-    key "game_menu" action NullAction()         # Blockt ESC / Rechtsklick
     key "rollback" action NullAction()          # Blockt Mausrad hoch
     key "rollforward" action NullAction()       # Blockt Mausrad runter
     key "hide_windows" action NullAction()      # Blockt die 'h' Taste
@@ -236,7 +235,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
     ## Da 'quick_load' etc. keine Tasten sind, blocken wir die Standard-Tastaturbelegung
     key "K_F5" action NullAction()              # Standard Quicksave Taste
     key "K_F6" action NullAction()              # Standard Quickload Taste
-    key "K_s" action NullAction()               # Screenshot Taste
+
 
     default current_helper = helper or store.current_kitchen_helper
     

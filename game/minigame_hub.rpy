@@ -11,6 +11,7 @@ label baking_minigame_hub:
 
 ## TUTORIAL MODUS (Einheitlich)
 label baking_tutorial_selection:
+    stop music fadeout 4.0
     user "Was backe ich zuerst?"
 
     $ quick_menu = False
@@ -166,11 +167,23 @@ label run_baking_loop:
 ## FÜR DICH SOFIYA, Char reaktion auf der verschiedenen gerichte. Untendrunter siehtst du ein Beispiel, mach die Kommentierung weg und wo das FETT geschriebene ist ersetzen.
 
         if current_recipe_name == "Butterplätzchen" and current_kitchen_helper == "Lavan":
-            l "Mein Favorit."
+            l "Sie sind gut geworden."
+        elif current_recipe_name == "Butterplätzchen" and current_kitchen_helper == "Cino":
+            c "Yummy!"
+        elif current_recipe_name == "Butterplätzchen" and current_kitchen_helper == "Macoi":
+            m "Gut gemacht. Sie sehen.. einladend aus."
+        elif current_recipe_name == "Butterplätzchen" and current_kitchen_helper == "Velvette":
+            v "Nicht mehr als einen. Zu viele Kalorien."
+
+        elif current_recipe_name == "Erdbeer Crepe" and current_kitchen_helper == "Lavan":
+            l "Nicht schlecht."
         elif current_recipe_name == "Erdbeer Crepe" and current_kitchen_helper == "Cino":
-            c "Juhu!"
-        #elif current_recipe_name == "NAME DES REZEPTES" and current_kitchen_helper == "CHARAKTER":
-        #    KÜRZEL DES CHARS "REAKTION"
+            c "Können wir die bald nochmal machen? Bitte!"
+        elif current_recipe_name == "Erdbeer Crepe" and current_kitchen_helper == "Macoi":
+            m "Das war anstrengend. Aber solange du glücklich bist."
+        elif current_recipe_name == "Erdbeer Crepe" and current_kitchen_helper == "Velvette":
+            v "Hm.. heute vielleicht eine Ausnahme."
+
 
 ## BIS HIER FÜR DICH
 
@@ -189,7 +202,7 @@ label run_baking_loop:
         ## ABBRUCH
         stop music fadeout 0.5
         scene bg kitchen
-        user "Vielleicht später"
+        user "Vielleicht später."
 
         if store.baking_context == "story_opening":
             $ store.baking_context = None
