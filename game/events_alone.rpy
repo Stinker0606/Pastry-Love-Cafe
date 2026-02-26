@@ -1,22 +1,49 @@
 label Epilog_Single:
 
-    scene bg home_living_room with fade
+    scene bg couch
 
-    "Die letzten Wochen waren so intensiv gewesen, dass ich mich kaum daran erinnern konnte, wie es war, einfach nur ich selbst zu sein."
-    "Aber heute war ein ruhiger, sonniger Tag, und ich hatte beschlossen, ihn ganz für mich zu genießen."
-    "Ich saß auf meinem gemütlichen Sofa, umgeben von meinen Lieblingsbüchern, meinen Pflanzen und einer Tasse Tee, die ich mir gerade gemacht hatte."
-    "Es war ein Moment der vollkommenen Ruhe und Zufriedenheit. Ich fühlte mich so dankbar für all die Erfahrungen, die ich gemacht hatte, und für die Menschen, die ich getroffen hatte – auch wenn es nicht zu einer romantischen Beziehung geführt hatte."
-    "Ich hatte so viel über mich selbst gelernt, über meine Wünsche, meine Grenzen und darüber, was ich wirklich im Leben wollte."
-    "In diesem Moment, allein mit meinen Gedanken und meiner Tasse Tee, fühlte ich mich stärker und selbstbewusster als je zuvor. Ich wusste, dass ich bereit war, mein Leben in vollen Zügen zu genießen – mit oder ohne jemanden an meiner Seite."
+    user "Das Erste, was ich an diesem Morgen hörte, war... absolut gar nichts."
 
-    user "Weißt du was? Ich glaube, ich bin gerade wirklich glücklich. Alleine, aber glücklich."
-    user "Ich habe so viel über mich selbst gelernt, und ich bin stolz auf die Person, die ich geworden bin. Ich bin bereit für alles, was das Leben noch für mich bereithält."
-    user "Und wer weiß? Vielleicht wartet da draußen ja doch noch jemand auf mich. Aber bis dahin... bin ich einfach glücklich, ich selbst zu sein."
+    user "Kein wütendes Fluchen von Lavan über eine sabutierende Kaffeemaschine."
+    user "Kein nervöses Herumwuseln von Cino, der aus Versehen ein Fünf-Gänge-Frühstück zubereitete."
+    user "Kein leises Schnarchen von Macoi auf dem Sofa und auch keine dramatischen Vorträge von Velvette über die völlig falsche Farbwahl meiner Vorhänge."
 
-    "Ich lehnte mich zurück, schloss die Augen und atmete tief durch. Es war ein wunderschöner Tag, und ich hatte das Gefühl, dass alles möglich war."
-    "In diesem Moment, allein mit meinen Gedanken und meiner Tasse Tee, fühlte ich mich stärker und selbstbewusster als je zuvor. Ich wusste, dass ich bereit war, mein Leben in vollen Zügen zu genießen – mit oder ohne jemanden an meiner Seite."
-    "Und das war ein wunderbares Gefühl."
+    user "Es war einfach nur still. Und es war herrlich."
 
-    "Ich öffnete die Augen, lächelte und nahm einen weiteren Schluck von meinem Tee. Es war ein Moment der vollkommenen Zufriedenheit, und ich wusste, dass ich genau da war, wo ich sein sollte – mit mir selbst, glücklich und bereit für alles, was noch kommen würde."
+    user "Ich schlug die Decke zurück, streckte mich ausgiebig und blinzelte in die warmen Sonnenstrahlen, die durch das Fenster fielen."
+
+
+    scene bg kitchen2
+
+    user "In meinem eigenen Tempo schlenderte ich in die Küche und setzte mir einen Kaffee auf."
+    user "Die Maschine zischte leise und friedlich vor sich hin."
+
+    user "Während ich meine Lieblingstasse in den Händen wärmte, fiel mein Blick auf ein Foto, das am Kühlschrank hing."
+    user "Es zeigte uns alle zusammen. Eine chaotische, laute, unfassbar anstrengende, aber auch wundervolle Truppe."
+
+    user "Ich lächelte leise in mich hinein."
+
+    user "\"Wir haben wirklich viel zusammen durchgestanden...\""
+    user "Sprach ich meine Gedanken laut aus."
+
+    user "Natürlich sah ich sie alle noch. Wir trafen uns, stritten, lachten und erlebten neue Dinge."
+    user "Sie waren gute Freunde geworden."
+    user "Aber am Ende des Tages kehrte ich hierher zurück. In mein eigenes kleines Reich."
+    user "Jeder von uns keehrte ihn sein Leben."
+    user "In etwas eigenes, was nur ihm gehörte..."
+    user "Ich war glücklich für sie. Was sie durchgemacht haben und wer sie geworden sind."
+    user "Es war eine Art Stolz."
+    user "Doch das Wichtigste, was ich gefunden hatte, war nicht die große Romanze. Es war ich selbst."
+
+    #sollten wir zeit haben auf süß hier Belohnungsbild
+
+    user "Ich trat ans offene Fenster und atmete die frische Frühlingsluft tief ein."
+    user "Ich brauchte niemanden, der mich rettete. Niemanden, der mir sagte, was ich tun sollte oder der meine Welt auf den Kopf stellte."
+
+    user "Es war genug."
+
+    user "Und manchmal ist genug sein auch alles was man braucht."
+
+    scene black with fade
 
 jump credits
