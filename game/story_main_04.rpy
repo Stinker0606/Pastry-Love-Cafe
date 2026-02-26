@@ -61,28 +61,28 @@ label story_intro_04:
     menu:
         "Mit Velvette in die Boutique gehen":
             $ mall_date_choice = "Velvette"
-            call _add_affection(LI_VELVETTE, 1)
+            call _add_affection(LI_VELVETTE, 1) from _call__add_affection_16
             $ cinema_date = "false"
             $ quick_menu = True
             jump mall_date_velvette
 
         "Mit Lavan in den Liebesfilm gehen":
             $ mall_date_choice = "Lavan"
-            call _add_affection(LI_LAVAN, 1)
+            call _add_affection(LI_LAVAN, 1) from _call__add_affection_17
             $ cinema_date = "true"
             $ quick_menu = True
             jump mall_date_lavan
 
         "Mit Macoi in den Gaming-Film gehen":
             $ mall_date_choice = "Macoi"            
-            call _add_affection(LI_MACOI, 1)
+            call _add_affection(LI_MACOI, 1) from _call__add_affection_18
             $ cinema_date = "true"
             $ quick_menu = True
             jump mall_date_macoi
 
         "Mit Cino bummeln gehen":
             $ mall_date_choice = "Cino"
-            call _add_affection(LI_CINO, 1)
+            call _add_affection(LI_CINO, 1) from _call__add_affection_19
             $ cinema_date = "false"
             $ quick_menu = True
             jump mall_date_cino

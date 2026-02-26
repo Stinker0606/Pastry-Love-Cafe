@@ -30,7 +30,7 @@ label story_intro_02:
 
         "Ihr ein Kompliment geben":
             $ quick_menu = True
-            call _add_affection(LI_VELVETTE, 1)
+            call _add_affection(LI_VELVETTE, 1) from _call__add_affection_5
             user "\"Du siehst gut aus.\""
 
             user "Ohne auch nur ihren Blick vom Spiegel zu lösen, antwortete sie trocken."
@@ -119,7 +119,7 @@ label story_intro_02:
     menu:
         "Lavan Recht geben":
             $ quick_menu = True
-            call _add_affection(LI_LAVAN, 1)
+            call _add_affection(LI_LAVAN, 1) from _call__add_affection_6
             user "\"Ganz ehrlich Cino... vor dem ersten Kaffee bin ich auch nicht aufnahmefähig für dein Geschwafel.\""
 
             user "Ich verstehe seinen Schmerz. Eine kaputte Kaffeemaschine ist ein nationaler Notstand."
@@ -140,7 +140,7 @@ label story_intro_02:
 
         "Cino Recht geben":
             $ quick_menu = True
-            call _add_affection(LI_CINO, 1)
+            call _add_affection(LI_CINO, 1) from _call__add_affection_7
             user "\"Hey, Lavan, fahr mal einen Gang runter. Cino hat sich echt Mühe gegeben.\""
 
             show lavan neutral with dissolve
@@ -223,7 +223,7 @@ label story_intro_02:
             hide cino
             hide macoi
             show velvette at middle_vel with move
-            call _add_affection(LI_VELVETTE, 1)
+            call _add_affection(LI_VELVETTE, 1) from _call__add_affection_8
             user "Ich drehte mich zu Velvette, die immer noch kritisch ihren teigfreien Teller anstarrte."
             user "\"Weißt du, Velvette... eigentlich ist es gut, dass du so wählerisch bist.\""
 
@@ -244,7 +244,7 @@ label story_intro_02:
             hide velvette
             hide macoi
             show cino at middle with move
-            call _add_affection(LI_CINO, 1)
+            call _add_affection(LI_CINO, 1) from _call__add_affection_9
             user "\"Cino, schau mich mal kurz an.\""
             user "Er hielt in seiner nervösen Bewegung inne und sah mich mit großen Augen an."
             user "\"Du musst nicht perfekt sein. Und du musst keine Angst haben, etwas falsch zu machen.\""
@@ -263,7 +263,7 @@ label story_intro_02:
             hide macoi
             hide cino
             hide velvette
-            call _add_affection(LI_LAVAN, 1)
+            call _add_affection(LI_LAVAN, 1) from _call__add_affection_10
             show lavan angry at middle with move
             user "Ich wandte mich an Lavan, der immer noch finster auf die Kaffeemaschine in der Ecke schielte."
             user "\"Lavan, hör auf, die Maschine anzufunkeln. Sie hat schon Angst vor dir.\""
@@ -285,7 +285,7 @@ label story_intro_02:
             hide velvette
             hide cino
             show macoi at middle_m with move
-            call _add_affection(LI_MACOI, 1)
+            call _add_affection(LI_MACOI, 1) from _call__add_affection_11
             user "\"Macoi? Ich weiß, es ist früh. Ich weiß, die Welt ist laut.\""
             user "\"Aber wir ziehen das jetzt durch. Seite an Seite. Und wenn die Schicht vorbei ist, sorge ich dafür, dass du deine Ruhe bekommst.\""
 
@@ -475,7 +475,7 @@ label opening_help_velvette:
             user "\"Was meine Kollegin sagen wollte: Tisch vier ist unser gemütlichster Platz. Genau richtig für so einen stilvollen Hut.\""
             user "Der Mann entspannte sich. \"Oh, danke!\""
             show velvette blush with dissolve
-            call _add_affection(LI_VELVETTE, 1)
+            call _add_affection(LI_VELVETTE, 1) from _call__add_affection_12
             v "Sie warf mir einen Blick zu. \"Glück gehabt. Er hat es gekauft.\""
 
         "Sie zurechtweisen":
@@ -518,7 +518,7 @@ label opening_help_macoi:
             show macoi happy with dissolve
             m "\"Ah. Danke.\""
             user "Er atmete erleichtert aus und kassierte ruhig ab."
-            call _add_affection(LI_MACOI, 1)
+            call _add_affection(LI_MACOI, 1) from _call__add_affection_13
 
     jump cafe_opening_decision_hub
 
@@ -550,7 +550,7 @@ label opening_help_lavan:
             show lavan happy with dissolve
             l "\"Hah?! Niemals! Pass bloß auf!\""
             user "Mit einem Ruck rastete der Siebträger ein. Er grinste triumphierend."
-            call _add_affection(LI_LAVAN, 1)
+            call _add_affection(LI_LAVAN, 1) from _call__add_affection_14
 
     jump cafe_opening_decision_hub
 
@@ -570,7 +570,7 @@ label opening_help_cino:
             # Richtig
             $ task_result_cino = "success"
             $ quick_menu = True
-            call _add_affection(LI_CINO, 1)
+            call _add_affection(LI_CINO, 1) from _call__add_affection_15
             show cino happy with dissolve
             c "Danke!"
 

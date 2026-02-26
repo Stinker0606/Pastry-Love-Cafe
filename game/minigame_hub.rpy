@@ -20,19 +20,19 @@ label baking_tutorial_selection:
     menu:
         "Lava Cake":
             $ first_li_chosen = "Lavan"
-            call _add_affection(LI_LAVAN, 1)
+            call _add_affection(LI_LAVAN, 1) from _call__add_affection
 
         "Matcha Cookie":
             $ first_li_chosen = "Macoi"
-            call _add_affection(LI_MACOI, 1)
+            call _add_affection(LI_MACOI, 1) from _call__add_affection_1
 
         "Red Velvet Cupcake":
             $ first_li_chosen = "Velvette"
-            call _add_affection(LI_VELVETTE, 1)
+            call _add_affection(LI_VELVETTE, 1) from _call__add_affection_2
 
         "Zimtrolle":
             $ first_li_chosen = "Cino"
-            call _add_affection(LI_CINO, 1)
+            call _add_affection(LI_CINO, 1) from _call__add_affection_3
 
     $ quick_menu = True
 
@@ -136,7 +136,7 @@ label run_baking_loop:
 
         ## Auch hier kurz Menü ausblenden für Immersion (optional)
         $ quick_menu = False
-        call crepe_pan_minigame
+        call crepe_pan_minigame from _call_crepe_pan_minigame
         $ quick_menu = True
 
         ## Das Ergebnis überschreiben wir
@@ -161,7 +161,7 @@ label run_baking_loop:
 
         call screen success_screen_anim(result_png=result_img)
 
-        call _add_affection(current_kitchen_helper, 2)
+        call _add_affection(current_kitchen_helper, 2) from _call__add_affection_4
 
         $ quick_menu = True
 ## FÜR DICH SOFIYA, Char reaktion auf der verschiedenen gerichte. Untendrunter siehtst du ein Beispiel, mach die Kommentierung weg und wo das FETT geschriebene ist ersetzen.

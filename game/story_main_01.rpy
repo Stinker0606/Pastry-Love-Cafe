@@ -26,7 +26,7 @@ label story_intro_01:
 
     user "Bevor ich mich beschweren konnte schiebte er mir das Klembrett hin wo ich mit meinem Namen unterschreiben musste"
 
-    call setup_player_character
+    call setup_player_character from _call_setup_player_character
     scene bg kitchen2 with fade
     show pierre npc at middle_pi
 
@@ -307,7 +307,7 @@ label story_intro_01:
         810, # links rechts achse
         540, # oben unten achse
         0.055 # Grösse des Objekts
-    )
+    ) from _call_run_finding_minigame
 
     user "Das ungeöffnete Pulver."
 
