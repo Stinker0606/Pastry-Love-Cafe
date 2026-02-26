@@ -29,15 +29,23 @@ define config.version = "1.0"
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p("""
-""")
+define gui.about = _("""Willkommen im {b}Pastry Love Café{/b}! 
+Eine süße Visual Novel, die mit viel Liebe von unserem kleinen Indie-Team entwickelt wurde.
+
+{color=#f5253c}{b}Unser Team:{/b}{/color}
+• {b}Story:{/b} {a=https://nasjo.itch.io/}Nasjo{/a}
+• {b}Programming:{/b} {a=https://koinzen.itch.io/}Koinzen{/a}
+• {b}Art:{/b} {a=https://nasjo.itch.io/}Nasjo{/a} & {a=https://azal3a3.itch.io/}Azal3a3{/a}
+• {b}Musik & Sound Effekte:{/b} {a=https://azal3a3.itch.io/}Azal3a3{/a}
+
+Vielen Dank, dass du unser Spiel spielst!""")
 
 
 ## A short name for the game used for executables and directories in the built
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "PLC"
+define build.name = "PastryLoveCafe"
 
 
 ## Sounds and music ############################################################
@@ -145,7 +153,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "PLC-1599440633"
+define config.save_directory = "PastryLoveCafe-1599440633"
 
 
 ## Icon ########################################################################
