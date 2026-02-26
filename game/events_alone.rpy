@@ -1,6 +1,6 @@
 label Epilog_Single:
 
-    scene bg couch
+    scene bg sofa with fade
 
     user "Das Erste, was ich an diesem Morgen hörte, war... absolut gar nichts."
 
@@ -13,7 +13,7 @@ label Epilog_Single:
     user "Ich schlug die Decke zurück, streckte mich ausgiebig und blinzelte in die warmen Sonnenstrahlen, die durch das Fenster fielen."
 
 
-    scene bg kitchen2
+    scene bg kitchen2 with fade
 
     user "In meinem eigenen Tempo schlenderte ich in die Küche und setzte mir einen Kaffee auf."
     user "Die Maschine zischte leise und friedlich vor sich hin."
@@ -36,6 +36,7 @@ label Epilog_Single:
     user "Doch das Wichtigste, was ich gefunden hatte, war nicht die große Romanze. Es war ich selbst."
 
     #sollten wir zeit haben auf süß hier Belohnungsbild
+    $ persistent.ending_single_unlocked = True
 
     user "Ich trat ans offene Fenster und atmete die frische Frühlingsluft tief ein."
     user "Ich brauchte niemanden, der mich rettete. Niemanden, der mir sagte, was ich tun sollte oder der meine Welt auf den Kopf stellte."

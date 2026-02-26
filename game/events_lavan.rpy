@@ -17,7 +17,7 @@ label Epilog_Lavan:
     user "Der Frühling lag wie ein süßes Versprechen in der Luft, und die warme Sonne begleitete mich auf meinem Spaziergang."
     user "Als ich an unserem Treffpunkt ankam – einer kleinen Lichtung, umgeben von blühenden Bäumen  sah ich ihn schon."
 
-    show lavan happy at center with dissolve
+    show lavan happy at middle
 
     user "Als Lavan mich bemerkte, hellte sich sein Gesicht sofort auf. Ein breites, liebevolles Lächeln breitete sich auf seinen Lippen aus und er kam mir mit schnellen Schritten entgegen."
 
@@ -40,7 +40,7 @@ label Epilog_Lavan:
     user "Die sanften Frühlingsblüten tanzten im Wind um uns herum, als er mich fest an sich drückte."
     user "Die Zeit schien für einen winzigen Moment stillzustehen, als er mich zärtlich küsste. Es war ein Augenblick vollkommenen Glücks."
 
-    show lavan blush
+    show lavan blush with dissolve
 
     user "Als er mich schließlich sanft wieder auf den Boden gleiten ließ, fiel mein Blick auf das, was sich hinter ihm befand."
     user "Unter dem Blätterdach der Bäume lag eine gemütliche Picknickdecke, liebevoll hergerichtet mit Körben voller Leckereien, frischem Obst und kühlen Getränken."

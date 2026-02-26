@@ -7,7 +7,7 @@ label Epilog_Macoi:
     user "Ich wusste einfach nicht, wie ich abschalten sollte. Da war noch so viel zu tun..."
 
     # Macoi taucht auf
-    show macoi sad
+    show macoi sad at middle_m
 
     user "Plötzlich spürte ich eine warme Hand, die sich sanft auf meine Schulter legte."
 
@@ -23,7 +23,7 @@ label Epilog_Macoi:
 
     user "\"Ich seufzte tief, aber ein kleines Lächeln stahl sich auf meine Lippen, als ich zu ihm aufsah und mich im Stuhl zurücklehnte.\""
 
-    show macoi happy
+    show macoi happy with dissolve
 
     user "Er hatte recht. Macoi hatte sich in den letzten Wochen so sehr gebessert. Sein ungesunder, völlig chaotischer Schlafrhythmus gehörte der Vergangenheit an."
     user "Er sah so viel erholter aus, die dunklen Ringe unter seinen Augen waren fast vollständig verschwunden, und er wirkte viel ausgeglichener."
@@ -35,8 +35,6 @@ label Epilog_Macoi:
 
     user "Er drückte mich sanft in die Kissen, holte die flauschigste Decke, die wir besaßen, und wickelte mich darin ein wie einen Burrito."
     user "Dann verschwand er kurz in der Küche und kam mit zwei dampfenden Tassen Tee zurück."
-
-    show macoi happy
 
     m "\"Filmabend. Dein Gehirn hat jetzt offiziell Pause.\""
 

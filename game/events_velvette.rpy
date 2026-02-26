@@ -6,7 +6,7 @@ label Epilog_Velvette:
     user "Die Frühlingssonne fiel warm durch das Blätterdach des Gartencafés und ließ die unzähligen Blumen um uns herum in den buntesten Farben leuchten."
     user "Es duftete nach Jasmin, frischem Gebäck und dem teuren Parfüm, das Velvette heute trug."
 
-    show velvette netral
+    show velvette neutral at middle_vel
 
     user "Ihr ging es gut. Besser als gut sogar. Als aufsteigender Stern am Modehimmel war ihr Terminkalender voll, aber heute gehörte sie nur mir."
     user "Sie nippte elegant an ihrem Cappuccino, achtete penibel darauf, ihren Lippenstift nicht zu verwischen, und seufzte dann zufrieden."
@@ -25,7 +25,7 @@ label Epilog_Velvette:
 
     user "\"Oh ja. Du hast das Leben wie einen Laufsteg behandelt, auf dem man nicht stolpern darf.\""
 
-    show velvette blush
+    show velvette blush with dissolve
 
     v "\"Ja. Aber ich habe gelernt... das Leben ist eben keine Modenschau. Manchmal regnet es, manchmal stolpert man.\""
     v "\"Wichtig ist nur, wie man danach wieder aufsteht und weitermacht. Und dass man jemanden hat, der einem die Hand reicht.\""
@@ -42,7 +42,7 @@ label Epilog_Velvette:
 
     user "\"Willst du mir nicht doch mal hinter der Theke helfen? Wir könnten Hilfe gebrauchen.\""
 
-    show velvette happy
+    show velvette happy with dissolve
 
     v "\"Ich? Hinter der Theke? Mit einer... Schürze?\""
     v "\"Oh, Liebling, bitte. Ich sehe mich hier absolut nicht beim Kaffeekochen. Das würde meine Nägel ruinieren.\""
@@ -51,8 +51,6 @@ label Epilog_Velvette:
 
     v "\"Aber ich werde hier sein. Jeden Tag, wenn ich kann. Ich trinke meinen Kaffee, ich sorge für Glamour und ich erzähle jedem, der wichtig ist, dass das hier der 'Place to be' ist.\""
     v "\"Ich bin vielleicht keine Kellnerin, aber ich bin dein größter Fan... und deine beste Werbung.\""
-
-    scene black with fade
 
     # Hier wird ein Belohnungsbild
     scene reward velvette with fade
@@ -73,5 +71,7 @@ label Epilog_Velvette:
     user "Was feiern wir?"
 
     v "Uns. Und den Frühling. Und dass ich heute einfach mal nicht perfekt sein muss, um mich perfekt zu fühlen."
+
+    scene black with fade
 
 jump credits

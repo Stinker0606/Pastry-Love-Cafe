@@ -30,6 +30,7 @@ screen extras():
             SetField(persistent, "ending_macoi_unlocked", True),
             SetField(persistent, "ending_velvette_unlocked", True),
             SetField(persistent, "ending_cino_unlocked", True),
+            SetField(persistent, "ending_single_unlocked", True),
             SetField(persistent, "cg_lavan_unlocked", True),
             SetField(persistent, "cg_macoi_unlocked", True),
             SetField(persistent, "cg_velvette_unlocked", True),
@@ -45,6 +46,7 @@ screen extras():
             SetField(persistent, "ending_macoi_unlocked", False),
             SetField(persistent, "ending_velvette_unlocked", False),
             SetField(persistent, "ending_cino_unlocked", False),
+            SetField(persistent, "ending_single_unlocked", False),
             SetField(persistent, "cg_lavan_unlocked", False),
             SetField(persistent, "cg_macoi_unlocked", False),
             SetField(persistent, "cg_velvette_unlocked", False),
@@ -125,6 +127,11 @@ screen endings():
             text "Ending: Cino - Das perfekte Rezept" color "#ff3a50"
         else:
             text "Ending: ???? "
+
+        if persistent.ending_single_unlocked:
+            text "Ending: Single - Forever Alone" color "#ff3a50"
+        else:
+            text "Ending: ???? "      
 
 style endings_vbox is vbox
 

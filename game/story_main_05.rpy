@@ -174,7 +174,7 @@ label act5_daydreaming_and_decision:
         "Ich brauche noch Zeit für mich." if lavan_points < 2 and macoi_points < 2 and velvette_points < 2 and cino_points < 2:
             $ quick_menu = True
             user "Im Moment möchte ich mich einfach auf das Café konzentrieren..."
-            jump Epilog_Single #(falls wir Single-Ending haben wollen, sonst einfach zurück ins Main Menu)
+            jump Epilog_Single
             return        
 
     return

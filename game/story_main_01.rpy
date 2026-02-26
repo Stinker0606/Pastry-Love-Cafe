@@ -1,5 +1,5 @@
 label story_intro_01:
-
+    
     scene bg kitchen2 with fade
     play music "audio/Silly_Music.mp3" fadein 0.5 volume 0.75
 
