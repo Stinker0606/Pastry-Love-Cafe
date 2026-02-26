@@ -22,7 +22,7 @@ label Epilog_Cino:
     pause
     $ quick_menu = True
     window show
-    
+
     c "\"Da bist du ja wieder.\""
 
     user "Er zuckte nicht einmal zusammen. Stattdessen lehnte er sich leicht zurück in meine Umarmung und drehte den Kopf, um mich mit einem warmen, liebevollen Lächeln anzusehen."
@@ -33,7 +33,7 @@ label Epilog_Cino:
 
     user "Er war das Herzstück unseres Cafés geworden. Die Kunden liebten ihn. Stammkunden brachten ihm mittlerweile sogar kleine Geschenke mit, weil er immer wusste, wie sie ihren Kaffee am liebsten tranken."
 
-    user "Er hatte seine Berufung gefunden – und sein Selbstbewusstsein."
+    user "Er hatte seine Berufung gefunden und sein Selbstbewusstsein."
 
     user "\"Mhm... endlich Feierabend,\" murmelte ich gegen seinen Pullover und schloss genießerisch die Augen."
 

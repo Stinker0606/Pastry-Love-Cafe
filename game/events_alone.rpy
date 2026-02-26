@@ -4,7 +4,7 @@ label Epilog_Single:
 
     "Die letzten Wochen waren so intensiv gewesen, dass ich mich kaum daran erinnern konnte, wie es war, einfach nur ich selbst zu sein."
     "Aber heute war ein ruhiger, sonniger Tag, und ich hatte beschlossen, ihn ganz für mich zu genießen."
-    "Ich saß auf meinem gemütlichen Sofa, umgeben von meinen Lieblingsbüchern,meinen Pflanzen und einer Tasse Tee, die ich mir gerade gemacht hatte."
+    "Ich saß auf meinem gemütlichen Sofa, umgeben von meinen Lieblingsbüchern, meinen Pflanzen und einer Tasse Tee, die ich mir gerade gemacht hatte."
     "Es war ein Moment der vollkommenen Ruhe und Zufriedenheit. Ich fühlte mich so dankbar für all die Erfahrungen, die ich gemacht hatte, und für die Menschen, die ich getroffen hatte – auch wenn es nicht zu einer romantischen Beziehung geführt hatte."
     "Ich hatte so viel über mich selbst gelernt, über meine Wünsche, meine Grenzen und darüber, was ich wirklich im Leben wollte."
     "In diesem Moment, allein mit meinen Gedanken und meiner Tasse Tee, fühlte ich mich stärker und selbstbewusster als je zuvor. Ich wusste, dass ich bereit war, mein Leben in vollen Zügen zu genießen – mit oder ohne jemanden an meiner Seite."
