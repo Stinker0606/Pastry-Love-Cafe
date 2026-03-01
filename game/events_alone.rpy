@@ -29,7 +29,7 @@ label Epilog_Single:
     user "Natürlich sah ich sie alle noch. Wir trafen uns, stritten, lachten und erlebten neue Dinge."
     user "Sie waren gute Freunde geworden."
     user "Aber am Ende des Tages kehrte ich hierher zurück. In mein eigenes kleines Reich."
-    user "Jeder von uns keehrte ihn sein Leben."
+    user "Jeder von uns kehrte in sein Leben zurück."
     user "In etwas eigenes, was nur ihm gehörte..."
     user "Ich war glücklich für sie. Was sie durchgemacht haben und wer sie geworden sind."
     user "Es war eine Art Stolz."

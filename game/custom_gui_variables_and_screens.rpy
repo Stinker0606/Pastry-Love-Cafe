@@ -109,29 +109,29 @@ screen endings():
         ## Sample Ending Code
 
         if persistent.ending_lavan_unlocked:
-            text "Ending: Lavan - Ein süßes Versprechen" color "#ff3a50"
+            text _("Ending: Lavan - Ein süßes Versprechen") color "#ff3a50"
         else:
-            text "Ending: ????"
+            text _("Ending: ????")
 
         if persistent.ending_macoi_unlocked:
-            text "Ending: Macoi - Entspannte Zweisamkeit" color "#ff3a50"
+            text _("Ending: Macoi - Entspannte Zweisamkeit") color "#ff3a50"
         else:
-            text "Ending: ????"
+            text _("Ending: ????")
 
         if persistent.ending_velvette_unlocked:
-            text "Ending: Velvette - Glamour & Kaffee" color "#ff3a50"
+            text _("Ending: Velvette - Glamour & Kaffee") color "#ff3a50"
         else:
-            text "Ending: ????"
+            text _("Ending: ????")
 
         if persistent.ending_cino_unlocked:
-            text "Ending: Cino - Das perfekte Rezept" color "#ff3a50"
+            text _("Ending: Cino - Das perfekte Rezept") color "#ff3a50"
         else:
-            text "Ending: ???? "
+            text _("Ending: ????")
 
         if persistent.ending_single_unlocked:
-            text "Ending: Single - Forever Alone" color "#ff3a50"
+            text _("Ending: Single - Forever Alone") color "#ff3a50"
         else:
-            text "Ending: ???? "      
+            text _("Ending: ????")     
 
 style endings_vbox is vbox
 

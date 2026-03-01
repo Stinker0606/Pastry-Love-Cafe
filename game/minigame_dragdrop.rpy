@@ -185,7 +185,7 @@ init python:
                     
                     ## Benachrichtigung nur solange wir noch "rühren"
                     if len(hits) < 4:
-                        renpy.notify(f"Rühren: {len(hits)} / 4")
+                        renpy.notify(_("Rühren %d/4") % len(hits))
                     
                     ## RUNDE KOMPLETT?
                     if len(hits) >= 4:
@@ -193,7 +193,7 @@ init python:
                         
                         ## Wir fügen "Mixen" hinzu
                         store.current_ingredients.append("Mixen")
-                        renpy.notify("Teig gerührt!")
+                        renpy.notify(_("Teig gerührt!"))
                         
     ## --- 4. DER GROSSE CHECK AM ENDE ---
     ## Diese Funktion wird NUR vom Button "Fertig!" aufgerufen!
@@ -204,14 +204,14 @@ init python:
         
         ## Check 1: Länge
         if len(current_steps) != len(target_steps):
-            renpy.notify("Die Menge stimmt nicht!")
+            renpy.notify(_("Die Menge stimmt nicht!"))
             renpy.end_interaction("fail")
             return
 
         ## Check 2: Reihenfolge und Inhalt (inklusive "Mixen")
         for i in range(len(target_steps)):
             if current_steps[i] != target_steps[i]:
-                renpy.notify(f"Fehler bei Schritt {i+1}!")
+                renpy.notify(_("Fehler bei Schritt %d!") % (i+1))
                 renpy.end_interaction("fail")
                 return
 
@@ -292,7 +292,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
         ## MEHL
         drag:
             drag_name "Mehl"
-            child Transform("images/minigames/baking/Flour_Sprite.png", size=(250, 250))
+            child Transform("images/minigames/baking/Pulver_Sprite.png" if recipe_name == "Tutorial" else "images/minigames/baking/Flour_Sprite.png", size=(250, 250))
             # child Composite(
             #     (100, 60), # Platzhalter
             #     (0, 0), Solid("#ffffff"), # Platzhalter
@@ -522,7 +522,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
     ## --- BUTTONS ---
 
     ## RESET
-    textbutton "Reset":
+    textbutton _("Reset"):
         xalign 1.0 yalign 0.99
         text_size 60
         #background Solid("#0000001a") # Halb-transparenter schwarzer Hintergrund
@@ -530,7 +530,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
         action [SetVariable("current_ingredients", []), Function(renpy.restart_interaction)]
 
     # CHECK BUTTON
-    textbutton "Fertig!":
+    textbutton _("Fertig!"):
         xalign 0.54 yalign 0.98
         style "choice_button"
         xsize 600        # Zwingt ihn auf eine feste, kleine Breite
@@ -540,7 +540,7 @@ screen baking_minigame_screen(recipe_name, helper=None):
         action Function(final_baking_check, recipe_name)
 
     ## CANCEL
-    textbutton "Cancel":
+    textbutton _("Cancel"):
         xalign -0.005 yalign 0.99  #0.875
         text_size 55
         #background Solid("#0000001c") # Halb-transparenter schwarzer Hintergrund
@@ -600,10 +600,10 @@ screen crepe_pan_screen():
         xalign 0.5 yalign 0.1
 
         if pan_state == 1: 
-            text "Es riecht langsam verbrannt..." size 70 xalign 0.5
+            text _("Es riecht langsam verbrannt...") size 70 xalign 0.5
                 
         elif pan_state == 3:
-            text "Nun Erdbeeren dazu..." size 70 xalign 0.5
+            text _("Nun Erdbeeren dazu...") size 70 xalign 0.5
 
     ## --- 4. DIE BUTTONS ---
     if pan_state == 1:
@@ -612,7 +612,7 @@ screen crepe_pan_screen():
             background Solid("#800d006c")
             hover_background Solid("#ff000079")
             padding (90, 10)
-            text "Wenden!" size 70 color "#fff"
+            text _("Wenden!") size 70 color "#fff"
             action SetScreenVariable("pan_state", 2)
 
     elif pan_state == 3:
@@ -621,7 +621,7 @@ screen crepe_pan_screen():
             background Solid("#800d006c")
             hover_background Solid("#ff000079")
             padding (90, 10)
-            text "Erdbeeren drauftun!" size 70 color "#fff"
+            text _("Erdbeeren drauftun!") size 70 color "#fff"
             action Return("success")        
 
 screen baking_instructions():
@@ -646,18 +646,29 @@ screen baking_instructions():
             ## INHALT JE NACH SEITE
             if instruction_page == 1:
                 # add "images/tutorial/page1.png" # Hier dein Bild einfügen
-                label "Schritt 1: Zutaten hinzufügen" xalign 0.5
-                text "Ziehe die benötigten Zutaten aus dem Vorrat in die Schüssel.\nAchte auf die richtige Menge im Rezept rechts oben!" xalign 0.5 text_align 0.5
+                label   _("Schritt 1: Zutaten hinzufügen") xalign 0.5
+                text _("Ziehe die benötigten Zutaten aus dem Vorrat in die Schüssel.\nAchte auf die richtige Menge im Rezept rechts oben!") xalign 0.5 text_align 0.5
+
+                if store.current_recipe_name_global == "Tutorial":
+                    null height 20
+                    text _("{color=#f5253c}{size=45}Wichtige Erinnerung:{/size}{/color}\nWir haben kein Mehl mehr. Nutze als Ersatz das Pulver!") xalign 0.5 text_align 0.5 size 35
+                    
+                    hbox:
+                        xalign 0.5
+                        spacing 40
+                        add Transform("images/minigames/baking/Flour_Sprite.png", size=(150, 150))
+                        text "{size=80}-->{/size}" yalign 0.5
+                        add Transform("images/minigames/baking/Pulver_Sprite.png", size=(150, 150))
                 
             elif instruction_page == 2:
                 # add "images/tutorial/page2.png" 
-                label "Schritt 2: Rühren" xalign 0.5
-                text "Nimm den Schneebesen und bewege ihn im Kreis über die Schüssel.\nDu musst den Teig gründlich mixen, bevor du weitermachst." xalign 0.5 text_align 0.5
+                label _("Schritt 2: Rühren") xalign 0.5
+                text _("Nimm den Schneebesen und bewege ihn im Kreis über die Schüssel.\nDu musst den Teig gründlich mixen, bevor du weitermachst.") xalign 0.5 text_align 0.5
                 
             elif instruction_page == 3:
                 # add "images/tutorial/page3.png"
-                label "Schritt 3: Fertigstellen" xalign 0.5
-                text "Sobald alle Schritte erledigt sind, klicke auf 'Fertig!'.\nBei Fehlern kannst du jederzeit 'Zurücksetzen' drücken." xalign 0.5 text_align 0.5
+                label _("Schritt 3: Fertigstellen") xalign 0.5
+                text _("Sobald alle Schritte erledigt sind, klicke auf 'Fertig!'.\nBei Fehlern kannst du jederzeit 'Zurücksetzen' drücken.") xalign 0.5 text_align 0.5
 
         ## NAVIGATION UNTEN
         hbox:
@@ -665,18 +676,18 @@ screen baking_instructions():
             spacing 50
             
             if instruction_page > 1:
-                textbutton "Zurück":
+                textbutton _("Zurück"):
                     xsize 250 
                     text_size 80
                     action SetScreenVariable("instruction_page", instruction_page - 1)
             
             if instruction_page < 3:
-                textbutton "Weiter":
+                textbutton _("Weiter"):
                     xsize 250
                     text_size 80
                     action SetScreenVariable("instruction_page", instruction_page + 1)
             else:
-                textbutton "Verstanden":
+                textbutton _("Verstanden"):
                     xsize 250
                     text_size 80
                     action Hide("baking_instructions")

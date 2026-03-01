@@ -63,14 +63,14 @@ label Epilog_Velvette:
     $ quick_menu = True
     window show
 
-    "In diesem Moment, zwischen den blühenden Blumen und dem Klappern der Tassen, wirkte sie nicht wie der unnahbare Star, den die Welt sah."
-    "Sie war einfach Velvette. Und sie war glücklich."
+    user "In diesem Moment, zwischen den blühenden Blumen und dem Klappern der Tassen, wirkte sie nicht wie der unnahbare Star, den die Welt sah." id Epilog_Velvette_592be4cd
+    user "Sie war einfach Velvette. Und sie war glücklich." id Epilog_Velvette_61828994
 
-    v "Also... bestell mir noch so ein Törtchen. Wir haben etwas zu feiern."
+    v "\"Also... bestell mir noch so ein Törtchen. Wir haben etwas zu feiern.\"" id Epilog_Velvette_27cbf966
 
-    user "Was feiern wir?"
+    user "\"Was feiern wir?\"" id Epilog_Velvette_df215793
 
-    v "Uns. Und den Frühling. Und dass ich heute einfach mal nicht perfekt sein muss, um mich perfekt zu fühlen."
+    v "\"Uns. Und den Frühling. Und dass ich heute einfach mal nicht perfekt sein muss, um mich perfekt zu fühlen.\"" id Epilog_Velvette_acaf5525
 
     scene black with fade
 

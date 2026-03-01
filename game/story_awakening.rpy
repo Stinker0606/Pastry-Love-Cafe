@@ -78,7 +78,7 @@ label awakening_sequence_start:
 
         user "Er wirkte weniger schockiert als vielmehr maßlos unzufrieden mit der Gesamtsituation."
 
-        l1 "„Und wo zur Hölle bin ich hier eigentlich?!“"
+        l1 "\"Und wo zur Hölle bin ich hier eigentlich?!\"" id awakening_sequence_start_c2f9a75f
 
         user "Seine raue Stimme donnerte durch den Raum und ließ mich unwillkürlich zusammenzucken."
 
@@ -100,11 +100,11 @@ label awakening_sequence_start:
 
         user "Sie wirkte wie ein Model oder eine Puppe, mit porzellan Haut, das sich versehentlich ans falsche Set verirrt hatte und nun den Manager sprechen wollte."
 
-        v1 "Ernsthaft? Das alles hier ist..."
+        v1 "\"Ernsthaft? Das alles hier ist...\""
 
         user "Sie suchte ein Wort für ihr Kommentar."
 
-        v1 "Geschmacklos."
+        v1 "\"Geschmacklos.\""
 
         user "Sie schnippte ein imaginäres Staubkorn von ihrer Schulter und rümpfte pikiert die Nase."
 
@@ -115,7 +115,7 @@ label awakening_sequence_start:
 
         user "Er schien der Einzige zu sein, der weniger verärgert als vielmehr ehrlich besorgt war."
 
-        c1 "Ähm... Entschuldigung? Hallo? Weiß vielleicht jemand, wie wir hierher gekommen sind?"
+        c1 "\"Ähm... Entschuldigung? Hallo? Weiß vielleicht jemand, wie wir hierher gekommen sind?\""
 
         user "Seine Stimme zitterte leicht, aber er versuchte tapfer, ein höfliches, wenn auch gequältes Lächeln aufzusetzen."
 

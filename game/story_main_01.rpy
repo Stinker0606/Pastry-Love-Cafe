@@ -204,7 +204,7 @@ label story_intro_01:
 
     user "Mit einem leisen Seufzer öffnete ich die Tür ein Stück weiter."
 
-    user "Na gut. Kommen Sie rein, Mister…?"
+    user "\"Na gut. Kommen Sie rein, Mister…?\"" id story_intro_01_458f6857
 
     user "Es huschte in flüchtiges, fast müdes Lächeln über sein Gesicht."
 

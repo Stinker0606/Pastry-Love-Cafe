@@ -817,8 +817,14 @@ screen preferences():
                     vbox:
                         style_prefix "radio"
                         label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
+                        textbutton _("Windowed") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
+
+                vbox:
+                    style_prefix "radio"
+                    label _("Sprache")
+                    textbutton _("Deutsch") action Language(None)
+                    textbutton _("Englisch") action Language("english")        
 
                 #vbox:
                     #style_prefix "radio"
@@ -835,10 +841,6 @@ screen preferences():
                     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
 
                 ## Additional toggles or textbuttons can go inside this Vbox
-                vbox:
-                    label _("Other")
-                    style_prefix "other"
-                    textbutton "Accessibility Options" action ToggleScreen("_accessibility")
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
@@ -878,14 +880,14 @@ screen preferences():
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                    # if config.has_voice:
+                    #     label _("Voice Volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                    #     hbox:
+                    #         bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                    #         if config.sample_voice:
+                    #             textbutton _("Test") action Play("voice", config.sample_voice)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
@@ -893,6 +895,10 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
+                vbox:
+                    label _("Other")
+                    style_prefix "other"
+                    textbutton _("Accessibility") action ToggleScreen("_accessibility")
 
 
 style pref_label is gui_label
@@ -938,7 +944,7 @@ style pref_label_text:
     size 50
 
 style pref_vbox:
-    xsize 338
+    xsize 385
 
 style radio_vbox:
     spacing gui.pref_button_spacing

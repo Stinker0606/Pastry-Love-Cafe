@@ -87,10 +87,10 @@ label baking_recipe_selection:
     python:
         if current_kitchen_helper:
             # Fall A: Helfer ist da (Variable ist NICHT leer/None)
-            selection_prompt = "Okay, " + current_kitchen_helper + " hilft mir heute. Was backen wir?"
+            selection_prompt = _("Okay, " + current_kitchen_helper + " hilft mir heute. Was backen wir?")
         else:
             # Fall B: Kein Helfer (Variable ist None)
-            selection_prompt = "Okay, ich backe heute alleine. Was backe ich denn?"
+            selection_prompt = _("Okay, ich backe heute alleine. Was backe ich denn?")
 
     menu:
         user "[selection_prompt]"
@@ -263,7 +263,7 @@ screen success_screen_anim(result_png=None):
     #     text "Perfekt!" size 100 align (0.5, 0.5) outlines [(3, "#000", 0, 0)]
 
     ## BUTTON
-    textbutton "Weiter":
+    textbutton _("Weiter"):
         align (0.5, 0.9)
         style "choice_button"
         text_size 40
@@ -285,7 +285,7 @@ screen fail_screen_anim():
         zoom 0.25 # Größe anpassen
 
     ## BUTTON
-    textbutton "Nochmal versuchen":
+    textbutton _("Nochmal versuchen"):
         align (0.5, 0.85)
         style "choice_button"
         text_size 40
