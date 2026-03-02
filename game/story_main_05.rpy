@@ -175,8 +175,13 @@ label act5_daydreaming_and_decision:
             $ quick_menu = True
             user "Im Moment möchte ich mich einfach auf das Café konzentrieren..."
             jump Epilog_Single
-            return        
 
+        ## Easter Egg Option
+        "HAREM LETS GO" if lavan_points >= 2 and macoi_points >= 2 and velvette_points >= 2 and cino_points >= 2:
+            $ quick_menu = True
+            user "Harem time..."
+            jump Epilog_harem
+             
     return
 
 # ---------------------------------------------------------
