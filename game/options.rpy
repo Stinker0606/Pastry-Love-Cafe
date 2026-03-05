@@ -226,7 +226,13 @@ init python:
 
 # define build.itch_project = "renpytom/test-project"
 
-#define config.rollback_enabled = False # AN MACHENDE OPTION, NICHT VERGESSEN WIEDER AUSZUKOMMENTIEREN!
+# Custom mouse cursors.
+
+# define config.mouse = {
+#     "default": [ ("images/cursor.png", 0, 0) ]
+# }
+
+define config.rollback_enabled = False # AN MACHENDE OPTION, NICHT VERGESSEN WIEDER AUSZUKOMMENTIEREN!
 
 init python:
     ## Zwingt den Sound auf das absolute Fundament
