@@ -1,6 +1,7 @@
 label Epilog_Cino:
 
     scene bg home_kitchen with fade
+    play music "audio/Romantic_Music.mp3" fadein 0.5 volume 0.75
 
     user "Der lange Arbeitstag im Café steckte mir noch in den Knochen, aber als ich aus dem Bad kam und in meinen gemütlichen, pinken Hoodie schlüpfte, fiel die Anspannung des Tages sofort von mir ab."
 
@@ -79,6 +80,7 @@ label Epilog_Cino:
 
     user "Gemeinsam standen wir in unserer kleinen Küche, während das Abendessen leise vor sich hin köchelte. Und ich wusste: Die chaotischen Anfangstage lagen weit hinter uns, aber das schönste Kapitel hatte gerade erst begonnen."
 
+    stop music fadeout 3.0
     scene black with fade
 
 jump credits

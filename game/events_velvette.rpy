@@ -2,6 +2,7 @@ label Epilog_Velvette:
 
 
     scene bg gartencafe with fade
+    play music "audio/Romantic_Music.mp3" fadein 0.5 volume 0.75
 
     user "Die Frühlingssonne fiel warm durch das Blätterdach des Gartencafés und ließ die unzähligen Blumen um uns herum in den buntesten Farben leuchten."
     user "Es duftete nach Jasmin, frischem Gebäck und dem teuren Parfüm, das Velvette heute trug."
@@ -72,6 +73,7 @@ label Epilog_Velvette:
 
     v "\"Uns. Und den Frühling. Und dass ich heute einfach mal nicht perfekt sein muss, um mich perfekt zu fühlen.\"" id Epilog_Velvette_acaf5525
 
+    stop music fadeout 3.0
     scene black with fade
 
 jump credits

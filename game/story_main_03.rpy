@@ -42,9 +42,9 @@ label story_intro_03:
 
     ## 3. DETAILLIERTE ANALYSE (Wer hat Mist gebaut?)
     ## Hier prüfen wir: War es FAIL (Falsch geholfen) oder IGNORED (Nicht geholfen)?
-
+    stop audio fadeout 1.0
     user "Während ich mich anzog, gingen mir die Gesichter von gestern durch den Kopf..."
-
+    
     scene bg cafe with fade
     show vignette3 with dissolve
     play music "audio/Silly_Music.mp3" fadein 1.0 volume 0.75

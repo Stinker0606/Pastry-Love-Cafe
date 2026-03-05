@@ -31,10 +31,14 @@ screen extras():
             SetField(persistent, "ending_velvette_unlocked", True),
             SetField(persistent, "ending_cino_unlocked", True),
             SetField(persistent, "ending_single_unlocked", True),
+            SetField(persistent, "ending_harem_unlocked", True),
             SetField(persistent, "cg_lavan_unlocked", True),
             SetField(persistent, "cg_macoi_unlocked", True),
             SetField(persistent, "cg_velvette_unlocked", True),
-            SetField(persistent, "cg_cino_unlocked", True)
+            SetField(persistent, "cg_cino_unlocked", True),
+            SetField(persistent, "cg_single_unlocked", True),
+            SetField(persistent, "cg_harem_unlocked", True),
+            SetField(persistent, "cg_baking_unlocked", True)
         ]
 
     ## 2. ALLES SPERREN / VERGESSEN (Oben Rechts in der Ecke)
@@ -47,10 +51,14 @@ screen extras():
             SetField(persistent, "ending_velvette_unlocked", False),
             SetField(persistent, "ending_cino_unlocked", False),
             SetField(persistent, "ending_single_unlocked", False),
+            SetField(persistent, "ending_harem_unlocked", False),
             SetField(persistent, "cg_lavan_unlocked", False),
             SetField(persistent, "cg_macoi_unlocked", False),
             SetField(persistent, "cg_velvette_unlocked", False),
-            SetField(persistent, "cg_cino_unlocked", False)
+            SetField(persistent, "cg_cino_unlocked", False),
+            SetField(persistent, "cg_single_unlocked", False),
+            SetField(persistent, "cg_harem_unlocked", False),
+            SetField(persistent, "cg_baking_unlocked", False)
         ]
     ## ----------------------------------
 
@@ -131,7 +139,12 @@ screen endings():
         if persistent.ending_single_unlocked:
             text _("Ending: Single - Forever Alone") color "#ff3a50"
         else:
-            text _("Ending: ????")     
+            text _("Ending: ????")  
+
+        if persistent.ending_harem_unlocked:
+            text _("Ending: All together - Together till the end") color "#ff3a50"
+        else:
+            text _("Ending: ????")        
 
 style endings_vbox is vbox
 
@@ -199,10 +212,20 @@ screen gallery():
 
     style_prefix "extras"
 
-    grid 2 2:
+    grid 3 3:
         spacing 30
 
-        ## 1. LAVAN
+        ## 1. BAKING
+        if persistent.cg_baking_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_baking, thumb_x, thumb_y))
+                hover im.Scale(cg_file_baking, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "baking")]
+                alt "Baking CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)
+
+        ## 2. LAVAN
         if persistent.cg_lavan_unlocked:
             imagebutton:
                 idle im.Grayscale(im.Scale(cg_file_lavan, thumb_x, thumb_y))
@@ -212,7 +235,7 @@ screen gallery():
         else:
             add im.Scale(cg_file_locked, thumb_x, thumb_y)
 
-        ## 2. MACOI
+        ## 3. MACOI
         if persistent.cg_macoi_unlocked:
             imagebutton:
                 idle im.Grayscale(im.Scale(cg_file_macoi, thumb_x, thumb_y))
@@ -222,7 +245,7 @@ screen gallery():
         else:
             add im.Scale(cg_file_locked, thumb_x, thumb_y)
 
-        ## 3. VELVETTE
+        ## 4. VELVETTE
         if persistent.cg_velvette_unlocked:
             imagebutton:
                 idle im.Grayscale(im.Scale(cg_file_velvette, thumb_x, thumb_y))
@@ -232,7 +255,7 @@ screen gallery():
         else:
             add im.Scale(cg_file_locked, thumb_x, thumb_y)
 
-        ## 4. CINO
+        ## 5. CINO
         if persistent.cg_cino_unlocked:
             imagebutton:
                 idle im.Grayscale(im.Scale(cg_file_cino, thumb_x, thumb_y))
@@ -241,6 +264,29 @@ screen gallery():
                 alt "Cino CG"
         else:
             add im.Scale(cg_file_locked, thumb_x, thumb_y)
+
+        ## 6. SINGLE
+        if persistent.cg_single_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_single, thumb_x, thumb_y))
+                hover im.Scale(cg_file_single, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "single")]
+                alt "Single CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)
+
+        ## 7. HAREM
+        if persistent.cg_harem_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_harem, thumb_x, thumb_y))
+                hover im.Scale(cg_file_harem, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "harem")]
+                alt "Harem CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)   
+
+        null   # Füllt Platz 8 auf
+        null   # Füllt Platz 9 auf        
 
 style extras_grid is gui_grid
 
@@ -267,6 +313,12 @@ screen illustration():
         add cg_file_velvette
     elif cg == "cino":
         add cg_file_cino
+    elif cg == "single":
+        add cg_file_single
+    elif cg == "harem":
+        add cg_file_harem
+    elif cg == "baking":
+        add cg_file_baking
     else:
         text "Error: No Illustration Found" xalign 0.5 yalign 0.5 color "#fff"
 

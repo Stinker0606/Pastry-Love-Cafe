@@ -1,11 +1,21 @@
 label Epilog_harem:
 
 #ich brauche den Hintergrund von dem Bild
+    show bg beach with fade
+    play music "audio/Silly_Music.mp3" fadein 0.5 volume 0.75
 
     user "Der Urlaub am Meer war genau das, was wir alle gebraucht hatten."
     user "Wir hatten uns verändert. Jeder Einzelne von uns hatte an seinen eigenen Dämonen gearbeitet, und irgendwie... hatte uns das nur noch enger zusammengeschweißt."
 
-    # Hier Bild einfügen
+    scene reward beach with fade
+    $ persistent.ending_harem_unlocked = True
+    $ persistent.cg_harem_unlocked = True
+
+    window hide
+    $ quick_menu = False
+    pause
+    $ quick_menu = True
+    window show
 
     user "Im Moment thronte ich lachend auf Lavans breiten Schultern, während das kühle Meerwasser um seine Hüften schwappte."
 
@@ -21,7 +31,7 @@ label Epilog_harem:
 
     c "Ich rutsche! Velvette, ich rutsche wirklich! Waah!"
 
-    # Hier brauche ich ein Ruckler
+    show reward beach with hpunch
 
     user "Mit einem gewaltigen Platschen fielen die beiden wenige Meter neben uns ins Wasser. Velvette klammerte sich an Cinos Schultern, während er panisch ruderte."
 
@@ -31,8 +41,10 @@ label Epilog_harem:
 
     user "Macoi wirkte so erholt wie noch nie. Er hatte tatsächlich Farbe im Gesicht, schlief nachts durch und strahlte eine sanfte, geerdete Energie aus."
 
-    # Wieder den Hintergrund und Cino und Velvette
+    scene bg beach with fade
 
+    show cino happy at left
+    show velvette happy at right_vel
 
     user "Später saßen wir alle zusammen auf einer riesigen Decke im warmen Sand."
     user "Velvette hatte zwar tatsächlich nasse Haare bekommen, aber statt einen Wutanfall zu kriegen, warf sie die Strähnen nur elegant zurück und lehnte sich schnurrend an meine rechte Schulter."
@@ -44,7 +56,10 @@ label Epilog_harem:
     user "Cino präsentierte stolz eine riesige, perfekt aufgeschnittene Wassermelone. Er hatte sich sichtlich Mühe gegeben, die Stücke in kleine Schiffchen zu schneiden."
     user "Seine ständige Unsicherheit war gewichen"
 
-    #Hier Lavan zeigen
+    hide cino with dissolve
+    hide velvette with dissolve
+
+    show lavan happy at middle
 
     user "Lavan nahm sich ein Stück, biss hinein und hielt mir dann kurzerhand ein besonders saftiges Stück direkt an die Lippen."
 
@@ -58,5 +73,5 @@ label Epilog_harem:
     user "Und ich war niemals glücklicher"
 
     scene black with fade
-    # Ende
-    return
+
+jump credits

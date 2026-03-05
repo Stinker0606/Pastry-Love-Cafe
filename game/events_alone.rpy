@@ -12,7 +12,6 @@ label Epilog_Single:
 
     user "Ich schlug die Decke zurück, streckte mich ausgiebig und blinzelte in die warmen Sonnenstrahlen, die durch das Fenster fielen."
 
-
     scene bg kitchen2 with fade
 
     user "In meinem eigenen Tempo schlenderte ich in die Küche und setzte mir einen Kaffee auf."
@@ -35,8 +34,15 @@ label Epilog_Single:
     user "Es war eine Art Stolz."
     user "Doch das Wichtigste, was ich gefunden hatte, war nicht die große Romanze. Es war ich selbst."
 
-    #sollten wir zeit haben auf süß hier Belohnungsbild
+    scene reward single with fade
     $ persistent.ending_single_unlocked = True
+    $ persistent.cg_single_unlocked = True
+
+    window hide
+    $ quick_menu = False
+    pause
+    $ quick_menu = True
+    window show
 
     user "Ich trat ans offene Fenster und atmete die frische Frühlingsluft tief ein."
     user "Ich brauchte niemanden, der mich rettete. Niemanden, der mir sagte, was ich tun sollte oder der meine Welt auf den Kopf stellte."

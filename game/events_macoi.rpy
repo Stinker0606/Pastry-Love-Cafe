@@ -1,6 +1,7 @@
 label Epilog_Macoi:
 
     scene bg sofa with fade
+    play music "audio/Romantic_Music.mp3" fadein 0.5 volume 0.75
 
     user "Mein Nacken war steif und meine Augen brannten, als ich immer noch auf den Bildschirm starrte."
     user "Es war ein unfassbar langer und anstrengender Tag gewesen, aber mein Kopf ratterte immer noch auf Hochtouren."
@@ -68,6 +69,7 @@ label Epilog_Macoi:
     user "Während der Film auf dem Bildschirm flackerte und Macoi leise über einen schlechten Witz lachte, schloss ich für einen Moment die Augen."
     user "Endlich war ich zur Ruhe gekommen. Hier, in seinen Armen, fühlte sich alles einfach genau richtig an."
 
+    stop music fadeout 3.0
     scene black with fade
 
 

@@ -177,9 +177,9 @@ label act5_daydreaming_and_decision:
             jump Epilog_Single
 
         ## Easter Egg Option
-        "HAREM LETS GO" if lavan_points >= 2 and macoi_points >= 2 and velvette_points >= 2 and cino_points >= 2:
+        "Ich möchte meine Tage mit ihnen allen verbringen." if lavan_points >= 2 and macoi_points >= 2 and velvette_points >= 2 and cino_points >= 2:
             $ quick_menu = True
-            user "Harem time..."
+            user "Jeder einzelne ist mir wichtig geworben und ich werde mich nicht entscheiden. Nicht nach allem was wir erlebt haben."
             jump Epilog_harem
              
     return

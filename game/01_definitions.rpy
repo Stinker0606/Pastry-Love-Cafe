@@ -86,18 +86,6 @@ image female npc = Transform("images/sprites/NPC_Female_Sprite.png", zoom=0.40)
 image pierre npc = Transform("images/sprites/Pierre.png", zoom=0.60)
 
 ## Lavan
-# image lavan angry = Transform(Movie(play="images/sprites/lavan/Lavan_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-# image lavan blush = Transform(Movie(play="images/sprites/lavan/Lavan_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-# image lavan happy = Transform(Movie(play="images/sprites/lavan/Lavan_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-# image lavan neutral = Transform(Movie(play="images/sprites/lavan/Lavan_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-# image lavan sad = Transform(Movie(play="images/sprites/lavan/Lavan_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-## FÜR SLOWING DER ANIMATION (Image.txt und txt anschauen!)
-
 image lavan angry = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Angry/Lavan_Angry_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
 image lavan blush = Transform(Movie(play="images/sprites/ffmpeg/Lavan_Blush/Lavan_Blush_Time.webm", loop=True, side_mask=True), zoom=0.45)
@@ -120,18 +108,6 @@ image macoi neutral = Transform(Movie(play="images/sprites/macoi/Macoineutral_fi
 image macoi sad = Transform(Movie(play="images/sprites/macoi/Macoisad_final.webm", loop=True, side_mask=True), zoom=0.8)
 
 ## Velvette
-# image velvette angry = Transform(Movie(play="images/sprites/velvette/Velvette_Angry_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-# image velvette blush = Transform(Movie(play="images/sprites/velvette/Velvette_Blush_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-# image velvette happy = Transform(Movie(play="images/sprites/velvette/Velvette_Happy_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-# image velvette neutral = Transform(Movie(play="images/sprites/velvette/Velvette_Neutral_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-# image velvette sad = Transform(Movie(play="images/sprites/velvette/Velvette_Sad_slow.webm", loop=True, side_mask=True), zoom=0.45)
-
-## FÜR SLOWING DER ANIMATION (Image.txt und txt anschauen!)
-
 image velvette angry = Transform(Movie(play="images/sprites/ffmpeg/Velvette_Angry/Velvette_Angry_Time.webm", loop=True, side_mask=True), zoom=0.45)
 
 image velvette blush = Transform(Movie(play="images/sprites/ffmpeg/Velvette_Blush/Velvette_Blush_Time.webm", loop=True, side_mask=True), zoom=0.45)
@@ -173,6 +149,7 @@ image bg gartencafe = Transform("images/backgrounds/Velvette_Background.png", si
 image bg sofa = Transform("images/backgrounds/Sofa.png", size=(1920, 1080))
 image bg home_kitchen = Transform("images/backgrounds/Cino_Background.png", size=(1920, 1080))
 image bg fruehlingspark = Transform("images/backgrounds/Lavan_Background.png", size=(1920, 1080))
+image bg beach = Transform("images/backgrounds/Beach_Background.png", size=(1920, 1080))
 
 image bg sig = Transform("images/backgrounds/Unterschrift.png", size=(1920, 1080)) # Unterschrift Background
 
@@ -181,15 +158,20 @@ image reward lavan = Transform("images/gallery/Lavan_Belohnungsbild_Sprite.png",
 image reward velvette = Transform("images/gallery/Velvette_Belohnungsbild_Sprite.png", size=(1920, 1080))
 image reward macoi = Transform("images/gallery/Macoi_Belohnungsbild_Sprite.png", size=(1920, 1080))
 image reward cino = Transform("images/gallery/Cino_Belohnungsbild_Sprite.png", size=(1920, 1080))
+image reward beach = Transform("images/gallery/Beach_Belohnungsbild_Sprite.png", size=(1920, 1080))
+image reward single = Transform("images/gallery/Single_Belohnungsbild_Sprite.png", size=(1920, 1080))
 
 ## --- GALERIE DEFINITIONEN ---
 define cg_file_lavan = "images/gallery/Lavan_Belohnungsbild_Sprite.png"
 define cg_file_macoi = "images/gallery/Macoi_Belohnungsbild_Sprite.png"
 define cg_file_velvette = "images/gallery/Velvette_Belohnungsbild_Sprite.png"
 define cg_file_cino = "images/gallery/Cino_Belohnungsbild_Sprite.png"
+define cg_file_baking = "images/gallery/Baking_Belohnungsbild_Sprite.png"
+define cg_file_harem = "images/gallery/Harem_Belohnungsbild_Sprite.png"
+define cg_file_single = "images/gallery/Single_Belohnungsbild_Sprite.png"
 define cg_file_locked = "images/gallery/cg_locked.png"
-define thumb_x = 550 #384
-define thumb_y = 324 #216
+define thumb_x = 354 #550
+define thumb_y = 216 #324
 
 ## Other Images
 image team_logo = "gui/team_logo.png"

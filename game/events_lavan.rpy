@@ -1,7 +1,7 @@
 label Epilog_Lavan:
 
-
     scene bg Flur with fade
+    play music "audio/Romantic_Music.mp3" fadein 0.5 volume 0.75
 
     user "Lavan hatte mir heute Morgen eine Nachricht geschrieben, dass er eine Überraschung für mich geplant hatte und wir uns im Park treffen sollten."
     user "Mein Herz klopfte vor freudiger Aufregung, als ich mich fertig machte."
@@ -17,7 +17,7 @@ label Epilog_Lavan:
     user "Der Frühling lag wie ein süßes Versprechen in der Luft, und die warme Sonne begleitete mich auf meinem Spaziergang."
     user "Als ich an unserem Treffpunkt ankam – einer kleinen Lichtung, umgeben von blühenden Bäumen  sah ich ihn schon."
 
-    show lavan blush
+    show lavan blush at middle
 
     user "Als Lavan mich bemerkte, hellte sich sein Gesicht sofort auf. Ein breites, liebevolles Lächeln breitete sich auf seinen Lippen aus und er kam mir mit schnellen Schritten entgegen."
 
@@ -63,6 +63,7 @@ label Epilog_Lavan:
 
     user "Wir saßen einfach glücklich zusammen im warmen Licht der Sonne und genossen unser Date – ein perfektes Happy End, das sich in Wirklichkeit wie ein wunderschöner neuer Anfang anfühlte."
 
+    stop music fadeout 3.0
     scene black with fade
 
 jump credits
