@@ -61,13 +61,23 @@ label awakening_sequence_start:
 
     user "\"Dann werde ich verrückt.\""
 
+    scene reward baking with fade
+    $ persistent.cg_baking_unlocked = True
+
+    window hide
+    $ quick_menu = False
+    pause
+    $ quick_menu = True
+    window show
+
     user "Vor mir standen vier Leute, sichtlich an das Gebäck erinnert das ich vorher gebackt hatte."
 
     ## Zeigt die 4 Chars an. Schau wo du das einfügst, die Chars werden dann erst angezeigt wo das kommt.
-    show lavan neutral at pos_1
-    show cino neutral at pos_2
-    show macoi neutral at pos_4
-    show velvette neutral at pos_3
+
+    # show lavan neutral at pos_1
+    # show cino neutral at pos_2
+    # show macoi neutral at pos_4
+    # show velvette neutral at pos_3
 
     ## wer was sagt wenn man ihn als erstes gebacken hat:
 
@@ -145,7 +155,7 @@ label awakening_sequence_start:
 
     user "Die anderen waren schon wieder mit was anderem beschäftigt."
 
-    show velvette happy at pos_3 with dissolve
+    #show velvette happy at pos_3 with dissolve
 
     user "Die rothaarige Frau war mittlerweile damit beschäftigt sich in der Reflektion anzuschauen."
 
@@ -153,7 +163,7 @@ label awakening_sequence_start:
 
     user "Die anderen zwei, der Blonde und der Braunhaarige schienen gerade in ein anderes 'Gespräch' vertieft zu sein."
 
-    show lavan angry at pos_1 with dissolve
+    #show lavan angry at pos_1 with dissolve
 
     user "Oder eher gesagt schien der Braunhaarige sich über den anderen aufregen."
 

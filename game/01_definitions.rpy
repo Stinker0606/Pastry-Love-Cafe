@@ -158,8 +158,9 @@ image reward lavan = Transform("images/gallery/Lavan_Belohnungsbild_Sprite.png",
 image reward velvette = Transform("images/gallery/Velvette_Belohnungsbild_Sprite.png", size=(1920, 1080))
 image reward macoi = Transform("images/gallery/Macoi_Belohnungsbild_Sprite.png", size=(1920, 1080))
 image reward cino = Transform("images/gallery/Cino_Belohnungsbild_Sprite.png", size=(1920, 1080))
-image reward beach = Transform("images/gallery/Beach_Belohnungsbild_Sprite.png", size=(1920, 1080))
+image reward beach = Transform("images/gallery/Harem_Belohnungsbild_Sprite.png", size=(1920, 1080))
 image reward single = Transform("images/gallery/Single_Belohnungsbild_Sprite.png", size=(1920, 1080))
+image reward baking = Transform("images/gallery/Baking_Belohnungsbild_Sprite.png", size=(1920, 1080))
 
 ## --- GALERIE DEFINITIONEN ---
 define cg_file_lavan = "images/gallery/Lavan_Belohnungsbild_Sprite.png"
