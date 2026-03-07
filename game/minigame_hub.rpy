@@ -226,7 +226,9 @@ label run_baking_loop:
         stop music fadeout 0.5
         play sound "audio/Lose_Sound.mp3"
         $ quick_menu = False
+        window hide
         call screen fail_screen_anim()
+        window show
         $ quick_menu = False
         jump run_baking_loop
 
