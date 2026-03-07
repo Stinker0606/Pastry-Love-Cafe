@@ -120,12 +120,14 @@ label run_baking_loop:
     $ current_ingredients = []
 
     ## --- 2: QUICK MENU AUSBLENDEN ---
+    window hide
     $ quick_menu = False
 
     ## 1. Wir starten das Schüssel-Minigame
     call screen baking_minigame_screen(current_recipe_name, helper=current_kitchen_helper)
 
     ## --- 2: MENÜ WIEDER ANZEIGEN ---
+    window show
     $ quick_menu = True
 
     ## Wir speichern das Ergebnis zwischen

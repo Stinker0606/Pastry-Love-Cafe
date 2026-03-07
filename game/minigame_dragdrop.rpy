@@ -226,6 +226,7 @@ default has_seen_baking_instructions = False
 
 ## SCREEN
 screen baking_minigame_screen(recipe_name, helper=None):
+    $ quick_menu = False
     modal True
     #add Solid("#333") # Platzhalter Hintergrund
 
