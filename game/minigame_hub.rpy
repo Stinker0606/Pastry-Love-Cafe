@@ -75,8 +75,10 @@ label run_tutorial_minigame:
         stop music fadeout 0.5
         play sound "audio/Lose_Sound.mp3"
         $ quick_menu = False
+        window hide
         call screen fail_screen_anim()
         $ quick_menu = False
+        window show
         jump run_tutorial_minigame
 
 ## NORMALER MODUS (Alltag)
@@ -148,6 +150,8 @@ label run_baking_loop:
     if minigame_result == "success":
         ## --- SUCCESS SCREEN ---
 
+        window hide
+
         stop music fadeout 0.5
 
         play sound "audio/Win_Sound.mp3"
@@ -166,6 +170,8 @@ label run_baking_loop:
         call _add_affection(current_kitchen_helper, 2) from _call__add_affection_4
 
         $ quick_menu = True
+
+        window show
 ## FÜR DICH SOFIYA, Char reaktion auf der verschiedenen gerichte. Untendrunter siehtst du ein Beispiel, mach die Kommentierung weg und wo das FETT geschriebene ist ersetzen.
 
         if current_recipe_name == "Butterplätzchen" and current_kitchen_helper == "Lavan":

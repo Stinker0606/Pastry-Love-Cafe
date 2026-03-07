@@ -31,7 +31,7 @@ label setup_player_character:
 
         while True:
             ## 1. Zeige das Eingabefeld.
-            player_name_input = renpy.input("Unterschrift", length=20)
+            player_name_input = renpy.input("Unterschrift", length=15, exclude=" ")
 
             ## 2. Entferne Leerzeichen
             player_name_input = player_name_input.strip()
