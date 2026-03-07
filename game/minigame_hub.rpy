@@ -140,7 +140,9 @@ label run_baking_loop:
 
         ## Auch hier kurz Menü ausblenden für Immersion (optional)
         $ quick_menu = False
+        window hide
         call crepe_pan_minigame from _call_crepe_pan_minigame
+        window show
         $ quick_menu = True
 
         ## Das Ergebnis überschreiben wir
