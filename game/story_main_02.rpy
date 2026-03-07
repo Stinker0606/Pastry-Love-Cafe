@@ -367,6 +367,7 @@ label cafe_opening_decision_hub:
         "Etwas Backen (Beendet diese Szene!)":
             $ quick_menu = True
             user "Ich muss backen, sonst haben wir gleich nichts mehr zu verkaufen."
+            $ quick_menu = False
             jump opening_baking_selection
 
         # OPTION 2: Helfen (Nur da, wenn noch NICHT allen geholfen wurde)
