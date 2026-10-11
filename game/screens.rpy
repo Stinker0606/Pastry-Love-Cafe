@@ -241,30 +241,86 @@ style choice_button_text is default:
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
 
+transform button_scale:
+    zoom 0.47
+
+transform button_scale1:
+    zoom 0.65
+
+transform button_scale2:
+    zoom 0.7    
+
 screen quick_menu():
 
     ## Ensure this appears on top of other screens.
     zorder 100
 
-    if quick_menu:
+    if quick_menu and (renpy.get_screen("say") or renpy.get_screen("input")):
 
-        hbox:
-            style_prefix "quick"
+        fixed:
+            at transform:
+                on show:
+                    alpha 0.0
+                    linear 0.2 alpha 1.0
+                on hide:
+                    linear 0.2 alpha 0.0
 
-            #xalign 0.5
-            #yalign 1.0
+        # 1. HISTORY
+        imagebutton:
+            at button_scale2
+            idle "gui/button/history_idle.png"
+            hover "gui/button/history_hover.png"
+            action ShowMenu('history')
+            ypos 715                
+            xpos 1179                     
+            xanchor 0.5                  
+            #focus_mask True
+
+        # 2. SKIP
+        imagebutton:
+            at button_scale1        
+            idle "gui/button/skip_idle.png"
+            hover "gui/button/skip_hover.png"
+            selected_idle "gui/button/skip_hover.png"
+            action Skip() alternate Skip(fast=True, confirm=True)
+            ypos 715
+            xpos 1320                    
+            xanchor 0.5
+            #focus_mask True
+
+        # 3. AUTO
+        imagebutton:
+            at button_scale1
+            idle "gui/button/auto_idle.png"
+            hover "gui/button/auto_hover.png"
+            selected_idle "gui/button/auto_hover.png"
+            action Preference("auto-forward", "toggle")
             ypos 725
-            xpos 1100
+            xpos 1440                    
+            xanchor 0.5
+            #focus_mask True
 
-            #textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            #textbutton _("Save") action ShowMenu('save')
-            #textbutton _("Q.Save") action QuickSave()
-            #textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Options") action ShowMenu('preferences')
+        # 4. SAVE
+        imagebutton:
+            at button_scale 
+            idle "gui/button/save_idle.png"
+            hover "gui/button/save_hover.png"
+            action ShowMenu('save')
+            ypos 733
+            xpos 1571                    
+            xanchor 0.5
+            #focus_mask True
 
+        # 5. OPTIONS
+        imagebutton:
+            at button_scale2 
+            idle "gui/button/options_bt_idle.png"
+            hover "gui/button/options_bt_hover.png"
+            action ShowMenu('preferences')
+            ypos 725
+            xpos 1699                    
+            xanchor 0.5
+            #focus_mask True
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
@@ -283,6 +339,7 @@ style quick_button_text:
     properties gui.button_text_properties("quick_button")
     hover_color "#f5253c"
     idle_color "#5d8282"
+    selected_color "#f5253c"
     size 40
 
 
@@ -382,7 +439,8 @@ screen main_menu():
         imagebutton auto "gui/button/options_%s.png" action ShowMenu('preferences') alt "Options"
         imagebutton auto "gui/button/extras_%s.png" action ShowMenu("extras") alt "Extras"
         imagebutton auto "gui/button/about_%s.png" action ShowMenu('about') alt "About"
-        imagebutton auto "gui/button/help_%s.png" action ShowMenu('help') alt "Help"
+        if renpy.variant("pc"):
+            imagebutton auto "gui/button/help_%s.png" action ShowMenu('help') alt "Help"
         imagebutton auto "gui/button/quit_%s.png" action Quit(confirm=not main_menu) alt "Quit"
         #imagebutton auto "prefs_%s.png" action ShowMenu('preferences')
 
@@ -759,8 +817,14 @@ screen preferences():
                     vbox:
                         style_prefix "radio"
                         label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
+                        textbutton _("Windowed") action Preference("display", "window")
                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
+
+                vbox:
+                    style_prefix "radio"
+                    label _("Sprache")
+                    textbutton _("Deutsch") action Language(None)
+                    textbutton _("Englisch") action Language("english")        
 
                 #vbox:
                     #style_prefix "radio"
@@ -777,10 +841,6 @@ screen preferences():
                     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
 
                 ## Additional toggles or textbuttons can go inside this Vbox
-                vbox:
-                    label _("Other")
-                    style_prefix "other"
-                    textbutton "Accessibility Options" action ToggleScreen("_accessibility")
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
@@ -820,14 +880,14 @@ screen preferences():
                                 textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                    # if config.has_voice:
+                    #     label _("Voice Volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                    #     hbox:
+                    #         bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                    #         if config.sample_voice:
+                    #             textbutton _("Test") action Play("voice", config.sample_voice)
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
@@ -835,6 +895,10 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
+                vbox:
+                    label _("Other")
+                    style_prefix "other"
+                    textbutton _("Accessibility") action ToggleScreen("_accessibility")
 
 
 style pref_label is gui_label
@@ -880,7 +944,7 @@ style pref_label_text:
     size 50
 
 style pref_vbox:
-    xsize 338
+    xsize 385
 
 style radio_vbox:
     spacing gui.pref_button_spacing
@@ -1058,15 +1122,15 @@ screen help():
                 textbutton _("Keyboard") action SetScreenVariable("device", "keyboard")
                 textbutton _("Mouse") action SetScreenVariable("device", "mouse")
 
-                if GamepadExists():
-                    textbutton _("Gamepad") action SetScreenVariable("device", "gamepad")
+                # if GamepadExists():
+                #     textbutton _("Gamepad") action SetScreenVariable("device", "gamepad")
 
             if device == "keyboard":
                 use keyboard_help
             elif device == "mouse":
                 use mouse_help
-            elif device == "gamepad":
-                use gamepad_help
+            # elif device == "gamepad":
+            #     use gamepad_help
 
 
 screen keyboard_help():
@@ -1097,13 +1161,13 @@ screen keyboard_help():
             label _("Tab")
             text _("Toggles dialogue skipping.")
 
-        hbox:
-            label _("Page Up")
-            text _("Rolls back to earlier dialogue.")
+        # hbox:
+        #     label _("Page Up")
+        #     text _("Rolls back to earlier dialogue.")
 
-        hbox:
-            label _("Page Down")
-            text _("Rolls forward to later dialogue.")
+        # hbox:
+        #     label _("Page Down")
+        #     text _("Rolls forward to later dialogue.")
 
         hbox:
             label "H"
@@ -1135,43 +1199,46 @@ screen mouse_help():
             label _("Right Click")
             text _("Accesses the game menu.")
 
-        hbox:
-            label _("Mouse Wheel Up\nClick Rollback Side")
-            text _("Rolls back to earlier dialogue.")
+        # hbox:
+        #     label _("Mouse Wheel Up\nClick Rollback Side")
+        #     text _("Rolls back to earlier dialogue.")
 
-        hbox:
-            label _("Mouse Wheel Down")
-            text _("Rolls forward to later dialogue.")
-
-
-screen gamepad_help():
-
-    hbox:
-        label _("Right Trigger\nA/Bottom Button")
-        text _("Advances dialogue and activates the interface.")
-
-    hbox:
-        label _("Left Trigger\nLeft Shoulder")
-        text _("Rolls back to earlier dialogue.")
-
-    hbox:
-        label _("Right Shoulder")
-        text _("Rolls forward to later dialogue.")
+        # hbox:
+        #     label _("Mouse Wheel Down")
+        #     text _("Rolls forward to later dialogue.")
 
 
-    hbox:
-        label _("D-Pad, Sticks")
-        text _("Navigate the interface.")
+# screen gamepad_help():
+#     vbox:
+#         yoffset 50
+#         xoffset 25
+#         spacing 30
+#     hbox:
+#         label _("Right Trigger\nA/Bottom Button")
+#         text _("Advances dialogue and activates the interface.")
 
-    hbox:
-        label _("Start, Guide")
-        text _("Accesses the game menu.")
+#     hbox:
+#         label _("Left Trigger\nLeft Shoulder")
+#         text _("Rolls back to earlier dialogue.")
 
-    hbox:
-        label _("Y/Top Button")
-        text _("Hides the user interface.")
+#     hbox:
+#         label _("Right Shoulder")
+#         text _("Rolls forward to later dialogue.")
 
-    textbutton _("Calibrate") action GamepadCalibrate()
+
+#     hbox:
+#         label _("D-Pad, Sticks")
+#         text _("Navigate the interface.")
+
+#     hbox:
+#         label _("Start, Guide")
+#         text _("Accesses the game menu.")
+
+#     hbox:
+#         label _("Y/Top Button")
+#         text _("Hides the user interface.")
+
+#     textbutton _("Calibrate") action GamepadCalibrate()
 
 
 style help_button is gui_button
@@ -1335,6 +1402,7 @@ screen notify(message):
     style_prefix "notify"
 
     frame at notify_appear:
+        align (1.0, 0.03) # 1.0 = Rechts, 0.0 = Oben
         text "[message!tq]"
 
     timer 3.25 action Hide('notify')
@@ -1359,7 +1427,7 @@ style notify_frame:
 
 style notify_text:
     properties gui.text_properties("notify")
-    color "#f5253c"
+    color "#000000"
 
 
 ## NVL screen ##################################################################
@@ -1489,107 +1557,107 @@ style nvl_button_text:
 ## Mobile Variants
 ################################################################################
 
-style pref_vbox:
-    variant "medium"
-    xsize 675
+# style pref_vbox:
+#     variant "medium"
+#     xsize 675
 
-## Since a mouse may not be present, we replace the quick menu with a version
-## that uses fewer and bigger buttons that are easier to touch.
-screen quick_menu():
-    variant "touch"
+# ## Since a mouse may not be present, we replace the quick menu with a version
+# ## that uses fewer and bigger buttons that are easier to touch.
+# screen quick_menu():
+#     variant "touch"
 
-    zorder 100
+#     zorder 100
 
-    if quick_menu:
+#     if quick_menu:
 
-        hbox:
-            style_prefix "quick"
+#         hbox:
+#             style_prefix "quick"
 
-            xalign 0.5
-            yalign 1.0
+#             xalign 0.5
+#             yalign 1.0
 
-            textbutton _("Back") action Rollback()
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Menu") action ShowMenu()
+#             textbutton _("Back") action Rollback()
+#             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+#             textbutton _("Auto") action Preference("auto-forward", "toggle")
+#             textbutton _("Menu") action ShowMenu()
 
 
-style window:
-    variant "small"
-    background "gui/phone/textbox.png"
+# style window:
+#     variant "small"
+#     background "gui/phone/textbox.png"
 
-style radio_button:
-    variant "small"
-    foreground "gui/phone/button/radio_[prefix_]foreground.png"
+# style radio_button:
+#     variant "small"
+#     foreground "gui/phone/button/radio_[prefix_]foreground.png"
 
-style check_button:
-    variant "small"
-    foreground "gui/phone/button/check_[prefix_]foreground.png"
+# style check_button:
+#     variant "small"
+#     foreground "gui/phone/button/check_[prefix_]foreground.png"
 
-style nvl_window:
-    variant "small"
-    background "gui/phone/nvl.png"
+# style nvl_window:
+#     variant "small"
+#     background "gui/phone/nvl.png"
 
-style main_menu_frame:
-    variant "small"
-    background "gui/phone/overlay/main_menu.png"
+# style main_menu_frame:
+#     variant "small"
+#     background "gui/phone/overlay/main_menu.png"
 
-style game_menu_outer_frame:
-    variant "small"
-    #background "gui/phone/overlay/game_menu.png"
+# style game_menu_outer_frame:
+#     variant "small"
+#     #background "gui/phone/overlay/game_menu.png"
 
-style game_menu_navigation_frame:
-    variant "small"
-    xsize 510
+# style game_menu_navigation_frame:
+#     variant "small"
+#     xsize 510
 
-style game_menu_content_frame:
-    variant "small"
-    top_margin 0
+# style game_menu_content_frame:
+#     variant "small"
+#     top_margin 0
 
-style pref_vbox:
-    variant "small"
-    xsize 600
+# style pref_vbox:
+#     variant "small"
+#     xsize 600
 
-style bar:
-    variant "small"
-    ysize gui.bar_size
-    left_bar Frame("gui/phone/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
-    right_bar Frame("gui/phone/bar/right.png", gui.bar_borders, tile=gui.bar_tile)
+# style bar:
+#     variant "small"
+#     ysize gui.bar_size
+#     left_bar Frame("gui/phone/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
+#     right_bar Frame("gui/phone/bar/right.png", gui.bar_borders, tile=gui.bar_tile)
 
-style vbar:
-    variant "small"
-    xsize gui.bar_size
-    top_bar Frame("gui/phone/bar/top.png", gui.vbar_borders, tile=gui.bar_tile)
-    bottom_bar Frame("gui/phone/bar/bottom.png", gui.vbar_borders, tile=gui.bar_tile)
+# style vbar:
+#     variant "small"
+#     xsize gui.bar_size
+#     top_bar Frame("gui/phone/bar/top.png", gui.vbar_borders, tile=gui.bar_tile)
+#     bottom_bar Frame("gui/phone/bar/bottom.png", gui.vbar_borders, tile=gui.bar_tile)
 
-style scrollbar:
-    variant "small"
-    ysize gui.scrollbar_size
-    base_bar Frame("gui/phone/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/phone/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
+# style scrollbar:
+#     variant "small"
+#     ysize gui.scrollbar_size
+#     base_bar Frame("gui/phone/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
+#     thumb Frame("gui/phone/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
 
-style vscrollbar:
-    variant "small"
-    xsize gui.scrollbar_size
-    base_bar Frame("gui/phone/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/phone/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+# style vscrollbar:
+#     variant "small"
+#     xsize gui.scrollbar_size
+#     base_bar Frame("gui/phone/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
+#     thumb Frame("gui/phone/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
 
-style slider:
-    variant "small"
-    ysize gui.slider_size
-    base_bar Frame("gui/phone/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
-    thumb "gui/phone/slider/horizontal_[prefix_]thumb.png"
+# style slider:
+#     variant "small"
+#     ysize gui.slider_size
+#     base_bar Frame("gui/phone/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
+#     thumb "gui/phone/slider/horizontal_[prefix_]thumb.png"
 
-style vslider:
-    variant "small"
-    xsize gui.slider_size
-    base_bar Frame("gui/phone/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
-    thumb "gui/phone/slider/vertical_[prefix_]thumb.png"
+# style vslider:
+#     variant "small"
+#     xsize gui.slider_size
+#     base_bar Frame("gui/phone/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
+#     thumb "gui/phone/slider/vertical_[prefix_]thumb.png"
 
-style slider_pref_vbox:
-    variant "small"
-    xsize None
+# style slider_pref_vbox:
+#     variant "small"
+#     xsize None
 
-style slider_pref_slider:
-    variant "small"
-    xsize 900
+# style slider_pref_slider:
+#     variant "small"
+#     xsize 900

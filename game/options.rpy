@@ -23,21 +23,29 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "1.1"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
 ## triple-quotes, and leave a blank line between paragraphs.
 
-define gui.about = _p("""
-""")
+define gui.about = _("""Willkommen im {b}Pastry Love Café{/b}! 
+Eine süße Visual Novel, die mit viel Liebe von unserem kleinen Indie-Team entwickelt wurde.
+
+{color=#f5253c}{b}Unser Team:{/b}{/color}
+• {b}Story:{/b} {a=https://nasjo.itch.io/}Nasjo{/a}
+• {b}Programming:{/b} {a=https://koinzen.itch.io/}Koinzen{/a}
+• {b}Art:{/b} {a=https://nasjo.itch.io/}Nasjo{/a} & {a=https://azal3a3.itch.io/}Azal3a3{/a}
+• {b}Musik & Sound Effekte:{/b} {a=https://azal3a3.itch.io/}Azal3a3{/a}
+
+Vielen Dank, dass du unser Spiel spielst!""")
 
 
 ## A short name for the game used for executables and directories in the built
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "PLC"
+define build.name = "PastryLoveCafe"
 
 
 ## Sounds and music ############################################################
@@ -61,7 +69,7 @@ define config.has_voice = True
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-# define config.main_menu_music = "main-menu-theme.ogg"
+define config.main_menu_music = "Main_Menu_Music.mp3"
 
 
 ## Transitions #################################################################
@@ -90,6 +98,9 @@ define config.after_load_transition = None
 
 define config.end_game_transition = None
 
+## Used when entering the main menu after the game has started.
+
+define config.end_splash_transition = dissolve
 
 ## A variable to set the transition used when the game starts does not exist.
 ## Instead, use a with statement after showing the initial scene.
@@ -142,7 +153,7 @@ default preferences.afm_time = 15
 ## This generally should not be changed, and if it is, should always be a
 ## literal string, not an expression.
 
-define config.save_directory = "PLC-1599440633"
+define config.save_directory = "PastryLoveCafe-1599440633"
 
 
 ## Icon ########################################################################
@@ -182,11 +193,19 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
+    build.classify('game/**.rpy', None)
 
     ## To archive files, classify them as 'archive'.
 
-    # build.classify('game/**.png', 'archive')
-    # build.classify('game/**.jpg', 'archive')
+    build.classify('game/**.png', 'archive')
+    build.classify('game/**.jpg', 'archive')
+    build.classify('game/**.mp3', 'archive')
+    build.classify('game/**.m4a', 'archive')
+    build.classify('game/**.ogg', 'archive')
+    build.classify('game/**.webm', 'archive')
+    build.classify('game/**.ttf', 'archive')
+    build.classify('game/**.gif', 'archive')
+    build.classify('game/**.rpyc', 'archive')
 
     ## Files matching documentation patterns are duplicated in a mac app build,
     ## so they appear in both the app and the zip file.
@@ -206,3 +225,24 @@ init python:
 ## by a slash.
 
 # define build.itch_project = "renpytom/test-project"
+
+# Custom mouse cursors.
+
+# define config.mouse = {
+#     "default": [ ("images/cursor.png", 0, 0) ]
+# }
+
+define config.rollback_enabled = False # AN MACHENDE OPTION, NICHT VERGESSEN WIEDER AUSZUKOMMENTIEREN!
+
+init python:
+    ## Zwingt den Sound auf das absolute Fundament
+    style.button.activate_sound = "audio/Select_Sound.mp3"
+    
+    ## Zwingt den Sound auf Imagebuttons
+    style.image_button.activate_sound = "audio/Select_Sound.mp3"
+    
+    ## --- Optionale Extras für Menüs ---
+    style.choice_button.activate_sound = "audio/Select_Sound.mp3"
+    style.quick_button.activate_sound = "audio/Select_Sound.mp3"
+    style.slot_button.activate_sound = "audio/Select_Sound.mp3"
+    style.navigation_button.activate_sound = "audio/Select_Sound.mp3"

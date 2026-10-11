@@ -562,11 +562,11 @@ translate None strings:
     new "Dieses Programm enthält kostenlose Software unter einer Reihe von Lizenzen, einschließlich der MIT License und der GNU Lesser General Public License. Eine vollständige Liste aller Software, inklusive Links zum vollständigen Quellcode, kann {a=https://www.renpy.org/l/license}hier{/a} gefunden werden."
 
     # renpy/common/00preferences.rpy:295
-    old "display"
+    old "Display"
     new "Anzeige"
 
     # renpy/common/00preferences.rpy:315
-    old "transitions"
+    old "Transitions"
     new "Übergänge"
 
     # renpy/common/00preferences.rpy:324
@@ -578,11 +578,11 @@ translate None strings:
     new "Video-Sprites"
 
     # renpy/common/00preferences.rpy:335
-    old "show empty window"
-    new "leeres Fenster anzeigen"
+    old "Windowed"
+    new "Fenstermodus"
 
     # renpy/common/00preferences.rpy:344
-    old "text speed"
+    old "text Speed"
     new "Textgeschwindigkeit"
 
     # renpy/common/00preferences.rpy:352
@@ -594,31 +594,31 @@ translate None strings:
     new "Joystick..."
 
     # renpy/common/00preferences.rpy:359
-    old "skip"
-    new "überspringen"
+    old "Skip"
+    new "Überspringen"
 
     # renpy/common/00preferences.rpy:362
     old "skip unseen [text]"
     new "unbesehen überspringen [text]"
 
     # renpy/common/00preferences.rpy:367
-    old "skip unseen text"
-    new "ungesehenen Text überspringen"
+    old "Unseen Text"
+    new "Ungesehenen Text"
 
     # renpy/common/00preferences.rpy:369
     old "begin skipping"
     new "mit dem Vorspulen beginnen"
 
     # renpy/common/00preferences.rpy:373
-    old "after choices"
-    new "nach Entscheidungen"
+    old "After Choices"
+    new "Nach Entscheidungen"
 
     # renpy/common/00preferences.rpy:380
     old "skip after choices"
     new "Vorspulen nach Entscheidungen"
 
     # renpy/common/00preferences.rpy:382
-    old "auto-forward time"
+    old "auto-Forward Time"
     new "Zeit des automatischen Blätterns"
 
     # renpy/common/00preferences.rpy:396
@@ -726,8 +726,8 @@ translate None strings:
     new "Renderer-Menü"
 
     # renpy/common/00preferences.rpy:539
-    old "accessibility menu"
-    new "Barrierefreiheit-Menü"
+    old "Accessibility"
+    new "Barrierefreiheit"
 
     # renpy/common/00preferences.rpy:542
     old "high contrast text"
@@ -770,12 +770,12 @@ translate None strings:
     new "Master-Lautstärke"
 
     # renpy/common/00preferences.rpy:633
-    old "music volume"
-    new "Musik-Lautstärke"
+    old "Music Volume"
+    new "Musik Lautstärke"
 
     # renpy/common/00preferences.rpy:634
-    old "sound volume"
-    new "Ton-Lautstärke"
+    old "Sound Volume"
+    new "Ton Lautstärke"
 
     # renpy/common/00preferences.rpy:635
     old "voice volume"
@@ -798,8 +798,8 @@ translate None strings:
     new "Stimme stummschalten"
 
     # renpy/common/00preferences.rpy:640
-    old "mute all"
-    new "alles stummschalten"
+    old "Mute All"
+    new "Alles Stummschalten"
 
     # renpy/common/00preferences.rpy:723
     old "Clipboard voicing enabled. Press 'shift+C' to disable."
@@ -1110,8 +1110,8 @@ translate None strings:
     new "Bildschirm"
 
     # renpy/common/00gltest.rpy:151
-    old "60"
-    new "60"
+    old "Other"
+    new "Anderes"
 
     # renpy/common/00gltest.rpy:155
     old "30"
@@ -1126,7 +1126,7 @@ translate None strings:
     new "Die Änderungen werden beim nächsten Neustart des Programms übernommen."
 
     # renpy/common/00gltest.rpy:178
-    old "Quit"
+    old "quit"
     new "Beenden"
 
     # renpy/common/00gltest.rpy:207

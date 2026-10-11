@@ -1,0 +1,694 @@
+## LOGIK FÜR DAS BAKING MINIGAME
+init python:
+    
+    recipe_visuals = {
+        
+        ## --- 0. Rezepte ---
+        "Tutorial": {
+            "bg_image": "gui/minigames/Recipe_One.png", 
+            ## NEUE STRUKTUR: Eine Liste mit Klammern [ ]
+            ## Format: ("Zutat", ANZAHL_NÖTIG, (X, Y))
+            "strikes": [
+                ("Mehl",   1, (260, 455)),
+                ("Ei",     3, (254, 680)), 
+                ("Mixen",  1, (264, 890)),
+                ("Milch",  1, (270, 1110)),
+                ("Zucker", 2, (309, 1330)), 
+                ("Mixen",  1, (260, 1560))
+            ]
+        },
+
+        ## --- 2. BUTTERPLÄTZCHEN ---
+        "Butterplätzchen": {
+            "bg_image": "gui/minigames/Recipe_Two.png",
+            "strikes": [
+                ("Mehl",     1, (260, 455)),
+                ("Ei",       2, (254, 680)),
+                ("Zucker",   1, (264, 890)),
+                ("Butter",   1, (270, 1110)),
+                ("Streusel", 1, (309, 1330)),
+                ("Mixen",    1, (260, 1560))
+            ]
+        },
+
+        ## --- 3. ERDBEER CREPE ---
+        "Erdbeer Crepe": {
+            "bg_image": "gui/minigames/Recipe_Three_PT1.png",
+            "strikes": [
+                ("Mehl",   1, (260, 455)),
+                ("Milch",  2, (254, 680)),
+                ("Ei",     2, (264, 890)),
+                ("Zucker", 1, (270, 1110)),
+                ("Butter", 1, (309, 1330)),
+                ("Mixen",  1, (260, 1560))
+            ]
+        }
+    }
+
+    def get_recipe_status(recipe_name, current_ingredients):
+        if recipe_name not in recipes_data:
+            return {}
+            
+        target_steps = recipes_data[recipe_name]["steps"]
+        requirements = {}
+        
+        ## Soll berechnen
+        for item in target_steps:
+            if item not in requirements:
+                requirements[item] = {"target": 0, "current": 0}
+            requirements[item]["target"] += 1
+            
+        ## Ist berechnen
+        for item in current_ingredients:
+            if item in requirements:
+                requirements[item]["current"] += 1
+                
+        return requirements
+
+init python:
+    
+    ## Positionen der Zutaten
+    ingredient_positions = {
+        "Mehl": (1500, 750),
+        "Ei": (380, 650), #1530, 830
+        "Zucker": (1040, 200), 
+        "Milch": (755, 145), 
+        "Butter": (1640, 540),
+        "Streusel": (50, 800), #340, 630
+        "Whisk": (955, 350),
+    }
+
+    ## Globale Variable, um zu wissen, ob der Besen gehalten wird
+    store.is_whisk_held = False 
+
+    ## --- 1. ZUTATEN LOGIK ---
+    def ingredient_dragged(drags, drop):
+        ## --- 1. FAIL-SAFE ---
+        ## Wenn der Spieler das Item ins Leere zieht (kein valides Drop-Ziel),
+        ## wird die Aktion abgebrochen und das Item zurückgesetzt.
+        if not drop:
+            drag_item = drags[0]
+            start_pos = ingredient_positions[drag_item.drag_name]
+            drag_item.snap(start_pos[0], start_pos[1], delay=0.1)
+            return
+
+        drag_item = drags[0]
+        item_name = drag_item.drag_name
+        
+        ## SPEZIALFALL: MIXEN (Rühr-Mechanik)
+        if item_name == "Whisk": 
+            start_pos = ingredient_positions["Whisk"]
+            drag_item.snap(start_pos[0], start_pos[1], delay=0.1)
+            return
+
+        ## NORMALFALL: ZUTATEN
+        ## Wir fügen sie einfach hinzu. KEINE PRÜFUNG HIER!
+        store.current_ingredients.append(item_name)
+        
+        ## Feedback
+        if item_name in ["Mehl", "Zucker", "Streusel"]:
+            renpy.music.play("audio/Adding_Flour_Sound.mp3", channel="sound")
+
+        if item_name in ["Milch"]:
+            renpy.music.play("audio/Adding_Liquid_Sound.mp3", channel="sound")
+
+        if item_name in ["Ei"]:
+            renpy.music.play("audio/Egg_Crack_Sound.mp3", channel="sound")
+
+        ## Zutat schnappt zurück
+        start_pos = ingredient_positions[item_name]
+        drag_item.snap(start_pos[0], start_pos[1], delay=0.1)
+        return
+
+    ## --- 2. MIXER STATUS FUNKTIONEN ---
+
+    ## Wird aufgerufen, wenn man den Besen ANKLICKT (Aufhebt)
+    def whisk_activate(drags):
+        store.is_whisk_held = True
+        return
+
+    ## Wird aufgerufen, wenn man den Besen LOSLÄSST
+    def whisk_drop_action(drags, drop):
+        ## Status auf False setzen
+        store.is_whisk_held = False
+
+        ## Sound stop
+        renpy.music.stop(channel="sound", fadeout=0.1)
+
+        ## Besen zurückschnappen lassen
+        whisk = drags[0]
+        whisk.snap(955, 350, delay=0.1)
+        return
+
+    ## --- 3. INTELLIGENTE MIXER LOGIK ---
+    def check_mixing_progress():
+        
+        ## 1. Wird der Besen überhaupt gehalten?
+        if not store.is_whisk_held:
+            return
+
+        ## 2. DER "ANTI-NERV" CHECK
+        ## Es wird geschaut SOFORT: War das Letzte, was wir getan haben, "Mixen"?
+        ## Wenn ja -> ABBRUCH. Wir zählen gar nicht erst Zonen.
+        ## Das verhindert "Rühren 1/4" Spam und das doppelte Mixen.
+        ## Sobald man eine neue Zutat reinwirft, ist [-1] nicht mehr "Mixen", und es geht weiter.
+        if len(store.current_ingredients) > 0 and store.current_ingredients[-1] == "Mixen":
+            return 
+
+        ## Mausposition holen
+        mx, my = renpy.get_mouse_pos()
+        
+        ## Zonen definieren
+        zone1 = (750, 700, 1000, 800) # Oben Links
+        zone2 = (1000, 550, 1250, 800) # Oben Rechts
+        zone3 = (1000, 800, 1250, 1050) # Unten Rechts
+        zone4 = (750, 800, 1000, 1050) # Unten Links 
+        
+        current_zone = None
+        if zone1[0] < mx < zone1[2] and zone1[1] < my < zone1[3]: current_zone = "Zone1"
+        elif zone2[0] < mx < zone2[2] and zone2[1] < my < zone2[3]: current_zone = "Zone2"
+        elif zone3[0] < mx < zone3[2] and zone3[1] < my < zone3[3]: current_zone = "Zone3"
+        elif zone4[0] < mx < zone4[2] and zone4[1] < my < zone4[3]: current_zone = "Zone4"
+            
+        if current_zone:
+            screen = renpy.get_screen("baking_minigame_screen")
+            if screen:
+                hits = screen.scope["whisk_zones_hit"]
+
+                if current_zone == "Zone2":
+                        renpy.music.play("audio/Whisking_Sound.mp3", channel="sound", loop=True)
+                elif current_zone == "Zone4":
+                        renpy.music.play("audio/Whisking_Sound.mp3", channel="sound", loop=True)        
+
+                if current_zone not in hits:
+                    hits.append(current_zone)
+                    
+                    ## Benachrichtigung nur solange wir noch "rühren"
+                    if len(hits) < 4:
+                        renpy.notify(_("Rühren %d/4") % len(hits))
+                    
+                    ## RUNDE KOMPLETT?
+                    if len(hits) >= 4:
+                        hits.clear() # Reset für das nächste Mal (wenn neue Zutaten drin sind)
+                        
+                        ## Wir fügen "Mixen" hinzu
+                        store.current_ingredients.append("Mixen")
+                        renpy.notify(_("Teig gerührt!"))
+                        
+    ## --- 4. DER GROSSE CHECK AM ENDE ---
+    ## Diese Funktion wird NUR vom Button "Fertig!" aufgerufen!
+    def final_baking_check(target_recipe_name):
+        
+        target_steps = recipes_data[target_recipe_name]["steps"]
+        current_steps = store.current_ingredients
+        
+        ## Check 1: Länge
+        if len(current_steps) != len(target_steps):
+            renpy.notify(_("Die Menge stimmt nicht!"))
+            renpy.end_interaction("fail")
+            return
+
+        ## Check 2: Reihenfolge und Inhalt (inklusive "Mixen")
+        for i in range(len(target_steps)):
+            if current_steps[i] != target_steps[i]:
+                renpy.notify(_("Fehler bei Schritt %d!") % (i+1))
+                renpy.end_interaction("fail")
+                return
+
+        ## Check 3: Alles richtig!
+        if recipes_data[target_recipe_name]["type"] == "crepe":
+            renpy.end_interaction("crepe_phase_2")
+        else:
+            renpy.end_interaction("success")
+        return
+
+default has_seen_baking_instructions = False
+
+## SCREEN
+screen baking_minigame_screen(recipe_name, helper=None):
+    $ quick_menu = False
+    modal True
+    #add Solid("#333") # Platzhalter Hintergrund
+
+    ## --- VOLLSTÄNDIGE EINGABE-SPERRE ---
+    key "rollback" action NullAction()          # Blockt Mausrad hoch
+    key "rollforward" action NullAction()       # Blockt Mausrad runter
+    key "hide_windows" action NullAction()      # Blockt die 'h' Taste
+    
+    ## Da 'quick_load' etc. keine Tasten sind, blocken wir die Standard-Tastaturbelegung
+    key "K_F5" action NullAction()              # Standard Quicksave Taste
+    key "K_F6" action NullAction()              # Standard Quickload Taste
+
+    if not has_seen_baking_instructions:
+        # Öffnet nach 0.1 Sekunden automatisch die Anleitung und merkt sich, dass sie gesehen wurde!
+        timer 0.1 action [SetVariable("has_seen_baking_instructions", True), Show("baking_instructions")]
+
+    default current_helper = helper or store.current_kitchen_helper
+    
+    add "images/backgrounds/Baking_Game_Background.png":
+        size (1920, 1080)
+
+    # --- CHIBI HELFER ANZEIGE ---
+    if current_helper:
+        add "images/minigames/baking/chibi_" + current_helper + ".png":
+            xalign 0.60 yalign 0.81  # Position
+            zoom 0.85                
+
+    # --- INSTRUKTIONS BUTTON (Oben Rechts) ---
+    imagebutton:
+        idle Transform("gui/minigames/Instruction_Button_Idle.png", zoom=0.06)
+        hover Transform("gui/minigames/Instruction_Button_pick.png", zoom=0.06)
+        xpos 83 ypos 35
+        action Show("baking_instructions")
+        focus_mask True
+
+    $ store.current_recipe_name_global = recipe_name
+
+    ## Variable für die Mixer-Treffer
+    default whisk_zones_hit = []
+    
+    ## --- TIMER FÜR DAS RÜHREN ---
+    ## Ruft 20 Mal pro Sekunde die Prüfung auf, wo die Maus ist
+    timer 0.05 repeat True action Function(check_mixing_progress)  
+
+    ## DRAG GROUP
+    draggroup:
+        
+        ## SCHÜSSEL
+        drag:
+            drag_name "Bowl"
+            child Transform("images/minigames/baking/Bowl_Sprite.png", size=(300, 300))
+            # child Composite(
+            #     (200, 200),  # Platzhalter
+            #     (0, 0), Solid("#4444ff"), # Platzhalter
+            #     (0, 0), Text("SCHÜSSEL", size=30, color="#fff", xalign=0.5, yalign=0.5, xysize=(200,200)) # Platzhalter
+            # )
+            draggable False
+            droppable True
+            focus_mask True
+            xpos 850 ypos 700
+
+        ## --- ZUTATEN ---
+
+        ## MEHL
+        drag:
+            drag_name "Mehl"
+            child Transform("images/minigames/baking/Pulver_Sprite.png" if recipe_name == "Tutorial" else "images/minigames/baking/Flour_Sprite.png", size=(250, 250))
+            # child Composite(
+            #     (100, 60), # Platzhalter
+            #     (0, 0), Solid("#ffffff"), # Platzhalter
+            #     (0, 0), Text("Mehl", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60)) # Platzhalter
+            # )
+            focus_mask True
+            droppable False
+            dragged ingredient_dragged
+            xpos 1500 ypos 750 #xpos 1700 ypos 750
+
+        ## EI
+        drag:
+            drag_name "Ei"
+            child Transform("images/minigames/baking/Single_Egg_Sprite.png", size=(120, 115))
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#ffff00"),
+            #     (0, 0), Text("Ei", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
+            #focus_mask True
+            droppable False
+            dragged ingredient_dragged
+            xpos 380 ypos 650 #xpos 1530 ypos 830
+
+        ## ZUCKER
+        drag:
+            drag_name "Zucker"
+            child Transform("images/minigames/baking/Sugar_Sprite.png", size=(200, 200))
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#eeeeee"),
+            #     (0, 0), Text("Zucker", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
+            focus_mask True
+            droppable False
+            dragged ingredient_dragged
+            xpos 1040 ypos 200
+
+        ## MILCH
+        drag:
+            drag_name "Milch"
+            child Transform("images/minigames/baking/Milk_Sprite.png", size=(185, 185))
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#0000ff"),
+            #     (0, 0), Text("Milch", size=20, color="#fff", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
+            focus_mask True
+            droppable False
+            dragged ingredient_dragged
+            xpos 755 ypos 145
+            
+        ## BUTTER
+        drag:
+            drag_name "Butter"
+            child Transform("images/minigames/baking/Butter_Sprite.png", size=(250, 250))
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#ffd700"),
+            #     (0, 0), Text("Butter", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
+            focus_mask True
+            droppable False
+            dragged ingredient_dragged
+            xpos 1640 ypos 540
+            
+        ## STREUSEL
+        drag:
+            drag_name "Streusel"
+            child Transform("images/minigames/baking/Sprinkles_Sprite.png", size=(190, 190)) #150, 150
+            # child Composite(
+            #     (100, 60),
+            #     (0, 0), Solid("#ff00ff"),
+            #     (0, 0), Text("Streusel", size=20, color="#fff", xalign=0.5, yalign=0.5, xysize=(100,60))
+            # )
+            focus_mask True
+            droppable False
+            dragged ingredient_dragged
+            xpos 50 ypos 800 #xpos 340 ypos 630
+
+        ## Erdbeeren
+        # drag:
+        #     drag_name "Erdbeeren"
+        #     child Transform("images/minigames/baking/Cut_Strawberry_Sprite.png", size=(130, 130))
+        #     focus_mask True
+        #     droppable False
+        #     dragged ingredient_dragged
+        #     xpos 1675 ypos 662
+
+        ## SCHNEEBESEN
+        drag:
+            id "whisk_drag"
+            drag_name "Whisk"
+            child Transform("images/minigames/baking/Whisk_Sprite.png", size=(150, 150), rotate=-45)
+            # child Composite(
+            #     (80, 50),
+            #     (0, 0), Solid("#cccccc"),
+            #     (0, 0), Text("MIXER", size=15, color="#000", xalign=0.5, yalign=0.5, xysize=(80,50))
+            # )
+            focus_mask True
+            droppable False
+            activated whisk_activate
+            dragged whisk_drop_action
+            xpos 955 ypos 350
+
+    ## Eier Karton
+    add Transform("images/minigames/baking/Egg_Sprite.png", size=(280, 280))xpos 300 ypos 560 #xpos 1450 ypos 740
+    # Composite(
+    #         (100, 50),
+    #         (0, 0), Solid("#ffff00"),
+    #         (0, 0), Text("Eier Karton", size=20, color="#000", xalign=0.5, yalign=0.5, xysize=(100,60))
+    #     ) 
+    
+    
+    ## --- VISUELLE REZEPT KARTE ---
+    
+    if recipe_name in recipe_visuals:
+        $ visual_data = recipe_visuals[recipe_name]
+        
+        transform:
+            ## POSITION:
+            ## 0.98 = Rechts am Rand
+            ## 0.20 = Ein Stück weiter unten (vorher war 0.02 ganz oben)
+            align (0.94, 0.02) 
+            
+            ## ZOOM:
+            zoom 0.2 
+            
+            fixed:
+                fit_first True 
+            
+                ## 1. Hintergrundbild
+                add visual_data["bg_image"]
+                
+                ## --- SMARTE ZÄHLUNG (Damit wir Schritte nacheinander abarbeiten) ---
+                $ temp_ing = list(current_ingredients)
+                
+                for item_name, needed_amount, pos_tuple in visual_data["strikes"]:
+                    
+                    ## Wir berechnen, wie viel für DIESEN Schritt noch fehlt
+                    $ amount_found_for_step = 0
+                    python:
+                        for i in range(needed_amount):
+                            if item_name in temp_ing:
+                                temp_ing.remove(item_name)
+                                amount_found_for_step += 1
+                    
+                    $ amount_left = needed_amount - amount_found_for_step
+                    
+                    
+                    # -----------------------------------------------------
+                    # 1. IST ES FERTIG? (amount_left == 0) -> DURCHSTREICHEN
+                    # -----------------------------------------------------
+                    if amount_left == 0:
+                        
+                        ## Der dicke schwarze Strich (Dein "alter" Code)
+                        add Solid("#000000d0"): 
+                            pos pos_tuple
+                            xoffset 0
+                            yoffset 0
+                            xsize 600 ysize 80  # Deine alten Maße
+                            yanchor 0.5
+
+                    # -----------------------------------------------------
+                    # 2. IST ES NOCH NICHT FERTIG? (Countdown anzeigen)
+                    # -----------------------------------------------------
+                    # Zeige Sticker NUR, wenn:
+                    # a) Es fehlt noch was (> 0)
+                    # b) Es ist schon weniger als am Anfang (< needed)
+                    # c) Es ist NICHT "Mixen" (WICHTIG!)
+                    elif amount_left > 0 and amount_left < needed_amount and item_name != "Mixen":
+                        
+                        ## Positionierung (Offsets)
+                        $ my_x_offset = 10
+                        $ my_y_offset = 0
+
+                        if item_name == "Zucker":
+                            $ my_x_offset = -30 
+                        elif item_name == "Ei":
+                            $ my_x_offset = 20
+
+                        # Das Pflaster (Weißer Hintergrund)
+                        add Solid("#f7f1eb"):
+                            pos pos_tuple
+                            xsize 210 ysize 160 
+                            yanchor 0.6 
+                            xanchor 0.0
+                            xoffset my_x_offset 
+                            yoffset my_y_offset
+
+                        # Das Bild (1x, 2x...)
+                        add "images/minigames/baking/count_" + str(amount_left) + ".png":
+                            pos pos_tuple
+                            yanchor 0.6
+                            xoffset my_x_offset 
+                            yoffset my_y_offset
+
+            # fixed:
+            #     fit_first True 
+            
+            #     add visual_data["bg_image"]
+                
+            #     $ status = get_recipe_status(recipe_name, current_ingredients)
+                
+            #     for item_name, needed_amount, pos_tuple in visual_data["strikes"]:
+                    
+            #         if item_name in status:
+            #             $ have_amount = status[item_name]["current"]
+                        
+            #             if have_amount >= needed_amount:
+                            
+            #                 ## DER SCHWARZE STRICH
+            #                 ## Da wir alles auf 0.2 zoomen, müssen wir die Werte hier
+            #                 ## VERFÜNFFACHEN, damit sie am Ende normal aussehen.
+                            
+            #                 add Solid("#000000d0"): # d0 ist etwas dunkler/deckender
+            #                     pos pos_tuple
+                                
+            #                     xoffset 0   # Schiebt den Strich nach RECHTS
+            #                     yoffset 0   # Schiebt den Strich nach UNTEN
+
+            #                     ## Größe an das riesige Originalbild anpassen:
+            #                     xsize 600        # Entspricht ca. 120px auf dem Bildschirm (600 * 0.2)
+            #                     ysize 80         # Entspricht ca. 6px Dicke auf dem Bildschirm (30 * 0.2)
+            #                     yanchor 0.5
+
+    ## --- BUTTONS ---
+
+    ## RESET
+    textbutton _("Reset"):
+        xalign 1.0 yalign 0.99
+        text_size 60
+        #background Solid("#0000001a") # Halb-transparenter schwarzer Hintergrund
+        padding (20, 10) # Etwas Platz innen
+        action [SetVariable("current_ingredients", []), Function(renpy.restart_interaction)]
+
+    # CHECK BUTTON
+    textbutton _("Fertig!"):
+        xalign 0.54 yalign 0.98
+        style "choice_button"
+        xsize 600        # Zwingt ihn auf eine feste, kleine Breite
+        text_xalign 0.5  # Zentriert den Text darin
+        text_size 40
+        # Ruft die Prüf-Funktion auf
+        action Function(final_baking_check, recipe_name)
+
+    ## CANCEL
+    textbutton _("Cancel"):
+        xalign -0.005 yalign 0.99  #0.875
+        text_size 55
+        #background Solid("#0000001c") # Halb-transparenter schwarzer Hintergrund
+        padding (20, 10) # Etwas Platz innen
+        action Return("cancel")
+
+## --- CREPE PFANNE SCREEN ---
+label crepe_pan_minigame:
+    call screen crepe_pan_screen()
+    if _return == "success":
+        return "success"
+    else:
+        return "fail"
+
+screen crepe_pan_screen():
+    modal True
+
+    ## --- SOUNDS ---
+    on "show" action Play("sound", "audio/Frying_Sound.mp3", loop=True)
+    on "hide" action Stop("sound")
+
+    ## 1. DER NORMALE HINTERGRUND
+    add "images/backgrounds/Baking_Game_Background.png":
+        size (1920, 1080) # Zwingt das Bild auf Full-HD Größe
+
+    ## 2. DIE ABDUNKELUNG
+    add Solid("#000000ea")
+
+    ## 3. DIE PFANNE
+    add "images/minigames/baking/Pan_Sprite.png":
+        align (0.5, 0.6) # Mitte, etwas tiefer
+        zoom 0.45    
+
+    default pan_state = 0 
+    
+    if pan_state == 1 or pan_state == 3: # Ein Timer, der nach 5 Sekunden den Fail auslöst
+        vbox:
+            xalign 0.5 yalign 0.02
+            text "SCHNELL!" color "#f00" size 80 xalign 0.5 at alpha_flash
+            timer 5.0 action Return("fail")
+
+    ## --- 2. DER STATUS-TEXT (Zwischenscreen) ---
+    vbox:
+        xalign 0.5 yalign 0.15
+        
+        if pan_state == 0:
+            text "Teig brät..." size 80 xalign 0.5 
+            timer 3.0 action SetScreenVariable("pan_state", 1)
+            
+
+        elif pan_state == 2:
+            text "Die andere Seite brät..." size 80 xalign 0.5
+            timer 3.0 action SetScreenVariable("pan_state", 3)
+
+    ## --- 3. DER STATUS-TEXT (Während Aktion) ---
+    vbox:
+        xalign 0.5 yalign 0.1
+
+        if pan_state == 1: 
+            text _("Es riecht langsam verbrannt...") size 70 xalign 0.5
+                
+        elif pan_state == 3:
+            text _("Nun Erdbeeren dazu...") size 70 xalign 0.5
+
+    ## --- 4. DIE BUTTONS ---
+    if pan_state == 1:
+        button:
+            xalign 0.5 yalign 0.9 # Ganz unten positioniert
+            background Solid("#800d006c")
+            hover_background Solid("#ff000079")
+            padding (90, 10)
+            text _("Wenden!") size 70 color "#fff"
+            action SetScreenVariable("pan_state", 2)
+
+    elif pan_state == 3:
+        button:
+            xalign 0.5 yalign 0.9 # Ganz unten positioniert
+            background Solid("#800d006c")
+            hover_background Solid("#ff000079")
+            padding (90, 10)
+            text _("Erdbeeren drauftun!") size 70 color "#fff"
+            action Return("success")        
+
+screen baking_instructions():
+    modal True
+    tag instructions
+    
+    ## Hintergrund leicht abdunkeln
+    add Solid("#000000ec")
+    
+    ## Variable für die aktuelle Seite (1 bis 3)
+    default instruction_page = 1
+    
+    frame:
+        align (0.5, 0.5)
+        xsize 1100 ysize 850
+        #background Frame("gui/confirm_frame.png", 60, 60)
+        
+        vbox:
+            align (0.5, 0.4)
+            spacing 40
+            
+            ## INHALT JE NACH SEITE
+            if instruction_page == 1:
+                # add "images/tutorial/page1.png" # Hier dein Bild einfügen
+                label   _("Schritt 1: Zutaten hinzufügen") xalign 0.5
+                text _("Ziehe die benötigten Zutaten aus dem Vorrat in die Schüssel.\nAchte auf die richtige Menge im Rezept rechts oben!") xalign 0.5 text_align 0.5
+
+                if store.current_recipe_name_global == "Tutorial":
+                    null height 20
+                    text _("{color=#f5253c}{size=45}Wichtige Erinnerung:{/size}{/color}\nWir haben kein Mehl mehr. Nutze als Ersatz das Pulver!") xalign 0.5 text_align 0.5 size 35
+                    
+                    hbox:
+                        xalign 0.5
+                        spacing 40
+                        add Transform("images/minigames/baking/Flour_Sprite.png", size=(150, 150))
+                        text "{size=80}-->{/size}" yalign 0.5
+                        add Transform("images/minigames/baking/Pulver_Sprite.png", size=(150, 150))
+                
+            elif instruction_page == 2:
+                # add "images/tutorial/page2.png" 
+                label _("Schritt 2: Rühren") xalign 0.5
+                text _("Nimm den Schneebesen und bewege ihn im Kreis über die Schüssel.\nDu musst den Teig gründlich mixen, bevor du weitermachst.") xalign 0.5 text_align 0.5
+                
+            elif instruction_page == 3:
+                # add "images/tutorial/page3.png"
+                label _("Schritt 3: Fertigstellen") xalign 0.5
+                text _("Sobald alle Schritte erledigt sind, klicke auf 'Fertig!'.\nBei Fehlern kannst du jederzeit 'Zurücksetzen' drücken.") xalign 0.5 text_align 0.5
+
+        ## NAVIGATION UNTEN
+        hbox:
+            align (0.5, 0.92)
+            spacing 50
+            
+            if instruction_page > 1:
+                textbutton _("Zurück"):
+                    xsize 250 
+                    text_size 80
+                    action SetScreenVariable("instruction_page", instruction_page - 1)
+            
+            if instruction_page < 3:
+                textbutton _("Weiter"):
+                    xsize 250
+                    text_size 80
+                    action SetScreenVariable("instruction_page", instruction_page + 1)
+            else:
+                textbutton _("Verstanden"):
+                    xsize 250
+                    text_size 80
+                    action Hide("baking_instructions")

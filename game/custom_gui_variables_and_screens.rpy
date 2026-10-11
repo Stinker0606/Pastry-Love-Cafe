@@ -1,22 +1,11 @@
-#
-#
-#
-#
-#
-### ------------------------- ##
-
 ## Custom GUI Variables -- Do Not Change ------------------------- ##
+
 ## GUI Variables ------------------------- ##
 default extra_menu = "none"
 
 ## CG GALLERY CODE ------------------------- ##
 ## this tells the gallery which CG to show
 default cg = "1"
-
-## This tells the screen whether or not the CG was unlocked in the game
-default cg_1_unlocked = False
-default cg_2_unlocked = False
-
 
 ## Extras screens ##################################################################
 ##
@@ -29,6 +18,49 @@ screen extras():
     style_prefix "extras"
 
     add "gui/extras_bg.png"
+
+    ## --- UNSICHTBARE CHEAT-BUTTONS ---
+    
+    ## 1. ALLES FREISCHALTEN (Oben Links in der Ecke)
+    button:
+        xpos 0 ypos 0
+        xsize 100 ysize 100
+        action [
+            SetField(persistent, "ending_lavan_unlocked", True),
+            SetField(persistent, "ending_macoi_unlocked", True),
+            SetField(persistent, "ending_velvette_unlocked", True),
+            SetField(persistent, "ending_cino_unlocked", True),
+            SetField(persistent, "ending_single_unlocked", True),
+            SetField(persistent, "ending_harem_unlocked", True),
+            SetField(persistent, "cg_lavan_unlocked", True),
+            SetField(persistent, "cg_macoi_unlocked", True),
+            SetField(persistent, "cg_velvette_unlocked", True),
+            SetField(persistent, "cg_cino_unlocked", True),
+            SetField(persistent, "cg_single_unlocked", True),
+            SetField(persistent, "cg_harem_unlocked", True),
+            SetField(persistent, "cg_baking_unlocked", True)
+        ]
+
+    ## 2. ALLES SPERREN / VERGESSEN (Oben Rechts in der Ecke)
+    button:
+        xalign 1.0 ypos 0
+        xsize 100 ysize 100
+        action [
+            SetField(persistent, "ending_lavan_unlocked", False),
+            SetField(persistent, "ending_macoi_unlocked", False),
+            SetField(persistent, "ending_velvette_unlocked", False),
+            SetField(persistent, "ending_cino_unlocked", False),
+            SetField(persistent, "ending_single_unlocked", False),
+            SetField(persistent, "ending_harem_unlocked", False),
+            SetField(persistent, "cg_lavan_unlocked", False),
+            SetField(persistent, "cg_macoi_unlocked", False),
+            SetField(persistent, "cg_velvette_unlocked", False),
+            SetField(persistent, "cg_cino_unlocked", False),
+            SetField(persistent, "cg_single_unlocked", False),
+            SetField(persistent, "cg_harem_unlocked", False),
+            SetField(persistent, "cg_baking_unlocked", False)
+        ]
+    ## ----------------------------------
 
     hbox:
         yalign 0.5
@@ -84,26 +116,35 @@ screen endings():
     vbox:
         ## Sample Ending Code
 
-        if persistent.ending_1_unlocked:
-            text "Ending One!" color "#ff3a50"
+        if persistent.ending_lavan_unlocked:
+            text _("Ending: Lavan - Ein süßes Versprechen") color "#ff3a50"
         else:
-            text "Ending: ????"
+            text _("Ending: ????")
 
-        if persistent.ending_2_unlocked:
-            text "Ending Two!" color "#ff3a50"
+        if persistent.ending_macoi_unlocked:
+            text _("Ending: Macoi - Entspannte Zweisamkeit") color "#ff3a50"
         else:
-            text "Ending: ????"
+            text _("Ending: ????")
 
-        if persistent.ending_3_unlocked:
-            text "Ending Three!" color "#ff3a50"
+        if persistent.ending_velvette_unlocked:
+            text _("Ending: Velvette - Glamour & Kaffee") color "#ff3a50"
         else:
-            text "Ending: ????"
+            text _("Ending: ????")
 
-        if persistent.ending_4_unlocked:
-            text "Ending Four!" color "#ff3a50"
+        if persistent.ending_cino_unlocked:
+            text _("Ending: Cino - Das perfekte Rezept") color "#ff3a50"
         else:
-            text "Ending: ???? "
+            text _("Ending: ????")
 
+        if persistent.ending_single_unlocked:
+            text _("Ending: Single - Forever Alone") color "#ff3a50"
+        else:
+            text _("Ending: ????")  
+
+        if persistent.ending_harem_unlocked:
+            text _("Ending: All together - Together till the end") color "#ff3a50"
+        else:
+            text _("Ending: ????")        
 
 style endings_vbox is vbox
 
@@ -113,7 +154,7 @@ style endings_vbox:
     spacing 25
 
 style endings_text:
-    color "#5d8282"
+    color "#f5253c"
     font "font/OleoScriptSwashCaps-Regular.ttf"
     size 50
 
@@ -166,55 +207,129 @@ style endings_text:
 ## This is code for the gallery screens
 ##
 ##
+
 screen gallery():
 
     style_prefix "extras"
 
     grid 3 3:
+        spacing 30
 
-        ### Sample Gallery Code!!
-        if persistent.cg_1_unlocked:
-            ## Show Transient Menu + Set Variable to tell it which CG to show
-            imagebutton auto "images/gallery/cg1_preview_%s.png" action [ShowTransient('illustration'), SetVariable("cg", "1")] alt "Illustration One"
+        ## 1. BAKING
+        if persistent.cg_baking_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_baking, thumb_x, thumb_y))
+                hover im.Scale(cg_file_baking, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "baking")]
+                alt "Baking CG"
         else:
-            image "images/gallery/cg_locked.png"
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)
 
-        image "images/gallery/cg_locked.png"
-        image "images/gallery/cg_locked.png"
+        ## 2. LAVAN
+        if persistent.cg_lavan_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_lavan, thumb_x, thumb_y))
+                hover im.Scale(cg_file_lavan, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "lavan")]
+                alt "Lavan CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)
 
-        image "images/gallery/cg_locked.png"
-        image "images/gallery/cg_locked.png"
-        image "images/gallery/cg_locked.png"
+        ## 3. MACOI
+        if persistent.cg_macoi_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_macoi, thumb_x, thumb_y))
+                hover im.Scale(cg_file_macoi, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "macoi")]
+                alt "Macoi CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)
 
-        image "images/gallery/cg_locked.png"
-        image "images/gallery/cg_locked.png"
-        image "images/gallery/cg_locked.png"
+        ## 4. VELVETTE
+        if persistent.cg_velvette_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_velvette, thumb_x, thumb_y))
+                hover im.Scale(cg_file_velvette, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "velvette")]
+                alt "Velvette CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)
+
+        ## 5. CINO
+        if persistent.cg_cino_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_cino, thumb_x, thumb_y))
+                hover im.Scale(cg_file_cino, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "cino")]
+                alt "Cino CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)
+
+        ## 6. SINGLE
+        if persistent.cg_single_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_single, thumb_x, thumb_y))
+                hover im.Scale(cg_file_single, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "single")]
+                alt "Single CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)
+
+        ## 7. HAREM
+        if persistent.cg_harem_unlocked:
+            imagebutton:
+                idle im.Grayscale(im.Scale(cg_file_harem, thumb_x, thumb_y))
+                hover im.Scale(cg_file_harem, thumb_x, thumb_y)
+                action [ShowTransient('illustration'), SetVariable("cg", "harem")]
+                alt "Harem CG"
+        else:
+            add im.Scale(cg_file_locked, thumb_x, thumb_y)   
+
+        null   # Füllt Platz 8 auf
+        null   # Füllt Platz 9 auf        
 
 style extras_grid is gui_grid
 
 style extras_grid:
-    spacing 25
+    # spacing 25 # Haben wir jetzt direkt im Grid definiert
     xpos 650
     ypos 160
 
 
-#### CG IMAGES CODE GO HERE
+#### CG IMAGES CODE GO HERE (Der Teil bleibt fast gleich, nutzt aber die neuen Variablen)
 screen illustration():
 
-    ## add numbered CGs below!
-    if cg == "1":
-        ## This is where the CG goes
-        add "images/gallery/cg_1.png"
-    elif cg == "2":
-        ## This is another sample
-        add "images/gallery/cg_1.png"
+    modal True # WICHTIG: Damit man nicht durch das große Bild hindurch klicken kann
+
+    # Ein schwarzer Hintergrund, damit das Menü drunter abgedunkelt wird
+    add Solid("#000000c0")
+
+    ## Das große Bild anzeigen
+    if cg == "lavan":
+        add cg_file_lavan # Nutzt die Variable von oben
+    elif cg == "macoi":
+        add cg_file_macoi
+    elif cg == "velvette":
+        add cg_file_velvette
+    elif cg == "cino":
+        add cg_file_cino
+    elif cg == "single":
+        add cg_file_single
+    elif cg == "harem":
+        add cg_file_harem
+    elif cg == "baking":
+        add cg_file_baking
     else:
-        text "Error: No Illustration Found"
+        text "Error: No Illustration Found" xalign 0.5 yalign 0.5 color "#fff"
 
     ## Return Button
-    vbox:
-        style_prefix "illustration"
-        textbutton "Return" action Hide('illustration')
+    button:
+        background None # Macht den Button komplett unsichtbar
+        xpos 0
+        ypos 0
+        xsize 1920
+        ysize 1080
+        action Hide('illustration')
 
 style illustration_button is button
 style illustration_button_text is button_text
